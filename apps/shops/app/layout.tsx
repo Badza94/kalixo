@@ -4,6 +4,7 @@ import "./globals.css";
 import "@workspace/ui/globals.css";
 
 import { Providers } from "../components/providers";
+import { ShopThemeWrapper } from "../components/shop-theme-wrapper";
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -25,7 +26,11 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <ShopThemeWrapper>
+            <div className="3333333">{children}</div>
+          </ShopThemeWrapper>
+        </Providers>
       </body>
     </html>
   );
