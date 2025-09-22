@@ -23,8 +23,8 @@ export default function Providers({
 }): JSX.Element {
   const pathname = usePathname();
 
-  const renderSidebar = isUnprotectedRoute(pathname);
-  console.log("renderSidebar", renderSidebar);
+  const isUnprotected = isUnprotectedRoute(pathname);
+  console.log("isUnprotected", isUnprotected);
   return (
     <>
       <TooltipProvider delayDuration={100}>
@@ -34,7 +34,7 @@ export default function Providers({
           defaultTheme="light"
           disableTransitionOnChange
         >
-          {renderSidebar ? (
+          {isUnprotected ? (
             <>{children}</>
           ) : (
             <SidebarProvider>

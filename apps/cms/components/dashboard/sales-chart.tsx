@@ -143,13 +143,13 @@ const SalesChart = ({ data }: { data: TSalesData[] }) => {
             </defs>
             <XAxis
               dataKey="month"
-              stroke="hsl(var(--muted-foreground))"
+              fill="hsl(var(--muted-foreground))"
               fontSize={12}
               tickLine={false}
               axisLine={false}
             />
             <YAxis
-              stroke="hsl(var(--muted-foreground))"
+              fill="hsl(var(--muted-foreground))"
               fontSize={12}
               tickLine={false}
               axisLine={false}
