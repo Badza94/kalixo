@@ -1,0 +1,27 @@
+[
+  {
+    "value": "sellThroughNetwork",
+    "label": "sellThroughNetwork",
+    "name": "Sell through our network"
+  },
+  {
+    "value": "useAPIOrSDK",
+    "label": "useAPIOrSDK",
+    "name": "Use our API or SDK"
+  },
+  {
+    "value": "createWhiteLabel",
+    "label": "createWhiteLabel",
+    "name": "Create a White label or a marketplace"
+  },
+  {
+    "value": "createPayoutSolution",
+    "label": "createPayoutSolution",
+    "name": "Create a Payout Solution"
+  },
+  {
+    "value": "buyInBulk",
+    "label": "buyInBulk",
+    "name": "Buy in bulk"
+  }
+]

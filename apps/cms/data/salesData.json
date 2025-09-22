@@ -1,0 +1,86 @@
+[
+  {
+    "month": "Jan",
+    "current": 35000,
+    "previous": 28000,
+    "items": 2100,
+    "previousItems": 1600
+  },
+  {
+    "month": "Feb",
+    "current": 38000,
+    "previous": 29500,
+    "items": 2300,
+    "previousItems": 1800
+  },
+  {
+    "month": "Mar",
+    "current": 42000,
+    "previous": 31000,
+    "items": 2500,
+    "previousItems": 1950
+  },
+  {
+    "month": "Apr",
+    "current": 40000,
+    "previous": 30000,
+    "items": 2400,
+    "previousItems": 1850
+  },
+  {
+    "month": "May",
+    "current": 38000,
+    "previous": 29000,
+    "items": 2200,
+    "previousItems": 1700
+  },
+  {
+    "month": "Jun",
+    "current": 32000,
+    "previous": 25000,
+    "items": 1900,
+    "previousItems": 1500
+  },
+  {
+    "month": "Jul",
+    "current": 28000,
+    "previous": 22000,
+    "items": 1700,
+    "previousItems": 1300
+  },
+  {
+    "month": "Aug",
+    "current": 30000,
+    "previous": 23000,
+    "items": 1800,
+    "previousItems": 1350
+  },
+  {
+    "month": "Sep",
+    "current": 34000,
+    "previous": 24000,
+    "items": 2000,
+    "previousItems": 1600
+  },
+  {
+    "month": "Oct",
+    "current": 32000,
+    "previous": 23000,
+    "items": 1900,
+    "previousItems": 1450
+  },
+  {
+    "month": "Nov",
+    "current": 28000,
+    "previous": 20000,
+    "items": 1700,
+    "previousItems": 1300
+  },
+  {
+    "month": "Dec",
+    "current": 22000,
+    "previous": 14000,
+    "items": 1300,
+    "previousItems": 950
+  }
+]

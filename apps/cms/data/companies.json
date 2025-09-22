@@ -1,0 +1,1810 @@
+[
+  {
+    "id": "9898510f-27ed-4ea5-b365-b6cf58847b6d",
+    "companyName": "Company 2",
+    "legalName": "Company 2",
+    "website": "https://www.company2.com",
+    "address": "2 Main St, City2, USA",
+    "countryCode": "US",
+    "city": "City2",
+    "state": "CA",
+    "zip": "10002",
+    "currency": "USD",
+    "contactName": "Contact 2",
+    "contactEmail": "contact2@example.com",
+    "registrationNumber": "1000000002",
+    "vatNumber": "1000000002",
+    "status": "approved",
+    "kybStatus": {
+      "status": "approved",
+      "createdAt": "2021-01-01T00:00:00Z",
+      "updatedAt": "2021-01-01T00:00:00Z"
+    },
+    "createdAt": "2021-01-01T00:00:00Z",
+    "updatedAt": "2021-01-01T00:00:00Z",
+    "insights": {
+      "totalSales": 1000,
+      "itemsSold": 100,
+      "revenue": 1000,
+      "margin": 100,
+      "marginPercentage": 10
+    },
+    "salesByCountry": [
+      {
+        "countryCode": "US",
+        "countryName": "United States",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "countryCode": "GB",
+        "countryName": "United Kingdom",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "countryCode": "DE",
+        "countryName": "Germany",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "countryCode": "FR",
+        "countryName": "France",
+        "price": 1000000,
+        "percentage": 10
+      }
+    ],
+    "salesByBrand": [
+      {
+        "brandId": "1",
+        "name": "App Store & iTunes",
+        "logoUrl": "https://cdn.brandfetch.io/apple.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "brandId": "2",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "brandId": "3",
+        "name": "PlayStation",
+        "logoUrl": "https://cdn.brandfetch.io/playstation.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "brandId": "4",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      }
+    ],
+    "salesByProduct": [
+      {
+        "id": 17056,
+        "productId": "gb_en_kw1",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+        "price": 100000,
+        "percentage": 45
+      },
+      {
+        "id": 17057,
+        "productId": "us_en_kw2",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/US-en-KW2.png",
+        "price": 100000,
+        "percentage": 25
+      },
+      {
+        "id": 17058,
+        "productId": "de_de_kw8",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/DE-de-KW8.png",
+        "price": 100000,
+        "percentage": 15
+      },
+      {
+        "id": 17059,
+        "productId": "fr_fr_kw10",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/FR-fr-KW10.png",
+        "price": 100000,
+        "percentage": 15
+      }
+    ],
+    "channels": [
+      {
+        "id": 86,
+        "label": "Ali A",
+        "value": "86",
+        "resellerCode": "alia",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "tier": "1",
+        "type": "revenueShare",
+        "paymentTerms": "payoutWeekly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 87,
+        "label": "Arab Games",
+        "value": "87",
+        "resellerCode": "arabgames",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/d958f568027e4fcc331837883ec0bdea9882de6d.png",
+        "tier": "2",
+        "type": "fixedDiscount",
+        "paymentTerms": "prepaid",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 88,
+        "label": "Tuwaiq eSports",
+        "value": "88",
+        "resellerCode": "tuwaiq",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/f814579545fa70be63278ca9ebba15c9c481f569.png",
+        "tier": "3",
+        "type": "transactionFee",
+        "paymentTerms": "monthly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      }
+    ],
+    "teamMembers": [
+      {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@example.com",
+        "role": "admin",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane.doe@example.com",
+        "role": "user",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 3,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "inactive",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 4,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "pending",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      }
+    ],
+    "media": [
+      {
+        "id": 1,
+        "url": "https://shop.famehype.gg/static-images/logo/49-400x400.png",
+        "type": "logoLight"
+      },
+      {
+        "id": 2,
+        "url": "https://cdn.famehype.gg/user_upload/uploads/f32894c3ed097dd4fb072a1a80a00e748e9e51ea.png",
+        "type": "logoDark"
+      },
+      {
+        "id": 3,
+        "url": "https://shop.famehype.gg/static-images/logo/39-400x400.png",
+        "type": "iconLight"
+      },
+      {
+        "id": 4,
+        "url": "https://shop.famehype.gg/static-images/logo/45-400x400.png",
+        "type": "iconDark"
+      }
+    ]
+  },
+  {
+    "id": "6a6ffafb-5901-405f-b0e6-f632cc2c70d1",
+    "companyName": "Company 3",
+    "legalName": "Company 3",
+    "website": "https://www.company3.com",
+    "address": "3 Main St, City3, USA",
+    "countryCode": "US",
+    "city": "City3",
+    "state": "CA",
+    "zip": "10003",
+    "currency": "USD",
+    "contactName": "Contact 3",
+    "contactEmail": "contact3@example.com",
+    "registrationNumber": "1000000003",
+    "vatNumber": "1000000003",
+    "status": "approved",
+    "kybStatus": {
+      "status": "approved",
+      "createdAt": "2021-01-01T00:00:00Z",
+      "updatedAt": "2021-01-01T00:00:00Z"
+    },
+    "createdAt": "2021-01-01T00:00:00Z",
+    "updatedAt": "2021-01-01T00:00:00Z",
+    "insights": {
+      "totalSales": 1000,
+      "itemsSold": 100,
+      "revenue": 1000,
+      "margin": 100,
+      "marginPercentage": 10
+    },
+    "salesByCountry": [
+      {
+        "countryCode": "US",
+        "countryName": "United States",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "countryCode": "GB",
+        "countryName": "United Kingdom",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "countryCode": "DE",
+        "countryName": "Germany",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "countryCode": "FR",
+        "countryName": "France",
+        "price": 1000000,
+        "percentage": 10
+      }
+    ],
+    "salesByBrand": [
+      {
+        "brandId": "1",
+        "name": "App Store & iTunes",
+        "logoUrl": "https://cdn.brandfetch.io/apple.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "brandId": "2",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "brandId": "3",
+        "name": "PlayStation",
+        "logoUrl": "https://cdn.brandfetch.io/playstation.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "brandId": "4",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      }
+    ],
+    "salesByProduct": [
+      {
+        "id": 17056,
+        "productId": "gb_en_kw1",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+        "price": 100000
+      },
+      {
+        "id": 17057,
+        "productId": "us_en_kw2",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/US-en-KW2.png",
+        "price": 100000
+      },
+      {
+        "id": 17058,
+        "productId": "de_en_kw3",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/DE-en-KW3.png",
+        "price": 100000
+      },
+      {
+        "id": 17059,
+        "productId": "fr_en_kw4",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/FR-en-KW4.png",
+        "price": 100000
+      }
+    ],
+    "channels": [
+      {
+        "id": 86,
+        "label": "Ali A",
+        "value": "86",
+        "resellerCode": "alia",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "tier": "1",
+        "type": "revenueShare",
+        "paymentTerms": "payoutWeekly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 87,
+        "label": "Arab Games",
+        "value": "87",
+        "resellerCode": "arabgames",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/d958f568027e4fcc331837883ec0bdea9882de6d.png",
+        "tier": "2",
+        "type": "fixedDiscount",
+        "paymentTerms": "prepaid",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 88,
+        "label": "Tuwaiq eSports",
+        "value": "88",
+        "resellerCode": "tuwaiq",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/f814579545fa70be63278ca9ebba15c9c481f569.png",
+        "tier": "3",
+        "type": "transactionFee",
+        "paymentTerms": "monthly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      }
+    ],
+    "teamMembers": [
+      {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@example.com",
+        "role": "admin",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane.doe@example.com",
+        "role": "user",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 3,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "inactive",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 4,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "pending",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "5ad2dba4-2e06-42d1-bfaa-213860f400d2",
+    "companyName": "Company 4",
+    "legalName": "Company 4",
+    "website": "https://www.company4.com",
+    "address": "4 Main St, City4, USA",
+    "countryCode": "US",
+    "city": "City4",
+    "state": "CA",
+    "zip": "10004",
+    "currency": "USD",
+    "contactName": "Contact 4",
+    "contactEmail": "contact4@example.com",
+    "registrationNumber": "1000000004",
+    "vatNumber": "1000000004",
+    "status": "under_review",
+    "kybStatus": {
+      "status": "approved",
+      "createdAt": "2021-01-01T00:00:00Z",
+      "updatedAt": "2021-01-01T00:00:00Z"
+    },
+    "createdAt": "2021-01-01T00:00:00Z",
+    "updatedAt": "2021-01-01T00:00:00Z",
+    "insights": {
+      "totalSales": 1000,
+      "itemsSold": 100,
+      "revenue": 1000,
+      "margin": 100,
+      "marginPercentage": 10
+    },
+    "salesByCountry": [
+      {
+        "countryCode": "US",
+        "countryName": "United States",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "countryCode": "GB",
+        "countryName": "United Kingdom",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "countryCode": "DE",
+        "countryName": "Germany",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "countryCode": "FR",
+        "countryName": "France",
+        "price": 1000000,
+        "percentage": 10
+      }
+    ],
+    "salesByBrand": [
+      {
+        "brandId": "1",
+        "name": "App Store & iTunes",
+        "logoUrl": "https://cdn.brandfetch.io/apple.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "brandId": "2",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "brandId": "3",
+        "name": "PlayStation",
+        "logoUrl": "https://cdn.brandfetch.io/playstation.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "brandId": "4",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      }
+    ],
+    "salesByProduct": [
+      {
+        "id": 17056,
+        "productId": "gb_en_kw1",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+        "price": 100000
+      },
+      {
+        "id": 17057,
+        "productId": "us_en_kw2",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/US-en-KW2.png",
+        "price": 100000
+      },
+      {
+        "id": 17058,
+        "productId": "de_en_kw3",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/DE-en-KW3.png",
+        "price": 100000
+      },
+      {
+        "id": 17059,
+        "productId": "fr_en_kw4",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/FR-en-KW4.png",
+        "price": 100000
+      }
+    ],
+    "channels": [
+      {
+        "id": 86,
+        "label": "Ali A",
+        "value": "86",
+        "resellerCode": "alia",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "tier": "1",
+        "type": "revenueShare",
+        "paymentTerms": "payoutWeekly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 87,
+        "label": "Arab Games",
+        "value": "87",
+        "resellerCode": "arabgames",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/d958f568027e4fcc331837883ec0bdea9882de6d.png",
+        "tier": "2",
+        "type": "fixedDiscount",
+        "paymentTerms": "prepaid",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 88,
+        "label": "Tuwaiq eSports",
+        "value": "88",
+        "resellerCode": "tuwaiq",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/f814579545fa70be63278ca9ebba15c9c481f569.png",
+        "tier": "3",
+        "type": "transactionFee",
+        "paymentTerms": "monthly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      }
+    ],
+    "teamMembers": [
+      {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@example.com",
+        "role": "admin",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane.doe@example.com",
+        "role": "user",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 3,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "inactive",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 4,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "pending",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "3dd7a264-0b16-4fa0-a9b8-12f831324292",
+    "companyName": "Company 5",
+    "legalName": "Company 5",
+    "website": "https://www.company5.com",
+    "address": "5 Main St, City5, USA",
+    "countryCode": "US",
+    "city": "City5",
+    "state": "CA",
+    "zip": "10005",
+    "currency": "USD",
+    "contactName": "Contact 5",
+    "contactEmail": "contact5@example.com",
+    "registrationNumber": "1000000005",
+    "vatNumber": "1000000005",
+    "status": "rejected",
+    "kybStatus": {
+      "status": "approved",
+      "createdAt": "2021-01-01T00:00:00Z",
+      "updatedAt": "2021-01-01T00:00:00Z"
+    },
+    "createdAt": "2021-01-01T00:00:00Z",
+    "updatedAt": "2021-01-01T00:00:00Z",
+    "insights": {
+      "totalSales": 1000,
+      "itemsSold": 100,
+      "revenue": 1000,
+      "margin": 100,
+      "marginPercentage": 10
+    },
+    "salesByCountry": [
+      {
+        "countryCode": "US",
+        "countryName": "United States",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "countryCode": "GB",
+        "countryName": "United Kingdom",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "countryCode": "DE",
+        "countryName": "Germany",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "countryCode": "FR",
+        "countryName": "France",
+        "price": 1000000,
+        "percentage": 10
+      }
+    ],
+    "salesByBrand": [
+      {
+        "brandId": "1",
+        "name": "App Store & iTunes",
+        "logoUrl": "https://cdn.brandfetch.io/apple.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "brandId": "2",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "brandId": "3",
+        "name": "PlayStation",
+        "logoUrl": "https://cdn.brandfetch.io/playstation.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "brandId": "4",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      }
+    ],
+    "salesByProduct": [
+      {
+        "id": 17056,
+        "productId": "gb_en_kw1",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+        "price": 100000
+      },
+      {
+        "id": 17057,
+        "productId": "us_en_kw2",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/US-en-KW2.png",
+        "price": 100000
+      },
+      {
+        "id": 17058,
+        "productId": "de_en_kw3",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/DE-en-KW3.png",
+        "price": 100000
+      },
+      {
+        "id": 17059,
+        "productId": "fr_en_kw4",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/FR-en-KW4.png",
+        "price": 100000
+      }
+    ],
+    "channels": [
+      {
+        "id": 86,
+        "label": "Ali A",
+        "value": "86",
+        "resellerCode": "alia",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "tier": "1",
+        "type": "revenueShare",
+        "paymentTerms": "payoutWeekly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 87,
+        "label": "Arab Games",
+        "value": "87",
+        "resellerCode": "arabgames",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/d958f568027e4fcc331837883ec0bdea9882de6d.png",
+        "tier": "2",
+        "type": "fixedDiscount",
+        "paymentTerms": "prepaid",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 88,
+        "label": "Tuwaiq eSports",
+        "value": "88",
+        "resellerCode": "tuwaiq",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/f814579545fa70be63278ca9ebba15c9c481f569.png",
+        "tier": "3",
+        "type": "transactionFee",
+        "paymentTerms": "monthly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      }
+    ],
+    "teamMembers": [
+      {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@example.com",
+        "role": "admin",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane.doe@example.com",
+        "role": "user",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 3,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "inactive",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 4,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "pending",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "cacfe46e-6cdc-4324-b6dc-c0b80b117f93",
+    "companyName": "Company 6",
+    "legalName": "Company 6",
+    "website": "https://www.company6.com",
+    "address": "6 Main St, City6, USA",
+    "countryCode": "US",
+    "city": "City6",
+    "state": "CA",
+    "zip": "10006",
+    "currency": "USD",
+    "contactName": "Contact 6",
+    "contactEmail": "contact6@example.com",
+    "registrationNumber": "1000000006",
+    "vatNumber": "1000000006",
+    "status": "suspended",
+    "kybStatus": {
+      "status": "approved",
+      "createdAt": "2021-01-01T00:00:00Z",
+      "updatedAt": "2021-01-01T00:00:00Z"
+    },
+    "createdAt": "2021-01-01T00:00:00Z",
+    "updatedAt": "2021-01-01T00:00:00Z",
+    "insights": {
+      "totalSales": 1000,
+      "itemsSold": 100,
+      "revenue": 1000,
+      "margin": 100,
+      "marginPercentage": 10
+    },
+    "salesByCountry": [
+      {
+        "countryCode": "US",
+        "countryName": "United States",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "countryCode": "GB",
+        "countryName": "United Kingdom",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "countryCode": "DE",
+        "countryName": "Germany",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "countryCode": "FR",
+        "countryName": "France",
+        "price": 1000000,
+        "percentage": 10
+      }
+    ],
+    "salesByBrand": [
+      {
+        "brandId": "1",
+        "name": "App Store & iTunes",
+        "logoUrl": "https://cdn.brandfetch.io/apple.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "brandId": "2",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "brandId": "3",
+        "name": "PlayStation",
+        "logoUrl": "https://cdn.brandfetch.io/playstation.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "brandId": "4",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      }
+    ],
+    "salesByProduct": [
+      {
+        "id": 17056,
+        "productId": "gb_en_kw1",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+        "price": 100000
+      },
+      {
+        "id": 17057,
+        "productId": "us_en_kw2",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/US-en-KW2.png",
+        "price": 100000
+      },
+      {
+        "id": 17058,
+        "productId": "de_en_kw3",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/DE-en-KW3.png",
+        "price": 100000
+      },
+      {
+        "id": 17059,
+        "productId": "fr_en_kw4",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/FR-en-KW4.png",
+        "price": 100000
+      }
+    ],
+    "channels": [
+      {
+        "id": 86,
+        "label": "Ali A",
+        "value": "86",
+        "resellerCode": "alia",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "tier": "1",
+        "type": "revenueShare",
+        "paymentTerms": "payoutWeekly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 87,
+        "label": "Arab Games",
+        "value": "87",
+        "resellerCode": "arabgames",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/d958f568027e4fcc331837883ec0bdea9882de6d.png",
+        "tier": "2",
+        "type": "fixedDiscount",
+        "paymentTerms": "prepaid",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 88,
+        "label": "Tuwaiq eSports",
+        "value": "88",
+        "resellerCode": "tuwaiq",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/f814579545fa70be63278ca9ebba15c9c481f569.png",
+        "tier": "3",
+        "type": "transactionFee",
+        "paymentTerms": "monthly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      }
+    ],
+    "teamMembers": [
+      {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@example.com",
+        "role": "admin",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane.doe@example.com",
+        "role": "user",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 3,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "inactive",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 4,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "pending",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "ee281fbd-7a90-4411-a0df-9d2a4976da9f",
+    "companyName": "Company 7",
+    "legalName": "Company 7",
+    "website": "https://www.company7.com",
+    "address": "7 Main St, City7, USA",
+    "countryCode": "US",
+    "city": "City7",
+    "state": "CA",
+    "zip": "10007",
+    "currency": "USD",
+    "contactName": "Contact 7",
+    "contactEmail": "contact7@example.com",
+    "registrationNumber": "1000000007",
+    "vatNumber": "1000000007",
+    "status": "approved",
+    "kybStatus": {
+      "status": "approved",
+      "createdAt": "2021-01-01T00:00:00Z",
+      "updatedAt": "2021-01-01T00:00:00Z"
+    },
+    "createdAt": "2021-01-01T00:00:00Z",
+    "updatedAt": "2021-01-01T00:00:00Z",
+    "insights": {
+      "totalSales": 1000,
+      "itemsSold": 100,
+      "revenue": 1000,
+      "margin": 100,
+      "marginPercentage": 10
+    },
+    "salesByCountry": [
+      {
+        "countryCode": "US",
+        "countryName": "United States",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "countryCode": "GB",
+        "countryName": "United Kingdom",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "countryCode": "DE",
+        "countryName": "Germany",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "countryCode": "FR",
+        "countryName": "France",
+        "price": 1000000,
+        "percentage": 10
+      }
+    ],
+    "salesByBrand": [
+      {
+        "brandId": "1",
+        "name": "App Store & iTunes",
+        "logoUrl": "https://cdn.brandfetch.io/apple.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "brandId": "2",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "brandId": "3",
+        "name": "PlayStation",
+        "logoUrl": "https://cdn.brandfetch.io/playstation.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "brandId": "4",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      }
+    ],
+    "salesByProduct": [
+      {
+        "id": 17056,
+        "productId": "gb_en_kw1",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+        "price": 100000
+      },
+      {
+        "id": 17057,
+        "productId": "us_en_kw2",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/US-en-KW2.png",
+        "price": 100000
+      },
+      {
+        "id": 17058,
+        "productId": "de_en_kw3",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/DE-en-KW3.png",
+        "price": 100000
+      },
+      {
+        "id": 17059,
+        "productId": "fr_en_kw4",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/FR-en-KW4.png",
+        "price": 100000
+      }
+    ],
+    "channels": [
+      {
+        "id": 86,
+        "label": "Ali A",
+        "value": "86",
+        "resellerCode": "alia",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "tier": "1",
+        "type": "revenueShare",
+        "paymentTerms": "payoutWeekly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 87,
+        "label": "Arab Games",
+        "value": "87",
+        "resellerCode": "arabgames",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/d958f568027e4fcc331837883ec0bdea9882de6d.png",
+        "tier": "2",
+        "type": "fixedDiscount",
+        "paymentTerms": "prepaid",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 88,
+        "label": "Tuwaiq eSports",
+        "value": "88",
+        "resellerCode": "tuwaiq",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/f814579545fa70be63278ca9ebba15c9c481f569.png",
+        "tier": "3",
+        "type": "transactionFee",
+        "paymentTerms": "monthly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      }
+    ],
+    "teamMembers": [
+      {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@example.com",
+        "role": "admin",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane.doe@example.com",
+        "role": "user",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 3,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "inactive",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 4,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "pending",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "0c61fe2b-3644-4e1b-be40-de7b6517eda4",
+    "companyName": "Company 8",
+    "legalName": "Company 8",
+    "website": "https://www.company8.com",
+    "address": "8 Main St, City8, USA",
+    "countryCode": "US",
+    "city": "City8",
+    "state": "CA",
+    "zip": "10008",
+    "currency": "USD",
+    "contactName": "Contact 8",
+    "contactEmail": "contact8@example.com",
+    "registrationNumber": "1000000008",
+    "vatNumber": "1000000008",
+    "status": "approved",
+    "kybStatus": {
+      "status": "approved",
+      "createdAt": "2021-01-01T00:00:00Z",
+      "updatedAt": "2021-01-01T00:00:00Z"
+    },
+    "createdAt": "2021-01-01T00:00:00Z",
+    "updatedAt": "2021-01-01T00:00:00Z",
+    "insights": {
+      "totalSales": 1000,
+      "itemsSold": 100,
+      "revenue": 1000,
+      "margin": 100,
+      "marginPercentage": 10
+    },
+    "salesByCountry": [
+      {
+        "countryCode": "US",
+        "countryName": "United States",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "countryCode": "GB",
+        "countryName": "United Kingdom",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "countryCode": "DE",
+        "countryName": "Germany",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "countryCode": "FR",
+        "countryName": "France",
+        "price": 1000000,
+        "percentage": 10
+      }
+    ],
+    "salesByBrand": [
+      {
+        "brandId": "1",
+        "name": "App Store & iTunes",
+        "logoUrl": "https://cdn.brandfetch.io/apple.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "brandId": "2",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "brandId": "3",
+        "name": "PlayStation",
+        "logoUrl": "https://cdn.brandfetch.io/playstation.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "brandId": "4",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      }
+    ],
+    "salesByProduct": [
+      {
+        "id": 17056,
+        "productId": "gb_en_kw1",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+        "price": 100000
+      },
+      {
+        "id": 17057,
+        "productId": "us_en_kw2",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/US-en-KW2.png",
+        "price": 100000
+      },
+      {
+        "id": 17058,
+        "productId": "de_en_kw3",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/DE-en-KW3.png",
+        "price": 100000
+      },
+      {
+        "id": 17059,
+        "productId": "fr_en_kw4",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/FR-en-KW4.png",
+        "price": 100000
+      }
+    ],
+    "channels": [
+      {
+        "id": 86,
+        "label": "Ali A",
+        "value": "86",
+        "resellerCode": "alia",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "tier": "1",
+        "type": "revenueShare",
+        "paymentTerms": "payoutWeekly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 87,
+        "label": "Arab Games",
+        "value": "87",
+        "resellerCode": "arabgames",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/d958f568027e4fcc331837883ec0bdea9882de6d.png",
+        "tier": "2",
+        "type": "fixedDiscount",
+        "paymentTerms": "prepaid",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 88,
+        "label": "Tuwaiq eSports",
+        "value": "88",
+        "resellerCode": "tuwaiq",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/f814579545fa70be63278ca9ebba15c9c481f569.png",
+        "tier": "3",
+        "type": "transactionFee",
+        "paymentTerms": "monthly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      }
+    ],
+    "teamMembers": [
+      {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@example.com",
+        "role": "admin",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane.doe@example.com",
+        "role": "user",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 3,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "inactive",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 4,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "pending",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "78563e7e-9cd8-4ded-badc-a730260a28cc",
+    "companyName": "Company 9",
+    "legalName": "Company 9",
+    "website": "https://www.company9.com",
+    "address": "9 Main St, City9, USA",
+    "countryCode": "US",
+    "city": "City9",
+    "state": "CA",
+    "zip": "10009",
+    "currency": "USD",
+    "contactName": "Contact 9",
+    "contactEmail": "contact9@example.com",
+    "registrationNumber": "1000000009",
+    "vatNumber": "1000000009",
+    "status": "approved",
+    "kybStatus": {
+      "status": "approved",
+      "createdAt": "2021-01-01T00:00:00Z",
+      "updatedAt": "2021-01-01T00:00:00Z"
+    },
+    "createdAt": "2021-01-01T00:00:00Z",
+    "updatedAt": "2021-01-01T00:00:00Z",
+    "insights": {
+      "totalSales": 1000,
+      "itemsSold": 100,
+      "revenue": 1000,
+      "margin": 100,
+      "marginPercentage": 10
+    },
+    "salesByCountry": [
+      {
+        "countryCode": "US",
+        "countryName": "United States",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "countryCode": "GB",
+        "countryName": "United Kingdom",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "countryCode": "DE",
+        "countryName": "Germany",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "countryCode": "FR",
+        "countryName": "France",
+        "price": 1000000,
+        "percentage": 10
+      }
+    ],
+    "salesByBrand": [
+      {
+        "brandId": "1",
+        "name": "App Store & iTunes",
+        "logoUrl": "https://cdn.brandfetch.io/apple.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "brandId": "2",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "brandId": "3",
+        "name": "PlayStation",
+        "logoUrl": "https://cdn.brandfetch.io/playstation.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "brandId": "4",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      }
+    ],
+    "salesByProduct": [
+      {
+        "id": 17056,
+        "productId": "gb_en_kw1",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+        "price": 100000
+      },
+      {
+        "id": 17057,
+        "productId": "us_en_kw2",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/US-en-KW2.png",
+        "price": 100000
+      },
+      {
+        "id": 17058,
+        "productId": "de_en_kw3",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/DE-en-KW3.png",
+        "price": 100000
+      },
+      {
+        "id": 17059,
+        "productId": "fr_en_kw4",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/FR-en-KW4.png",
+        "price": 100000
+      }
+    ],
+    "channels": [
+      {
+        "id": 86,
+        "label": "Ali A",
+        "value": "86",
+        "resellerCode": "alia",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "tier": "1",
+        "type": "revenueShare",
+        "paymentTerms": "payoutWeekly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 87,
+        "label": "Arab Games",
+        "value": "87",
+        "resellerCode": "arabgames",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/d958f568027e4fcc331837883ec0bdea9882de6d.png",
+        "tier": "2",
+        "type": "fixedDiscount",
+        "paymentTerms": "prepaid",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 88,
+        "label": "Tuwaiq eSports",
+        "value": "88",
+        "resellerCode": "tuwaiq",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/f814579545fa70be63278ca9ebba15c9c481f569.png",
+        "tier": "3",
+        "type": "transactionFee",
+        "paymentTerms": "monthly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      }
+    ],
+    "teamMembers": [
+      {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@example.com",
+        "role": "admin",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane.doe@example.com",
+        "role": "user",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 3,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "inactive",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 4,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "pending",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "dd508a2d-3bfa-4aed-bdbd-c50a38990c2e",
+    "companyName": "Company 10",
+    "legalName": "Company 10",
+    "website": "https://www.company10.com",
+    "address": "10 Main St, City10, USA",
+    "countryCode": "US",
+    "city": "City10",
+    "state": "CA",
+    "zip": "10010",
+    "currency": "USD",
+    "contactName": "Contact 10",
+    "contactEmail": "contact10@example.com",
+    "registrationNumber": "1000000010",
+    "vatNumber": "1000000010",
+    "status": "approved",
+    "kybStatus": {
+      "status": "approved",
+      "createdAt": "2021-01-01T00:00:00Z",
+      "updatedAt": "2021-01-01T00:00:00Z"
+    },
+    "createdAt": "2021-01-01T00:00:00Z",
+    "updatedAt": "2021-01-01T00:00:00Z",
+    "insights": {
+      "totalSales": 1000,
+      "itemsSold": 100,
+      "revenue": 1000,
+      "margin": 100,
+      "marginPercentage": 10
+    },
+    "salesByCountry": [
+      {
+        "countryCode": "US",
+        "countryName": "United States",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "countryCode": "GB",
+        "countryName": "United Kingdom",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "countryCode": "DE",
+        "countryName": "Germany",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "countryCode": "FR",
+        "countryName": "France",
+        "price": 1000000,
+        "percentage": 10
+      }
+    ],
+    "salesByBrand": [
+      {
+        "brandId": "1",
+        "name": "App Store & iTunes",
+        "logoUrl": "https://cdn.brandfetch.io/apple.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 45
+      },
+      {
+        "brandId": "2",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 25
+      },
+      {
+        "brandId": "3",
+        "name": "PlayStation",
+        "logoUrl": "https://cdn.brandfetch.io/playstation.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      },
+      {
+        "brandId": "4",
+        "name": "Bigpoint",
+        "logoUrl": "https://cdn.brandfetch.io/bigpoint.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh",
+        "price": 1000000,
+        "percentage": 15
+      }
+    ],
+    "salesByProduct": [
+      {
+        "id": 17056,
+        "productId": "gb_en_kw1",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+        "price": 100000
+      },
+      {
+        "id": 17057,
+        "productId": "us_en_kw2",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/US-en-KW2.png",
+        "price": 100000
+      },
+      {
+        "id": 17058,
+        "productId": "de_en_kw3",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/DE-en-KW3.png",
+        "price": 100000
+      },
+      {
+        "id": 17059,
+        "productId": "fr_en_kw4",
+        "name": "Kalixo wallet",
+        "image": "https://cdn.kalixo.io/static-images/FR-en-KW4.png",
+        "price": 100000
+      }
+    ],
+    "channels": [
+      {
+        "id": 86,
+        "label": "Ali A",
+        "value": "86",
+        "resellerCode": "alia",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "tier": "1",
+        "type": "revenueShare",
+        "paymentTerms": "payoutWeekly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 87,
+        "label": "Arab Games",
+        "value": "87",
+        "resellerCode": "arabgames",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/d958f568027e4fcc331837883ec0bdea9882de6d.png",
+        "tier": "2",
+        "type": "fixedDiscount",
+        "paymentTerms": "prepaid",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 88,
+        "label": "Tuwaiq eSports",
+        "value": "88",
+        "resellerCode": "tuwaiq",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/f814579545fa70be63278ca9ebba15c9c481f569.png",
+        "tier": "3",
+        "type": "transactionFee",
+        "paymentTerms": "monthly",
+        "nextInvoiceDate": "2021-01-01T00:00:00Z"
+      }
+    ],
+    "teamMembers": [
+      {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@example.com",
+        "role": "admin",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane.doe@example.com",
+        "role": "user",
+        "status": "active",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 3,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "inactive",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      },
+      {
+        "id": 4,
+        "firstName": "Jim",
+        "lastName": "Beam",
+        "email": "jim.beam@example.com",
+        "role": "user",
+        "status": "pending",
+        "countryCode": "US",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png",
+        "lastLogin": "2021-01-01T00:00:00Z"
+      }
+    ]
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "content": "Initial onboarding meeting completed. Company requires additional documentation for KYB verification.",
+    "author": "John Doe",
+    "createdAt": "2021-01-01T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "content": "Company has provided all required documentation for KYB verification.",
+    "author": "Jane Doe",
+    "createdAt": "2021-01-02T00:00:00Z"
+  },
+  {
+    "id": 3,
+    "content": "Company has been verified and KYB status is active.",
+    "author": "Jim Beam",
+    "createdAt": "2021-01-03T00:00:00Z"
+  },
+  {
+    "id": 4,
+    "content": "Company has been verified and KYB status is active.",
+    "author": "Jim Beam",
+    "createdAt": "2021-01-03T00:00:00Z"
+  }
+]

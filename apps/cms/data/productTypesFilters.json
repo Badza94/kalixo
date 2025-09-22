@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "value": "Digital Game",
+    "label": "Digital Game",
+    "iconUrl": "/placeholder.svg"
+  },
+  {
+    "id": 2,
+    "value": "Gift Card",
+    "label": "Gift Card",
+    "iconUrl": "/placeholder.svg"
+  },
+  {
+    "id": 3,
+    "value": "Subscription",
+    "label": "Subscription",
+    "iconUrl": "/placeholder.svg"
+  },
+  {
+    "id": 4,
+    "value": "In-Game Currency",
+    "label": "In-Game Currency",
+    "iconUrl": "/placeholder.svg"
+  },
+  {
+    "id": 5,
+    "value": "DLC",
+    "label": "DLC",
+    "iconUrl": "/placeholder.svg"
+  }
+]

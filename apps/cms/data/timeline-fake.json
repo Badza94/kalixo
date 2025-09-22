@@ -1,0 +1,58 @@
+[
+  {
+    "type": "Email",
+    "user": "system",
+    "description": "Order confirmation email sent to customer.",
+    "date": "2025-06-10T12:27:00Z",
+    "details": "customer@example.com"
+  },
+  {
+    "type": "Created",
+    "user": "system",
+    "description": "Order created and payment processing initiated.",
+    "date": "2025-06-10T08:27:00Z"
+  },
+  {
+    "type": "Play",
+    "user": {
+      "firstName": "John",
+      "lastName": "Smith",
+      "image": "https://avatars.githubusercontent.com/u/97165289"
+    },
+    "description": "Order confirmed by customer.",
+    "date": "2025-06-10T10:00:00Z"
+  },
+  {
+    "type": "Pause",
+    "user": {
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "image": "https://avatars.githubusercontent.com/u/97165290"
+    },
+    "description": "Order paused by user for manual review.",
+    "date": "2025-06-10T10:27:00Z",
+    "details": "Customer requested express delivery. Applied $15 express shipping fee."
+  },
+  {
+    "type": "Stop",
+    "user": "system",
+    "description": "Order cancelled due to payment failure.",
+    "date": "2025-06-10T11:00:00Z"
+  },
+  {
+    "type": "Download",
+    "user": {
+      "firstName": "Customer",
+      "lastName": "User",
+      "image": "https://avatars.githubusercontent.com/u/97165291"
+    },
+    "description": "Digital product downloaded by customer.",
+    "date": "2025-06-10T09:27:00Z"
+  },
+  {
+    "type": "Default",
+    "user": "system",
+    "description": "Order status changed from processing to completed.",
+    "date": "2025-06-10T11:27:00Z"
+  }
+]

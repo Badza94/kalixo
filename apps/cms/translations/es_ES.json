@@ -1,0 +1,16 @@
+{
+  "products": "Productos",
+  "home": "Inicio",
+  "about": "Acerca de",
+  "contact": "Contacto",
+  "welcome_message": "Bienvenido a nuestro sitio web",
+  "navigation": {
+    "menu": "Menú",
+    "search": "Buscar"
+  },
+  "buttons": {
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "save": "Guardar"
+  }
+}

@@ -1,0 +1,143 @@
+[
+  {
+    "id": 1,
+    "roleName": "Super Administrator",
+    "description": "Full system access with all permissions",
+    "type": "admin",
+    "permissions": [
+      "user.create",
+      "user.edit",
+      "user.delete",
+      "role.manage",
+      "system.config"
+    ],
+    "status": "active",
+    "createdAt": "2023-01-15T10:30:00Z"
+  },
+  {
+    "id": 2,
+    "roleName": "System Administrator",
+    "description": "Administrative access to system configuration",
+    "type": "admin",
+    "permissions": ["user.create", "user.edit", "system.config"],
+    "status": "active",
+    "createdAt": "2023-02-20T14:15:00Z"
+  },
+  {
+    "id": 3,
+    "roleName": "Admin Viewer",
+    "description": "Read-only access to administrative panels",
+    "type": "admin viewer",
+    "permissions": ["admin.view", "reports.view"],
+    "status": "active",
+    "createdAt": "2023-03-10T09:45:00Z"
+  },
+  {
+    "id": 4,
+    "roleName": "Web Administrator",
+    "description": "Manages web content and frontend systems",
+    "type": "web admin",
+    "permissions": ["content.manage", "cms.edit", "seo.manage"],
+    "status": "active",
+    "createdAt": "2023-04-05T16:20:00Z"
+  },
+  {
+    "id": 5,
+    "roleName": "Business Partner",
+    "description": "External partner with limited system access",
+    "type": "partner",
+    "permissions": ["partner.dashboard", "reports.view"],
+    "status": "active",
+    "createdAt": "2023-05-12T11:30:00Z"
+  },
+  {
+    "id": 6,
+    "roleName": "Product Vendor",
+    "description": "Vendor with product management capabilities",
+    "type": "vendor",
+    "permissions": ["products.manage", "inventory.view"],
+    "status": "active",
+    "createdAt": "2023-06-18T13:45:00Z"
+  },
+  {
+    "id": 7,
+    "roleName": "Authorized Reseller",
+    "description": "Reseller with sales and commission access",
+    "type": "reseller",
+    "permissions": ["sales.view", "commission.view", "products.view"],
+    "status": "active",
+    "createdAt": "2023-07-22T10:15:00Z"
+  },
+  {
+    "id": 8,
+    "roleName": "Marketing Agency",
+    "description": "Agency with marketing and campaign access",
+    "type": "agency",
+    "permissions": ["campaigns.manage", "analytics.view"],
+    "status": "active",
+    "createdAt": "2023-08-14T15:30:00Z"
+  },
+  {
+    "id": 9,
+    "roleName": "Premium Customer",
+    "description": "High-tier customer with extended privileges",
+    "type": "customer",
+    "permissions": ["orders.view", "support.priority"],
+    "status": "active",
+    "createdAt": "2023-09-03T12:00:00Z"
+  },
+  {
+    "id": 10,
+    "roleName": "Enterprise Client",
+    "description": "Enterprise-level client with custom access",
+    "type": "client",
+    "permissions": ["enterprise.dashboard", "custom.reports"],
+    "status": "active",
+    "createdAt": "2023-10-01T14:45:00Z"
+  },
+  {
+    "id": 11,
+    "roleName": "Content Editor",
+    "description": "Content management and editing role",
+    "type": "web admin",
+    "permissions": ["content.edit", "media.upload"],
+    "status": "inactive",
+    "createdAt": "2023-11-12T09:30:00Z"
+  },
+  {
+    "id": 12,
+    "roleName": "Sales Manager",
+    "description": "Sales team management and reporting",
+    "type": "admin viewer",
+    "permissions": ["sales.reports", "team.manage"],
+    "status": "draft",
+    "createdAt": "2023-12-05T16:15:00Z"
+  },
+  {
+    "id": 13,
+    "roleName": "Support Agent",
+    "description": "Customer support and ticket management",
+    "type": "customer",
+    "permissions": ["tickets.manage", "customers.view"],
+    "status": "active",
+    "createdAt": "2024-01-20T11:20:00Z"
+  },
+  {
+    "id": 14,
+    "roleName": "Financial Analyst",
+    "description": "Financial reporting and analysis access",
+    "type": "admin viewer",
+    "permissions": ["finance.reports", "analytics.advanced"],
+    "status": "active",
+    "createdAt": "2024-02-28T13:10:00Z"
+  },
+  {
+    "id": 15,
+    "roleName": "Regional Partner",
+    "description": "Regional partnership management role",
+    "type": "partner",
+    "permissions": ["region.manage", "partners.view"],
+    "status": "inactive",
+    "createdAt": "2024-03-15T10:45:00Z"
+  }
+]

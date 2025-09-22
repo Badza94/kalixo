@@ -1,0 +1,16 @@
+{
+  "products": "Prodotti",
+  "home": "Casa",
+  "about": "Chi siamo",
+  "contact": "Contatto",
+  "welcome_message": "Benvenuto nel nostro sito web",
+  "navigation": {
+    "menu": "Menu",
+    "search": "Cerca"
+  },
+  "buttons": {
+    "submit": "Invia",
+    "cancel": "Annulla",
+    "save": "Salva"
+  }
+}

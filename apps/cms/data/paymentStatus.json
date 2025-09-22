@@ -1,0 +1,22 @@
+[
+  {
+    "value": "paid",
+    "label": "Paid"
+  },
+  {
+    "value": "pending",
+    "label": "Pending"
+  },
+  {
+    "value": "failed",
+    "label": "Failed"
+  },
+  {
+    "value": "refunded",
+    "label": "Refunded"
+  },
+  {
+    "value": "cancelled",
+    "label": "Cancelled"
+  }
+]

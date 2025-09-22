@@ -1,0 +1,42 @@
+[
+  {
+    "date": "2025-06-11T12:00:00.000Z",
+    "type": "bank_transfer",
+    "amount": 1000,
+    "currency": "USD",
+    "status": "completed",
+    "reference": "REF123456"
+  },
+  {
+    "date": "2025-06-11T12:00:00.000Z",
+    "type": "credit_card",
+    "amount": 500,
+    "currency": "EUR",
+    "status": "pending",
+    "reference": "REF789012"
+  },
+  {
+    "date": "2025-06-11T12:00:00.000Z",
+    "type": "bank_transfer",
+    "amount": 750,
+    "currency": "GBP",
+    "status": "failed",
+    "reference": "REF345678"
+  },
+  {
+    "date": "2025-06-11T12:00:00.000Z",
+    "type": "credit_card",
+    "amount": 1200,
+    "currency": "USD",
+    "status": "completed",
+    "reference": "REF901234"
+  },
+  {
+    "date": "2025-06-11T12:00:00.000Z",
+    "type": "bank_transfer",
+    "amount": 300,
+    "currency": "EUR",
+    "status": "pending",
+    "reference": "REF567890"
+  }
+]

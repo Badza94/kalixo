@@ -1,0 +1,54 @@
+{
+  "id": 17056,
+  "title": "Kalixo wallet",
+  "brand": "Kalixo",
+  "countryCode": "GB",
+  "languageCode": "en",
+  "sku": "GB-en-KW1",
+  "ean": "KW1",
+  "productType": "Digital",
+  "denomination": "fixed",
+  "price": 10,
+  "currencyCode": "GBP",
+  "discount": "0",
+  "reducedPrice": "0.00",
+  "expiryType": "set_expiry",
+  "expiryPeriod": 2,
+  "shortDescription": "Kalixo wallet",
+  "longDescription": "Kalixo wallet",
+  "termsAndConditions": "",
+  "redemptionInstructions": "",
+  "edition": "Standard",
+  "platform": "Xbox One",
+  "package": "Digital download",
+  "region": "Global",
+  "languageAdditional": "en",
+  "ageRestriction": "3+",
+  "pageTitle": "",
+  "urlHandle": "",
+  "metaDescription": "",
+  "globalName": "Kalixo wallet",
+  "category": ["Kalixo"],
+  "subCategories": ["Kalixo"],
+  "tags": ["Payment"],
+  "images": [
+    {
+      "id": "1",
+      "url": "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+      "isDefault": true
+    }
+  ],
+  "status": "active",
+  "productInsights": {
+    "totalSales": 3300,
+    "totalOrders": 14,
+    "totalItems": 33,
+    "grossProfit": 108900
+  },
+  "commercials": {
+    "vendor": "epay",
+    "buyingPrice": 0,
+    "buyingPriceCurrency": "GBP",
+    "commission": 0
+  }
+}

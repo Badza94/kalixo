@@ -1,0 +1,115 @@
+[
+  {
+    "label": "AED",
+    "value": "AED",
+    "symbol": "AED",
+    "countryCode": "AE",
+    "currencyFullName": "United Arab Emirates Dirham"
+  },
+  {
+    "label": "BHD",
+    "value": "BHD",
+    "symbol": "BHD",
+    "countryCode": "BH",
+    "currencyFullName": "Bahraini Dinar"
+  },
+  {
+    "label": "CAD",
+    "value": "CAD",
+    "symbol": "C$",
+    "countryCode": "CA",
+    "currencyFullName": "Canadian Dollar"
+  },
+  {
+    "label": "CHF",
+    "value": "CHF",
+    "symbol": "CHF",
+    "countryCode": "CH",
+    "currencyFullName": "Swiss Franc"
+  },
+  {
+    "label": "DKK",
+    "value": "DKK",
+    "symbol": "DKK",
+    "countryCode": "DK",
+    "currencyFullName": "Danish Krone"
+  },
+  {
+    "label": "EUR",
+    "value": "EUR",
+    "symbol": "€",
+    "countryCode": "EUROPEAN_UNION",
+    "currencyFullName": "Euro"
+  },
+  {
+    "label": "GBP",
+    "value": "GBP",
+    "symbol": "£",
+    "countryCode": "GB",
+    "currencyFullName": "British Pound"
+  },
+  {
+    "label": "KWD",
+    "value": "KWD",
+    "symbol": "KWD",
+    "countryCode": "KW",
+    "currencyFullName": "Kuwaiti Dinar"
+  },
+
+  {
+    "label": "NOK",
+    "value": "NOK",
+    "symbol": "kr",
+    "countryCode": "NO",
+    "currencyFullName": "Norwegian Krone"
+  },
+  {
+    "label": "OMR",
+    "value": "OMR",
+    "symbol": "OMR",
+    "countryCode": "OM",
+    "currencyFullName": "Omani Rial"
+  },
+  {
+    "label": "PLN",
+    "value": "PLN",
+    "symbol": "zł",
+    "countryCode": "PL",
+    "currencyFullName": "Polish Zloty"
+  },
+  {
+    "label": "QAR",
+    "value": "QAR",
+    "symbol": "QAR",
+    "countryCode": "QA",
+    "currencyFullName": "Qatari Riyal"
+  },
+  {
+    "label": "SAR",
+    "value": "SAR",
+    "symbol": "SAR",
+    "countryCode": "SA",
+    "currencyFullName": "Saudi Riyal"
+  },
+  {
+    "label": "SEK",
+    "value": "SEK",
+    "symbol": "kr",
+    "countryCode": "SE",
+    "currencyFullName": "Swedish Krona"
+  },
+  {
+    "label": "TRY",
+    "value": "TRY",
+    "symbol": "₺\n",
+    "countryCode": "TR",
+    "currencyFullName": "Turkish lira"
+  },
+  {
+    "label": "USD",
+    "value": "USD",
+    "symbol": "$",
+    "countryCode": "US",
+    "currencyFullName": "US Dollar"
+  }
+]

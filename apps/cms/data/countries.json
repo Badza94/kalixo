@@ -1,0 +1,1008 @@
+[
+  {
+    "languages": [
+      {
+        "id": 3,
+        "lngShort": "de",
+        "lng": "deu",
+        "lngLong": "de-DE",
+        "language": "Deutsch",
+        "createdAt": "2021-12-27T15:33:46.626Z",
+        "updatedAt": "2024-01-04T14:38:05.691Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 35,
+    "name": "Austria",
+    "value": "AT",
+    "createdAt": "2023-02-06T09:23:51.659Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+43",
+    "currencies": [
+      {
+        "id": 1,
+        "code": "EUR",
+        "name": "Euro",
+        "symbol": "€",
+        "createdAt": "2023-01-27T11:22:08.238Z",
+        "updatedAt": "2023-09-26T13:25:14.729Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 17,
+        "lngShort": "ar",
+        "lng": "AR",
+        "lngLong": "ar-AR",
+        "language": "Arabic",
+        "createdAt": "2023-05-04T08:56:16.693Z",
+        "updatedAt": "2023-05-19T13:05:57.726Z",
+        "deletedAt": null
+      },
+      {
+        "id": 1,
+        "lngShort": "en",
+        "lng": "ENG",
+        "lngLong": "en-EN",
+        "language": "English",
+        "createdAt": "2021-12-27T15:33:46.623Z",
+        "updatedAt": "2023-02-07T13:11:15.059Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 43,
+    "name": "Bahrain",
+    "value": "BH",
+    "createdAt": "2023-07-10T11:02:14.527Z",
+    "updatedAt": "2023-07-10T11:02:14.527Z",
+    "deletedAt": null,
+    "phoneCode": "973",
+    "currencies": [
+      {
+        "id": 15,
+        "code": "BHD",
+        "name": "Bahraini Dinar",
+        "symbol": "BHD",
+        "createdAt": "2023-07-10T11:10:32.305Z",
+        "updatedAt": "2023-09-26T13:25:15.911Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 4,
+        "lngShort": "fr",
+        "lng": "fra",
+        "lngLong": "fr-FR",
+        "language": "French",
+        "createdAt": "2021-12-27T15:33:46.638Z",
+        "updatedAt": "2023-02-07T13:11:15.415Z",
+        "deletedAt": null
+      },
+      {
+        "id": 10,
+        "lngShort": "nl",
+        "lng": "dut",
+        "lngLong": "nl-NL",
+        "language": "Dutch",
+        "createdAt": "2021-12-27T15:33:46.646Z",
+        "updatedAt": "2023-02-07T13:11:15.965Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 25,
+    "name": "Belgium",
+    "value": "BE",
+    "createdAt": "2023-02-06T09:23:51.573Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+32",
+    "currencies": [
+      {
+        "id": 1,
+        "code": "EUR",
+        "name": "Euro",
+        "symbol": "€",
+        "createdAt": "2023-01-27T11:22:08.238Z",
+        "updatedAt": "2023-09-26T13:25:14.729Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 1,
+        "lngShort": "en",
+        "lng": "ENG",
+        "lngLong": "en-EN",
+        "language": "English",
+        "createdAt": "2021-12-27T15:33:46.623Z",
+        "updatedAt": "2023-02-07T13:11:15.059Z",
+        "deletedAt": null
+      },
+      {
+        "id": 4,
+        "lngShort": "fr",
+        "lng": "fra",
+        "lngLong": "fr-FR",
+        "language": "French",
+        "createdAt": "2021-12-27T15:33:46.638Z",
+        "updatedAt": "2023-02-07T13:11:15.415Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 38,
+    "name": "Canada",
+    "value": "CA",
+    "createdAt": "2023-02-06T09:23:51.685Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+1",
+    "currencies": [
+      {
+        "id": 9,
+        "code": "CAD",
+        "name": "Canadian Dollar",
+        "symbol": "C$",
+        "createdAt": "2023-04-24T10:09:01.605Z",
+        "updatedAt": "2024-05-15T11:24:20.465Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 9,
+        "lngShort": "da",
+        "lng": "dan",
+        "lngLong": "da-DK",
+        "language": "Danish",
+        "createdAt": "2021-12-27T15:33:46.644Z",
+        "updatedAt": "2023-02-07T13:11:15.878Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 29,
+    "name": "Denmark",
+    "value": "DK",
+    "createdAt": "2023-02-06T09:23:51.609Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+45",
+    "currencies": [
+      {
+        "id": 2,
+        "code": "DKK",
+        "name": "Danish Krone",
+        "symbol": "DKK",
+        "createdAt": "2023-01-27T11:22:08.311Z",
+        "updatedAt": "2023-09-26T13:25:14.817Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 7,
+        "lngShort": "fi",
+        "lng": "fin",
+        "lngLong": "fi-FI",
+        "language": "Finnish",
+        "createdAt": "2021-12-27T15:33:46.642Z",
+        "updatedAt": "2023-02-07T13:11:15.677Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 21,
+    "name": "Finland",
+    "value": "FI",
+    "createdAt": "2023-02-06T09:23:51.534Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+358",
+    "currencies": [
+      {
+        "id": 1,
+        "code": "EUR",
+        "name": "Euro",
+        "symbol": "€",
+        "createdAt": "2023-01-27T11:22:08.238Z",
+        "updatedAt": "2023-09-26T13:25:14.729Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 4,
+        "lngShort": "fr",
+        "lng": "fra",
+        "lngLong": "fr-FR",
+        "language": "French",
+        "createdAt": "2021-12-27T15:33:46.638Z",
+        "updatedAt": "2023-02-07T13:11:15.415Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 30,
+    "name": "France",
+    "value": "FR",
+    "createdAt": "2023-02-06T09:23:51.618Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+33",
+    "currencies": [
+      {
+        "id": 1,
+        "code": "EUR",
+        "name": "Euro",
+        "symbol": "€",
+        "createdAt": "2023-01-27T11:22:08.238Z",
+        "updatedAt": "2023-09-26T13:25:14.729Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 3,
+        "lngShort": "de",
+        "lng": "deu",
+        "lngLong": "de-DE",
+        "language": "Deutsch",
+        "createdAt": "2021-12-27T15:33:46.626Z",
+        "updatedAt": "2024-01-04T14:38:05.691Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 27,
+    "name": "Germany",
+    "value": "DE",
+    "createdAt": "2023-02-06T09:23:51.591Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+49",
+    "currencies": [
+      {
+        "id": 1,
+        "code": "EUR",
+        "name": "Euro",
+        "symbol": "€",
+        "createdAt": "2023-01-27T11:22:08.238Z",
+        "updatedAt": "2023-09-26T13:25:14.729Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 1,
+        "lngShort": "en",
+        "lng": "ENG",
+        "lngLong": "en-EN",
+        "language": "English",
+        "createdAt": "2021-12-27T15:33:46.623Z",
+        "updatedAt": "2023-02-07T13:11:15.059Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 24,
+    "name": "Ireland",
+    "value": "IE",
+    "createdAt": "2023-02-06T09:23:51.564Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+353",
+    "currencies": [
+      {
+        "id": 1,
+        "code": "EUR",
+        "name": "Euro",
+        "symbol": "€",
+        "createdAt": "2023-01-27T11:22:08.238Z",
+        "updatedAt": "2023-09-26T13:25:14.729Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 2,
+        "lngShort": "it",
+        "lng": "ITA",
+        "lngLong": "it-IT",
+        "language": "Italian",
+        "createdAt": "2021-12-27T15:33:46.624Z",
+        "updatedAt": "2023-02-07T13:11:15.223Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 22,
+    "name": "Italy",
+    "value": "IT",
+    "createdAt": "2023-02-06T09:23:51.547Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+39",
+    "currencies": [
+      {
+        "id": 1,
+        "code": "EUR",
+        "name": "Euro",
+        "symbol": "€",
+        "createdAt": "2023-01-27T11:22:08.238Z",
+        "updatedAt": "2023-09-26T13:25:14.729Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 17,
+        "lngShort": "ar",
+        "lng": "AR",
+        "lngLong": "ar-AR",
+        "language": "Arabic",
+        "createdAt": "2023-05-04T08:56:16.693Z",
+        "updatedAt": "2023-05-19T13:05:57.726Z",
+        "deletedAt": null
+      },
+      {
+        "id": 1,
+        "lngShort": "en",
+        "lng": "ENG",
+        "lngLong": "en-EN",
+        "language": "English",
+        "createdAt": "2021-12-27T15:33:46.623Z",
+        "updatedAt": "2023-02-07T13:11:15.059Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 41,
+    "name": "Kuwait",
+    "value": "KW",
+    "createdAt": "2023-07-10T11:02:14.310Z",
+    "updatedAt": "2023-07-10T11:02:14.310Z",
+    "deletedAt": null,
+    "phoneCode": " +965",
+    "currencies": [
+      {
+        "id": 12,
+        "code": "KWD",
+        "name": "Kuwaiti Dinar",
+        "symbol": "KWD",
+        "createdAt": "2023-07-10T11:10:31.965Z",
+        "updatedAt": "2024-05-15T11:24:20.264Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 17,
+        "lngShort": "ar",
+        "lng": "AR",
+        "lngLong": "ar-AR",
+        "language": "Arabic",
+        "createdAt": "2023-05-04T08:56:16.693Z",
+        "updatedAt": "2023-05-19T13:05:57.726Z",
+        "deletedAt": null
+      },
+      {
+        "id": 1,
+        "lngShort": "en",
+        "lng": "ENG",
+        "lngLong": "en-EN",
+        "language": "English",
+        "createdAt": "2021-12-27T15:33:46.623Z",
+        "updatedAt": "2023-02-07T13:11:15.059Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 46,
+    "name": "Lebanon",
+    "value": "LB",
+    "createdAt": "2023-09-08T14:39:05.813Z",
+    "updatedAt": "2023-09-08T14:39:05.813Z",
+    "deletedAt": null,
+    "phoneCode": "961",
+    "currencies": [
+      {
+        "id": 8,
+        "code": "USD",
+        "name": "US Dollar",
+        "symbol": "$",
+        "createdAt": "2023-01-27T11:22:08.741Z",
+        "updatedAt": "2023-09-26T13:25:15.322Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 3,
+        "lngShort": "de",
+        "lng": "deu",
+        "lngLong": "de-DE",
+        "language": "Deutsch",
+        "createdAt": "2021-12-27T15:33:46.626Z",
+        "updatedAt": "2024-01-04T14:38:05.691Z",
+        "deletedAt": null
+      },
+      {
+        "id": 4,
+        "lngShort": "fr",
+        "lng": "fra",
+        "lngLong": "fr-FR",
+        "language": "French",
+        "createdAt": "2021-12-27T15:33:46.638Z",
+        "updatedAt": "2023-02-07T13:11:15.415Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 32,
+    "name": "Luxemburg",
+    "value": "LU",
+    "createdAt": "2023-02-06T09:23:51.635Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+352",
+    "currencies": [
+      {
+        "id": 1,
+        "code": "EUR",
+        "name": "Euro",
+        "symbol": "€",
+        "createdAt": "2023-01-27T11:22:08.238Z",
+        "updatedAt": "2023-09-26T13:25:14.729Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 10,
+        "lngShort": "nl",
+        "lng": "dut",
+        "lngLong": "nl-NL",
+        "language": "Dutch",
+        "createdAt": "2021-12-27T15:33:46.646Z",
+        "updatedAt": "2023-02-07T13:11:15.965Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 26,
+    "name": "Netherlands",
+    "value": "NL",
+    "createdAt": "2023-02-06T09:23:51.582Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+31",
+    "currencies": [
+      {
+        "id": 1,
+        "code": "EUR",
+        "name": "Euro",
+        "symbol": "€",
+        "createdAt": "2023-01-27T11:22:08.238Z",
+        "updatedAt": "2023-09-26T13:25:14.729Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 8,
+        "lngShort": "no",
+        "lng": "nor",
+        "lngLong": "no-NO",
+        "language": "Norwegian",
+        "createdAt": "2021-12-27T15:33:46.643Z",
+        "updatedAt": "2023-02-07T13:11:15.775Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 28,
+    "name": "Norway",
+    "value": "NO",
+    "createdAt": "2023-02-06T09:23:51.601Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+47",
+    "currencies": [
+      {
+        "id": 3,
+        "code": "NOK",
+        "name": "Norwegian Krone",
+        "symbol": "kr",
+        "createdAt": "2023-01-27T11:22:08.523Z",
+        "updatedAt": "2023-09-26T13:25:14.901Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 17,
+        "lngShort": "ar",
+        "lng": "AR",
+        "lngLong": "ar-AR",
+        "language": "Arabic",
+        "createdAt": "2023-05-04T08:56:16.693Z",
+        "updatedAt": "2023-05-19T13:05:57.726Z",
+        "deletedAt": null
+      },
+      {
+        "id": 1,
+        "lngShort": "en",
+        "lng": "ENG",
+        "lngLong": "en-EN",
+        "language": "English",
+        "createdAt": "2021-12-27T15:33:46.623Z",
+        "updatedAt": "2023-02-07T13:11:15.059Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 45,
+    "name": "Oman",
+    "value": "OM",
+    "createdAt": "2023-07-10T11:02:14.707Z",
+    "updatedAt": "2023-07-10T11:02:14.707Z",
+    "deletedAt": null,
+    "phoneCode": "968",
+    "currencies": [
+      {
+        "id": 13,
+        "code": "OMR",
+        "name": "Omani Rial",
+        "symbol": "OMR",
+        "createdAt": "2023-07-10T11:10:32.093Z",
+        "updatedAt": "2023-09-26T13:25:15.742Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 11,
+        "lngShort": "pl",
+        "lng": "pol",
+        "lngLong": "pl-PL",
+        "language": "Polish",
+        "createdAt": "2021-12-27T15:33:46.647Z",
+        "updatedAt": "2023-02-07T13:11:16.055Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 36,
+    "name": "Poland",
+    "value": "PL",
+    "createdAt": "2023-02-06T09:23:51.667Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+48",
+    "currencies": [
+      {
+        "id": 4,
+        "code": "PLN",
+        "name": "Polish Zloty",
+        "symbol": "zł",
+        "createdAt": "2023-01-27T11:22:08.552Z",
+        "updatedAt": "2023-09-26T13:25:14.985Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 13,
+        "lngShort": "pt",
+        "lng": "por",
+        "lngLong": "pt-PT",
+        "language": "Portuguese",
+        "createdAt": "2021-12-27T15:33:46.650Z",
+        "updatedAt": "2023-02-07T13:11:16.241Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 34,
+    "name": "Portugal",
+    "value": "PT",
+    "createdAt": "2023-02-06T09:23:51.651Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+351",
+    "currencies": [
+      {
+        "id": 1,
+        "code": "EUR",
+        "name": "Euro",
+        "symbol": "€",
+        "createdAt": "2023-01-27T11:22:08.238Z",
+        "updatedAt": "2023-09-26T13:25:14.729Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 17,
+        "lngShort": "ar",
+        "lng": "AR",
+        "lngLong": "ar-AR",
+        "language": "Arabic",
+        "createdAt": "2023-05-04T08:56:16.693Z",
+        "updatedAt": "2023-05-19T13:05:57.726Z",
+        "deletedAt": null
+      },
+      {
+        "id": 1,
+        "lngShort": "en",
+        "lng": "ENG",
+        "lngLong": "en-EN",
+        "language": "English",
+        "createdAt": "2021-12-27T15:33:46.623Z",
+        "updatedAt": "2023-02-07T13:11:15.059Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 42,
+    "name": "Qatar",
+    "value": "QA",
+    "createdAt": "2023-07-10T11:02:14.437Z",
+    "updatedAt": "2023-07-10T11:02:14.437Z",
+    "deletedAt": null,
+    "phoneCode": "+974",
+    "currencies": [
+      {
+        "id": 16,
+        "code": "QAR",
+        "name": "Qatari Riyal",
+        "symbol": "QAR",
+        "createdAt": "2023-07-10T11:10:32.394Z",
+        "updatedAt": "2023-09-26T13:25:15.994Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 17,
+        "lngShort": "ar",
+        "lng": "AR",
+        "lngLong": "ar-AR",
+        "language": "Arabic",
+        "createdAt": "2023-05-04T08:56:16.693Z",
+        "updatedAt": "2023-05-19T13:05:57.726Z",
+        "deletedAt": null
+      },
+      {
+        "id": 1,
+        "lngShort": "en",
+        "lng": "ENG",
+        "lngLong": "en-EN",
+        "language": "English",
+        "createdAt": "2021-12-27T15:33:46.623Z",
+        "updatedAt": "2023-02-07T13:11:15.059Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 40,
+    "name": "Saudi Arabia",
+    "value": "SA",
+    "createdAt": "2023-05-04T08:54:13.820Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+966",
+    "currencies": [
+      {
+        "id": 10,
+        "code": "SAR",
+        "name": "Saudi Riyal",
+        "symbol": "SAR",
+        "createdAt": "2023-05-04T08:52:49.002Z",
+        "updatedAt": "2024-05-15T11:24:20.364Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 5,
+        "lngShort": "es",
+        "lng": "spa",
+        "lngLong": "es-ES",
+        "language": "Spanish",
+        "createdAt": "2021-12-27T15:33:46.639Z",
+        "updatedAt": "2023-02-07T13:11:15.503Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 23,
+    "name": "Spain",
+    "value": "ES",
+    "createdAt": "2023-02-06T09:23:51.556Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+34",
+    "currencies": [
+      {
+        "id": 1,
+        "code": "EUR",
+        "name": "Euro",
+        "symbol": "€",
+        "createdAt": "2023-01-27T11:22:08.238Z",
+        "updatedAt": "2023-09-26T13:25:14.729Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 6,
+        "lngShort": "sv",
+        "lng": "swe",
+        "lngLong": "sw-SW",
+        "language": "Swedish",
+        "createdAt": "2021-12-27T15:33:46.640Z",
+        "updatedAt": "2023-02-07T13:11:15.591Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 31,
+    "name": "Sweden",
+    "value": "SE",
+    "createdAt": "2023-02-06T09:23:51.627Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+46",
+    "currencies": [
+      {
+        "id": 5,
+        "code": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr",
+        "createdAt": "2023-01-27T11:22:08.635Z",
+        "updatedAt": "2023-09-26T13:25:15.068Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 3,
+        "lngShort": "de",
+        "lng": "deu",
+        "lngLong": "de-DE",
+        "language": "Deutsch",
+        "createdAt": "2021-12-27T15:33:46.626Z",
+        "updatedAt": "2024-01-04T14:38:05.691Z",
+        "deletedAt": null
+      },
+      {
+        "id": 4,
+        "lngShort": "fr",
+        "lng": "fra",
+        "lngLong": "fr-FR",
+        "language": "French",
+        "createdAt": "2021-12-27T15:33:46.638Z",
+        "updatedAt": "2023-02-07T13:11:15.415Z",
+        "deletedAt": null
+      },
+      {
+        "id": 2,
+        "lngShort": "it",
+        "lng": "ITA",
+        "lngLong": "it-IT",
+        "language": "Italian",
+        "createdAt": "2021-12-27T15:33:46.624Z",
+        "updatedAt": "2023-02-07T13:11:15.223Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 33,
+    "name": "Switzerland",
+    "value": "CH",
+    "createdAt": "2023-02-06T09:23:51.643Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+41",
+    "currencies": [
+      {
+        "id": 6,
+        "code": "CHF",
+        "name": "Swiss Franc",
+        "symbol": "CHF",
+        "createdAt": "2023-01-27T11:22:08.683Z",
+        "updatedAt": "2023-09-26T13:25:15.153Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 16,
+        "lngShort": "tr",
+        "lng": "TR",
+        "lngLong": "tr-TR",
+        "language": "Turkish",
+        "createdAt": "2023-05-04T08:56:16.605Z",
+        "updatedAt": "2023-05-04T08:56:16.605Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 39,
+    "name": "Turkey",
+    "value": "TR",
+    "createdAt": "2023-05-04T08:54:13.728Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+90",
+    "currencies": [
+      {
+        "id": 11,
+        "code": "TRY",
+        "name": "Turkish lira",
+        "symbol": "₺\n",
+        "createdAt": "2023-05-04T08:53:03.065Z",
+        "updatedAt": "2023-09-26T13:25:15.574Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 17,
+        "lngShort": "ar",
+        "lng": "AR",
+        "lngLong": "ar-AR",
+        "language": "Arabic",
+        "createdAt": "2023-05-04T08:56:16.693Z",
+        "updatedAt": "2023-05-19T13:05:57.726Z",
+        "deletedAt": null
+      },
+      {
+        "id": 1,
+        "lngShort": "en",
+        "lng": "ENG",
+        "lngLong": "en-EN",
+        "language": "English",
+        "createdAt": "2021-12-27T15:33:46.623Z",
+        "updatedAt": "2023-02-07T13:11:15.059Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 44,
+    "name": "United Arab Emirates",
+    "value": "AE",
+    "createdAt": "2023-07-10T11:02:14.616Z",
+    "updatedAt": "2023-07-10T11:02:14.616Z",
+    "deletedAt": null,
+    "phoneCode": "971",
+    "currencies": [
+      {
+        "id": 14,
+        "code": "AED",
+        "name": "United Arab Emirates Dirham",
+        "symbol": "AED",
+        "createdAt": "2023-07-10T11:10:32.216Z",
+        "updatedAt": "2023-09-26T13:25:15.827Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 1,
+        "lngShort": "en",
+        "lng": "ENG",
+        "lngLong": "en-EN",
+        "language": "English",
+        "createdAt": "2021-12-27T15:33:46.623Z",
+        "updatedAt": "2023-02-07T13:11:15.059Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 20,
+    "name": "United Kingdom",
+    "value": "GB",
+    "createdAt": "2023-02-06T09:23:51.522Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+44",
+    "currencies": [
+      {
+        "id": 7,
+        "code": "GBP",
+        "name": "British Pound",
+        "symbol": "£",
+        "createdAt": "2023-01-27T11:22:08.712Z",
+        "updatedAt": "2023-09-26T13:25:15.238Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [
+      {
+        "id": 1,
+        "lngShort": "en",
+        "lng": "ENG",
+        "lngLong": "en-EN",
+        "language": "English",
+        "createdAt": "2021-12-27T15:33:46.623Z",
+        "updatedAt": "2023-02-07T13:11:15.059Z",
+        "deletedAt": null
+      }
+    ],
+    "id": 37,
+    "name": "United States",
+    "value": "US",
+    "createdAt": "2023-02-06T09:23:51.676Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "+1",
+    "currencies": [
+      {
+        "id": 8,
+        "code": "USD",
+        "name": "US Dollar",
+        "symbol": "$",
+        "createdAt": "2023-01-27T11:22:08.741Z",
+        "updatedAt": "2023-09-26T13:25:15.322Z",
+        "deletedAt": null
+      }
+    ]
+  },
+  {
+    "languages": [],
+    "id": 38,
+    "name": "Global",
+    "value": "GLOBAL",
+    "createdAt": "2023-02-06T09:23:51.676Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "",
+    "currencies": []
+  },
+  {
+    "languages": [],
+    "id": 38,
+    "name": "European Union",
+    "value": "EU",
+    "createdAt": "2023-02-06T09:23:51.676Z",
+    "updatedAt": "2023-05-19T14:16:45.000Z",
+    "deletedAt": null,
+    "phoneCode": "",
+    "currencies": []
+  }
+]

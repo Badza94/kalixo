@@ -1,0 +1,30 @@
+[
+  {
+    "title": "revenue",
+    "value": "$45,231.89",
+    "change": "+20.1%",
+    "icon": "DollarSign",
+    "trend": [3, 7, 5, 9, 6, 8, 10, 9, 12, 14]
+  },
+  {
+    "title": "orders",
+    "value": "1,205",
+    "change": "+15.3%",
+    "icon": "ShoppingCart",
+    "trend": [5, 3, 7, 8, 9, 6, 11, 8, 10, 9]
+  },
+  {
+    "title": "items",
+    "value": "2,421",
+    "change": "+12.4%",
+    "icon": "Package",
+    "trend": [2, 5, 4, 6, 3, 7, 8, 9, 7, 10]
+  },
+  {
+    "title": "averageValue",
+    "value": "$37.45",
+    "change": "+4.75%",
+    "icon": "TrendingUpIcon",
+    "trend": [6, 4, 5, 7, 5, 8, 7, 9, 8, 10]
+  }
+]

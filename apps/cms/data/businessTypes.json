@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Marketing Agency",
+    "label": "marketingAgency",
+    "value": "marketingAgency"
+  },
+  {
+    "name": "Employee and Rewards",
+    "label": "employeeAndRewards",
+    "value": "employeeAndRewards"
+  },
+  {
+    "name": "Reseller",
+    "label": "reseller",
+    "value": "reseller"
+  },
+  {
+    "name": "Content Creator",
+    "label": "contentCreator",
+    "value": "contentCreator"
+  },
+  {
+    "name": "Publisher",
+    "label": "publisher",
+    "value": "publisher"
+  },
+  {
+    "name": "Engagement and Loyalty",
+    "label": "engagementAndLoyalty",
+    "value": "engagementAndLoyalty"
+  },
+  {
+    "name": "Other",
+    "label": "other",
+    "value": "other"
+  }
+]

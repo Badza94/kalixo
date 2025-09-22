@@ -1,0 +1,44 @@
+[
+  {
+    "brandId": "1",
+    "name": "Nintendo",
+    "percentage": 99.99,
+    "color": "var(--chart-1)",
+    "iconUrl": null
+  },
+  {
+    "brandId": "2",
+    "name": "Microsoft",
+    "percentage": 20.45,
+    "color": "var(--chart-2)",
+    "iconUrl": null
+  },
+  {
+    "brandId": "3",
+    "name": "PlayStation",
+    "percentage": 7.45,
+    "color": "var(--chart-3)",
+    "iconUrl": null
+  },
+  {
+    "brandId": "4",
+    "name": "Bigpoint",
+    "percentage": 6.79,
+    "color": "var(--chart-4)",
+    "iconUrl": null
+  },
+  {
+    "brandId": "5",
+    "name": "2K Games",
+    "percentage": 4.84,
+    "color": "var(--chart-5)",
+    "iconUrl": null
+  },
+  {
+    "brandId": "6",
+    "name": "Activision",
+    "percentage": 2.65,
+    "color": "var(--chart-6)",
+    "iconUrl": null
+  }
+]

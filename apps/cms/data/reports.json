@@ -1,0 +1,292 @@
+[
+  {
+    "id": "RPT-001",
+    "reportNumber": "RPT-001",
+    "name": "Q4 Sales Performance Report",
+    "description": "Comprehensive sales analysis for the fourth quarter including top-performing products and regional breakdown.",
+    "date": "2024-01-15T10:30:00Z",
+    "type": "sales",
+    "status": "completed",
+    "requestedBy": {
+      "id": "1",
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "period": "Monthly",
+    "filters": ["steam", "kalixo", "marketplace"],
+    "products": [
+      {
+        "id": "17056",
+        "name": "PlayStation Store Gift Card $50",
+        "image": "https://cdn.kalixo.io/static-images/US-en-PSN50.png",
+        "brand": "PlayStation",
+        "countryCode": "US",
+        "currencyCode": "USD",
+        "price": 50.0,
+        "category": "Gaming",
+        "sales": 1250,
+        "revenue": 62500.0,
+        "margin": 6250.0
+      },
+      {
+        "id": "17057",
+        "name": "Xbox Game Pass Ultimate 3 Month",
+        "image": "https://cdn.kalixo.io/static-images/US-en-XGPU3.png",
+        "brand": "Microsoft",
+        "countryCode": "US",
+        "currencyCode": "USD",
+        "price": 44.99,
+        "category": "Gaming",
+        "sales": 980,
+        "revenue": 44091.2,
+        "margin": 4409.12
+      },
+      {
+        "id": "17058",
+        "name": "Nintendo eShop Card £25",
+        "image": "https://cdn.kalixo.io/static-images/GB-en-NSW25.png",
+        "brand": "Nintendo",
+        "countryCode": "GB",
+        "currencyCode": "GBP",
+        "price": 25.0,
+        "category": "Gaming",
+        "sales": 750,
+        "revenue": 18750.0,
+        "margin": 1875.0
+      }
+    ]
+  },
+  {
+    "id": "RPT-002",
+    "reportNumber": "RPT-002",
+    "name": "Transaction Analytics Report",
+    "description": "Detailed transaction analysis focusing on payment methods and processing times across all channels.",
+    "date": "2024-01-12T14:20:00Z",
+    "type": "transactions",
+    "status": "processing",
+    "requestedBy": {
+      "id": "2",
+      "firstName": "Jane",
+      "lastName": "Smith"
+    },
+    "period": "Weekly",
+    "filters": ["steam", "kalixo", "marketplace"],
+    "products": [
+      {
+        "id": "17059",
+        "name": "Steam Wallet €20",
+        "image": "https://cdn.kalixo.io/static-images/DE-de-STM20.png",
+        "brand": "Steam",
+        "countryCode": "DE",
+        "currencyCode": "EUR",
+        "price": 20.0,
+        "category": "Gaming",
+        "sales": 2100,
+        "revenue": 42000.0,
+        "margin": 4200.0
+      },
+      {
+        "id": "17060",
+        "name": "Epic Games Store €15",
+        "image": "https://cdn.kalixo.io/static-images/FR-fr-EGS15.png",
+        "brand": "Epic Games",
+        "countryCode": "FR",
+        "currencyCode": "EUR",
+        "price": 15.0,
+        "category": "Gaming",
+        "sales": 1650,
+        "revenue": 24750.0,
+        "margin": 2475.0
+      }
+    ]
+  },
+  {
+    "id": "RPT-003",
+    "reportNumber": "RPT-003",
+    "name": "Balance & Inventory Report",
+    "description": "Current balance status and inventory levels across all products and regions.",
+    "date": "2024-01-10T09:15:00Z",
+    "type": "balance",
+    "status": "completed",
+    "requestedBy": {
+      "id": "3",
+      "firstName": "Michael",
+      "lastName": "Johnson"
+    },
+    "period": "Daily",
+    "filters": ["steam", "kalixo", "marketplace"],
+    "products": [
+      {
+        "id": "17061",
+        "name": "iTunes Gift Card $25",
+        "image": "https://cdn.kalixo.io/static-images/US-en-ITC25.png",
+        "brand": "Apple",
+        "countryCode": "US",
+        "currencyCode": "USD",
+        "price": 25.0,
+        "category": "Entertainment",
+        "sales": 3200,
+        "revenue": 80000.0,
+        "margin": 8000.0
+      },
+      {
+        "id": "17062",
+        "name": "Google Play Gift Card $10",
+        "image": "https://cdn.kalixo.io/static-images/US-en-GPG10.png",
+        "brand": "Google",
+        "countryCode": "US",
+        "currencyCode": "USD",
+        "price": 10.0,
+        "category": "Entertainment",
+        "sales": 4500,
+        "revenue": 45000.0,
+        "margin": 4500.0
+      },
+      {
+        "id": "17063",
+        "name": "App Store & iTunes CAD $20",
+        "image": "https://cdn.kalixo.io/static-images/CA-en-ITC20.png",
+        "brand": "Apple",
+        "countryCode": "CA",
+        "currencyCode": "CAD",
+        "price": 20.0,
+        "category": "Entertainment",
+        "sales": 1800,
+        "revenue": 36000.0,
+        "margin": 3600.0
+      }
+    ]
+  },
+  {
+    "id": "RPT-004",
+    "reportNumber": "RPT-004",
+    "name": "Inventory Stock Levels",
+    "description": "Real-time inventory tracking and stock level analysis for all product categories.",
+    "date": "2024-01-08T16:45:00Z",
+    "type": "inventory",
+    "status": "pending",
+    "requestedBy": {
+      "id": "4",
+      "firstName": "Sarah",
+      "lastName": "Williams"
+    },
+    "period": "Daily",
+    "filters": ["steam", "kalixo", "marketplace"],
+    "products": [
+      {
+        "id": "17064",
+        "name": "Amazon Gift Card £50",
+        "image": "https://cdn.kalixo.io/static-images/GB-en-AMZ50.png",
+        "brand": "Amazon",
+        "countryCode": "GB",
+        "currencyCode": "GBP",
+        "price": 50.0,
+        "category": "Retail",
+        "sales": 2200,
+        "revenue": 110000.0,
+        "margin": 11000.0
+      },
+      {
+        "id": "17065",
+        "name": "Netflix Gift Card AUD $30",
+        "image": "https://cdn.kalixo.io/static-images/AU-en-NFL30.png",
+        "brand": "Netflix",
+        "countryCode": "AU",
+        "currencyCode": "AUD",
+        "price": 30.0,
+        "category": "Entertainment",
+        "sales": 950,
+        "revenue": 28500.0,
+        "margin": 2850.0
+      }
+    ]
+  },
+  {
+    "id": "RPT-005",
+    "reportNumber": "RPT-005",
+    "name": "Monthly Revenue Analysis",
+    "description": "Comprehensive monthly revenue breakdown with profit margins and growth analysis.",
+    "date": "2024-01-05T11:30:00Z",
+    "type": "sales",
+    "status": "failed",
+    "requestedBy": {
+      "id": "1",
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "period": "Monthly",
+    "filters": ["steam", "kalixo", "marketplace"],
+    "products": [
+      {
+        "id": "17066",
+        "name": "PlayStation Store ¥5000",
+        "image": "https://cdn.kalixo.io/static-images/JP-ja-PSN5000.png",
+        "brand": "Sony",
+        "countryCode": "JP",
+        "currencyCode": "JPY",
+        "price": 5000.0,
+        "category": "Gaming",
+        "sales": 800,
+        "revenue": 4000000.0,
+        "margin": 400000.0
+      },
+      {
+        "id": "17067",
+        "name": "Samsung Galaxy Store KRW 25000",
+        "image": "https://cdn.kalixo.io/static-images/KR-ko-SGS25000.png",
+        "brand": "Samsung",
+        "countryCode": "KR",
+        "currencyCode": "KRW",
+        "price": 25000.0,
+        "category": "Mobile",
+        "sales": 1200,
+        "revenue": 30000000.0,
+        "margin": 3000000.0
+      }
+    ]
+  },
+  {
+    "id": "RPT-006",
+    "reportNumber": "RPT-006",
+    "name": "Weekly Performance Metrics",
+    "description": "Weekly performance tracking with KPIs and conversion rates analysis.",
+    "date": "2024-01-03T08:20:00Z",
+    "type": "transactions",
+    "status": "completed",
+    "requestedBy": {
+      "id": "2",
+      "firstName": "Jane",
+      "lastName": "Smith"
+    },
+    "period": "Weekly",
+    "filters": ["steam", "kalixo", "marketplace"],
+    "products": [
+      {
+        "id": "17068",
+        "name": "Spotify Premium €10",
+        "image": "https://cdn.kalixo.io/static-images/ES-es-SPT10.png",
+        "brand": "Spotify",
+        "countryCode": "ES",
+        "currencyCode": "EUR",
+        "price": 10.0,
+        "category": "Entertainment",
+        "sales": 3500,
+        "revenue": 35000.0,
+        "margin": 3500.0
+      },
+      {
+        "id": "17069",
+        "name": "Uber Gift Card €25",
+        "image": "https://cdn.kalixo.io/static-images/PT-pt-UBR25.png",
+        "brand": "Uber",
+        "countryCode": "PT",
+        "currencyCode": "EUR",
+        "price": 25.0,
+        "category": "Transportation",
+        "sales": 1100,
+        "revenue": 27500.0,
+        "margin": 2750.0
+      }
+    ]
+  }
+]

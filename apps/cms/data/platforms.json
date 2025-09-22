@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Steam",
+    "iconUrl": "https://cdn.brandfetch.io/steampowered.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh"
+  },
+  {
+    "id": 2,
+    "name": "PlayStation",
+    "iconUrl": "https://cdn.brandfetch.io/playstation.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh"
+  },
+  {
+    "id": 3,
+    "name": "X",
+    "iconUrl": "https://cdn.brandfetch.io/x.com/w/400/h/400?c=1id8XBw9a2Vvl_HrJYh"
+  }
+]

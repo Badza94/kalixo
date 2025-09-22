@@ -1,0 +1,522 @@
+[
+  {
+    "id": 1,
+    "channels": [
+      {
+        "id": 162,
+        "label": "3",
+        "value": "162",
+        "resellerCode": "three",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      },
+      {
+        "id": 86,
+        "label": "Ali A",
+        "value": "86",
+        "resellerCode": "alia",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png"
+      },
+      {
+        "id": 60,
+        "label": "Allxboxcentral",
+        "value": "60",
+        "resellerCode": "allxboxcentral",
+        "image": "https://shop.famehype.gg/static-images/logo/60-400x400.png"
+      }
+    ],
+    "couponCode": "SAVE20OFF",
+    "description": "Save 20% off your purchase",
+    "discountType": "percent",
+    "percentValue": "20",
+    "amountValue": "",
+    "buyValue": "",
+    "getValue": "",
+    "appliesTo": "all",
+    "specificCategories": [],
+    "specificProducts": [],
+    "startDate": "2024-01-15",
+    "startTime": "09:00",
+    "endDate": "2024-03-15",
+    "endTime": "23:59",
+    "nonExpiringCoupon": false,
+    "localTimeTracking": true,
+    "limitTotalUses": true,
+    "totalUsesLimit": "500",
+    "limitOneUsePerAccount": true,
+    "minimumRequirement": "amount",
+    "minimumPurchaseAmount": "50.00",
+    "minimumQuantityOfItems": "",
+    "status": "active",
+    "createdAt": "2024-01-10T10:00:00Z",
+    "usedCount": 127,
+    "global": false
+  },
+  {
+    "id": 2,
+    "channels": [
+      {
+        "id": 71,
+        "label": "Baldy Rudy",
+        "value": "71",
+        "resellerCode": "baldlyrudy",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/880c8f89edce693e755ccc98e91c6d1d12ea31d3.png"
+      },
+      {
+        "id": 54,
+        "label": "Beefy Smash Doods",
+        "value": "54",
+        "resellerCode": "bsd",
+        "image": "https://shop.famehype.gg/static-images/logo/54-400x400.png"
+      }
+    ],
+    "couponCode": "NEWUSER15",
+    "description": "New user 15% off",
+    "discountType": "amount",
+    "percentValue": "",
+    "amountValue": "15",
+    "buyValue": "",
+    "getValue": "",
+    "appliesTo": "categories",
+    "specificCategories": ["1", "3", "5"],
+    "specificProducts": [],
+    "startDate": "2024-02-01",
+    "startTime": "00:00",
+    "endDate": "2024-12-31",
+    "endTime": "23:59",
+    "nonExpiringCoupon": false,
+    "localTimeTracking": false,
+    "limitTotalUses": true,
+    "totalUsesLimit": "1000",
+    "limitOneUsePerAccount": true,
+    "minimumRequirement": "none",
+    "minimumPurchaseAmount": "",
+    "minimumQuantityOfItems": "",
+    "status": "active",
+    "createdAt": "2024-01-25T14:30:00Z",
+    "usedCount": 243,
+    "global": false
+  },
+  {
+    "id": 3,
+    "channels": [
+      {
+        "id": 48,
+        "label": "Blaines",
+        "value": "48",
+        "resellerCode": "blaines",
+        "image": "https://shop.famehype.gg/static-images/logo/48-400x400.png"
+      },
+      {
+        "id": 178,
+        "label": "Booths",
+        "value": "178",
+        "resellerCode": "booths",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      },
+      {
+        "id": 42,
+        "label": "Chuflocka",
+        "value": "42",
+        "resellerCode": "chuflocka",
+        "image": "https://shop.famehype.gg/static-images/logo/42-400x400.png"
+      }
+    ],
+    "couponCode": "BUY2GET1",
+    "description": "Buy 2 get 1 free",
+    "discountType": "buyget",
+    "percentValue": "",
+    "amountValue": "",
+    "buyValue": "2",
+    "getValue": "1",
+    "appliesTo": "products",
+    "specificCategories": [],
+    "specificProducts": ["101", "102", "103", "104"],
+    "startDate": "2024-01-20",
+    "startTime": "12:00",
+    "endDate": "2024-02-29",
+    "endTime": "23:59",
+    "nonExpiringCoupon": false,
+    "localTimeTracking": true,
+    "limitTotalUses": false,
+    "totalUsesLimit": "",
+    "limitOneUsePerAccount": false,
+    "minimumRequirement": "quantity",
+    "minimumPurchaseAmount": "",
+    "minimumQuantityOfItems": "3",
+    "status": "active",
+    "createdAt": "2024-01-15T09:15:00Z",
+    "usedCount": 89,
+    "global": false
+  },
+  {
+    "id": 4,
+    "channels": [
+      {
+        "id": 15,
+        "label": "CodeNamePizza",
+        "value": "15",
+        "resellerCode": "CODENAMEPIZZA",
+        "image": "https://shop.famehype.gg/static-images/logo/15-400x400.png"
+      },
+      {
+        "id": 47,
+        "label": "CookieBoy17",
+        "value": "47",
+        "resellerCode": "CookieBoy17",
+        "image": "https://shop.famehype.gg/static-images/logo/47-400x400.png"
+      },
+      {
+        "id": 56,
+        "label": "Deku Deals",
+        "value": "56",
+        "resellerCode": "dekudeals",
+        "image": "https://codes.dekudeals.com/assets/dekudeals/logo.png"
+      }
+    ],
+    "couponCode": "FLASH50",
+    "description": "Flash sale 50% off",
+    "discountType": "percent",
+    "percentValue": "50",
+    "amountValue": "",
+    "buyValue": "",
+    "getValue": "",
+    "appliesTo": "categories",
+    "specificCategories": ["2", "4"],
+    "specificProducts": [],
+    "startDate": "2024-03-01",
+    "startTime": "08:00",
+    "endDate": "2024-03-03",
+    "endTime": "20:00",
+    "nonExpiringCoupon": false,
+    "localTimeTracking": true,
+    "limitTotalUses": true,
+    "totalUsesLimit": "100",
+    "limitOneUsePerAccount": true,
+    "minimumRequirement": "amount",
+    "minimumPurchaseAmount": "100.00",
+    "minimumQuantityOfItems": "",
+    "status": "scheduled",
+    "createdAt": "2024-02-20T16:45:00Z",
+    "usedCount": 0,
+    "global": false
+  },
+  {
+    "id": 5,
+    "channels": [
+      {
+        "id": 93,
+        "label": "demotest",
+        "value": "93",
+        "resellerCode": "demotest",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      },
+      {
+        "id": 143,
+        "label": "DEV SHOP",
+        "value": "143",
+        "resellerCode": "devshop",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      },
+      {
+        "id": 158,
+        "label": "Digital Foundry",
+        "value": "158",
+        "resellerCode": "digitalfoundry",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      }
+    ],
+    "couponCode": "LOYALTY25",
+    "description": "Loyalty 25% off",
+    "discountType": "amount",
+    "percentValue": "",
+    "amountValue": "25",
+    "buyValue": "",
+    "getValue": "",
+    "appliesTo": "all",
+    "specificCategories": [],
+    "specificProducts": [],
+    "startDate": "",
+    "startTime": "",
+    "endDate": "",
+    "endTime": "",
+    "nonExpiringCoupon": true,
+    "localTimeTracking": false,
+    "limitTotalUses": false,
+    "totalUsesLimit": "",
+    "limitOneUsePerAccount": true,
+    "minimumRequirement": "amount",
+    "minimumPurchaseAmount": "75.00",
+    "minimumQuantityOfItems": "",
+    "status": "active",
+    "createdAt": "2024-01-05T11:20:00Z",
+    "usedCount": 456,
+    "global": false
+  },
+  {
+    "id": 6,
+    "channels": [
+      {
+        "id": 176,
+        "label": "Dobbies",
+        "value": "176",
+        "resellerCode": "dobbies",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      },
+      {
+        "id": 97,
+        "label": "DRB7H",
+        "value": "97",
+        "resellerCode": "drb",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      },
+      {
+        "id": 198,
+        "label": "Dropspot",
+        "value": "198",
+        "resellerCode": "dropspot",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      }
+    ],
+    "couponCode": "WEEKEND30",
+    "description": "Weekend 30% off",
+    "discountType": "percent",
+    "percentValue": "30",
+    "amountValue": "",
+    "buyValue": "",
+    "getValue": "",
+    "appliesTo": "products",
+    "specificCategories": [],
+    "specificProducts": ["201", "202", "203", "204", "205"],
+    "startDate": "2024-02-10",
+    "startTime": "00:00",
+    "endDate": "2024-02-11",
+    "endTime": "23:59",
+    "nonExpiringCoupon": false,
+    "localTimeTracking": false,
+    "limitTotalUses": true,
+    "totalUsesLimit": "250",
+    "limitOneUsePerAccount": false,
+    "minimumRequirement": "quantity",
+    "minimumPurchaseAmount": "",
+    "minimumQuantityOfItems": "2",
+    "status": "expired",
+    "createdAt": "2024-02-05T13:10:00Z",
+    "usedCount": 187,
+    "global": false
+  },
+  {
+    "id": 7,
+    "channels": [
+      {
+        "id": 197,
+        "label": "DTone",
+        "value": "197",
+        "resellerCode": "dtone",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      },
+      {
+        "id": 36,
+        "label": "DYKGaming",
+        "value": "36",
+        "resellerCode": "dykgaming",
+        "image": "https://shop.famehype.gg/static-images/logo/36-400x400.png"
+      },
+      {
+        "id": 167,
+        "label": "EE",
+        "value": "167",
+        "resellerCode": "ee",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      }
+    ],
+    "couponCode": "SPRING10",
+    "description": "Spring 10% off",
+    "discountType": "amount",
+    "percentValue": "",
+    "amountValue": "10",
+    "buyValue": "",
+    "getValue": "",
+    "appliesTo": "categories",
+    "specificCategories": ["1", "2", "3"],
+    "specificProducts": [],
+    "startDate": "2024-03-20",
+    "startTime": "06:00",
+    "endDate": "2024-06-20",
+    "endTime": "23:59",
+    "nonExpiringCoupon": false,
+    "localTimeTracking": true,
+    "limitTotalUses": true,
+    "totalUsesLimit": "2000",
+    "limitOneUsePerAccount": false,
+    "minimumRequirement": "none",
+    "minimumPurchaseAmount": "",
+    "minimumQuantityOfItems": "",
+    "status": "scheduled",
+    "createdAt": "2024-03-01T08:45:00Z",
+    "usedCount": 0,
+    "global": false
+  },
+  {
+    "id": 8,
+    "channels": [
+      {
+        "id": 32,
+        "label": "Epay",
+        "value": "32",
+        "resellerCode": "Epay",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      },
+      {
+        "id": 94,
+        "label": "Epay Demo",
+        "value": "94",
+        "resellerCode": "epaydemo",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/faaed61f007bcd29449124f9d76fdeb7d38f6e31.png"
+      },
+      {
+        "id": 192,
+        "label": "Epipoli",
+        "value": "192",
+        "resellerCode": "epipoli",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/4e674e6c0bc86d4746c46ec8b97e3efd594db9d6.png"
+      }
+    ],
+    "couponCode": "BUY3GET2",
+    "description": "Buy 3 get 2 free",
+    "discountType": "buyget",
+    "percentValue": "",
+    "amountValue": "",
+    "buyValue": "3",
+    "getValue": "2",
+    "appliesTo": "all",
+    "specificCategories": [],
+    "specificProducts": [],
+    "startDate": "2024-01-01",
+    "startTime": "00:00",
+    "endDate": "2024-04-30",
+    "endTime": "23:59",
+    "nonExpiringCoupon": false,
+    "localTimeTracking": false,
+    "limitTotalUses": true,
+    "totalUsesLimit": "300",
+    "limitOneUsePerAccount": true,
+    "minimumRequirement": "quantity",
+    "minimumPurchaseAmount": "",
+    "minimumQuantityOfItems": "5",
+    "status": "active",
+    "createdAt": "2023-12-28T15:30:00Z",
+    "usedCount": 78,
+    "global": false
+  },
+  {
+    "id": 9,
+    "channels": [
+      {
+        "id": 163,
+        "label": "esselunga",
+        "value": "163",
+        "resellerCode": "esselunga",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      },
+      {
+        "id": 162,
+        "label": "3",
+        "value": "162",
+        "resellerCode": "three",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      }
+    ],
+    "couponCode": "VIP40OFF",
+    "description": "VIP 40% off",
+    "discountType": "percent",
+    "percentValue": "40",
+    "amountValue": "",
+    "buyValue": "",
+    "getValue": "",
+    "appliesTo": "products",
+    "specificCategories": [],
+    "specificProducts": ["301", "302"],
+    "startDate": "2024-02-14",
+    "startTime": "10:00",
+    "endDate": "2024-02-14",
+    "endTime": "22:00",
+    "nonExpiringCoupon": false,
+    "localTimeTracking": true,
+    "limitTotalUses": true,
+    "totalUsesLimit": "50",
+    "limitOneUsePerAccount": true,
+    "minimumRequirement": "amount",
+    "minimumPurchaseAmount": "200.00",
+    "minimumQuantityOfItems": "",
+    "status": "expired",
+    "createdAt": "2024-02-10T12:00:00Z",
+    "usedCount": 50,
+    "global": false
+  },
+  {
+    "id": 10,
+    "channels": [
+      {
+        "id": 86,
+        "label": "Ali A",
+        "value": "86",
+        "resellerCode": "alia",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/bdc10c1df54e6ebb12d6cdd12bc6295d862c7652.png"
+      },
+      {
+        "id": 71,
+        "label": "Baldy Rudy",
+        "value": "71",
+        "resellerCode": "baldlyrudy",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/uploads/880c8f89edce693e755ccc98e91c6d1d12ea31d3.png"
+      },
+      {
+        "id": 54,
+        "label": "Beefy Smash Doods",
+        "value": "54",
+        "resellerCode": "bsd",
+        "image": "https://shop.famehype.gg/static-images/logo/54-400x400.png"
+      },
+      {
+        "id": 48,
+        "label": "Blaines",
+        "value": "48",
+        "resellerCode": "blaines",
+        "image": "https://shop.famehype.gg/static-images/logo/48-400x400.png"
+      },
+      {
+        "id": 178,
+        "label": "Booths",
+        "value": "178",
+        "resellerCode": "booths",
+        "image": "https://main-famehype.ecommerce.famehype.gg/user_upload/undefined"
+      }
+    ],
+    "couponCode": "MEGA5OFF",
+    "description": "Mega 5% off",
+    "discountType": "amount",
+    "percentValue": "",
+    "amountValue": "5",
+    "buyValue": "",
+    "getValue": "",
+    "appliesTo": "all",
+    "specificCategories": [],
+    "specificProducts": [],
+    "startDate": "",
+    "startTime": "",
+    "endDate": "",
+    "endTime": "",
+    "nonExpiringCoupon": true,
+    "localTimeTracking": false,
+    "limitTotalUses": false,
+    "totalUsesLimit": "",
+    "limitOneUsePerAccount": false,
+    "minimumRequirement": "none",
+    "minimumPurchaseAmount": "",
+    "minimumQuantityOfItems": "",
+    "status": "active",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "usedCount": 1205,
+    "global": false
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "value": "delivered",
+    "label": "Delivered"
+  },
+  {
+    "value": "cancelled",
+    "label": "Cancelled"
+  },
+  {
+    "value": "refunded",
+    "label": "Refunded"
+  },
+  {
+    "value": "partially_completed",
+    "label": "Partially Completed"
+  },
+  {
+    "value": "processing",
+    "label": "Processing"
+  }
+]

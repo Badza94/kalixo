@@ -1,0 +1,72 @@
+[
+  {
+    "name": "United States",
+    "countryCode": "US",
+    "sales": 42,
+    "progress": 42,
+    "amount": 235499
+  },
+  {
+    "name": "United Kingdom",
+    "countryCode": "GB",
+    "sales": 28,
+    "progress": 28,
+    "amount": 156320
+  },
+  {
+    "name": "Canada",
+    "countryCode": "CA",
+    "sales": 18,
+    "progress": 18,
+    "amount": 98750
+  },
+  {
+    "name": "Australia",
+    "countryCode": "AU",
+    "sales": 12,
+    "progress": 12,
+    "amount": 65200
+  },
+  {
+    "name": "Germany",
+    "countryCode": "DE",
+    "sales": 10,
+    "progress": 10,
+    "amount": 58400
+  },
+  {
+    "name": "France",
+    "countryCode": "FR",
+    "sales": 9,
+    "progress": 9,
+    "amount": 49800
+  },
+  {
+    "name": "Japan",
+    "countryCode": "JP",
+    "sales": 8,
+    "progress": 8,
+    "amount": 42300
+  },
+  {
+    "name": "Brazil",
+    "countryCode": "BR",
+    "sales": 7,
+    "progress": 7,
+    "amount": 36900
+  },
+  {
+    "name": "Spain",
+    "countryCode": "ES",
+    "sales": 6,
+    "progress": 6,
+    "amount": 32800
+  },
+  {
+    "name": "Italy",
+    "countryCode": "IT",
+    "sales": 5,
+    "progress": 5,
+    "amount": 28100
+  }
+]

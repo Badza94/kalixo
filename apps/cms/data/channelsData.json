@@ -1,0 +1,372 @@
+[
+  {
+    "id": 1,
+    "name": "Kalixo Marketplace",
+    "channelType": "marketplace",
+    "description": "Main marketplace for digital products and gift cards",
+    "companyId": "9898510f-27ed-4ea5-b365-b6cf58847b6d",
+    "companyName": "Kalixo",
+    "domainType": "default",
+    "customDomain": null,
+    "channelUrl": "preview-1-app.kalixo.com",
+    "defaultLocation": "US",
+    "defaultCurrency": "USD",
+    "defaultLanguage": "en",
+    "logoUrl": "https://cdn.kalixo.io/channels/logos/kalixo-marketplace.png",
+    "iconUrl": "https://cdn.kalixo.io/channels/icons/kalixo-marketplace.ico",
+    "faviconUrl": "https://cdn.kalixo.io/channels/favicons/kalixo-marketplace.ico",
+    "status": "active",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-03-20T14:22:00Z",
+    "teamMembers": [
+      {
+        "id": "tm-1-1",
+        "name": "John Smith",
+        "email": "john.smith@kalixo.com",
+        "role": "channelManager"
+      },
+      {
+        "id": "tm-1-2",
+        "name": "Sarah Johnson",
+        "email": "sarah.johnson@kalixo.com",
+        "role": "contentEditor"
+      },
+      {
+        "id": "tm-1-3",
+        "name": "Mike Chen",
+        "email": "mike.chen@kalixo.com",
+        "role": "administrator"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Gaming Hub Store",
+    "channelType": "firstParty",
+    "description": "Dedicated gaming platform for digital game codes and in-game currency",
+    "companyId": "6a6ffafb-5901-405f-b0e6-f632cc2c70d1",
+    "companyName": "Gaming Hub",
+    "domainType": "custom",
+    "customDomain": "gaming.store.com",
+    "channelUrl": "gaming.store.com",
+    "defaultLocation": "GB",
+    "defaultCurrency": "GBP",
+    "defaultLanguage": "en",
+    "logoUrl": "https://cdn.kalixo.io/channels/logos/gaming-hub.png",
+    "iconUrl": "https://cdn.kalixo.io/channels/icons/gaming-hub.ico",
+    "faviconUrl": "https://cdn.kalixo.io/channels/favicons/gaming-hub.ico",
+    "status": "active",
+    "createdAt": "2024-02-01T09:15:00Z",
+    "updatedAt": "2024-03-18T11:45:00Z",
+    "teamMembers": [
+      {
+        "id": "tm-2-1",
+        "name": "Alex Rodriguez",
+        "email": "alex.rodriguez@gaminghub.com",
+        "role": "channelManager"
+      },
+      {
+        "id": "tm-2-2",
+        "name": "Emma Williams",
+        "email": "emma.williams@gaminghub.com",
+        "role": "contentEditor"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Corporate Bulk Portal",
+    "channelType": "bulkOrdering",
+    "description": "B2B platform for companies to purchase digital products in bulk",
+    "companyId": "5ad2dba4-2e06-42d1-bfaa-213860f400d2",
+    "companyName": "Corporate Bulk",
+    "domainType": "default",
+    "customDomain": null,
+    "channelUrl": "preview-3-app.kalixo.com",
+    "defaultLocation": "DE",
+    "defaultCurrency": "EUR",
+    "defaultLanguage": "en",
+    "logoUrl": "https://cdn.kalixo.io/channels/logos/corporate-bulk.png",
+    "iconUrl": "https://cdn.kalixo.io/channels/icons/corporate-bulk.ico",
+    "faviconUrl": "https://cdn.kalixo.io/channels/favicons/corporate-bulk.ico",
+    "status": "active",
+    "createdAt": "2024-01-20T16:00:00Z",
+    "updatedAt": "2024-03-15T13:30:00Z",
+    "teamMembers": [
+      {
+        "id": "tm-3-1",
+        "name": "David Thompson",
+        "email": "david.thompson@corporatebulk.com",
+        "role": "channelManager"
+      },
+      {
+        "id": "tm-3-2",
+        "name": "Lisa Martinez",
+        "email": "lisa.martinez@corporatebulk.com",
+        "role": "administrator"
+      },
+      {
+        "id": "tm-3-3",
+        "name": "Robert Kim",
+        "email": "robert.kim@corporatebulk.com",
+        "role": "contentEditor"
+      },
+      {
+        "id": "tm-3-4",
+        "name": "Jennifer Lee",
+        "email": "jennifer.lee@corporatebulk.com",
+        "role": "administrator"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Partner White Label",
+    "channelType": "whiteLabel",
+    "description": "White label solution for high-traffic partner websites",
+    "companyId": "cacfe46e-6cdc-4324-b6dc-c0b80b117f93",
+    "companyName": "Partner White",
+    "domainType": "custom",
+    "customDomain": "partner.giftcards.com",
+    "channelUrl": "partner.giftcards.com",
+    "defaultLocation": "CA",
+    "defaultCurrency": "CAD",
+    "defaultLanguage": "en",
+    "logoUrl": "https://cdn.kalixo.io/channels/logos/partner-white.png",
+    "iconUrl": "https://cdn.kalixo.io/channels/icons/partner-white.ico",
+    "faviconUrl": "https://cdn.kalixo.io/channels/favicons/partner-white.ico",
+    "status": "active",
+    "createdAt": "2024-02-10T12:20:00Z",
+    "updatedAt": "2024-03-22T10:15:00Z",
+    "teamMembers": [
+      {
+        "id": "tm-4-1",
+        "name": "Maria Garcia",
+        "email": "maria.garcia@partnerwhite.com",
+        "role": "channelManager"
+      },
+      {
+        "id": "tm-4-2",
+        "name": "James Wilson",
+        "email": "james.wilson@partnerwhite.com",
+        "role": "contentEditor"
+      },
+      {
+        "id": "tm-4-3",
+        "name": "Amy Zhang",
+        "email": "amy.zhang@partnerwhite.com",
+        "role": "administrator"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Marketing Campaign Site",
+    "channelType": "marketing",
+    "description": "Brand awareness and lead generation campaign platform",
+    "companyId": "ee281fbd-7a90-4411-a0df-9d2a4976da9f",
+    "companyName": "Marketing Campaign",
+    "domainType": "default",
+    "customDomain": null,
+    "channelUrl": "preview-5-app.kalixo.com",
+    "defaultLocation": "IT",
+    "defaultCurrency": "EUR",
+    "defaultLanguage": "it",
+    "logoUrl": "https://cdn.kalixo.io/channels/logos/marketing-campaign.png",
+    "iconUrl": "https://cdn.kalixo.io/channels/icons/marketing-campaign.ico",
+    "faviconUrl": "https://cdn.kalixo.io/channels/favicons/marketing-campaign.ico",
+    "status": "draft",
+    "createdAt": "2024-03-01T08:45:00Z",
+    "updatedAt": "2024-03-25T16:20:00Z",
+    "teamMembers": [
+      {
+        "id": "tm-5-1",
+        "name": "Marco Rossi",
+        "email": "marco.rossi@marketingcampaign.it",
+        "role": "channelManager"
+      },
+      {
+        "id": "tm-5-2",
+        "name": "Giulia Ferrari",
+        "email": "giulia.ferrari@marketingcampaign.it",
+        "role": "contentEditor"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Claim Your Rewards",
+    "channelType": "claim",
+    "description": "Customer portal for redeeming promotional codes and selecting products",
+    "companyId": "0c61fe2b-3644-4e1b-be40-de7b6517eda4",
+    "companyName": "Claim Your Rewards",
+    "domainType": "custom",
+    "customDomain": "claim.rewards.com",
+    "channelUrl": "claim.rewards.com",
+    "defaultLocation": "US",
+    "defaultCurrency": "USD",
+    "defaultLanguage": "en",
+    "logoUrl": "https://cdn.kalixo.io/channels/logos/claim-rewards.png",
+    "iconUrl": "https://cdn.kalixo.io/channels/icons/claim-rewards.ico",
+    "faviconUrl": "https://cdn.kalixo.io/channels/favicons/claim-rewards.ico",
+    "status": "active",
+    "createdAt": "2024-01-25T14:10:00Z",
+    "updatedAt": "2024-03-19T09:30:00Z",
+    "teamMembers": [
+      {
+        "id": "tm-6-1",
+        "name": "Kevin Brown",
+        "email": "kevin.brown@claimrewards.com",
+        "role": "channelManager"
+      },
+      {
+        "id": "tm-6-2",
+        "name": "Patricia Davis",
+        "email": "patricia.davis@claimrewards.com",
+        "role": "administrator"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Developer API Portal",
+    "channelType": "api",
+    "description": "API integration platform for third-party developers and partners",
+    "companyId": "78563e7e-9cd8-4ded-badc-a730260a28cc",
+    "companyName": "Developer API",
+    "domainType": "default",
+    "customDomain": null,
+    "channelUrl": "preview-7-app.kalixo.com",
+    "defaultLocation": "US",
+    "defaultCurrency": "USD",
+    "defaultLanguage": "en",
+    "logoUrl": "https://cdn.kalixo.io/channels/logos/developer-api.png",
+    "iconUrl": "https://cdn.kalixo.io/channels/icons/developer-api.ico",
+    "faviconUrl": "https://cdn.kalixo.io/channels/favicons/developer-api.ico",
+    "status": "active",
+    "createdAt": "2024-02-15T11:00:00Z",
+    "updatedAt": "2024-03-21T15:45:00Z",
+    "teamMembers": [
+      {
+        "id": "tm-7-1",
+        "name": "Brian Johnson",
+        "email": "brian.johnson@developerapi.com",
+        "role": "channelManager"
+      },
+      {
+        "id": "tm-7-2",
+        "name": "Ashley Taylor",
+        "email": "ashley.taylor@developerapi.com",
+        "role": "administrator"
+      },
+      {
+        "id": "tm-7-3",
+        "name": "Daniel White",
+        "email": "daniel.white@developerapi.com",
+        "role": "contentEditor"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Nordic Gift Store",
+    "channelType": "marketplace",
+    "description": "Regional marketplace focused on Nordic countries and local payment methods",
+    "companyId": "dd508a2d-3bfa-4aed-bdbd-c50a38990c2e",
+    "companyName": "Nordic Gift Store",
+    "domainType": "custom",
+    "customDomain": "nordic.gifts.se",
+    "channelUrl": "nordic.gifts.se",
+    "defaultLocation": "SE",
+    "defaultCurrency": "SEK",
+    "defaultLanguage": "en",
+    "logoUrl": "https://cdn.kalixo.io/channels/logos/nordic-gifts.png",
+    "iconUrl": "https://cdn.kalixo.io/channels/icons/nordic-gifts.ico",
+    "faviconUrl": "https://cdn.kalixo.io/channels/favicons/nordic-gifts.ico",
+    "status": "active",
+    "createdAt": "2024-02-20T13:25:00Z",
+    "updatedAt": "2024-03-24T12:10:00Z",
+    "teamMembers": [
+      {
+        "id": "tm-8-1",
+        "name": "Lars Andersson",
+        "email": "lars.andersson@nordicgifts.se",
+        "role": "channelManager"
+      },
+      {
+        "id": "tm-8-2",
+        "name": "Astrid Olsen",
+        "email": "astrid.olsen@nordicgifts.se",
+        "role": "contentEditor"
+      },
+      {
+        "id": "tm-8-3",
+        "name": "Erik Johansson",
+        "email": "erik.johansson@nordicgifts.se",
+        "role": "administrator"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Custom Integration Hub",
+    "channelType": "custom",
+    "description": "Specialized custom integration for enterprise clients with unique requirements",
+    "companyId": "9898510f-27ed-4ea5-b365-b6cf58847b6d",
+    "companyName": "Custom Integration",
+    "domainType": "default",
+    "customDomain": null,
+    "channelUrl": "preview-9-app.kalixo.com",
+    "defaultLocation": "CH",
+    "defaultCurrency": "CHF",
+    "defaultLanguage": "en",
+    "logoUrl": "https://cdn.kalixo.io/channels/logos/custom-integration.png",
+    "iconUrl": "https://cdn.kalixo.io/channels/icons/custom-integration.ico",
+    "faviconUrl": "https://cdn.kalixo.io/channels/favicons/custom-integration.ico",
+    "status": "inactive",
+    "createdAt": "2024-03-05T10:15:00Z",
+    "updatedAt": "2024-03-26T14:00:00Z",
+    "teamMembers": [
+      {
+        "id": "tm-9-1",
+        "name": "Michael Anderson",
+        "email": "michael.anderson@customintegration.com",
+        "role": "administrator"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Mobile App Store",
+    "channelType": "firstParty",
+    "description": "Mobile-first platform optimized for smartphone and tablet users",
+    "companyId": "6a6ffafb-5901-405f-b0e6-f632cc2c70d1",
+    "companyName": "Mobile App Store",
+    "domainType": "custom",
+    "customDomain": "mobile.kalixo.app",
+    "channelUrl": "mobile.kalixo.app",
+    "defaultLocation": "US",
+    "defaultCurrency": "USD",
+    "defaultLanguage": "en",
+    "logoUrl": "https://cdn.kalixo.io/channels/logos/mobile-app.png",
+    "iconUrl": "https://cdn.kalixo.io/channels/icons/mobile-app.ico",
+    "faviconUrl": "https://cdn.kalixo.io/channels/favicons/mobile-app.ico",
+    "status": "draft",
+    "createdAt": "2024-03-10T15:40:00Z",
+    "updatedAt": "2024-03-28T11:25:00Z",
+    "teamMembers": [
+      {
+        "id": "tm-10-1",
+        "name": "Rachel Green",
+        "email": "rachel.green@mobileappstore.com",
+        "role": "channelManager"
+      },
+      {
+        "id": "tm-10-2",
+        "name": "Thomas Miller",
+        "email": "thomas.miller@mobileappstore.com",
+        "role": "contentEditor"
+      }
+    ]
+  }
+]

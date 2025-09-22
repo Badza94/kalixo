@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "marketName": "United States",
+    "marketType": "country",
+    "countries": ["US"],
+    "currencyName": "US Dollar",
+    "currencySymbol": "$",
+    "currencyCode": "USD",
+    "numberFormat": "1,234.56",
+    "vatRate": 8.25
+  },
+  {
+    "id": 2,
+    "marketName": "European Union",
+    "marketType": "region",
+    "countries": ["DE", "FR", "IT", "ES", "NL", "BE"],
+    "currencyName": "Euro",
+    "currencySymbol": "€",
+    "currencyCode": "EUR",
+    "numberFormat": "1.234,56",
+    "vatRate": 21.0
+  },
+  {
+    "id": 3,
+    "marketName": "United Kingdom",
+    "marketType": "country",
+    "countries": ["GB"],
+    "currencyName": "British Pound",
+    "currencySymbol": "£",
+    "currencyCode": "GBP",
+    "numberFormat": "1,234.56",
+    "vatRate": 20.0
+  },
+  {
+    "id": 4,
+    "marketName": "Canada",
+    "marketType": "country",
+    "countries": ["CA"],
+    "currencyName": "Canadian Dollar",
+    "currencySymbol": "C$",
+    "currencyCode": "CAD",
+    "numberFormat": "1,234.56",
+    "vatRate": 13.0
+  },
+  {
+    "id": 5,
+    "marketName": "Switzerland",
+    "marketType": "country",
+    "countries": ["CH"],
+    "currencyName": "Swiss Franc",
+    "currencySymbol": "CHF",
+    "currencyCode": "CHF",
+    "numberFormat": "1'234.56",
+    "vatRate": 7.7
+  },
+  {
+    "id": 6,
+    "marketName": "Nordic Region",
+    "marketType": "region",
+    "countries": ["SE", "NO", "DK", "FI"],
+    "currencyName": "Swedish Krona",
+    "currencySymbol": "kr",
+    "currencyCode": "SEK",
+    "numberFormat": "1 234,56",
+    "vatRate": 25.0
+  },
+  {
+    "id": 7,
+    "marketName": "Middle East",
+    "marketType": "region",
+    "countries": ["AE", "SA", "QA", "KW", "BH", "OM"],
+    "currencyName": "US Dollar",
+    "currencySymbol": "$",
+    "currencyCode": "USD",
+    "numberFormat": "1,234.56",
+    "vatRate": 5.0
+  },
+  {
+    "id": 8,
+    "marketName": "Turkey",
+    "marketType": "country",
+    "countries": ["TR"],
+    "currencyName": "Turkish Lira",
+    "currencySymbol": "₺",
+    "currencyCode": "TRY",
+    "numberFormat": "1.234,56",
+    "vatRate": 18.0
+  },
+  {
+    "id": 9,
+    "marketName": "Australia",
+    "marketType": "country",
+    "countries": ["AU"],
+    "currencyName": "Australian Dollar",
+    "currencySymbol": "A$",
+    "currencyCode": "AUD",
+    "numberFormat": "1,234.56",
+    "vatRate": 10.0
+  },
+  {
+    "id": 10,
+    "marketName": "New Zealand",
+    "marketType": "country",
+    "countries": ["NZ"],
+    "currencyName": "New Zealand Dollar",
+    "currencySymbol": "NZ$",
+    "currencyCode": "NZD",
+    "numberFormat": "1,234.56",
+    "vatRate": 15.0
+  }
+]

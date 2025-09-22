@@ -1,0 +1,18 @@
+[
+  {
+    "value": "customer",
+    "label": "Customer"
+  },
+  {
+    "value": "business",
+    "label": "Business"
+  },
+  {
+    "value": "reseller",
+    "label": "Reseller"
+  },
+  {
+    "value": "vip",
+    "label": "VIP"
+  }
+]

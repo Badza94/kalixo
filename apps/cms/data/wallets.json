@@ -1,0 +1,144 @@
+[
+  {
+    "id": 1,
+    "country": "United States",
+    "countryCode": "US",
+    "currency": "USD",
+    "balance": 0.0,
+    "isDefault": true,
+    "limit": 1000000
+  },
+  {
+    "id": 2,
+    "country": "Europe",
+    "countryCode": "EU",
+    "currency": "EUR",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": null
+  },
+  {
+    "id": 3,
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "currency": "GBP",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": 1000000
+  },
+  {
+    "id": 4,
+    "country": "Switzerland",
+    "countryCode": "CH",
+    "currency": "CHF",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": null
+  },
+  {
+    "id": 5,
+    "country": "Australia",
+    "countryCode": "AU",
+    "currency": "AUD",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": null
+  },
+  {
+    "id": 6,
+    "country": "Canada",
+    "countryCode": "CA",
+    "currency": "CAD",
+    "balance": 0.0,
+    "isDefault": false
+  },
+  {
+    "id": 7,
+    "country": "Poland",
+    "countryCode": "PL",
+    "currency": "PLN",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": null
+  },
+  {
+    "id": 8,
+    "country": "Norway",
+    "countryCode": "NO",
+    "currency": "NOK",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": null
+  },
+  {
+    "id": 9,
+    "country": "Sweden",
+    "countryCode": "SE",
+    "currency": "SEK",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": null
+  },
+  {
+    "id": 10,
+    "country": "Denmark",
+    "countryCode": "DK",
+    "currency": "DKK",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": null
+  },
+  {
+    "id": 11,
+    "country": "Qatar",
+    "countryCode": "QA",
+    "currency": "QAR",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": null
+  },
+  {
+    "id": 12,
+    "country": "Saudi Arabia",
+    "countryCode": "SA",
+    "currency": "SAR",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": null
+  },
+  {
+    "id": 13,
+    "country": "Turkey",
+    "countryCode": "TR",
+    "currency": "TRY",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": null
+  },
+  {
+    "id": 14,
+    "country": "United Arab Emirates",
+    "countryCode": "AE",
+    "currency": "AED",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": null
+  },
+  {
+    "id": 15,
+    "country": "Bahrain",
+    "countryCode": "BH",
+    "currency": "BHD",
+    "balance": 0.0,
+    "isDefault": false
+  },
+  {
+    "id": 16,
+    "country": "Kuwait",
+    "countryCode": "KW",
+    "currency": "KWD",
+    "balance": 0.0,
+    "isDefault": false,
+    "limit": null
+  }
+]

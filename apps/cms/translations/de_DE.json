@@ -1,0 +1,16 @@
+{
+  "products": "Produkte",
+  "home": "Startseite",
+  "about": "Über uns",
+  "contact": "Kontakt",
+  "welcome_message": "Willkommen auf unserer Website",
+  "navigation": {
+    "menu": "Menü",
+    "search": "Suchen"
+  },
+  "buttons": {
+    "submit": "Absenden",
+    "cancel": "Abbrechen",
+    "save": "Speichern"
+  }
+}

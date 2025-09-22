@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Gaming",
+    "iconUrl": "/placeholder.svg"
+  },
+  {
+    "id": 2,
+    "name": "Kalixo",
+    "iconUrl": "/placeholder.svg"
+  },
+  {
+    "id": 3,
+    "name": "Subscription",
+    "iconUrl": "/placeholder.svg"
+  },
+  {
+    "id": 4,
+    "name": "In-Game Currency",
+    "iconUrl": "/placeholder.svg"
+  },
+  {
+    "id": 5,
+    "name": "DLC",
+    "iconUrl": "/placeholder.svg"
+  }
+]

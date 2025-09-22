@@ -1,0 +1,114 @@
+[
+  {
+    "id": "seg_001",
+    "name": "High Value Customers",
+    "description": "Customers with total purchases over $1000 and active status",
+    "tags": ["High Value", "VIP", "Revenue"],
+    "customerPercentage": 12.5,
+    "createdAt": "2024-01-15T10:30:00Z",
+    "createdBy": "John Smith",
+    "status": "active",
+    "conditions": [
+      "total_purchase_amount > 1000",
+      "customer_status = 'active'"
+    ],
+    "sqlQuery": "FROM customers\nSHOW customer_name, note, email_subscription_status, location, orders, amount_spent\nWHERE total_purchase_amount > 1000\nAND customer_status = 'active'\nORDER BY updated_at"
+  },
+  {
+    "id": "seg_002",
+    "name": "Mobile Users",
+    "description": "Customers who primarily shop using mobile devices",
+    "tags": ["Mobile", "Device", "Experience"],
+    "customerPercentage": 67.3,
+    "createdAt": "2024-01-20T14:15:00Z",
+    "createdBy": "Sarah Johnson",
+    "status": "active",
+    "conditions": ["device_type = 'mobile'", "mobile_app_usage > 50"],
+    "sqlQuery": "FROM customers\nSHOW customer_name, note, email_subscription_status, location, orders, amount_spent\nWHERE device_type = 'mobile'\nAND mobile_app_usage > 50\nORDER BY updated_at"
+  },
+  {
+    "id": "seg_003",
+    "name": "Cart Abandoners",
+    "description": "Customers who added items to cart but didn't complete purchase",
+    "tags": ["Abandoned Cart", "Recovery", "Conversion"],
+    "customerPercentage": 23.8,
+    "createdAt": "2024-02-01T09:45:00Z",
+    "createdBy": "Mike Wilson",
+    "status": "active",
+    "conditions": [
+      "cart_status = 'abandoned'",
+      "cart_updated_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)",
+      "order_completed = 'false'"
+    ],
+    "sqlQuery": "FROM customers\nSHOW customer_name, note, email_subscription_status, location, orders, amount_spent\nWHERE cart_status = 'abandoned'\nAND cart_updated_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nAND order_completed = 'false'\nORDER BY updated_at"
+  },
+  {
+    "id": "seg_004",
+    "name": "Email Subscribers",
+    "description": "Customers who have subscribed to email newsletters",
+    "tags": ["Email", "Newsletter", "Engagement"],
+    "customerPercentage": 45.2,
+    "createdAt": "2024-02-05T16:20:00Z",
+    "createdBy": "Lisa Chen",
+    "status": "active",
+    "conditions": [
+      "email_subscription_status = 'subscribed'",
+      "marketing_emails_enabled = 'true'"
+    ],
+    "sqlQuery": "FROM customers\nSHOW customer_name, note, email_subscription_status, location, orders, amount_spent\nWHERE email_subscription_status = 'subscribed'\nAND marketing_emails_enabled = 'true'\nORDER BY updated_at"
+  },
+  {
+    "id": "seg_005",
+    "name": "US Customers",
+    "description": "Customers located in the United States",
+    "tags": ["Location", "US", "Geographic"],
+    "customerPercentage": 34.7,
+    "createdAt": "2024-02-10T11:30:00Z",
+    "createdBy": "David Brown",
+    "status": "active",
+    "conditions": ["billing_country = 'US'", "shipping_country = 'US'"],
+    "sqlQuery": "FROM customers\nSHOW customer_name, note, email_subscription_status, location, orders, amount_spent\nWHERE billing_country = 'US'\nAND shipping_country = 'US'\nORDER BY updated_at"
+  },
+  {
+    "id": "seg_006",
+    "name": "Lapsed Buyers",
+    "description": "Customers who bought before but haven't purchased in 3 months",
+    "tags": ["Lapsed", "Winback", "Re-engagement"],
+    "customerPercentage": 18.9,
+    "createdAt": "2024-02-15T13:45:00Z",
+    "createdBy": "Emily Davis",
+    "status": "inactive",
+    "conditions": [
+      "last_purchase_date < DATE_SUB(NOW(), INTERVAL 3 MONTH)",
+      "total_orders > 0"
+    ],
+    "sqlQuery": "FROM customers\nSHOW customer_name, note, email_subscription_status, location, orders, amount_spent\nWHERE last_purchase_date < DATE_SUB(NOW(), INTERVAL 3 MONTH)\nAND total_orders > 0\nORDER BY updated_at"
+  },
+  {
+    "id": "seg_007",
+    "name": "VIP Customers",
+    "description": "Top 5% customers by lifetime value",
+    "tags": ["VIP", "Premium", "Top Tier"],
+    "customerPercentage": 5.0,
+    "createdAt": "2024-02-20T08:15:00Z",
+    "createdBy": "Robert Taylor",
+    "status": "active",
+    "conditions": ["lifetime_value_percentile >= 95", "vip_status = 'true'"],
+    "sqlQuery": "FROM customers\nSHOW customer_name, note, email_subscription_status, location, orders, amount_spent\nWHERE lifetime_value_percentile >= 95\nAND vip_status = 'true'\nORDER BY updated_at"
+  },
+  {
+    "id": "seg_008",
+    "name": "Recent Customers",
+    "description": "Customers who made a purchase in the last 30 days",
+    "tags": ["Recent", "Active", "Purchase"],
+    "customerPercentage": 28.4,
+    "createdAt": "2024-02-25T15:00:00Z",
+    "createdBy": "Anna Martinez",
+    "status": "active",
+    "conditions": [
+      "last_purchase_date >= DATE_SUB(NOW(), INTERVAL 30 DAY)",
+      "order_status = 'completed'"
+    ],
+    "sqlQuery": "FROM customers\nSHOW customer_name, note, email_subscription_status, location, orders, amount_spent\nWHERE last_purchase_date >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nAND order_status = 'completed'\nORDER BY updated_at"
+  }
+]
