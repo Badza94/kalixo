@@ -5,7 +5,7 @@ import timelineData from "@/data/timeline-fake.json";
 import { TimelineEntry } from "@workspace/ui/components/timeline";
 import notes from "@/data/notes.json";
 // import { getServerSession, User } from "next-auth";
-import { authOptions } from "@/lib/_auth-options";
+// import { authOptions } from "@/lib/_auth-options";
 
 async function SingleChannelPage({
   params,

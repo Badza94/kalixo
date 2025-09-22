@@ -32,7 +32,11 @@ import {
   KeyboardEvent,
   useState,
 } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/avatar";
 import * as LucideIcons from "@workspace/ui/lucide-react";
 
 /**
@@ -337,6 +341,7 @@ export const MultiSelect = forwardRef<HTMLButtonElement, MultiSelectProps>(
                       ) : (
                         <>
                           {option.icon && typeof option.icon === "string" ? (
+                            option.icon &&
                             (
                               LucideIcons as unknown as Record<
                                 string,
@@ -349,7 +354,7 @@ export const MultiSelect = forwardRef<HTMLButtonElement, MultiSelectProps>(
                                     string,
                                     ComponentType<{ className?: string }>
                                   >
-                                )[option.icon],
+                                )[option.icon]!,
                                 {
                                   className:
                                     "mr-2 h-4 w-4 text-muted-foreground",

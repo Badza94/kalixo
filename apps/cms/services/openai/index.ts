@@ -45,7 +45,7 @@ class OpenAiService {
       },
     });
 
-    const content = aiResponse.choices[0].message.content;
+    const content = aiResponse?.choices[0]?.message?.content;
     const jsonResponse = content ? content.replace(/(\r\n|\n|\r)/gm, "") : "";
     const jsonData = JSON.parse(jsonResponse);
     const formattedResponse = {

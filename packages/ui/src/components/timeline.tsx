@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar } from "@workspace/ui/components/avatar";
+import { Avatar, AvatarImage } from "@workspace/ui/components/avatar";
 import { Badge } from "@workspace/ui/components/badge";
 import {
   Mail,
@@ -11,7 +11,6 @@ import {
   PlusCircle,
   Circle,
 } from "@workspace/ui/lucide-react";
-import Image from "next/image";
 import clsx from "clsx";
 import { formatDate } from "@workspace/ui/lib/date-fns";
 import { ScrollArea } from "@workspace/ui/components/scroll-area";
@@ -79,12 +78,7 @@ export function Timeline({ entries }: { entries: TimelineEntry[] }) {
                   ) : (
                     <div className="flex items-center gap-2">
                       <Avatar className="w-6 h-6 bg-foreground">
-                        <Image
-                          src={user!.image}
-                          alt={user!.firstName}
-                          width={24}
-                          height={24}
-                        />
+                        <AvatarImage src={user!.image} alt={user!.firstName} />
                       </Avatar>
                       <span className="font-medium">
                         {user!.firstName} {user!.lastName}

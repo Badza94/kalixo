@@ -6,6 +6,6 @@
       "@workspace/ui/*": ["./src/*"]
     }
   },
-  "include": [".", "../../apps/cms/hooks/is-unprotected-route.ts", "../../apps/cms/hooks/place-order-hooks.ts"],
+  "include": [".", "../../apps/cms/hooks/is-unprotected-route.ts", "../../apps/cms/hooks/place-order-hooks.ts", "../../apps/cms/hooks/use-product-ai-enhancement.ts"],
   "exclude": ["node_modules", "dist"]
 }

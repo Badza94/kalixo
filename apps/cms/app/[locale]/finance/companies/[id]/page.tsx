@@ -14,7 +14,7 @@ import countries from "@/data/countries.json";
 import currencies from "@/data/currencies.json";
 import notes from "@/data/notes.json";
 import timelineData from "@/data/timeline-fake.json";
-import { authOptions } from "@/lib/_auth-options";
+// import { authOptions } from "@/lib/_auth-options";
 // import { getServerSession, User } from "next-auth";
 import { getTranslations } from "next-intl/server";
 

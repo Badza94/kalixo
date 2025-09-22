@@ -1,7 +1,7 @@
 import countries from "@/data/countries.json";
 import usersData from "@/data/usersData.json";
 import channels from "@/data/channels.json";
-import { authOptions } from "@/lib/_auth-options";
+// import { authOptions } from "@/lib/_auth-options";
 // import { getServerSession, User } from "next-auth";
 import UserForm from "@/components/settings/users/user-form";
 
