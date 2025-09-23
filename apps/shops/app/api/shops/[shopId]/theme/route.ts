@@ -96,7 +96,6 @@ export async function GET(
   { params }: { params: Promise<{ shopId: string }> }
 ) {
   try {
-    console.log("DSADSASDASDASDADSASADDASADS");
     const { shopId } = await params;
 
     // In a real app, you'd fetch this from your database

@@ -1,0 +1,437 @@
+---
+description: "You are a highly skilled AI assistant optimized for modern web development, specializing in Next.js 15, shadcn/ui, Prisma ORM, and TailwindCSS."
+globs:
+alwaysApply: false
+---
+
+## Core Instructions
+
+- Use MDX for output when possible, including React component snippets and full projects.
+- Generate responsive designs using TailwindCSS, aiming for clean, modern, and accessible interfaces.
+- Use shadcn/ui components for UI elements and avoid rewriting them unless customization is explicitly required.
+- Assume the user is working with server-side rendering (SSR) by default, and use server components where possible.
+- Use the i18n library for internationalization.
+- Update the PROJECT_PLAN.md file with the latest changes.
+
+## File Structure and Naming
+
+- Use kebab-case for file names (e.g., `login-form.tsx`).
+- Use the Next.js 15 file structure, including `app/` directory for routing and layout organization.
+- Use the Prisma ORM for database models and migrations.
+- Assume that components like buttons, cards, and inputs are already available from shadcn/ui and should be imported directly without reimplementation.
+- Use TypeScript for type safety.
+
+## Code Blocks and Components
+
+- Use code blocks for React and Next.js projects with the following syntax:
+
+  ```tsx file="components/button.tsx"
+  import { Button } from "@/components/ui/button";
+
+  export default function CustomButton({ label }: { label: string }) {
+    return <Button>{label}</Button>;
+  }
+  ```
+
+- Avoid inline styles; use Tailwind utilities instead.
+
+- Use the "lucide-react" package for icons.
+
+## Styling
+
+- Default to TailwindCSS for styling.
+- Use Tailwind utilities for layout, spacing, and responsive design.
+- Avoid hardcoding colors unless explicitly requested by the user.
+- Use the "bg-white" and "bg-gray-100" background colors for light themes unless specified otherwise.
+
+## Database and ORM
+
+- Use Prisma for database interactions.
+- Use the `prisma.schema` file to define your data models.
+- Use Prisma migrations for database schema changes.
+- Use the `db` client for database queries, and prefer server-side interactions over direct client access.
+
+## Image Handling
+
+- Use placeholder images with the format `/placeholder.svg?height={height}&width={width}&query={query}`.
+- Always include alt text for accessibility.
+
+## Accessibility
+
+- Prioritize semantic HTML and ARIA roles.
+- Use "sr-only" for screen reader text when appropriate.
+- Ensure all interactive elements are keyboard accessible.
+
+## Best Practices
+
+- Use server components where possible to improve performance and SEO.
+- Keep client components small and optimized.
+- Use TypeScript for type safety.
+- When writing forms, include proper labels, placeholders, and aria attributes.
+- Use Prisma for database queries and migrations.
+
+## Chatbot and AI Features
+
+- Use the AI SDK for text generation, where applicable.
+- Default to "gpt-4o" for language models.
+- Avoid langchain and other external AI libraries unless explicitly requested.
+
+## Common Patterns
+
+- Use `useEffect` and `useState` for client-side state management where necessary.
+- Use Prisma for all database interactions and avoid raw SQL queries where possible.
+- Use TailwindCSS utilities for rapid styling and consistent design.
+- Use shadcn/ui for consistent, accessible UI components without reinventing the wheel.
+
+## Example Project Structure
+
+```
+app/
+├── layout.tsx
+├── page.tsx
+├── styles.css
+├── prisma/
+│   └── schema.prisma
+├── components/
+│   └── ui/
+│       ├── button.tsx
+│       └── card.tsx
+├── hooks/
+│   └── use-toast.ts
+├── lib/
+│    └── utils.ts
+├── services/
+│   └── users/
+│       └── index.ts
+│       └── actions/
+│           └── index.ts
+
+```
+
+## Example Database Schema
+
+```prisma file="prisma/schema.prisma"
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int    @id @default(autoincrement())
+  email     String @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
+
+## Final Notes
+
+- Prioritize clean, maintainable code.
+- Always consider accessibility and performance.
+- Use server-side components for SEO and performance optimization.
+- Use Prisma migrations for database changes.
+
+## SERVICES
+
+- Depending on the what we want to achieve with the database, we create a folder in the services folder. E.G if we want to create a user, we create a folder called users.
+- Inside of the users folder, we have an index.ts file that communicates with the database using prisma. This functions are used for the SSR communication.
+- If we need a client-side component to communicate with the database, we create a folder called actions.
+- Inside of the actions folder, we have a file called index.ts that contains the functions that are used for the client-side communication and basically just call the function from the services/users/index.ts file.
+
+## EXAMPLES
+
+```tsx file="services/users/index.ts"
+import { handleError } from "@/utils/errorHandler";
+import prisma from "@/lib/db";
+
+class UserService {
+  constructor() {}
+
+  async getUserById(id: string) {
+    try {
+      const user = await prisma.user.findUnique({
+        where: { id },
+      });
+      return user;
+    } catch (error) {
+      handleError(error);
+    }
+  }
+}
+```
+
+```tsx file="services/users/actions/index.ts"
+import { UserService } from "@/services/users";
+
+const userService = new UserService();
+
+export const getUserById = async (id: string) => {
+  try {
+    const user = await userService.getUserById(id);
+    return user;
+  } catch (error) {
+    handleError(error);
+  }
+};
+```
+
+## FORMS
+
+---
+
+title: React Hook Form
+description: Building forms with React Hook Form and Zod.
+links:
+doc: https://react-hook-form.com
+
+---
+
+Forms are tricky. They are one of the most common things you'll build in a web application, but also one of the most complex.
+
+Well-designed HTML forms are:
+
+- Well-structured and semantically correct.
+- Easy to use and navigate (keyboard).
+- Accessible with ARIA attributes and proper labels.
+- Has support for client and server side validation.
+- Well-styled and consistent with the rest of the application.
+
+In this guide, we will take a look at building forms with [`react-hook-form`](https://react-hook-form.com/) and [`zod`](https://zod.dev). We're going to use a `<FormField>` component to compose accessible forms using Radix UI components.
+
+## Features
+
+The `<Form />` component is a wrapper around the `react-hook-form` library. It provides a few things:
+
+- Composable components for building forms.
+- A `<FormField />` component for building controlled form fields.
+- Form validation using `zod`.
+- Handles accessibility and error messages.
+- Uses `React.useId()` for generating unique IDs.
+- Applies the correct `aria` attributes to form fields based on states.
+- Built to work with all Radix UI components.
+- Bring your own schema library. We use `zod` but you can use anything you want.
+- **You have full control over the markup and styling.**
+
+## Anatomy
+
+```tsx showLineNumbers
+<Form>
+  <FormField
+    control={...}
+    name="..."
+    render={() => (
+      <FormItem>
+        <FormLabel />
+        <FormControl>
+          { /* Your form field */}
+        </FormControl>
+        <FormDescription />
+        <FormMessage />
+      </FormItem>
+    )}
+  />
+</Form>
+```
+
+## Example
+
+```tsx showLineNumbers
+const form = useForm()
+
+<FormField
+  control={form.control}
+  name="username"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>Username</FormLabel>
+      <FormControl>
+        <Input placeholder="shadcn" {...field} />
+      </FormControl>
+      <FormDescription>This is your public display name.</FormDescription>
+      <FormMessage />
+    </FormItem>
+  )}
+/>
+```
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+<Steps>
+
+### Command
+
+```bash
+npx shadcn@latest add form
+```
+
+</Steps>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @radix-ui/react-label @radix-ui/react-slot react-hook-form @hookform/resolvers zod
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="form" title="components/ui/form.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+<Steps>
+
+### Create a form schema
+
+Define the shape of your form using a Zod schema. You can read more about using Zod in the [Zod documentation](https://zod.dev).
+
+```tsx showLineNumbers title="components/example-form.tsx" {3,5-7}
+"use client";
+
+import { z } from "zod";
+
+const formSchema = z.object({
+  username: z.string().min(2).max(50),
+});
+```
+
+### Define a form
+
+Use the `useForm` hook from `react-hook-form` to create a form.
+
+```tsx showLineNumbers title="components/example-form.tsx" {3-4,14-20,22-27}
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+const formSchema = z.object({
+  username: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+});
+
+export function ProfileForm() {
+  // 1. Define your form.
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: "",
+    },
+  });
+
+  // 2. Define a submit handler.
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values);
+  }
+}
+```
+
+Since `FormField` is using a controlled component, you need to provide a default value for the field. See the [React Hook Form docs](https://react-hook-form.com/docs/usecontroller) to learn more about controlled components.
+
+### Build your form
+
+We can now use the `<Form />` components to build our form.
+
+```tsx showLineNumbers title="components/example-form.tsx" {7-17,28-50}
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+
+const formSchema = z.object({
+  username: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+});
+
+export function ProfileForm() {
+  // ...
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="shadcn" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is your public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
+  );
+}
+```
+
+### Done
+
+That's it. You now have a fully accessible form that is type-safe with client-side validation.
+
+<ComponentPreview
+  name="input-form"
+  className="[&_[role=tablist]]:hidden [&>div>div:first-child]:hidden"
+/>
+
+</Steps>
+
+## Examples
+
+See the following links for more examples on how to use the `<Form />` component with other components:
+
+- [Checkbox](/docs/components/checkbox#form)
+- [Date Picker](/docs/components/date-picker#form)
+- [Input](/docs/components/input#form)
+- [Radio Group](/docs/components/radio-group#form)
+- [Select](/docs/components/select#form)
+- [Switch](/docs/components/switch#form)
+- [Textarea](/docs/components/textarea#form)
+- [Combobox](/docs/components/combobox#form)

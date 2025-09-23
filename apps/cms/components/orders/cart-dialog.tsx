@@ -30,7 +30,7 @@ import {
 } from "@workspace/ui/components/form";
 import { processingTimeOptions } from "@/enums/processingTimes";
 import { useState } from "react";
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useCartStore } from "@/lib/store/cart";
 import Image from "next/image";
@@ -54,12 +54,11 @@ export function CartDialog({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
   const cart = useCartStore((state) => state.cart);
   const getTotalPrice = useCartStore((state) => state.getTotalPrice);
 
   const locale = useLocale();
-  const session: any = undefined;
   const user = session?.user;
 
   const [orderPlaced, setOrderPlaced] = useState(false);

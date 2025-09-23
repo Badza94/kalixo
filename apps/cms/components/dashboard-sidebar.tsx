@@ -22,12 +22,9 @@ function DashboardSidebar() {
     setMounted(true);
   }, []);
 
-  console.log("mounted1: ", mounted);
   if (!mounted) {
     return null; // or a placeholder
   }
-
-  console.log("mounted2: ", mounted);
 
   return (
     <Sidebar collapsible="icon" suppressHydrationWarning>

@@ -6,8 +6,8 @@ import "../globals.css";
 import "@workspace/ui/globals.css";
 
 import Providers from "./providers";
-// import { getServerSession } from "next-auth";
-// import { authOptions } from "@/lib/_auth-options";
+import { authOptions } from "@/lib/auth-options";
+import { getServerSession } from "next-auth";
 import { Toaster } from "@workspace/ui/sonner";
 import {
   AlertTriangle,
@@ -40,8 +40,7 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  // const session = await getServerSession(authOptions);
-  const session = undefined;
+  const session = await getServerSession(authOptions);
 
   return (
     <html lang={locale} suppressHydrationWarning>

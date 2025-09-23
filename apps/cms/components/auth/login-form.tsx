@@ -24,7 +24,7 @@ import {
   FormMessage,
 } from "@workspace/ui/components/form";
 import { PasswordInput } from "@workspace/ui/components/password-input";
-// import { signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "@workspace/ui/sonner";
 
@@ -51,23 +51,23 @@ export function LoginForm({
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // signIn("credentials", {
-    //   email: values.email,
-    //   password: values.password,
-    //   callbackUrl: callbackUrl ? decodeURIComponent(callbackUrl) : "/",
-    //   redirect: false,
-    // })
-    //   .then((res) => {
-    //     if (res?.error) {
-    //       toast.error(ft("Errors.invalidCredentials"));
-    //     } else if (res?.url) {
-    //       const url = callbackUrl ? decodeURIComponent(callbackUrl) : "/";
-    //       router.push(url);
-    //     }
-    //   })
-    //   .catch(() => {
-    //     toast.error(ft("Errors.somethingWentWrong"));
-    //   });
+    signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      callbackUrl: callbackUrl ? decodeURIComponent(callbackUrl) : "/",
+      redirect: false,
+    })
+      .then((res) => {
+        if (res?.error) {
+          toast.error(ft("Errors.invalidCredentials"));
+        } else if (res?.url) {
+          const url = callbackUrl ? decodeURIComponent(callbackUrl) : "/";
+          router.push(url);
+        }
+      })
+      .catch(() => {
+        toast.error(ft("Errors.somethingWentWrong"));
+      });
   }
 
   return (
@@ -85,9 +85,9 @@ export function LoginForm({
               <Button
                 variant="outline"
                 className="w-full"
-                // onClick={() =>
-                //   signIn("google", { callbackUrl: callbackUrl ?? `/` })
-                // }
+                onClick={() =>
+                  signIn("google", { callbackUrl: callbackUrl ?? `/` })
+                }
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                   <path

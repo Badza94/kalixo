@@ -30,8 +30,8 @@ import { Card, CardContent } from "@workspace/ui/components/card";
 import { useFavouritesStore } from "@/lib/store/favourite";
 import { useDraftCartStore } from "@/lib/store/draft-cart";
 import { toast } from "@workspace/ui/sonner";
-// import { useSession } from "next-auth/react";
-// import { User } from "next-auth";
+import { useSession } from "next-auth/react";
+import { User } from "next-auth";
 
 function NavUserCart() {
   const t = useTranslations("UserNav");
@@ -75,9 +75,8 @@ function NavUserCart() {
 
   const addNewDraftCart = useDraftCartStore((state) => state.addNewDraftCart);
 
-  // const { data: session } = useSession();
-  const session: any = undefined;
-  const user = session?.user as any;
+  const { data: session } = useSession();
+  const user = session?.user as User;
 
   const handleSaveAsDraft = () => {
     addNewDraftCart(cart, user);

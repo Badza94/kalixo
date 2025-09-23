@@ -14,8 +14,8 @@ import countries from "@/data/countries.json";
 import currencies from "@/data/currencies.json";
 import notes from "@/data/notes.json";
 import timelineData from "@/data/timeline-fake.json";
-// import { authOptions } from "@/lib/_auth-options";
-// import { getServerSession, User } from "next-auth";
+import { authOptions } from "@/lib/auth-options";
+import { getServerSession, User } from "next-auth";
 import { getTranslations } from "next-intl/server";
 
 async function CompanyPage({
@@ -28,8 +28,7 @@ async function CompanyPage({
   const { id } = await params;
   const { edit } = await searchParams;
   const t = await getTranslations("Finance.Companies");
-  // const session = await getServerSession(authOptions);
-  const session: any = undefined;
+  const session = await getServerSession(authOptions);
   const user = session?.user;
 
   return (

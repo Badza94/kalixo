@@ -1,8 +1,8 @@
 import countries from "@/data/countries.json";
 import usersData from "@/data/usersData.json";
 import channels from "@/data/channels.json";
-// import { authOptions } from "@/lib/_auth-options";
-// import { getServerSession, User } from "next-auth";
+import { authOptions } from "@/lib/auth-options";
+import { getServerSession, User } from "next-auth";
 import UserForm from "@/components/settings/users/user-form";
 
 export default async function UserPage({
@@ -11,8 +11,7 @@ export default async function UserPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  // const session = await getServerSession(authOptions);
-  const session: any = undefined;
+  const session = await getServerSession(authOptions);
   const currentUser = session?.user;
 
   // Find the user by ID

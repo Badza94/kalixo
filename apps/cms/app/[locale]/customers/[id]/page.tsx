@@ -2,8 +2,8 @@ import CustomerForm from "@/components/customers/form";
 import countries from "@/data/countries.json";
 import channels from "@/data/channels.json";
 import customersData from "@/data/customersData.json";
-// import { getServerSession, User } from "next-auth";
-// import { authOptions } from "@/lib/_auth-options";
+import { getServerSession, User } from "next-auth";
+import { authOptions } from "@/lib/auth-options";
 
 async function SingleCustomerPage({
   params,
@@ -11,8 +11,7 @@ async function SingleCustomerPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  // const session = await getServerSession(authOptions);
-  const session: any = undefined;
+  const session = await getServerSession(authOptions);
   const currentUser = session?.user;
   return (
     <CustomerForm

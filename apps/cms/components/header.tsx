@@ -1,7 +1,7 @@
-// import { User } from "next-auth";
+import { User } from "next-auth";
 import { Separator } from "@workspace/ui/components/separator";
 import { NavUser } from "./nav-user-admin";
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import NavUserNotifications from "./nav-user-notifications";
 import NavUserCart from "./nav-user-cart";
 import NavUserFavorite from "./nav-user-favorite";
@@ -9,8 +9,7 @@ import { ButtonThemeSwitch } from "./button-theme-switch";
 import { SidebarTrigger } from "@workspace/ui/components/sidebar";
 
 export default function DashboardHeader() {
-  const session: any = undefined;
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
 
   return (
     <>
@@ -27,7 +26,7 @@ export default function DashboardHeader() {
           <NavUserFavorite />
           <NavUserCart />
           <NavUserNotifications />
-          <NavUser user={session?.user as any} />
+          <NavUser user={session?.user as User} />
         </div>
       </div>
       <Separator
