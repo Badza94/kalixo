@@ -4,7 +4,10 @@
     "baseUrl": ".",
     "paths": {
       "@workspace/ui/*": ["./src/*"]
-    }
+    },
+    "skipLibCheck": true,
+    "allowJs": true,
+    "noEmit": true
   },
   "include": [".", "../../apps/cms/hooks/is-unprotected-route.ts", "../../apps/cms/hooks/place-order-hooks.ts", "../../apps/cms/hooks/use-product-ai-enhancement.ts"],
   "exclude": ["node_modules", "dist"]

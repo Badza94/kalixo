@@ -12,6 +12,7 @@
  */
 
 import "@measured/puck/puck.css";
+import "@workspace/ui/globals.css";
 import { Client } from "./client";
 import { Metadata } from "next";
 import { getPage } from "../../../lib/get-page";

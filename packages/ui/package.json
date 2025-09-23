@@ -37,6 +37,7 @@
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.544.0",
+    "next": "^15.4.5",
     "next-intl": "^4.3.9",
     "next-themes": "^0.4.6",
     "react": "^19.1.1",
@@ -77,6 +78,10 @@
     "./hookform": "./src/lib/hookform.ts",
     "./react-hook-form": "./src/lib/react-hook-form.ts",
     "./next-intl": "./src/lib/next-intl.ts",
-    "./next-auth": "./src/lib/next-auth.ts"
+    "./next-auth": "./src/lib/next-auth.ts",
+    "./next": "./src/lib/next.ts",
+    "./assets": "./src/lib/assets.ts",
+    "./heroes/*": "./src/components/heroes/*.tsx",
+    "./public/*": "../public/*"
   }
 }
