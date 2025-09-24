@@ -157,8 +157,10 @@ export const RichTextEditor = ({
 // Main component for rendering
 export function RichTextBlock({ content = "", className }: RichTextBlockProps) {
   return (
-    <div className={`container prose prose-sm max-w-none ${className || ""}`}>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+    <div className="container">
+      <div className={`prose prose-sm max-w-none ${className || ""}`}>
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+      </div>
     </div>
   );
 }

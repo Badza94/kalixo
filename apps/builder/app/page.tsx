@@ -1,7 +1,6 @@
-import { Render } from "@measured/puck";
-import config from "../puck.config";
 import { getPage } from "../lib/get-page";
 import { notFound } from "next/navigation";
+import { ClientRender } from "./client-render";
 
 export default function HomePage() {
   const data = getPage("/");
@@ -10,5 +9,5 @@ export default function HomePage() {
     return notFound();
   }
 
-  return <Render config={config} data={data} />;
+  return <ClientRender data={data} />;
 }
