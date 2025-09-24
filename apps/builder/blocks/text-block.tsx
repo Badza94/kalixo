@@ -5,7 +5,7 @@ import { cn } from "@workspace/ui/lib/utils";
 interface TextBlockProps {
   text: string;
   className?: string;
-  align?: "left" | "center" | "right" | "justify";
+  align?: "left" | "center" | "right";
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   weight?: "light" | "normal" | "medium" | "semibold" | "bold";
   color?:
@@ -17,6 +17,16 @@ interface TextBlockProps {
     | "destructive";
   leading?: "tight" | "snug" | "normal" | "relaxed" | "loose";
   as?: "p" | "span" | "div";
+  listStyle?:
+    | "none"
+    | "disc"
+    | "decimal"
+    | "lower-alpha"
+    | "upper-alpha"
+    | "lower-roman"
+    | "upper-roman";
+  textDecoration?: "none" | "underline" | "overline" | "line-through";
+  fontStyle?: "normal" | "italic";
 }
 
 export function TextBlock({
@@ -28,6 +38,9 @@ export function TextBlock({
   color = "default",
   leading = "normal",
   as: Component = "p",
+  listStyle = "none",
+  textDecoration = "none",
+  fontStyle = "normal",
 }: TextBlockProps) {
   const sizeClasses = {
     xs: "text-xs",
@@ -58,7 +71,6 @@ export function TextBlock({
     left: "text-left",
     center: "text-center",
     right: "text-right",
-    justify: "text-justify",
   };
 
   const leadingClasses = {
@@ -69,6 +81,28 @@ export function TextBlock({
     loose: "leading-loose",
   };
 
+  const listStyleClasses = {
+    none: "list-none",
+    disc: "list-disc",
+    decimal: "list-decimal",
+    "lower-alpha": "list-[lower-alpha]",
+    "upper-alpha": "list-[upper-alpha]",
+    "lower-roman": "list-[lower-roman]",
+    "upper-roman": "list-[upper-roman]",
+  };
+
+  const textDecorationClasses = {
+    none: "no-underline",
+    underline: "underline",
+    overline: "overline",
+    "line-through": "line-through",
+  };
+
+  const fontStyleClasses = {
+    normal: "not-italic",
+    italic: "italic",
+  };
+
   const baseClasses = cn(
     "block",
     alignClasses[align],
@@ -76,6 +110,10 @@ export function TextBlock({
     weightClasses[weight],
     colorClasses[color],
     leadingClasses[leading],
+    listStyleClasses[listStyle],
+    textDecorationClasses[textDecoration],
+    `[&>*]:${textDecorationClasses[textDecoration]}`,
+    fontStyleClasses[fontStyle],
     className
   );
 

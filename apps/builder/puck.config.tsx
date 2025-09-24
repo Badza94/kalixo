@@ -25,7 +25,7 @@ type Props = {
   TextBlock: {
     text: string;
     className?: string;
-    align?: "left" | "center" | "right" | "justify";
+    align?: "left" | "center" | "right";
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     weight?: "light" | "normal" | "medium" | "semibold" | "bold";
     color?:
@@ -37,6 +37,16 @@ type Props = {
       | "destructive";
     leading?: "tight" | "snug" | "normal" | "relaxed" | "loose";
     as?: "p" | "span" | "div";
+    listStyle?:
+      | "none"
+      | "disc"
+      | "decimal"
+      | "lower-alpha"
+      | "upper-alpha"
+      | "lower-roman"
+      | "upper-roman";
+    textDecoration?: "none" | "underline" | "overline" | "line-through";
+    fontStyle?: "normal" | "italic";
   };
   NavigationBlock: {
     type: "header" | "sidebar" | "mega-menu" | "search-first" | "mobile";
@@ -228,6 +238,34 @@ export const config: Config<Props> = {
             { label: "Div", value: "div" },
           ],
         },
+        listStyle: {
+          type: "select",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Bullet", value: "disc" },
+            { label: "Numbered", value: "decimal" },
+            { label: "Lowercase Letters", value: "lower-alpha" },
+            { label: "Uppercase Letters", value: "upper-alpha" },
+            { label: "Lowercase Roman", value: "lower-roman" },
+            { label: "Uppercase Roman", value: "upper-roman" },
+          ],
+        },
+        textDecoration: {
+          type: "radio",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Underline", value: "underline" },
+            { label: "Overline", value: "overline" },
+            { label: "Line Through", value: "line-through" },
+          ],
+        },
+        fontStyle: {
+          type: "radio",
+          options: [
+            { label: "Normal", value: "normal" },
+            { label: "Italic", value: "italic" },
+          ],
+        },
       },
       defaultProps: {
         text: "This is a sample paragraph text that you can customize with different styles, sizes, and colors.",
@@ -237,6 +275,9 @@ export const config: Config<Props> = {
         color: "default",
         leading: "normal",
         as: "p",
+        listStyle: "none",
+        textDecoration: "none",
+        fontStyle: "normal",
       },
       render: (props) => <TextBlock {...props} />,
     },
