@@ -5,6 +5,8 @@ import { HeadingBlock } from "./blocks/heading-block";
 import { TextBlock } from "./blocks/text-block";
 import { RichTextBlock, RichTextEditor } from "./blocks/rich-text-block";
 import { GridBlock } from "./blocks/grid-block";
+import { ContainerBlock } from "./blocks/container-block";
+import { FlexBlock } from "./blocks/flex-block";
 import { SharedAssets } from "@workspace/ui/assets";
 
 type Props = {
@@ -104,6 +106,67 @@ type Props = {
     className?: string;
     items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
   };
+  ContainerBlock: {
+    width?: "full" | "container" | "narrow" | "wide";
+    maxWidth?: string;
+    padding?: {
+      top?: string;
+      right?: string;
+      bottom?: string;
+      left?: string;
+    };
+    margin?: {
+      top?: string;
+      right?: string;
+      bottom?: string;
+      left?: string;
+    };
+    backgroundColor?: string;
+    backgroundImage?: string;
+    backgroundSize?: "cover" | "contain" | "auto";
+    backgroundPosition?: "center" | "top" | "bottom" | "left" | "right";
+    borderRadius?: string;
+    border?: {
+      width?: string;
+      style?: "solid" | "dashed" | "dotted";
+      color?: string;
+    };
+    shadow?: "none" | "sm" | "md" | "lg" | "xl";
+    className?: string;
+    items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
+  };
+  FlexBlock: {
+    direction?: "row" | "column" | "row-reverse" | "column-reverse";
+    wrap?: "nowrap" | "wrap" | "wrap-reverse";
+    justify?:
+      | "flex-start"
+      | "flex-end"
+      | "center"
+      | "space-between"
+      | "space-around"
+      | "space-evenly";
+    align?: "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
+    gap?: string;
+    width?: string;
+    height?: string;
+    minHeight?: string;
+    padding?: {
+      top?: string;
+      right?: string;
+      bottom?: string;
+      left?: string;
+    };
+    margin?: {
+      top?: string;
+      right?: string;
+      bottom?: string;
+      left?: string;
+    };
+    backgroundColor?: string;
+    borderRadius?: string;
+    className?: string;
+    items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
+  };
 };
 
 export const config: Config<Props> = {
@@ -112,6 +175,7 @@ export const config: Config<Props> = {
       label: "Heading",
       fields: {
         level: {
+          label: "Level",
           type: "select",
           options: [
             { label: "H1", value: "h1" },
@@ -521,13 +585,244 @@ export const config: Config<Props> = {
       },
       render: (props) => <HeroBlock {...props} />,
     },
+    ContainerBlock: {
+      label: "Container",
+      fields: {
+        width: {
+          type: "select",
+          options: [
+            { label: "Full Width", value: "full" },
+            { label: "Container", value: "container" },
+            { label: "Narrow", value: "narrow" },
+            { label: "Wide", value: "wide" },
+          ],
+        },
+        maxWidth: {
+          type: "text",
+          label: "Max Width (px)",
+        },
+        padding: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
+        },
+        margin: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
+        },
+        backgroundColor: {
+          type: "text",
+          label: "Background Color",
+        },
+        backgroundImage: {
+          type: "text",
+          label: "Background Image URL",
+        },
+        backgroundSize: {
+          type: "select",
+          options: [
+            { label: "Cover", value: "cover" },
+            { label: "Contain", value: "contain" },
+            { label: "Auto", value: "auto" },
+          ],
+        },
+        backgroundPosition: {
+          type: "select",
+          options: [
+            { label: "Center", value: "center" },
+            { label: "Top", value: "top" },
+            { label: "Bottom", value: "bottom" },
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+          ],
+        },
+        borderRadius: {
+          type: "text",
+          label: "Border Radius (px)",
+        },
+        border: {
+          type: "object",
+          objectFields: {
+            width: { type: "text", label: "Width" },
+            style: {
+              type: "select",
+              options: [
+                { label: "Solid", value: "solid" },
+                { label: "Dashed", value: "dashed" },
+                { label: "Dotted", value: "dotted" },
+              ],
+            },
+            color: { type: "text", label: "Color" },
+          },
+        },
+        shadow: {
+          type: "select",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Small", value: "sm" },
+            { label: "Medium", value: "md" },
+            { label: "Large", value: "lg" },
+            { label: "Extra Large", value: "xl" },
+          ],
+        },
+        items: {
+          type: "array",
+          arrayFields: {
+            content: {
+              type: "slot",
+            },
+          },
+        },
+      },
+      defaultProps: {
+        width: "container",
+        padding: {
+          top: "24px",
+          right: "24px",
+          bottom: "24px",
+          left: "24px",
+        },
+        backgroundColor: "#ffffff",
+        shadow: "none",
+        items: [
+          {
+            content: null,
+          },
+        ],
+      },
+      render: ({ items, ...props }) => (
+        <ContainerBlock {...props} items={items} />
+      ),
+    },
+    FlexBlock: {
+      label: "Flex",
+      fields: {
+        direction: {
+          type: "select",
+          options: [
+            { label: "Row", value: "row" },
+            { label: "Column", value: "column" },
+            { label: "Row Reverse", value: "row-reverse" },
+            { label: "Column Reverse", value: "column-reverse" },
+          ],
+        },
+        wrap: {
+          type: "select",
+          options: [
+            { label: "No Wrap", value: "nowrap" },
+            { label: "Wrap", value: "wrap" },
+            { label: "Wrap Reverse", value: "wrap-reverse" },
+          ],
+        },
+        justify: {
+          type: "select",
+          options: [
+            { label: "Start", value: "flex-start" },
+            { label: "End", value: "flex-end" },
+            { label: "Center", value: "center" },
+            { label: "Space Between", value: "space-between" },
+            { label: "Space Around", value: "space-around" },
+            { label: "Space Evenly", value: "space-evenly" },
+          ],
+        },
+        align: {
+          type: "select",
+          options: [
+            { label: "Start", value: "flex-start" },
+            { label: "End", value: "flex-end" },
+            { label: "Center", value: "center" },
+            { label: "Baseline", value: "baseline" },
+            { label: "Stretch", value: "stretch" },
+          ],
+        },
+        gap: {
+          type: "text",
+          label: "Gap (px)",
+        },
+        width: {
+          type: "text",
+          label: "Width",
+        },
+        height: {
+          type: "text",
+          label: "Height",
+        },
+        minHeight: {
+          type: "text",
+          label: "Min Height",
+        },
+        padding: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
+        },
+        margin: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
+        },
+        backgroundColor: {
+          type: "text",
+          label: "Background Color",
+        },
+        borderRadius: {
+          type: "text",
+          label: "Border Radius (px)",
+        },
+        items: {
+          type: "array",
+          arrayFields: {
+            content: {
+              type: "slot",
+            },
+          },
+        },
+      },
+      defaultProps: {
+        direction: "row",
+        wrap: "nowrap",
+        justify: "flex-start",
+        align: "stretch",
+        gap: "16px",
+        width: "100%",
+        padding: {
+          top: "16px",
+          right: "16px",
+          bottom: "16px",
+          left: "16px",
+        },
+        items: [
+          {
+            content: null,
+          },
+        ],
+      },
+      render: ({ items, ...props }) => <FlexBlock {...props} items={items} />,
+    },
   },
   categories: {
     typography: {
       components: ["HeadingBlock", "TextBlock", "RichTextBlock"],
     },
     layout: {
-      components: ["GridBlock"],
+      components: ["GridBlock", "ContainerBlock", "FlexBlock"],
     },
   },
 };
