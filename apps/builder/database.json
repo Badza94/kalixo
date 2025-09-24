@@ -1,1 +1,70 @@
-{"/":{"root":{"props":{"title":""}},"content":[{"type":"NavigationBlock","props":{"type":"search-first","logo":"STORE","items":[{"id":"1","label":"Shop","href":"#","children":[{"id":"1-1","label":"New Arrivals","href":"#"},{"id":"1-2","label":"Clothing","href":"#"},{"id":"1-3","label":"Accessories","href":"#"},{"id":"1-4","label":"Sale","href":"#"}]},{"id":"2","label":"Collections","href":"#"},{"id":"3","label":"About","href":"#"},{"id":"4","label":"Contact","href":"#"}],"showSearch":true,"showCart":true,"showWishlist":true,"showAccount":true,"cartCount":1,"id":"NavigationBlock-e1378952-3965-42c1-afef-8e860b30808b"}},{"type":"HeroBlock","props":{"type":"hero1","badge":"✨ Your Website Builder","heading":"Blocks Built With Shadcn & Tailwind","subheading":" built with shadcn/ui & Tailwind","description":"Finely crafted components built with React, Tailwind and Shadcn UI. Developers can copy and paste these blocks directly into their project.","buttons":{"primary":{"text":"Get Started","url":"#"},"secondary":{"text":"View on GitHub","url":"#"}},"image":{"src":"/shared/placeholder.svg","alt":"Hero section demo image showing interface components"},"id":"HeroBlock-a0c9319b-f8a8-4398-af31-3bcaf101cabc"}},{"type":"TextBlock","props":{"text":"This is a sample paragraph text that you can customize with different styles, sizes, and colors.\nsdadsa\ndsadasd\n","align":"left","size":"md","weight":"normal","color":"default","leading":"normal","as":"p","listStyle":"disc","textDecoration":"none","fontStyle":"normal","id":"TextBlock-67af6e64-5f74-4361-bbfd-bec132622e07"}}],"zones":{}}}
+{
+  "/": {
+    "root": { "props": { "title": "" } },
+    "content": [
+      {
+        "type": "NavigationBlock",
+        "props": {
+          "type": "search-first",
+          "logo": "STORE",
+          "items": [
+            {
+              "id": "1",
+              "label": "Shop",
+              "href": "#",
+              "children": [
+                { "id": "1-1", "label": "New Arrivals", "href": "#" },
+                { "id": "1-2", "label": "Clothing", "href": "#" },
+                { "id": "1-3", "label": "Accessories", "href": "#" },
+                { "id": "1-4", "label": "Sale", "href": "#" }
+              ]
+            },
+            { "id": "2", "label": "Collections", "href": "#" },
+            { "id": "3", "label": "About", "href": "#" },
+            { "id": "4", "label": "Contact", "href": "#" }
+          ],
+          "showSearch": true,
+          "showCart": true,
+          "showWishlist": true,
+          "showAccount": true,
+          "cartCount": 1,
+          "id": "NavigationBlock-e1378952-3965-42c1-afef-8e860b30808b"
+        }
+      },
+      {
+        "type": "HeroBlock",
+        "props": {
+          "type": "hero1",
+          "badge": "✨ Your Website Builder",
+          "heading": "Blocks Built With Shadcn & Tailwind",
+          "subheading": " built with shadcn/ui & Tailwind",
+          "description": "Finely crafted components built with React, Tailwind and Shadcn UI. Developers can copy and paste these blocks directly into their project.",
+          "buttons": {
+            "primary": { "text": "Get Started", "url": "#" },
+            "secondary": { "text": "View on GitHub", "url": "#" }
+          },
+          "image": {
+            "src": "/shared/placeholder.svg",
+            "alt": "Hero section demo image showing interface components"
+          },
+          "id": "HeroBlock-a0c9319b-f8a8-4398-af31-3bcaf101cabc"
+        }
+      },
+      {
+        "type": "RichTextBlock",
+        "props": {
+          "content": "<p>1231231231dsadsadsadsadas</p>",
+          "id": "RichTextBlock-ba46d57f-923f-431d-bd0c-95800dfe4144"
+        }
+      },
+      {
+        "type": "RichTextBlock",
+        "props": {
+          "content": "<p></p>",
+          "id": "RichTextBlock-8f7902f7-abbc-46fb-bcd8-a7e37b95a09f"
+        }
+      }
+    ],
+    "zones": {}
+  }
+}

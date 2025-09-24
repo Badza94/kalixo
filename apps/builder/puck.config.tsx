@@ -3,6 +3,7 @@ import { NavigationBlock } from "./blocks/navigation-block";
 import { HeroBlock } from "./blocks/hero-block";
 import { HeadingBlock } from "./blocks/heading-block";
 import { TextBlock } from "./blocks/text-block";
+import { RichTextBlock, RichTextEditor } from "./blocks/rich-text-block";
 import { GridBlock } from "./blocks/grid-block";
 import { SharedAssets } from "@workspace/ui/assets";
 
@@ -47,6 +48,10 @@ type Props = {
       | "upper-roman";
     textDecoration?: "none" | "underline" | "overline" | "line-through";
     fontStyle?: "normal" | "italic";
+  };
+  RichTextBlock: {
+    content?: string;
+    className?: string;
   };
   NavigationBlock: {
     type: "header" | "sidebar" | "mega-menu" | "search-first" | "mobile";
@@ -281,6 +286,26 @@ export const config: Config<Props> = {
       },
       render: (props) => <TextBlock {...props} />,
     },
+    RichTextBlock: {
+      fields: {
+        content: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <RichTextEditor
+              editable={true}
+              onChange={onChange}
+              value={value || ""}
+            />
+          ),
+        },
+      },
+      defaultProps: {
+        content: "<p>Start typing your rich text content here...</p>",
+      },
+      render: ({ content, className }) => (
+        <RichTextBlock content={content} className={className} />
+      ),
+    },
     GridBlock: {
       fields: {
         columns: {
@@ -493,7 +518,7 @@ export const config: Config<Props> = {
   },
   categories: {
     typography: {
-      components: ["HeadingBlock", "TextBlock"],
+      components: ["HeadingBlock", "TextBlock", "RichTextBlock"],
     },
     layout: {
       components: ["GridBlock"],
