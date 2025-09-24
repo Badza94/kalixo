@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 
 import "./globals.css";
 import "@workspace/ui/globals.css";
@@ -27,9 +28,11 @@ export default function RootLayout({
         className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}
       >
         <Providers>
-          <ShopThemeWrapper>
-            <div className="3333333">{children}</div>
-          </ShopThemeWrapper>
+          <Suspense fallback={<div>{children}</div>}>
+            <ShopThemeWrapper>
+              <div>{children}</div>
+            </ShopThemeWrapper>
+          </Suspense>
         </Providers>
       </body>
     </html>

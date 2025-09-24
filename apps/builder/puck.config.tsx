@@ -109,6 +109,7 @@ type Props = {
 export const config: Config<Props> = {
   components: {
     HeadingBlock: {
+      label: "Heading",
       fields: {
         level: {
           type: "select",
@@ -181,6 +182,7 @@ export const config: Config<Props> = {
       render: (props) => <HeadingBlock {...props} />,
     },
     TextBlock: {
+      label: "Text",
       fields: {
         text: {
           type: "textarea",
@@ -287,6 +289,7 @@ export const config: Config<Props> = {
       render: (props) => <TextBlock {...props} />,
     },
     RichTextBlock: {
+      label: "Rich Text Editor",
       fields: {
         content: {
           type: "custom",
@@ -307,6 +310,7 @@ export const config: Config<Props> = {
       ),
     },
     GridBlock: {
+      label: "Grid",
       fields: {
         columns: {
           type: "select",
@@ -346,6 +350,7 @@ export const config: Config<Props> = {
       render: ({ items, ...props }) => <GridBlock {...props} items={items} />,
     },
     NavigationBlock: {
+      label: "Navigation",
       fields: {
         type: {
           type: "select",
@@ -440,6 +445,7 @@ export const config: Config<Props> = {
       render: (props) => <NavigationBlock {...props} />,
     },
     HeroBlock: {
+      label: "Hero",
       fields: {
         type: {
           type: "select",

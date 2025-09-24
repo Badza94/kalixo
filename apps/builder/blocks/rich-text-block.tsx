@@ -31,6 +31,21 @@ import {
   CustomElementWithAlign,
   CustomTextKey,
 } from "./slate-types";
+import {
+  Bold,
+  Code,
+  Heading1,
+  Heading2,
+  Italic,
+  List,
+  ListOrdered,
+  Quote,
+  TextAlignCenter,
+  TextAlignEnd,
+  TextAlignJustify,
+  TextAlignStart,
+  Underline,
+} from "@workspace/ui/lib/lucide-react";
 
 const HOTKEYS: Record<string, CustomTextKey> = {
   "mod+b": "bold",
@@ -117,19 +132,49 @@ export const RichTextEditor = ({
       >
         {editable && (
           <Toolbar>
-            <MarkButton format="bold" icon="format_bold" />
-            <MarkButton format="italic" icon="format_italic" />
-            <MarkButton format="underline" icon="format_underlined" />
-            <MarkButton format="code" icon="code" />
-            <BlockButton format="heading-one" icon="looks_one" />
-            <BlockButton format="heading-two" icon="looks_two" />
-            <BlockButton format="block-quote" icon="format_quote" />
-            <BlockButton format="numbered-list" icon="format_list_numbered" />
-            <BlockButton format="bulleted-list" icon="format_list_bulleted" />
-            <BlockButton format="left" icon="format_align_left" />
-            <BlockButton format="center" icon="format_align_center" />
-            <BlockButton format="right" icon="format_align_right" />
-            <BlockButton format="justify" icon="format_align_justify" />
+            <MarkButton format="bold" icon={<Bold className="w-4 h-4" />} />
+            <MarkButton format="italic" icon={<Italic className="w-4 h-4" />} />
+            <MarkButton
+              format="underline"
+              icon={<Underline className="w-4 h-4" />}
+            />
+            <MarkButton format="code" icon={<Code className="w-4 h-4" />} />
+            <BlockButton
+              format="heading-one"
+              icon={<Heading1 className="w-4 h-4" />}
+            />
+            <BlockButton
+              format="heading-two"
+              icon={<Heading2 className="w-4 h-4" />}
+            />
+            <BlockButton
+              format="block-quote"
+              icon={<Quote className="w-4 h-4" />}
+            />
+            <BlockButton
+              format="numbered-list"
+              icon={<ListOrdered className="w-4 h-4" />}
+            />
+            <BlockButton
+              format="bulleted-list"
+              icon={<List className="w-4 h-4" />}
+            />
+            <BlockButton
+              format="left"
+              icon={<TextAlignStart className="w-4 h-4" />}
+            />
+            <BlockButton
+              format="center"
+              icon={<TextAlignCenter className="w-4 h-4" />}
+            />
+            <BlockButton
+              format="right"
+              icon={<TextAlignEnd className="w-4 h-4" />}
+            />
+            <BlockButton
+              format="justify"
+              icon={<TextAlignJustify className="w-4 h-4" />}
+            />
           </Toolbar>
         )}
         <Editable
@@ -331,7 +376,7 @@ const Leaf = ({ attributes, children, leaf }: RenderLeafProps) => {
 
 interface BlockButtonProps {
   format: CustomElementFormat;
-  icon: string;
+  icon: React.ReactElement;
 }
 
 const BlockButton = ({ format, icon }: BlockButtonProps) => {
@@ -349,14 +394,14 @@ const BlockButton = ({ format, icon }: BlockButtonProps) => {
       onClick={() => toggleBlock(editor, format)}
       data-test-id={`block-button-${format}`}
     >
-      <Icon>{icon}</Icon>
+      {icon}
     </Button>
   );
 };
 
 interface MarkButtonProps {
   format: CustomTextKey;
-  icon: string;
+  icon: React.ReactElement;
 }
 
 const MarkButton = ({ format, icon }: MarkButtonProps) => {
@@ -369,7 +414,7 @@ const MarkButton = ({ format, icon }: MarkButtonProps) => {
       }
       onClick={() => toggleMark(editor, format)}
     >
-      <Icon>{icon}</Icon>
+      {icon}
     </Button>
   );
 };
