@@ -1,5 +1,4 @@
-import "@workspace/ui/globals.css";
-import "./styles.css";
+import "./globals.css";
 
 export default function RootLayout({
   children,
