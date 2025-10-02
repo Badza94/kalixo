@@ -21,6 +21,10 @@ interface Hero2Props {
       url: string;
     };
   };
+  image2?: {
+    src: string;
+    alt: string;
+  };
 }
 
 const Hero2 = ({
@@ -38,13 +42,17 @@ const Hero2 = ({
     },
   },
   image = {
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-7-tall.svg",
+    src: "",
     alt: "Placeholder",
+  },
+  image2 = {
+    src: "",
+    alt: "Phone demo image",
   },
 }: Hero2Props) => {
   return (
-    <section className="bg-background py-20 lg:py-32">
-      <div className="container flex flex-col items-center gap-10 lg:my-0 lg:flex-row">
+    <section className="py-20 bg-background lg:py-32">
+      <div className="container flex flex-col gap-10 items-center lg:my-0 lg:flex-row">
         <div className="flex flex-col gap-7 lg:w-2/3">
           <h2 className="text-5xl font-semibold text-foreground md:text-5xl lg:text-8xl">
             <span>{heading}</span>
@@ -53,10 +61,10 @@ const Hero2 = ({
           <p className="text-base text-muted-foreground md:text-lg lg:text-xl">
             {description}
           </p>
-          <div className="flex flex-wrap items-start gap-5 lg:gap-7">
+          <div className="flex flex-wrap gap-5 items-start lg:gap-7">
             <Button asChild>
               <a href={buttons.primary?.url}>
-                <div className="flex items-center gap-2">
+                <div className="flex gap-2 items-center">
                   <ArrowUpRight className="size-4" />
                 </div>
                 <span className="pr-6 pl-4 text-sm whitespace-nowrap lg:pr-8 lg:pl-6 lg:text-base">
@@ -75,14 +83,16 @@ const Hero2 = ({
               src={image.src}
               alt={image.alt}
               className="size-full object-cover object-[50%_0%]"
+              width={450}
+              height={889}
             />
           </div>
           <Image
             className="relative z-10"
-            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/mockups/phone-2.png"
+            src={image2.src}
             width={450}
             height={889}
-            alt="iphone"
+            alt={image2.alt || "image alt text"}
           />
         </div>
       </div>

@@ -24,6 +24,10 @@ interface HeroBlockProps {
     src: string;
     alt: string;
   };
+  image2: {
+    src: string;
+    alt: string;
+  };
 }
 
 export function HeroBlock({
@@ -34,6 +38,7 @@ export function HeroBlock({
   description,
   buttons,
   image,
+  image2,
 }: HeroBlockProps) {
   if (type === "hero1") {
     return (
@@ -55,6 +60,7 @@ export function HeroBlock({
         description={description}
         buttons={buttons}
         image={image}
+        image2={image2}
       />
     );
   }

@@ -7,6 +7,7 @@ import { RichTextBlock, RichTextEditor } from "./blocks/rich-text-block";
 import { GridBlock } from "./blocks/grid-block";
 import { ContainerBlock } from "./blocks/container-block";
 import { FlexBlock } from "./blocks/flex-block";
+import { ResizableSlotField } from "./blocks/resizable-slot-field";
 import { SharedAssets } from "@workspace/ui/assets";
 
 type Props = {
@@ -96,6 +97,10 @@ type Props = {
       };
     };
     image: {
+      src: string;
+      alt: string;
+    };
+    image2: {
       src: string;
       alt: string;
     };
@@ -560,6 +565,13 @@ export const config: Config<Props> = {
             alt: { type: "text", label: "Alt Text" },
           },
         },
+        image2: {
+          type: "object",
+          objectFields: {
+            src: { type: "text", label: "Image URL" },
+            alt: { type: "text", label: "Alt Text" },
+          },
+        },
       },
       defaultProps: {
         type: "hero1",
@@ -581,6 +593,10 @@ export const config: Config<Props> = {
         image: {
           src: SharedAssets.placeholder,
           alt: "Hero section demo image showing interface components",
+        },
+        image2: {
+          src: SharedAssets.phone,
+          alt: "Phone demo image",
         },
       },
       render: (props) => <HeroBlock {...props} />,
