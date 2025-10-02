@@ -26,7 +26,7 @@ export async function generateMetadata({
   const path = `/${puckPath.join("/")}`;
 
   return {
-    title: "Puck: " + path,
+    title: "Builder: " + path,
   };
 }
 

@@ -6,7 +6,8 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "postinstall": "bash ./scripts/setup-shared-assets.sh apps/builder copy && bash ./scripts/setup-shared-assets.sh apps/cms copy && bash ./scripts/setup-shared-assets.sh apps/shops copy"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
