@@ -15,6 +15,7 @@ import { SpacerBlock } from "./blocks/spacer-block";
 import { ColorPickerField } from "./fields/color-picker-field";
 import { SpacingField } from "./fields/spacing-field";
 import { BorderRadiusField } from "./fields/border-radius-field";
+import { ImagePickerField } from "./fields/image-picker-field";
 import { SharedAssets } from "@workspace/ui/assets";
 
 interface SpacingValue {
@@ -1242,8 +1243,14 @@ export const config: Config<Props> = {
       label: "Image",
       fields: {
         src: {
-          type: "text",
-          label: "Image URL",
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ImagePickerField
+              value={value || ""}
+              onChange={onChange}
+              label="Image"
+            />
+          ),
         },
         alt: {
           type: "text",
