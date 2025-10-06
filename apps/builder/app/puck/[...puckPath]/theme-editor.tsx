@@ -30,9 +30,14 @@ interface ThemeConfig {
 interface ThemeEditorProps {
   isOpen: boolean;
   onClose: () => void;
+  onThemeChange?: (config: ThemeConfig) => void;
 }
 
-export function ThemeEditor({ isOpen, onClose }: ThemeEditorProps) {
+export function ThemeEditor({
+  isOpen,
+  onClose,
+  onThemeChange,
+}: ThemeEditorProps) {
   const [themeConfig, setThemeConfig] = useState<ThemeConfig | null>(null);
   const [activeTab, setActiveTab] = useState<"light" | "dark">("light");
   const [loading, setLoading] = useState(false);
@@ -90,13 +95,18 @@ export function ThemeEditor({ isOpen, onClose }: ThemeEditorProps) {
 
   const updateColor = (mode: "light" | "dark", key: string, value: string) => {
     if (!themeConfig) return;
-    setThemeConfig({
+    const newConfig = {
       ...themeConfig,
       [mode]: {
         ...themeConfig[mode],
         [key]: value,
       },
-    });
+    };
+    setThemeConfig(newConfig);
+    // Trigger real-time preview
+    if (onThemeChange) {
+      onThemeChange(newConfig);
+    }
   };
 
   const updateColorFromPicker = (
@@ -213,15 +223,19 @@ export function ThemeEditor({ isOpen, onClose }: ThemeEditorProps) {
                       <input
                         type="text"
                         value={value}
-                        onChange={(e) =>
-                          setThemeConfig({
+                        onChange={(e) => {
+                          const newConfig = {
                             ...themeConfig,
                             fonts: {
                               ...themeConfig.fonts,
                               [key]: e.target.value,
                             },
-                          })
-                        }
+                          };
+                          setThemeConfig(newConfig);
+                          if (onThemeChange) {
+                            onThemeChange(newConfig);
+                          }
+                        }}
                         className="px-3 py-2 w-full font-mono text-sm rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
@@ -237,12 +251,16 @@ export function ThemeEditor({ isOpen, onClose }: ThemeEditorProps) {
                 <input
                   type="text"
                   value={themeConfig.radius}
-                  onChange={(e) =>
-                    setThemeConfig({
+                  onChange={(e) => {
+                    const newConfig = {
                       ...themeConfig,
                       radius: e.target.value,
-                    })
-                  }
+                    };
+                    setThemeConfig(newConfig);
+                    if (onThemeChange) {
+                      onThemeChange(newConfig);
+                    }
+                  }}
                   className="px-3 py-2 w-full font-mono text-sm rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -259,15 +277,19 @@ export function ThemeEditor({ isOpen, onClose }: ThemeEditorProps) {
                       <input
                         type="text"
                         value={value}
-                        onChange={(e) =>
-                          setThemeConfig({
+                        onChange={(e) => {
+                          const newConfig = {
                             ...themeConfig,
                             spacing: {
                               ...themeConfig.spacing,
                               [key]: e.target.value,
                             },
-                          })
-                        }
+                          };
+                          setThemeConfig(newConfig);
+                          if (onThemeChange) {
+                            onThemeChange(newConfig);
+                          }
+                        }}
                         className="px-3 py-2 w-full font-mono text-sm rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
