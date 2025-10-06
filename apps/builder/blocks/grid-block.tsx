@@ -2,10 +2,31 @@
 
 import React from "react";
 import { cn } from "@workspace/ui/lib/utils";
+import { resolveColor } from "../types/theme";
+import { useThemeConfig } from "../hooks/use-theme-config";
 
 interface GridBlockProps {
   columns: number;
   gap: "none" | "sm" | "md" | "lg" | "xl";
+  backgroundColor?: {
+    colorKey: string;
+    customColor?: string;
+  };
+  borderRadius?: {
+    size:
+      | "xs"
+      | "sm"
+      | "md"
+      | "lg"
+      | "xl"
+      | "2xl"
+      | "3xl"
+      | "4xl"
+      | "none"
+      | "full"
+      | "custom";
+    customValue?: string;
+  };
   className?: string;
   items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
 }
@@ -13,9 +34,44 @@ interface GridBlockProps {
 export function GridBlock({
   columns,
   gap = "md",
+  backgroundColor,
+  borderRadius,
   className,
   items,
 }: GridBlockProps) {
+  const { themeConfig } = useThemeConfig();
+  // Resolve background color
+  const resolvedBackgroundColor = backgroundColor
+    ? resolveColor(
+        backgroundColor.colorKey,
+        backgroundColor.customColor,
+        themeConfig || undefined,
+        "light"
+      )
+    : undefined;
+
+  // Resolve border radius
+  const borderRadiusMap = {
+    none: "0",
+    xs: "2px",
+    sm: "4px",
+    md: "6px",
+    lg: "8px",
+    xl: "12px",
+    "2xl": "16px",
+    "3xl": "24px",
+    "4xl": "32px",
+    full: "9999px",
+  };
+
+  const resolvedBorderRadius = borderRadius
+    ? borderRadius.size === "custom" && borderRadius.customValue
+      ? borderRadius.customValue
+      : borderRadius.size !== "custom"
+        ? borderRadiusMap[borderRadius.size]
+        : undefined
+    : undefined;
+
   const gapClasses = {
     none: "gap-0",
     sm: "gap-2",
@@ -35,11 +91,18 @@ export function GridBlock({
   };
 
   const baseClasses = cn(
-    "grid min-h-[200px] p-4 border-2 border-dashed border-gray-200 rounded-lg bg-gray-50",
+    "grid min-h-[200px] p-4 border-2 border-dashed border-gray-200 rounded-lg",
     gridColsClasses[columns as keyof typeof gridColsClasses] || "grid-cols-3",
     gapClasses[gap],
     className
   );
+
+  const gridStyles: React.CSSProperties = {
+    ...(resolvedBackgroundColor && {
+      backgroundColor: resolvedBackgroundColor,
+    }),
+    ...(resolvedBorderRadius && { borderRadius: resolvedBorderRadius }),
+  };
 
   console.log("GridBlock - columns:", columns, "baseClasses:", baseClasses);
 
@@ -69,5 +132,9 @@ export function GridBlock({
     });
   };
 
-  return <div className={baseClasses}>{renderColumns()}</div>;
+  return (
+    <div className={baseClasses} style={gridStyles}>
+      {renderColumns()}
+    </div>
+  );
 }

@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { resolveColor } from "../types/theme";
+import { useThemeConfig } from "../hooks/use-theme-config";
 
 interface ContainerBlockProps {
   width?: "full" | "container" | "narrow" | "wide";
@@ -17,11 +19,28 @@ interface ContainerBlockProps {
     bottom?: string;
     left?: string;
   };
-  backgroundColor?: string;
+  backgroundColor?: {
+    colorKey: string;
+    customColor?: string;
+  };
   backgroundImage?: string;
   backgroundSize?: "cover" | "contain" | "auto";
   backgroundPosition?: "center" | "top" | "bottom" | "left" | "right";
-  borderRadius?: string;
+  borderRadius?: {
+    size:
+      | "xs"
+      | "sm"
+      | "md"
+      | "lg"
+      | "xl"
+      | "2xl"
+      | "3xl"
+      | "4xl"
+      | "none"
+      | "full"
+      | "custom";
+    customValue?: string;
+  };
   border?: {
     width?: string;
     style?: "solid" | "dashed" | "dotted";
@@ -49,6 +68,39 @@ export function ContainerBlock({
   children,
   items,
 }: ContainerBlockProps) {
+  const { themeConfig } = useThemeConfig();
+  // Resolve background color
+  const resolvedBackgroundColor = backgroundColor
+    ? resolveColor(
+        backgroundColor.colorKey,
+        backgroundColor.customColor,
+        themeConfig || undefined,
+        "light"
+      )
+    : undefined;
+
+  // Resolve border radius
+  const borderRadiusMap = {
+    none: "0",
+    xs: "2px",
+    sm: "4px",
+    md: "6px",
+    lg: "8px",
+    xl: "12px",
+    "2xl": "16px",
+    "3xl": "24px",
+    "4xl": "32px",
+    full: "9999px",
+  };
+
+  const resolvedBorderRadius = borderRadius
+    ? borderRadius.size === "custom" && borderRadius.customValue
+      ? borderRadius.customValue
+      : borderRadius.size !== "custom"
+        ? borderRadiusMap[borderRadius.size]
+        : undefined
+    : undefined;
+
   const containerStyles: React.CSSProperties = {
     // if width is narrow, then maxWidth is 768px
     // if width is wide, then maxWidth is 1400px
@@ -69,12 +121,14 @@ export function ContainerBlock({
     marginRight: margin.right || "0",
     marginBottom: margin.bottom || "0",
     marginLeft: margin.left || "0",
-    backgroundColor,
+    ...(resolvedBackgroundColor && {
+      backgroundColor: resolvedBackgroundColor,
+    }),
     backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
     backgroundSize,
     backgroundPosition,
     backgroundRepeat: "no-repeat",
-    borderRadius,
+    ...(resolvedBorderRadius && { borderRadius: resolvedBorderRadius }),
     border: border
       ? `${border.width || "1px"} ${border.style || "solid"} ${border.color || "#000"}`
       : undefined,
@@ -120,7 +174,7 @@ export function ContainerBlock({
         );
       }
 
-      return content;
+      return <React.Fragment key={index}>{content}</React.Fragment>;
     });
   };
 

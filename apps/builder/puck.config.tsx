@@ -7,8 +7,18 @@ import { RichTextBlock, RichTextEditor } from "./blocks/rich-text-block";
 import { GridBlock } from "./blocks/grid-block";
 import { ContainerBlock } from "./blocks/container-block";
 import { FlexBlock } from "./blocks/flex-block";
-import { ResizableSlotField } from "./blocks/resizable-slot-field";
+import { ColorPickerField } from "./fields/color-picker-field";
+import { SpacingField } from "./fields/spacing-field";
+import { BorderRadiusField } from "./fields/border-radius-field";
 import { SharedAssets } from "@workspace/ui/assets";
+
+interface SpacingValue {
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+  all?: string;
+}
 
 type Props = {
   HeadingBlock: {
@@ -18,13 +28,26 @@ type Props = {
     align?: "left" | "center" | "right";
     size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
     weight?: "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold";
-    color?:
-      | "default"
-      | "muted"
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "destructive";
+    color?: {
+      colorKey: string;
+      customColor?: string;
+    };
+    backgroundColor?: {
+      colorKey: string;
+      customColor?: string;
+    };
+    margin?: SpacingValue;
+    padding?: SpacingValue;
+    fontFamily?: string;
+    customFontFamily?: string;
+    lineHeight?: string;
+    customLineHeight?: string;
+    letterSpacing?: string;
+    customLetterSpacing?: string;
+    textTransform?: "none" | "uppercase" | "lowercase" | "capitalize";
+    textDecoration?: "none" | "underline" | "line-through" | "overline";
+    opacity?: string;
+    customOpacity?: string;
   };
   TextBlock: {
     text: string;
@@ -108,6 +131,25 @@ type Props = {
   GridBlock: {
     columns: number;
     gap: "none" | "sm" | "md" | "lg" | "xl";
+    backgroundColor?: {
+      colorKey: string;
+      customColor?: string;
+    };
+    borderRadius?: {
+      size:
+        | "xs"
+        | "sm"
+        | "md"
+        | "lg"
+        | "xl"
+        | "2xl"
+        | "3xl"
+        | "4xl"
+        | "none"
+        | "full"
+        | "custom";
+      customValue?: string;
+    };
     className?: string;
     items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
   };
@@ -126,11 +168,28 @@ type Props = {
       bottom?: string;
       left?: string;
     };
-    backgroundColor?: string;
+    backgroundColor?: {
+      colorKey: string;
+      customColor?: string;
+    };
     backgroundImage?: string;
     backgroundSize?: "cover" | "contain" | "auto";
     backgroundPosition?: "center" | "top" | "bottom" | "left" | "right";
-    borderRadius?: string;
+    borderRadius?: {
+      size:
+        | "xs"
+        | "sm"
+        | "md"
+        | "lg"
+        | "xl"
+        | "2xl"
+        | "3xl"
+        | "4xl"
+        | "none"
+        | "full"
+        | "custom";
+      customValue?: string;
+    };
     border?: {
       width?: string;
       style?: "solid" | "dashed" | "dotted";
@@ -167,8 +226,25 @@ type Props = {
       bottom?: string;
       left?: string;
     };
-    backgroundColor?: string;
-    borderRadius?: string;
+    backgroundColor?: {
+      colorKey: string;
+      customColor?: string;
+    };
+    borderRadius?: {
+      size:
+        | "xs"
+        | "sm"
+        | "md"
+        | "lg"
+        | "xl"
+        | "2xl"
+        | "3xl"
+        | "4xl"
+        | "none"
+        | "full"
+        | "custom";
+      customValue?: string;
+    };
     className?: string;
     items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
   };
@@ -229,14 +305,105 @@ export const config: Config<Props> = {
           ],
         },
         color: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "foreground" }}
+              onChange={onChange}
+              label="Text Color"
+            />
+          ),
+        },
+        margin: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
+        },
+        padding: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Padding"
+            />
+          ),
+        },
+        backgroundColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "background" }}
+              onChange={onChange}
+              label="Background Color"
+            />
+          ),
+        },
+        fontFamily: {
           type: "select",
           options: [
-            { label: "Default", value: "default" },
-            { label: "Muted", value: "muted" },
-            { label: "Primary", value: "primary" },
-            { label: "Secondary", value: "secondary" },
-            { label: "Accent", value: "accent" },
-            { label: "Destructive", value: "destructive" },
+            { label: "Sans Serif", value: "font-sans" },
+            { label: "Serif", value: "font-serif" },
+            { label: "Monospace", value: "font-mono" },
+          ],
+        },
+        lineHeight: {
+          type: "select",
+          options: [
+            { label: "Tight (1.25)", value: "1.25" },
+            { label: "Snug (1.375)", value: "1.375" },
+            { label: "Normal (1.5)", value: "1.5" },
+            { label: "Relaxed (1.625)", value: "1.625" },
+            { label: "Loose (2)", value: "2" },
+          ],
+        },
+        letterSpacing: {
+          type: "select",
+          options: [
+            { label: "Tighter (-0.05em)", value: "-0.05em" },
+            { label: "Tight (-0.025em)", value: "-0.025em" },
+            { label: "Normal (0)", value: "0" },
+            { label: "Wide (0.025em)", value: "0.025em" },
+            { label: "Wider (0.05em)", value: "0.05em" },
+            { label: "Widest (0.1em)", value: "0.1em" },
+          ],
+        },
+        textTransform: {
+          type: "select",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Uppercase", value: "uppercase" },
+            { label: "Lowercase", value: "lowercase" },
+            { label: "Capitalize", value: "capitalize" },
+          ],
+        },
+        textDecoration: {
+          type: "select",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Underline", value: "underline" },
+            { label: "Line Through", value: "line-through" },
+            { label: "Overline", value: "overline" },
+          ],
+        },
+        opacity: {
+          type: "select",
+          options: [
+            { label: "100%", value: "1" },
+            { label: "90%", value: "0.9" },
+            { label: "80%", value: "0.8" },
+            { label: "70%", value: "0.7" },
+            { label: "60%", value: "0.6" },
+            { label: "50%", value: "0.5" },
+            { label: "40%", value: "0.4" },
+            { label: "30%", value: "0.3" },
+            { label: "20%", value: "0.2" },
+            { label: "10%", value: "0.1" },
           ],
         },
       },
@@ -246,7 +413,15 @@ export const config: Config<Props> = {
         align: "left",
         size: "4xl",
         weight: "bold",
-        color: "default",
+        color: {
+          colorKey: "foreground",
+        },
+        margin: {
+          all: "0",
+        },
+        padding: {
+          all: "0",
+        },
       },
       render: (props) => <HeadingBlock {...props} />,
     },
@@ -402,6 +577,26 @@ export const config: Config<Props> = {
             { label: "Large Gap", value: "lg" },
             { label: "Extra Large Gap", value: "xl" },
           ],
+        },
+        backgroundColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "background" }}
+              onChange={onChange}
+              label="Background Color"
+            />
+          ),
+        },
+        borderRadius: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <BorderRadiusField
+              value={value || { size: "none" }}
+              onChange={onChange}
+              label="Border Radius"
+            />
+          ),
         },
         items: {
           type: "array",
@@ -636,8 +831,14 @@ export const config: Config<Props> = {
           },
         },
         backgroundColor: {
-          type: "text",
-          label: "Background Color",
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "background" }}
+              onChange={onChange}
+              label="Background Color"
+            />
+          ),
         },
         backgroundImage: {
           type: "text",
@@ -662,8 +863,14 @@ export const config: Config<Props> = {
           ],
         },
         borderRadius: {
-          type: "text",
-          label: "Border Radius (px)",
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <BorderRadiusField
+              value={value || { size: "none" }}
+              onChange={onChange}
+              label="Border Radius"
+            />
+          ),
         },
         border: {
           type: "object",
@@ -707,7 +914,9 @@ export const config: Config<Props> = {
           bottom: "24px",
           left: "24px",
         },
-        backgroundColor: "#ffffff",
+        backgroundColor: {
+          colorKey: "background",
+        },
         shadow: "none",
         items: [
           {
@@ -795,12 +1004,24 @@ export const config: Config<Props> = {
           },
         },
         backgroundColor: {
-          type: "text",
-          label: "Background Color",
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "background" }}
+              onChange={onChange}
+              label="Background Color"
+            />
+          ),
         },
         borderRadius: {
-          type: "text",
-          label: "Border Radius (px)",
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <BorderRadiusField
+              value={value || { size: "none" }}
+              onChange={onChange}
+              label="Border Radius"
+            />
+          ),
         },
         items: {
           type: "array",
