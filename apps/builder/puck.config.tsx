@@ -7,6 +7,11 @@ import { RichTextBlock, RichTextEditor } from "./blocks/rich-text-block";
 import { GridBlock } from "./blocks/grid-block";
 import { ContainerBlock } from "./blocks/container-block";
 import { FlexBlock } from "./blocks/flex-block";
+import { ButtonBlock } from "./blocks/button-block";
+import { ImageBlock } from "./blocks/image-block";
+import { DividerBlock } from "./blocks/divider-block";
+import { CardBlock } from "./blocks/card-block";
+import { SpacerBlock } from "./blocks/spacer-block";
 import { ColorPickerField } from "./fields/color-picker-field";
 import { SpacingField } from "./fields/spacing-field";
 import { BorderRadiusField } from "./fields/border-radius-field";
@@ -247,6 +252,109 @@ type Props = {
     };
     className?: string;
     items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
+  };
+  ButtonBlock: {
+    text: string;
+    href?: string;
+    variant?:
+      | "default"
+      | "destructive"
+      | "outline"
+      | "secondary"
+      | "ghost"
+      | "link";
+    size?: "default" | "sm" | "lg" | "icon";
+    asChild?: boolean;
+    disabled?: boolean;
+    backgroundColor?: {
+      colorKey: string;
+      customColor?: string;
+    };
+    textColor?: {
+      colorKey: string;
+      customColor?: string;
+    };
+    margin?: SpacingValue;
+    padding?: SpacingValue;
+    className?: string;
+  };
+  ImageBlock: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+    fill?: boolean;
+    maxWidth?: string;
+    maxHeight?: string;
+    objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
+    objectPosition?:
+      | "center"
+      | "top"
+      | "bottom"
+      | "left"
+      | "right"
+      | "top left"
+      | "top right"
+      | "bottom left"
+      | "bottom right";
+    borderRadius?: {
+      size:
+        | "xs"
+        | "sm"
+        | "md"
+        | "lg"
+        | "xl"
+        | "2xl"
+        | "3xl"
+        | "4xl"
+        | "none"
+        | "full"
+        | "custom";
+      customValue?: string;
+    };
+    shadow?: "none" | "sm" | "md" | "lg" | "xl" | "2xl";
+    margin?: SpacingValue;
+    opacity?: string;
+    grayscale?: boolean;
+    priority?: boolean;
+    quality?: number;
+    className?: string;
+  };
+  SpacerBlock: {
+    height?: string;
+    width?: string;
+    className?: string;
+  };
+  DividerBlock: {
+    orientation?: "horizontal" | "vertical";
+    decorative?: boolean;
+    color?: {
+      colorKey: string;
+      customColor?: string;
+    };
+    thickness?: string;
+    margin?: SpacingValue;
+    className?: string;
+  };
+  CardBlock: {
+    showHeader?: boolean;
+    title?: string;
+    description?: string;
+    showFooter?: boolean;
+    backgroundColor?: {
+      colorKey: string;
+      customColor?: string;
+    };
+    borderColor?: {
+      colorKey: string;
+      customColor?: string;
+    };
+    shadow?: "none" | "sm" | "md" | "lg" | "xl";
+    margin?: SpacingValue;
+    padding?: SpacingValue;
+    className?: string;
+    items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
+    footerItems?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
   };
 };
 
@@ -1053,6 +1161,365 @@ export const config: Config<Props> = {
       },
       render: ({ items, ...props }) => <FlexBlock {...props} items={items} />,
     },
+    ButtonBlock: {
+      label: "Button",
+      fields: {
+        text: {
+          type: "text",
+          label: "Button Text",
+        },
+        href: {
+          type: "text",
+          label: "Link URL (optional)",
+        },
+        variant: {
+          type: "select",
+          options: [
+            { label: "Default", value: "default" },
+            { label: "Destructive", value: "destructive" },
+            { label: "Outline", value: "outline" },
+            { label: "Secondary", value: "secondary" },
+            { label: "Ghost", value: "ghost" },
+            { label: "Link", value: "link" },
+          ],
+        },
+        size: {
+          type: "select",
+          options: [
+            { label: "Default", value: "default" },
+            { label: "Small", value: "sm" },
+            { label: "Large", value: "lg" },
+            { label: "Icon", value: "icon" },
+          ],
+        },
+        disabled: {
+          type: "radio",
+          options: [
+            { label: "Enabled", value: false },
+            { label: "Disabled", value: true },
+          ],
+        },
+        backgroundColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "primary" }}
+              onChange={onChange}
+              label="Background Color (overrides variant)"
+            />
+          ),
+        },
+        textColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "primary-foreground" }}
+              onChange={onChange}
+              label="Text Color"
+            />
+          ),
+        },
+        margin: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
+        },
+      },
+      defaultProps: {
+        text: "Click me",
+        variant: "default",
+        size: "default",
+        disabled: false,
+      },
+      render: (props) => <ButtonBlock {...props} />,
+    },
+    ImageBlock: {
+      label: "Image",
+      fields: {
+        src: {
+          type: "text",
+          label: "Image URL",
+        },
+        alt: {
+          type: "text",
+          label: "Alt Text",
+        },
+        fill: {
+          type: "radio",
+          options: [
+            { label: "Fixed Size", value: false },
+            { label: "Fill Container", value: true },
+          ],
+        },
+        width: {
+          type: "number",
+          label: "Width (px)",
+        },
+        height: {
+          type: "number",
+          label: "Height (px)",
+        },
+        maxWidth: {
+          type: "text",
+          label: "Max Width",
+        },
+        maxHeight: {
+          type: "text",
+          label: "Max Height",
+        },
+        objectFit: {
+          type: "select",
+          options: [
+            { label: "Contain", value: "contain" },
+            { label: "Cover", value: "cover" },
+            { label: "Fill", value: "fill" },
+            { label: "None", value: "none" },
+            { label: "Scale Down", value: "scale-down" },
+          ],
+        },
+        objectPosition: {
+          type: "select",
+          options: [
+            { label: "Center", value: "center" },
+            { label: "Top", value: "top" },
+            { label: "Bottom", value: "bottom" },
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+            { label: "Top Left", value: "top left" },
+            { label: "Top Right", value: "top right" },
+            { label: "Bottom Left", value: "bottom left" },
+            { label: "Bottom Right", value: "bottom right" },
+          ],
+        },
+        borderRadius: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <BorderRadiusField
+              value={value || { size: "none" }}
+              onChange={onChange}
+              label="Border Radius"
+            />
+          ),
+        },
+        shadow: {
+          type: "select",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Small", value: "sm" },
+            { label: "Medium", value: "md" },
+            { label: "Large", value: "lg" },
+            { label: "Extra Large", value: "xl" },
+            { label: "2XL", value: "2xl" },
+          ],
+        },
+        margin: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
+        },
+        opacity: {
+          type: "text",
+          label: "Opacity (0-1)",
+        },
+        grayscale: {
+          type: "radio",
+          options: [
+            { label: "Color", value: false },
+            { label: "Grayscale", value: true },
+          ],
+        },
+        priority: {
+          type: "radio",
+          options: [
+            { label: "Lazy Load", value: false },
+            { label: "Priority (for above fold)", value: true },
+          ],
+        },
+        quality: {
+          type: "number",
+          label: "Quality (1-100)",
+        },
+      },
+      defaultProps: {
+        src: SharedAssets.placeholder,
+        alt: "Image description",
+        width: 800,
+        height: 600,
+        fill: false,
+        objectFit: "cover",
+        objectPosition: "center",
+        priority: false,
+        quality: 75,
+      },
+      render: (props) => <ImageBlock {...props} />,
+    },
+    SpacerBlock: {
+      label: "Spacer",
+      fields: {
+        height: {
+          type: "text",
+          label: "Height",
+        },
+        width: {
+          type: "text",
+          label: "Width",
+        },
+      },
+      defaultProps: {
+        height: "24px",
+        width: "100%",
+      },
+      render: (props) => <SpacerBlock {...props} />,
+    },
+    DividerBlock: {
+      label: "Divider",
+      fields: {
+        orientation: {
+          type: "radio",
+          options: [
+            { label: "Horizontal", value: "horizontal" },
+            { label: "Vertical", value: "vertical" },
+          ],
+        },
+        color: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "border" }}
+              onChange={onChange}
+              label="Color"
+            />
+          ),
+        },
+        thickness: {
+          type: "text",
+          label: "Thickness",
+        },
+        margin: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
+        },
+      },
+      defaultProps: {
+        orientation: "horizontal",
+        decorative: true,
+      },
+      render: (props) => <DividerBlock {...props} />,
+    },
+    CardBlock: {
+      label: "Card",
+      fields: {
+        showHeader: {
+          type: "radio",
+          options: [
+            { label: "Show Header", value: true },
+            { label: "Hide Header", value: false },
+          ],
+        },
+        title: {
+          type: "text",
+          label: "Card Title",
+        },
+        description: {
+          type: "textarea",
+          label: "Card Description",
+        },
+        showFooter: {
+          type: "radio",
+          options: [
+            { label: "Show Footer", value: true },
+            { label: "Hide Footer", value: false },
+          ],
+        },
+        backgroundColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "card" }}
+              onChange={onChange}
+              label="Background Color"
+            />
+          ),
+        },
+        borderColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "border" }}
+              onChange={onChange}
+              label="Border Color"
+            />
+          ),
+        },
+        shadow: {
+          type: "select",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Small", value: "sm" },
+            { label: "Medium", value: "md" },
+            { label: "Large", value: "lg" },
+            { label: "Extra Large", value: "xl" },
+          ],
+        },
+        margin: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
+        },
+        padding: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
+        },
+        items: {
+          type: "array",
+          arrayFields: {
+            content: {
+              type: "slot",
+            },
+          },
+        },
+        footerItems: {
+          type: "array",
+          arrayFields: {
+            content: {
+              type: "slot",
+            },
+          },
+        },
+      },
+      defaultProps: {
+        showHeader: true,
+        title: "Card Title",
+        description: "Card description goes here",
+        showFooter: false,
+        items: [{ content: null }],
+      },
+      render: ({ items, footerItems, ...props }) => (
+        <CardBlock {...props} items={items} footerItems={footerItems} />
+      ),
+    },
   },
   categories: {
     typography: {
@@ -1060,6 +1527,15 @@ export const config: Config<Props> = {
     },
     layout: {
       components: ["GridBlock", "ContainerBlock", "FlexBlock"],
+    },
+    components: {
+      components: [
+        "ButtonBlock",
+        "ImageBlock",
+        "CardBlock",
+        "DividerBlock",
+        "SpacerBlock",
+      ],
     },
   },
 };
