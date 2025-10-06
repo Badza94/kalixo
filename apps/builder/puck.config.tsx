@@ -283,9 +283,10 @@ type Props = {
     alt: string;
     width?: number;
     height?: number;
+    aspectRatio?: "16/9" | "4/3" | "1/1" | "3/2" | "21/9" | "custom" | "auto";
+    customAspectRatio?: string;
     fill?: boolean;
     maxWidth?: string;
-    maxHeight?: string;
     objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
     objectPosition?:
       | "center"
@@ -1267,9 +1268,21 @@ export const config: Config<Props> = {
           type: "text",
           label: "Max Width",
         },
-        maxHeight: {
+        aspectRatio: {
+          type: "select",
+          options: [
+            { label: "Auto (use width/height)", value: "auto" },
+            { label: "16:9 (Widescreen)", value: "16/9" },
+            { label: "4:3 (Standard)", value: "4/3" },
+            { label: "1:1 (Square)", value: "1/1" },
+            { label: "3:2 (Classic Photo)", value: "3/2" },
+            { label: "21:9 (Ultrawide)", value: "21/9" },
+            { label: "Custom", value: "custom" },
+          ],
+        },
+        customAspectRatio: {
           type: "text",
-          label: "Max Height",
+          label: "Custom Aspect Ratio (e.g., 1.5)",
         },
         objectFit: {
           type: "select",
@@ -1353,6 +1366,7 @@ export const config: Config<Props> = {
         alt: "Image description",
         width: 800,
         height: 600,
+        aspectRatio: "16/9",
         fill: false,
         objectFit: "cover",
         objectPosition: "center",

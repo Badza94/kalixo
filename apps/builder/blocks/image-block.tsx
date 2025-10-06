@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { AspectRatio } from "@workspace/ui/components/aspect-ratio";
 
 interface SpacingValue {
   top?: string;
@@ -15,9 +16,10 @@ interface ImageBlockProps {
   alt: string;
   width?: number;
   height?: number;
+  aspectRatio?: "16/9" | "4/3" | "1/1" | "3/2" | "21/9" | "custom" | "auto";
+  customAspectRatio?: string;
   fill?: boolean;
   maxWidth?: string;
-  maxHeight?: string;
   objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
   objectPosition?:
     | "center"
@@ -58,9 +60,10 @@ export function ImageBlock({
   alt,
   width = 800,
   height = 600,
+  aspectRatio = "auto",
+  customAspectRatio,
   fill = false,
-  maxWidth,
-  maxHeight,
+  maxWidth = "100%",
   objectFit = "cover",
   objectPosition = "center",
   borderRadius,
@@ -112,15 +115,30 @@ export function ImageBlock({
   const filters = [];
   if (grayscale) filters.push("grayscale(100%)");
 
-  const containerStyles: React.CSSProperties = {
-    ...buildMargin(margin),
-    ...(maxWidth && { maxWidth }),
-    ...(maxHeight && { maxHeight }),
-    position: fill ? "relative" : undefined,
-    ...(fill && { width: "100%", height: "100%" }),
+  // Resolve aspect ratio
+  const aspectRatioMap = {
+    "16/9": 16 / 9,
+    "4/3": 4 / 3,
+    "1/1": 1,
+    "3/2": 3 / 2,
+    "21/9": 21 / 9,
+    auto: undefined,
   };
 
-  const imageStyles: React.CSSProperties = {
+  const resolvedAspectRatio =
+    aspectRatio === "custom" && customAspectRatio
+      ? parseFloat(customAspectRatio)
+      : aspectRatio !== "custom" && aspectRatio !== "auto"
+        ? aspectRatioMap[aspectRatio]
+        : undefined;
+
+  const containerStyles: React.CSSProperties = {
+    ...buildMargin(margin),
+    maxWidth,
+    width: fill ? "100%" : undefined,
+  };
+
+  const imageWrapperStyles: React.CSSProperties = {
     ...(resolvedBorderRadius && { borderRadius: resolvedBorderRadius }),
     ...(shadow &&
       shadow !== "none" && {
@@ -135,44 +153,59 @@ export function ImageBlock({
                   ? "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)"
                   : "0 25px 50px -12px rgb(0 0 0 / 0.25)",
       }),
-    ...(opacity && { opacity }),
-    ...(filters.length > 0 && { filter: filters.join(" ") }),
+    overflow: "hidden",
   };
 
-  if (fill) {
+  const imageStyles: React.CSSProperties = {
+    ...(opacity && { opacity }),
+    ...(filters.length > 0 && { filter: filters.join(" ") }),
+    ...(resolvedAspectRatio && { width: "100%", height: "100%" }),
+  };
+
+  const content = (
+    <Image
+      src={src}
+      alt={alt}
+      width={!fill ? width : undefined}
+      height={!fill ? height : undefined}
+      fill={fill}
+      style={{
+        objectFit,
+        objectPosition,
+        ...imageStyles,
+      }}
+      priority={priority}
+      quality={quality}
+      sizes={maxWidth || "100vw"}
+    />
+  );
+
+  // Use AspectRatio if specified
+  if (resolvedAspectRatio !== undefined && !fill) {
     return (
       <div style={containerStyles} className={className}>
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          style={{
-            objectFit,
-            objectPosition,
-            ...imageStyles,
-          }}
-          priority={priority}
-          quality={quality}
-        />
+        <AspectRatio
+          ratio={resolvedAspectRatio as number}
+          style={imageWrapperStyles}
+        >
+          {content}
+        </AspectRatio>
       </div>
     );
   }
 
+  // Without aspect ratio
   return (
     <div style={containerStyles} className={className}>
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
+      <div
         style={{
-          objectFit,
-          objectPosition,
-          ...imageStyles,
+          ...imageWrapperStyles,
+          position: fill ? "relative" : undefined,
+          ...(fill && { minHeight: "400px" }),
         }}
-        priority={priority}
-        quality={quality}
-      />
+      >
+        {content}
+      </div>
     </div>
   );
 }
