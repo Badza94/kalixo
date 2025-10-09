@@ -12,6 +12,8 @@ import { ImageBlock } from "./blocks/image-block";
 import { DividerBlock } from "./blocks/divider-block";
 import { CardBlock } from "./blocks/card-block";
 import { SpacerBlock } from "./blocks/spacer-block";
+import { CarouselBlock } from "./blocks/carousel-block";
+import { ProductCardBlock } from "./blocks/product-card-block";
 import { ColorPickerField } from "./fields/color-picker-field";
 import { SpacingField } from "./fields/spacing-field";
 import { BorderRadiusField } from "./fields/border-radius-field";
@@ -357,6 +359,144 @@ type Props = {
     className?: string;
     items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
     footerItems?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
+  };
+  CarouselBlock: {
+    orientation?: "horizontal" | "vertical";
+    showNavigation?: boolean;
+    loop?: boolean;
+    itemsPerSlide?: 1 | 2 | 3 | 4 | 5 | 6;
+    backgroundColor?: {
+      colorKey: string;
+      customColor?: string;
+    };
+    borderRadius?: {
+      size:
+        | "xs"
+        | "sm"
+        | "md"
+        | "lg"
+        | "xl"
+        | "2xl"
+        | "3xl"
+        | "4xl"
+        | "none"
+        | "full"
+        | "custom";
+      customValue?: string;
+    };
+    margin?: SpacingValue;
+    padding?: SpacingValue;
+    itemMinHeight?: string;
+    itemBackgroundColor?: {
+      colorKey: string;
+      customColor?: string;
+    };
+    itemPadding?: SpacingValue;
+    gap?: "none" | "sm" | "md" | "lg" | "xl";
+    itemGap?: "none" | "sm" | "md" | "lg" | "xl";
+    className?: string;
+    items?: Array<{
+      contents?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
+    }>;
+  };
+  ProductCardBlock: {
+    productId?: string;
+    image?: {
+      src: string;
+      alt: string;
+    };
+    productName?: string;
+    category?: string;
+    price?: string;
+    currency?: string;
+    showCategory?: boolean;
+    showPrice?: boolean;
+    showButtons?: boolean;
+    buttonLayout?: "horizontal" | "vertical" | "icons-only";
+    buyNowButton?: {
+      variant?:
+        | "default"
+        | "destructive"
+        | "outline"
+        | "secondary"
+        | "ghost"
+        | "link"
+        | "input"
+        | "text";
+      size?: "default" | "sm" | "lg" | "icon";
+      backgroundColor?: {
+        colorKey: string;
+        customColor?: string;
+      };
+      textColor?: {
+        colorKey: string;
+        customColor?: string;
+      };
+    };
+    addToCartButton?: {
+      variant?:
+        | "default"
+        | "destructive"
+        | "outline"
+        | "secondary"
+        | "ghost"
+        | "link"
+        | "input"
+        | "text";
+      size?: "default" | "sm" | "lg" | "icon";
+      backgroundColor?: {
+        colorKey: string;
+        customColor?: string;
+      };
+      textColor?: {
+        colorKey: string;
+        customColor?: string;
+      };
+    };
+    addToFavButton?: {
+      variant?:
+        | "default"
+        | "destructive"
+        | "outline"
+        | "secondary"
+        | "ghost"
+        | "link"
+        | "input"
+        | "text";
+      size?: "default" | "sm" | "lg" | "icon";
+      backgroundColor?: {
+        colorKey: string;
+        customColor?: string;
+      };
+      textColor?: {
+        colorKey: string;
+        customColor?: string;
+      };
+    };
+    backgroundColor?: {
+      colorKey: string;
+      customColor?: string;
+    };
+    borderRadius?: {
+      size:
+        | "xs"
+        | "sm"
+        | "md"
+        | "lg"
+        | "xl"
+        | "2xl"
+        | "3xl"
+        | "4xl"
+        | "none"
+        | "full"
+        | "custom";
+      customValue?: string;
+    };
+    margin?: SpacingValue;
+    padding?: SpacingValue;
+    imageAspectRatio?: "square" | "4/3" | "3/2" | "16/9" | "custom";
+    customImageAspectRatio?: string;
+    className?: string;
   };
 };
 
@@ -1541,6 +1681,466 @@ export const config: Config<Props> = {
         <CardBlock {...props} items={items} footerItems={footerItems} />
       ),
     },
+    CarouselBlock: {
+      label: "Carousel",
+      fields: {
+        itemsPerSlide: {
+          type: "select",
+          options: [
+            { label: "1 Item Per Slide", value: 1 },
+            { label: "2 Items Per Slide", value: 2 },
+            { label: "3 Items Per Slide", value: 3 },
+            { label: "4 Items Per Slide", value: 4 },
+            { label: "5 Items Per Slide", value: 5 },
+            { label: "6 Items Per Slide", value: 6 },
+          ],
+        },
+        orientation: {
+          type: "radio",
+          options: [
+            { label: "Horizontal", value: "horizontal" },
+            { label: "Vertical", value: "vertical" },
+          ],
+        },
+        showNavigation: {
+          type: "radio",
+          options: [
+            { label: "Show Navigation", value: true },
+            { label: "Hide Navigation", value: false },
+          ],
+        },
+        loop: {
+          type: "radio",
+          options: [
+            { label: "Loop", value: true },
+            { label: "No Loop", value: false },
+          ],
+        },
+        gap: {
+          type: "select",
+          options: [
+            { label: "No Gap", value: "none" },
+            { label: "Small Gap", value: "sm" },
+            { label: "Medium Gap", value: "md" },
+            { label: "Large Gap", value: "lg" },
+            { label: "Extra Large Gap", value: "xl" },
+          ],
+        },
+        itemGap: {
+          type: "select",
+          options: [
+            { label: "No Gap", value: "none" },
+            { label: "Small Gap", value: "sm" },
+            { label: "Medium Gap", value: "md" },
+            { label: "Large Gap", value: "lg" },
+            { label: "Extra Large Gap", value: "xl" },
+          ],
+        },
+        itemMinHeight: {
+          type: "text",
+          label: "Item Min Height (e.g., 300px)",
+        },
+        backgroundColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "background" }}
+              onChange={onChange}
+              label="Container Background Color"
+            />
+          ),
+        },
+        itemBackgroundColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "card" }}
+              onChange={onChange}
+              label="Item Background Color"
+            />
+          ),
+        },
+        borderRadius: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <BorderRadiusField
+              value={value || { size: "md" }}
+              onChange={onChange}
+              label="Border Radius"
+            />
+          ),
+        },
+        margin: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
+        },
+        padding: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Container Padding"
+            />
+          ),
+        },
+        itemPadding: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || { all: "16px" }}
+              onChange={onChange}
+              label="Item Padding"
+            />
+          ),
+        },
+        items: {
+          type: "array",
+          getItemSummary: (item, index) =>
+            `Slide ${(index ?? 0) + 1}${item?.contents?.length ? ` (${item.contents.length} component${item.contents.length !== 1 ? "s" : ""})` : ""}`,
+          arrayFields: {
+            contents: {
+              type: "array",
+              getItemSummary: (item, index) => `Component ${(index ?? 0) + 1}`,
+              arrayFields: {
+                content: {
+                  type: "slot",
+                },
+              },
+            },
+          },
+        },
+      },
+      defaultProps: {
+        itemsPerSlide: 1,
+        orientation: "horizontal",
+        showNavigation: true,
+        loop: true,
+        gap: "md",
+        itemGap: "md",
+        itemMinHeight: "300px",
+        itemPadding: { all: "16px" },
+        items: [
+          { contents: [{ content: null }] },
+          { contents: [{ content: null }] },
+          { contents: [{ content: null }] },
+        ],
+      },
+      render: ({ items, ...props }) => (
+        <CarouselBlock {...props} items={items} />
+      ),
+    },
+    ProductCardBlock: {
+      label: "Product Card",
+      fields: {
+        productId: {
+          type: "text",
+          label: "Product ID",
+        },
+        image: {
+          type: "object",
+          objectFields: {
+            src: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ImagePickerField
+                  value={value || ""}
+                  onChange={onChange}
+                  label="Product Image"
+                />
+              ),
+            },
+            alt: {
+              type: "text",
+              label: "Alt Text",
+            },
+          },
+        },
+        productName: {
+          type: "text",
+          label: "Product Name",
+        },
+        category: {
+          type: "text",
+          label: "Category",
+        },
+        price: {
+          type: "text",
+          label: "Price",
+        },
+        currency: {
+          type: "text",
+          label: "Currency Symbol",
+        },
+        showCategory: {
+          type: "radio",
+          options: [
+            { label: "Show Category", value: true },
+            { label: "Hide Category", value: false },
+          ],
+        },
+        showPrice: {
+          type: "radio",
+          options: [
+            { label: "Show Price", value: true },
+            { label: "Hide Price", value: false },
+          ],
+        },
+        showButtons: {
+          type: "radio",
+          options: [
+            { label: "Show Buttons", value: true },
+            { label: "Hide Buttons", value: false },
+          ],
+        },
+        buttonLayout: {
+          type: "select",
+          options: [
+            { label: "Horizontal", value: "horizontal" },
+            { label: "Vertical", value: "vertical" },
+            { label: "Icons Only", value: "icons-only" },
+          ],
+        },
+        buyNowButton: {
+          type: "object",
+          objectFields: {
+            variant: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Destructive", value: "destructive" },
+                { label: "Outline", value: "outline" },
+                { label: "Secondary", value: "secondary" },
+                { label: "Ghost", value: "ghost" },
+                { label: "Link", value: "link" },
+                { label: "Input", value: "input" },
+                { label: "Text", value: "text" },
+              ],
+            },
+            size: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Small", value: "sm" },
+                { label: "Large", value: "lg" },
+                { label: "Icon", value: "icon" },
+              ],
+            },
+            backgroundColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "primary" }}
+                  onChange={onChange}
+                  label="Background Color"
+                />
+              ),
+            },
+            textColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "primary-foreground" }}
+                  onChange={onChange}
+                  label="Text Color"
+                />
+              ),
+            },
+          },
+        },
+        addToCartButton: {
+          type: "object",
+          objectFields: {
+            variant: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Destructive", value: "destructive" },
+                { label: "Outline", value: "outline" },
+                { label: "Secondary", value: "secondary" },
+                { label: "Ghost", value: "ghost" },
+                { label: "Link", value: "link" },
+                { label: "Input", value: "input" },
+                { label: "Text", value: "text" },
+              ],
+            },
+            size: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Small", value: "sm" },
+                { label: "Large", value: "lg" },
+                { label: "Icon", value: "icon" },
+              ],
+            },
+            backgroundColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "transparent" }}
+                  onChange={onChange}
+                  label="Background Color"
+                />
+              ),
+            },
+            textColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "foreground" }}
+                  onChange={onChange}
+                  label="Text Color"
+                />
+              ),
+            },
+          },
+        },
+        addToFavButton: {
+          type: "object",
+          objectFields: {
+            variant: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Destructive", value: "destructive" },
+                { label: "Outline", value: "outline" },
+                { label: "Secondary", value: "secondary" },
+                { label: "Ghost", value: "ghost" },
+                { label: "Link", value: "link" },
+                { label: "Input", value: "input" },
+                { label: "Text", value: "text" },
+              ],
+            },
+            size: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Small", value: "sm" },
+                { label: "Large", value: "lg" },
+                { label: "Icon", value: "icon" },
+              ],
+            },
+            backgroundColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "transparent" }}
+                  onChange={onChange}
+                  label="Background Color"
+                />
+              ),
+            },
+            textColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "foreground" }}
+                  onChange={onChange}
+                  label="Text Color"
+                />
+              ),
+            },
+          },
+        },
+        imageAspectRatio: {
+          type: "select",
+          options: [
+            { label: "Square (1:1)", value: "square" },
+            { label: "4:3", value: "4/3" },
+            { label: "3:2", value: "3/2" },
+            { label: "16:9", value: "16/9" },
+            { label: "Custom", value: "custom" },
+          ],
+        },
+        customImageAspectRatio: {
+          type: "text",
+          label: "Custom Aspect Ratio (e.g., 1.5)",
+        },
+        backgroundColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "card" }}
+              onChange={onChange}
+              label="Background Color"
+            />
+          ),
+        },
+        borderRadius: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <BorderRadiusField
+              value={value || { size: "lg" }}
+              onChange={onChange}
+              label="Border Radius"
+            />
+          ),
+        },
+        margin: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
+        },
+        padding: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || { all: "0" }}
+              onChange={onChange}
+              label="Padding"
+            />
+          ),
+        },
+      },
+      defaultProps: {
+        productId: "product-1",
+        image: {
+          src: SharedAssets.placeholder,
+          alt: "Product image",
+        },
+        productName: "Xbox Gift Card £100",
+        category: "Xbox",
+        price: "100.00",
+        currency: "£",
+        showCategory: true,
+        showPrice: true,
+        showButtons: true,
+        buttonLayout: "horizontal",
+        buyNowButton: {
+          variant: "default",
+          size: "default",
+          backgroundColor: { colorKey: "primary" },
+          textColor: { colorKey: "primary-foreground" },
+        },
+        addToCartButton: {
+          variant: "ghost",
+          size: "sm",
+          backgroundColor: { colorKey: "transparent" },
+          textColor: { colorKey: "foreground" },
+        },
+        addToFavButton: {
+          variant: "ghost",
+          size: "sm",
+          backgroundColor: { colorKey: "transparent" },
+          textColor: { colorKey: "foreground" },
+        },
+        imageAspectRatio: "square",
+        borderRadius: { size: "lg" },
+        padding: { all: "0" },
+      },
+      render: (props) => <ProductCardBlock {...props} />,
+    },
   },
   categories: {
     typography: {
@@ -1554,6 +2154,8 @@ export const config: Config<Props> = {
         "ButtonBlock",
         "ImageBlock",
         "CardBlock",
+        "CarouselBlock",
+        "ProductCardBlock",
         "DividerBlock",
         "SpacerBlock",
       ],

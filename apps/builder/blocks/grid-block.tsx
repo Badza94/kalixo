@@ -115,7 +115,7 @@ export function GridBlock({
           key={index}
           className="min-h-[100px] p-4 border-2 border-dashed border-gray-300 rounded bg-gray-100 flex items-center justify-center"
         >
-          <span className="text-gray-400 text-sm">Column {index + 1}</span>
+          <span className="text-sm text-gray-400">Column {index + 1}</span>
         </div>
       ));
     }
@@ -124,11 +124,19 @@ export function GridBlock({
     return items.map((item, index) => {
       const content =
         typeof item.content === "function" ? item.content() : item.content;
-      return (
-        <div key={index} className="min-h-[100px]">
-          {content}
-        </div>
-      );
+
+      if (!content) {
+        return (
+          <div
+            key={index}
+            className="min-h-[100px] p-4 border-2 border-dashed border-gray-300 rounded bg-gray-100 flex items-center justify-center"
+          >
+            <span className="text-sm text-gray-400">Drop here</span>
+          </div>
+        );
+      }
+
+      return <React.Fragment key={index}>{content}</React.Fragment>;
     });
   };
 

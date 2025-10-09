@@ -16,3 +16,26 @@ ol {
 ul {
   list-style-type: disc;
 }
+
+/* Fix Puck slot wrapper visibility - make them take full space */
+/* Target the direct child divs that Puck creates as slot wrappers */
+.flex-block > div:not([class]),
+.grid-block > div:not([class]),
+.carousel-item-wrapper > div:not([class]),
+.container-block > div:not([class]),
+.card-block > div:not([class]) {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+
+/* Also target any div that contains an image or other content */
+/* div:has(img),
+div:has([data-slot="aspect-ratio"]) {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+} */
