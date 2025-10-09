@@ -352,7 +352,7 @@ export function ProductSelectorField({
                           <Card
                             key={product.id}
                             className={`cursor-pointer transition-colors ${
-                              isSelected ? "ring-2 ring-primary" : ""
+                              isSelected ? "border-2 border-primary" : ""
                             } ${isDisabled ? "opacity-50" : ""}`}
                             onClick={() =>
                               !isDisabled && handleProductToggle(product)
@@ -373,10 +373,10 @@ export function ProductSelectorField({
                                     {product.name}
                                   </h4>
                                   <p className="text-xs text-muted-foreground">
-                                    {product.brand}
+                                    Brand: {product.brand}
                                   </p>
                                   <p className="text-xs text-muted-foreground">
-                                    {product.category}
+                                    Category: {product.category}
                                   </p>
                                   <p className="text-sm font-medium">
                                     {product.currencyCode} {product.price}
@@ -400,28 +400,32 @@ export function ProductSelectorField({
                         .map((product) => (
                           <Card
                             key={product.id}
-                            className="ring-2 ring-primary"
+                            className="border-2 border-primary"
                           >
                             <CardContent className="p-3">
-                              <div className="flex gap-3">
-                                <div className="relative flex-shrink-0 w-12 h-12">
-                                  <Image
-                                    src={product.image}
-                                    alt={product.name}
-                                    fill
-                                    className="object-cover rounded"
-                                  />
+                              <div className="flex justify-between items-center">
+                                <div className="flex gap-3">
+                                  <div className="relative flex-shrink-0 w-12 h-12">
+                                    <Image
+                                      src={product.image}
+                                      alt={product.name}
+                                      fill
+                                      className="object-cover rounded"
+                                    />
+                                  </div>
+                                  <div className="flex flex-col">
+                                    <h4 className="text-sm font-medium truncate">
+                                      {product.name}
+                                    </h4>
+                                    <p className="text-xs text-muted-foreground">
+                                      Brand: {product.brand}
+                                    </p>
+                                    <p className="text-xs text-muted-foreground">
+                                      Category: {product.category}
+                                    </p>
+                                  </div>
                                 </div>
-                                <div className="flex-1 min-w-0">
-                                  <h4 className="text-sm font-medium truncate">
-                                    {product.name}
-                                  </h4>
-                                  <p className="text-xs text-muted-foreground">
-                                    {product.brand}
-                                  </p>
-                                  <p className="text-xs text-muted-foreground">
-                                    {product.category}
-                                  </p>
+                                <div>
                                   <p className="text-sm font-medium">
                                     {product.currencyCode} {product.price}
                                   </p>

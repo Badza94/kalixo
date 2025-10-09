@@ -377,7 +377,7 @@ export function ProductCardBlock({
             variant={addToFavButton?.variant || "ghost"}
             size={addToFavButton?.size || "icon"}
             onClick={() => addFav(productId)}
-            className="w-10 h-10"
+            className="w-10 h-10 hover:cursor-pointer"
             style={{
               ...(buttonColors.addToFav.bgColor && {
                 backgroundColor: buttonColors.addToFav.bgColor,
@@ -393,7 +393,7 @@ export function ProductCardBlock({
             variant={addToCartButton?.variant || "ghost"}
             size={addToCartButton?.size || "icon"}
             onClick={() => addCart(productId)}
-            className="w-10 h-10"
+            className="w-10 h-10 hover:cursor-pointer"
             style={{
               ...(buttonColors.addToCart.bgColor && {
                 backgroundColor: buttonColors.addToCart.bgColor,
@@ -416,7 +416,7 @@ export function ProductCardBlock({
             variant={addToFavButton?.variant || "ghost"}
             size={addToFavButton?.size || "sm"}
             onClick={() => addFav(productId)}
-            className="w-full"
+            className="w-full hover:cursor-pointer"
             style={{
               ...(buttonColors.addToFav.bgColor && {
                 backgroundColor: buttonColors.addToFav.bgColor,
@@ -433,7 +433,7 @@ export function ProductCardBlock({
             variant={addToCartButton?.variant || "ghost"}
             size={addToCartButton?.size || "sm"}
             onClick={() => addCart(productId)}
-            className="w-full"
+            className="w-full hover:cursor-pointer"
             style={{
               ...(buttonColors.addToCart.bgColor && {
                 backgroundColor: buttonColors.addToCart.bgColor,
@@ -450,7 +450,7 @@ export function ProductCardBlock({
             variant={buyNowButton?.variant || "default"}
             size={buyNowButton?.size || "default"}
             onClick={() => buyNow(productId)}
-            className="w-full"
+            className="w-full hover:cursor-pointer"
             style={{
               ...(buttonColors.buyNow.bgColor && {
                 backgroundColor: buttonColors.buyNow.bgColor,
@@ -474,7 +474,7 @@ export function ProductCardBlock({
             variant={addToFavButton?.variant || "ghost"}
             size={addToFavButton?.size || "sm"}
             onClick={() => addFav(productId)}
-            className="flex-1 min-w-0"
+            className="flex-1 min-w-0 hover:cursor-pointer"
             style={{
               ...(buttonColors.addToFav.bgColor && {
                 backgroundColor: buttonColors.addToFav.bgColor,
@@ -490,7 +490,7 @@ export function ProductCardBlock({
             variant={addToCartButton?.variant || "ghost"}
             size={addToCartButton?.size || "sm"}
             onClick={() => addCart(productId)}
-            className="flex-1 min-w-0"
+            className="flex-1 min-w-0 hover:cursor-pointer"
             style={{
               ...(buttonColors.addToCart.bgColor && {
                 backgroundColor: buttonColors.addToCart.bgColor,
@@ -507,7 +507,7 @@ export function ProductCardBlock({
           variant={buyNowButton?.variant || "default"}
           size={buyNowButton?.size || "default"}
           onClick={() => buyNow(productId)}
-          className="w-full"
+          className="w-full hover:cursor-pointer"
           style={{
             ...(buttonColors.buyNow.bgColor && {
               backgroundColor: buttonColors.buyNow.bgColor,

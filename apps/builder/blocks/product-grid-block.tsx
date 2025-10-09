@@ -412,7 +412,7 @@ export function ProductGridBlock({
                 backgroundColor: button.colors.backgroundColor,
                 color: button.colors.textColor,
               }}
-              className="flex-shrink-0"
+              className="flex-shrink-0 hover:cursor-pointer"
             >
               {button.icon}
             </Button>
@@ -434,7 +434,7 @@ export function ProductGridBlock({
                 backgroundColor: button.colors.backgroundColor,
                 color: button.colors.textColor,
               }}
-              className="w-full"
+              className="w-full hover:cursor-pointer"
             >
               {button.icon && <span className="mr-2">{button.icon}</span>}
               {button.label}
@@ -458,7 +458,7 @@ export function ProductGridBlock({
                 backgroundColor: button.colors.backgroundColor,
                 color: button.colors.textColor,
               }}
-              className="flex-1 min-w-0"
+              className="flex-1 min-w-0 hover:cursor-pointer"
             >
               {button.icon && <span className="mr-2">{button.icon}</span>}
             </Button>
@@ -473,7 +473,7 @@ export function ProductGridBlock({
             backgroundColor: buttons[0].colors.backgroundColor,
             color: buttons[0].colors.textColor,
           }}
-          className="w-full"
+          className="w-full hover:cursor-pointer"
         >
           {buttons[0].label}
         </Button>
