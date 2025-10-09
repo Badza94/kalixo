@@ -469,12 +469,12 @@ export function ProductCardBlock({
     // Default horizontal layout
     return (
       <div className="flex flex-col gap-2 mt-4">
-        <div className="flex justify-between items-center">
+        <div className="flex gap-2">
           <Button
             variant={addToFavButton?.variant || "ghost"}
             size={addToFavButton?.size || "sm"}
             onClick={() => addFav(productId)}
-            className="flex-1 mr-1"
+            className="flex-1 min-w-0"
             style={{
               ...(buttonColors.addToFav.bgColor && {
                 backgroundColor: buttonColors.addToFav.bgColor,
@@ -484,14 +484,13 @@ export function ProductCardBlock({
               }),
             }}
           >
-            <Heart className="mr-1 w-4 h-4" />
-            <span className="hidden sm:inline">Fav</span>
+            <Heart className="mr-2 w-4 h-4" />
           </Button>
           <Button
             variant={addToCartButton?.variant || "ghost"}
             size={addToCartButton?.size || "sm"}
             onClick={() => addCart(productId)}
-            className="flex-1 ml-1"
+            className="flex-1 min-w-0"
             style={{
               ...(buttonColors.addToCart.bgColor && {
                 backgroundColor: buttonColors.addToCart.bgColor,
@@ -501,8 +500,7 @@ export function ProductCardBlock({
               }),
             }}
           >
-            <ShoppingBag className="mr-1 w-4 h-4" />
-            <span className="hidden sm:inline">Cart</span>
+            <ShoppingBag className="mr-2 w-4 h-4" />
           </Button>
         </div>
         <Button
@@ -535,8 +533,6 @@ export function ProductCardBlock({
         className="overflow-hidden relative mx-auto max-w-full"
         style={{
           ...imageWrapperStyles,
-          // width: `${imageSize.width}px`,
-          // height: `${imageSize.height}px`,
         }}
       >
         <Image
