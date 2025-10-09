@@ -3,7 +3,7 @@
 import { Hero1 } from "@workspace/ui/components/heroes/hero1";
 import { Hero2 } from "@workspace/ui/components/heroes/hero2";
 
-interface HeroBlockProps {
+export interface HeroBlockProps {
   type: "hero1" | "hero2";
   // Hero1 specific props
   badge?: string;

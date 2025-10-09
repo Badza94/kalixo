@@ -4,7 +4,7 @@ import React from "react";
 import { resolveColor } from "../types/theme";
 import { useThemeConfig } from "../hooks/use-theme-config";
 
-interface FlexBlockProps {
+export interface FlexBlockProps {
   direction?: "row" | "column" | "row-reverse" | "column-reverse";
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
   justify?:

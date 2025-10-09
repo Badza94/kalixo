@@ -20,7 +20,7 @@ interface SpacingValue {
   all?: string;
 }
 
-interface CardBlockProps {
+export interface CardBlockProps {
   showHeader?: boolean;
   title?: string;
   description?: string;

@@ -12,7 +12,7 @@ interface SpacingValue {
   all?: string;
 }
 
-interface DividerBlockProps {
+export interface DividerBlockProps {
   orientation?: "horizontal" | "vertical";
   decorative?: boolean;
   color?: {

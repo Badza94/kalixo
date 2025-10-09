@@ -5,7 +5,7 @@ import { cn } from "@workspace/ui/lib/utils";
 import { resolveColor } from "../types/theme";
 import { useThemeConfig } from "../hooks/use-theme-config";
 
-interface GridBlockProps {
+export interface GridBlockProps {
   columns: number;
   gap: "none" | "sm" | "md" | "lg" | "xl";
   backgroundColor?: {
@@ -91,7 +91,7 @@ export function GridBlock({
   };
 
   const baseClasses = cn(
-    "grid min-h-[200px] p-4 border-2 border-dashed border-gray-200 rounded-lg",
+    "grid min-h-[200px] p-4",
     gridColsClasses[columns as keyof typeof gridColsClasses] || "grid-cols-3",
     gapClasses[gap],
     className

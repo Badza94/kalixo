@@ -12,7 +12,7 @@ interface SpacingValue {
   all?: string;
 }
 
-interface HeadingBlockProps {
+export interface HeadingBlockProps {
   level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   text: string;
   className?: string;

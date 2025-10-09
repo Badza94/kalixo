@@ -5,6 +5,7 @@ import { Button } from "@workspace/ui/components/button";
 import { Heart, ShoppingBag } from "@workspace/ui/lucide-react";
 import { resolveColor } from "../types/theme";
 import { useThemeConfig } from "../hooks/use-theme-config";
+import Image from "next/image";
 
 interface SpacingValue {
   top?: string;
@@ -14,7 +15,7 @@ interface SpacingValue {
   all?: string;
 }
 
-interface ProductCardBlockProps {
+export interface ProductCardBlockProps {
   productId?: string;
   image?: {
     src: string;
@@ -110,8 +111,32 @@ interface ProductCardBlockProps {
   };
   margin?: SpacingValue;
   padding?: SpacingValue;
-  imageAspectRatio?: "square" | "4/3" | "3/2" | "16/9" | "custom";
-  customImageAspectRatio?: string;
+  imageSize?: {
+    width?: number;
+    height?: number;
+  };
+  imageWrapper?: {
+    padding?: SpacingValue;
+    borderRadius?: {
+      size:
+        | "xs"
+        | "sm"
+        | "md"
+        | "lg"
+        | "xl"
+        | "2xl"
+        | "3xl"
+        | "4xl"
+        | "none"
+        | "full"
+        | "custom";
+      customValue?: string;
+    };
+    backgroundColor?: {
+      colorKey: string;
+      customColor?: string;
+    };
+  };
   className?: string;
 }
 
@@ -167,8 +192,15 @@ export function ProductCardBlock({
   borderRadius,
   margin,
   padding,
-  imageAspectRatio = "square",
-  customImageAspectRatio,
+  imageSize = {
+    width: 176,
+    height: 176,
+  },
+  imageWrapper = {
+    padding: { all: "0" },
+    borderRadius: { size: "none" },
+    backgroundColor: { colorKey: "transparent" },
+  },
   className = "",
 }: ProductCardBlockProps) {
   const { themeConfig } = useThemeConfig();
@@ -271,28 +303,49 @@ export function ProductCardBlock({
     };
   }, []);
 
-  // Memoize image aspect ratio
-  const imageAspectRatioValue = useMemo(() => {
-    if (imageAspectRatio === "custom" && customImageAspectRatio) {
-      return customImageAspectRatio;
-    }
-
-    const aspectRatioMap: Record<
-      Exclude<typeof imageAspectRatio, "custom">,
-      string
-    > = {
-      square: "1/1",
-      "4/3": "4/3",
-      "3/2": "3/2",
-      "16/9": "16/9",
+  // Memoize image wrapper styles
+  const imageWrapperStyles = useMemo(() => {
+    const wrapperBorderRadiusMap = {
+      none: "0",
+      xs: "2px",
+      sm: "4px",
+      md: "6px",
+      lg: "8px",
+      xl: "12px",
+      "2xl": "16px",
+      "3xl": "24px",
+      "4xl": "32px",
+      full: "9999px",
     };
 
-    return (
-      aspectRatioMap[
-        imageAspectRatio as Exclude<typeof imageAspectRatio, "custom">
-      ] || "1/1"
-    );
-  }, [imageAspectRatio, customImageAspectRatio]);
+    const resolvedWrapperBorderRadius = imageWrapper?.borderRadius
+      ? imageWrapper.borderRadius.size === "custom" &&
+        imageWrapper.borderRadius.customValue
+        ? imageWrapper.borderRadius.customValue
+        : imageWrapper.borderRadius.size !== "custom"
+          ? wrapperBorderRadiusMap[imageWrapper.borderRadius.size]
+          : undefined
+      : undefined;
+
+    const resolvedWrapperBackgroundColor = imageWrapper?.backgroundColor
+      ? resolveColor(
+          imageWrapper.backgroundColor.colorKey,
+          imageWrapper.backgroundColor.customColor,
+          themeConfig || undefined,
+          "light"
+        )
+      : undefined;
+
+    return {
+      ...buildPadding(imageWrapper?.padding),
+      ...(resolvedWrapperBorderRadius && {
+        borderRadius: resolvedWrapperBorderRadius,
+      }),
+      ...(resolvedWrapperBackgroundColor && {
+        backgroundColor: resolvedWrapperBackgroundColor,
+      }),
+    };
+  }, [imageWrapper, buildPadding, themeConfig]);
 
   // Memoize container styles
   const containerStyles: React.CSSProperties = useMemo(
@@ -479,15 +532,19 @@ export function ProductCardBlock({
     >
       {/* Product Image */}
       <div
-        className="overflow-hidden relative"
+        className="overflow-hidden relative mx-auto max-w-full"
         style={{
-          aspectRatio: imageAspectRatioValue,
+          ...imageWrapperStyles,
+          // width: `${imageSize.width}px`,
+          // height: `${imageSize.height}px`,
         }}
       >
-        <img
+        <Image
           src={image.src}
           alt={image.alt}
-          className="object-cover w-full h-full"
+          className="object-cover mx-auto"
+          width={imageSize.width || 176}
+          height={imageSize.height || 176}
         />
       </div>
 

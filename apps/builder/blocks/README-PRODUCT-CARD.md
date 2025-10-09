@@ -70,6 +70,23 @@ Each button (Buy Now, Add to Cart, Add to Favorites) can be individually customi
 - **Padding**: Internal spacing
 - **Image Aspect Ratio**: Image proportions (square, 4:3, 3:2, 16:9, custom)
 
+### Image Configuration
+
+#### Image Size
+
+- **Width**: Custom image width (e.g., 176px, 200px, 100%)
+- **Height**: Custom image height (e.g., 176px, 200px, 100%)
+- **Default**: 176px × 176px
+
+#### Image Wrapper
+
+The image is wrapped in a container that can be styled independently:
+
+- **Padding**: Internal spacing around the image
+- **Border Radius**: Corner rounding for the image wrapper
+- **Background Color**: Background color for the image wrapper
+- **Use Cases**: Create image frames, add borders, create card-like effects
+
 ## Predefined Actions
 
 The component includes three predefined action functions that cannot be changed from the panel:
@@ -158,6 +175,15 @@ The component includes three predefined action functions that cannot be changed 
   backgroundColor={{ colorKey: "primary" }}
   borderRadius={{ size: "2xl" }}
   imageAspectRatio="16/9"
+  imageSize={{
+    width: "200px",
+    height: "200px"
+  }}
+  imageWrapper={{
+    padding: { all: "8px" },
+    borderRadius: { size: "lg" },
+    backgroundColor: { colorKey: "muted" }
+  }}
   buttonLayout="vertical"
   buyNowButton={{
     variant: "default",
@@ -178,6 +204,42 @@ The component includes three predefined action functions that cannot be changed 
     textColor: { colorKey: "muted-foreground" }
   }}
 />
+```
+
+### Image Wrapper Examples
+
+#### Framed Image
+
+```typescript
+imageWrapper={{
+  padding: { all: "12px" },
+  borderRadius: { size: "lg" },
+  backgroundColor: { customColor: "#f3f4f6" }
+}}
+```
+
+#### Circular Image
+
+```typescript
+imageSize={{
+  width: "150px",
+  height: "150px"
+}}
+imageWrapper={{
+  padding: { all: "0" },
+  borderRadius: { size: "full" },
+  backgroundColor: { colorKey: "transparent" }
+}}
+```
+
+#### Card-Style Image
+
+```typescript
+imageWrapper={{
+  padding: { all: "16px" },
+  borderRadius: { size: "xl" },
+  backgroundColor: { colorKey: "card" }
+}}
 ```
 
 ### Button Customization Examples

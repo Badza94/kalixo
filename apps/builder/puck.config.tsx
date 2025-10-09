@@ -1,19 +1,29 @@
 import type { Config } from "@measured/puck";
-import { NavigationBlock } from "./blocks/navigation-block";
-import { HeroBlock } from "./blocks/hero-block";
-import { HeadingBlock } from "./blocks/heading-block";
-import { TextBlock } from "./blocks/text-block";
-import { RichTextBlock, RichTextEditor } from "./blocks/rich-text-block";
-import { GridBlock } from "./blocks/grid-block";
-import { ContainerBlock } from "./blocks/container-block";
-import { FlexBlock } from "./blocks/flex-block";
-import { ButtonBlock } from "./blocks/button-block";
-import { ImageBlock } from "./blocks/image-block";
-import { DividerBlock } from "./blocks/divider-block";
-import { CardBlock } from "./blocks/card-block";
-import { SpacerBlock } from "./blocks/spacer-block";
-import { CarouselBlock } from "./blocks/carousel-block";
-import { ProductCardBlock } from "./blocks/product-card-block";
+import {
+  NavigationBlock,
+  NavigationBlockProps,
+} from "./blocks/navigation-block";
+import { HeroBlock, HeroBlockProps } from "./blocks/hero-block";
+import { HeadingBlock, HeadingBlockProps } from "./blocks/heading-block";
+import { TextBlock, TextBlockProps } from "./blocks/text-block";
+import {
+  RichTextBlock,
+  RichTextBlockProps,
+  RichTextEditor,
+} from "./blocks/rich-text-block";
+import { GridBlock, GridBlockProps } from "./blocks/grid-block";
+import { ContainerBlock, ContainerBlockProps } from "./blocks/container-block";
+import { FlexBlock, FlexBlockProps } from "./blocks/flex-block";
+import { ButtonBlock, ButtonBlockProps } from "./blocks/button-block";
+import { ImageBlock, ImageBlockProps } from "./blocks/image-block";
+import { DividerBlock, DividerBlockProps } from "./blocks/divider-block";
+import { CardBlock, CardBlockProps } from "./blocks/card-block";
+import { SpacerBlock, SpacerBlockProps } from "./blocks/spacer-block";
+import { CarouselBlock, CarouselBlockProps } from "./blocks/carousel-block";
+import {
+  ProductCardBlock,
+  ProductCardBlockProps,
+} from "./blocks/product-card-block";
 import { ColorPickerField } from "./fields/color-picker-field";
 import { SpacingField } from "./fields/spacing-field";
 import { BorderRadiusField } from "./fields/border-radius-field";
@@ -29,475 +39,21 @@ interface SpacingValue {
 }
 
 type Props = {
-  HeadingBlock: {
-    level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    text: string;
-    className?: string;
-    align?: "left" | "center" | "right";
-    size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
-    weight?: "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold";
-    color?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    backgroundColor?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    margin?: SpacingValue;
-    padding?: SpacingValue;
-    fontFamily?: string;
-    customFontFamily?: string;
-    lineHeight?: string;
-    customLineHeight?: string;
-    letterSpacing?: string;
-    customLetterSpacing?: string;
-    textTransform?: "none" | "uppercase" | "lowercase" | "capitalize";
-    textDecoration?: "none" | "underline" | "line-through" | "overline";
-    opacity?: string;
-    customOpacity?: string;
-  };
-  TextBlock: {
-    text: string;
-    className?: string;
-    align?: "left" | "center" | "right";
-    size?: "xs" | "sm" | "md" | "lg" | "xl";
-    weight?: "light" | "normal" | "medium" | "semibold" | "bold";
-    color?:
-      | "default"
-      | "muted"
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "destructive";
-    leading?: "tight" | "snug" | "normal" | "relaxed" | "loose";
-    as?: "p" | "span" | "div";
-    listStyle?:
-      | "none"
-      | "disc"
-      | "decimal"
-      | "lower-alpha"
-      | "upper-alpha"
-      | "lower-roman"
-      | "upper-roman";
-    textDecoration?: "none" | "underline" | "overline" | "line-through";
-    fontStyle?: "normal" | "italic";
-  };
-  RichTextBlock: {
-    content?: string;
-    className?: string;
-  };
-  NavigationBlock: {
-    type: "header" | "sidebar" | "mega-menu" | "search-first" | "mobile";
-    logo: string;
-    items: Array<{
-      id: string;
-      label: string;
-      href: string;
-      children?: Array<{
-        id: string;
-        label: string;
-        href: string;
-        children?: Array<{
-          id: string;
-          label: string;
-          href: string;
-        }>;
-      }>;
-    }>;
-    showSearch: boolean;
-    showCart: boolean;
-    showWishlist: boolean;
-    showAccount: boolean;
-    cartCount: number;
-  };
-  HeroBlock: {
-    type: "hero1" | "hero2";
-    badge?: string;
-    heading: string;
-    subheading?: string;
-    description: string;
-    buttons?: {
-      primary?: {
-        text: string;
-        url: string;
-      };
-      secondary?: {
-        text: string;
-        url: string;
-      };
-    };
-    image: {
-      src: string;
-      alt: string;
-    };
-    image2: {
-      src: string;
-      alt: string;
-    };
-  };
-  GridBlock: {
-    columns: number;
-    gap: "none" | "sm" | "md" | "lg" | "xl";
-    backgroundColor?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    borderRadius?: {
-      size:
-        | "xs"
-        | "sm"
-        | "md"
-        | "lg"
-        | "xl"
-        | "2xl"
-        | "3xl"
-        | "4xl"
-        | "none"
-        | "full"
-        | "custom";
-      customValue?: string;
-    };
-    className?: string;
-    items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
-  };
-  ContainerBlock: {
-    width?: "full" | "container" | "narrow" | "wide";
-    maxWidth?: string;
-    padding?: {
-      top?: string;
-      right?: string;
-      bottom?: string;
-      left?: string;
-    };
-    margin?: {
-      top?: string;
-      right?: string;
-      bottom?: string;
-      left?: string;
-    };
-    backgroundColor?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    backgroundImage?: string;
-    backgroundSize?: "cover" | "contain" | "auto";
-    backgroundPosition?: "center" | "top" | "bottom" | "left" | "right";
-    borderRadius?: {
-      size:
-        | "xs"
-        | "sm"
-        | "md"
-        | "lg"
-        | "xl"
-        | "2xl"
-        | "3xl"
-        | "4xl"
-        | "none"
-        | "full"
-        | "custom";
-      customValue?: string;
-    };
-    border?: {
-      width?: string;
-      style?: "solid" | "dashed" | "dotted";
-      color?: string;
-    };
-    shadow?: "none" | "sm" | "md" | "lg" | "xl";
-    className?: string;
-    items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
-  };
-  FlexBlock: {
-    direction?: "row" | "column" | "row-reverse" | "column-reverse";
-    wrap?: "nowrap" | "wrap" | "wrap-reverse";
-    justify?:
-      | "flex-start"
-      | "flex-end"
-      | "center"
-      | "space-between"
-      | "space-around"
-      | "space-evenly";
-    align?: "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
-    gap?: string;
-    width?: string;
-    height?: string;
-    minHeight?: string;
-    padding?: {
-      top?: string;
-      right?: string;
-      bottom?: string;
-      left?: string;
-    };
-    margin?: {
-      top?: string;
-      right?: string;
-      bottom?: string;
-      left?: string;
-    };
-    backgroundColor?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    borderRadius?: {
-      size:
-        | "xs"
-        | "sm"
-        | "md"
-        | "lg"
-        | "xl"
-        | "2xl"
-        | "3xl"
-        | "4xl"
-        | "none"
-        | "full"
-        | "custom";
-      customValue?: string;
-    };
-    className?: string;
-    items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
-  };
-  ButtonBlock: {
-    text: string;
-    href?: string;
-    variant?:
-      | "default"
-      | "destructive"
-      | "outline"
-      | "secondary"
-      | "ghost"
-      | "link";
-    size?: "default" | "sm" | "lg" | "icon";
-    asChild?: boolean;
-    disabled?: boolean;
-    backgroundColor?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    textColor?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    margin?: SpacingValue;
-    padding?: SpacingValue;
-    className?: string;
-  };
-  ImageBlock: {
-    src: string;
-    alt: string;
-    width?: number;
-    height?: number;
-    aspectRatio?: "16/9" | "4/3" | "1/1" | "3/2" | "21/9" | "custom" | "auto";
-    customAspectRatio?: string;
-    fill?: boolean;
-    maxWidth?: string;
-    objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
-    objectPosition?:
-      | "center"
-      | "top"
-      | "bottom"
-      | "left"
-      | "right"
-      | "top left"
-      | "top right"
-      | "bottom left"
-      | "bottom right";
-    borderRadius?: {
-      size:
-        | "xs"
-        | "sm"
-        | "md"
-        | "lg"
-        | "xl"
-        | "2xl"
-        | "3xl"
-        | "4xl"
-        | "none"
-        | "full"
-        | "custom";
-      customValue?: string;
-    };
-    shadow?: "none" | "sm" | "md" | "lg" | "xl" | "2xl";
-    margin?: SpacingValue;
-    opacity?: string;
-    grayscale?: boolean;
-    priority?: boolean;
-    quality?: number;
-    className?: string;
-  };
-  SpacerBlock: {
-    height?: string;
-    width?: string;
-    className?: string;
-  };
-  DividerBlock: {
-    orientation?: "horizontal" | "vertical";
-    decorative?: boolean;
-    color?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    thickness?: string;
-    margin?: SpacingValue;
-    className?: string;
-  };
-  CardBlock: {
-    showHeader?: boolean;
-    title?: string;
-    description?: string;
-    showFooter?: boolean;
-    backgroundColor?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    borderColor?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    shadow?: "none" | "sm" | "md" | "lg" | "xl";
-    margin?: SpacingValue;
-    padding?: SpacingValue;
-    className?: string;
-    items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
-    footerItems?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
-  };
-  CarouselBlock: {
-    orientation?: "horizontal" | "vertical";
-    showNavigation?: boolean;
-    loop?: boolean;
-    itemsPerSlide?: 1 | 2 | 3 | 4 | 5 | 6;
-    backgroundColor?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    borderRadius?: {
-      size:
-        | "xs"
-        | "sm"
-        | "md"
-        | "lg"
-        | "xl"
-        | "2xl"
-        | "3xl"
-        | "4xl"
-        | "none"
-        | "full"
-        | "custom";
-      customValue?: string;
-    };
-    margin?: SpacingValue;
-    padding?: SpacingValue;
-    itemMinHeight?: string;
-    itemBackgroundColor?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    itemPadding?: SpacingValue;
-    gap?: "none" | "sm" | "md" | "lg" | "xl";
-    itemGap?: "none" | "sm" | "md" | "lg" | "xl";
-    className?: string;
-    items?: Array<{
-      contents?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
-    }>;
-  };
-  ProductCardBlock: {
-    productId?: string;
-    image?: {
-      src: string;
-      alt: string;
-    };
-    productName?: string;
-    category?: string;
-    price?: string;
-    currency?: string;
-    showCategory?: boolean;
-    showPrice?: boolean;
-    showButtons?: boolean;
-    buttonLayout?: "horizontal" | "vertical" | "icons-only";
-    buyNowButton?: {
-      variant?:
-        | "default"
-        | "destructive"
-        | "outline"
-        | "secondary"
-        | "ghost"
-        | "link"
-        | "input"
-        | "text";
-      size?: "default" | "sm" | "lg" | "icon";
-      backgroundColor?: {
-        colorKey: string;
-        customColor?: string;
-      };
-      textColor?: {
-        colorKey: string;
-        customColor?: string;
-      };
-    };
-    addToCartButton?: {
-      variant?:
-        | "default"
-        | "destructive"
-        | "outline"
-        | "secondary"
-        | "ghost"
-        | "link"
-        | "input"
-        | "text";
-      size?: "default" | "sm" | "lg" | "icon";
-      backgroundColor?: {
-        colorKey: string;
-        customColor?: string;
-      };
-      textColor?: {
-        colorKey: string;
-        customColor?: string;
-      };
-    };
-    addToFavButton?: {
-      variant?:
-        | "default"
-        | "destructive"
-        | "outline"
-        | "secondary"
-        | "ghost"
-        | "link"
-        | "input"
-        | "text";
-      size?: "default" | "sm" | "lg" | "icon";
-      backgroundColor?: {
-        colorKey: string;
-        customColor?: string;
-      };
-      textColor?: {
-        colorKey: string;
-        customColor?: string;
-      };
-    };
-    backgroundColor?: {
-      colorKey: string;
-      customColor?: string;
-    };
-    borderRadius?: {
-      size:
-        | "xs"
-        | "sm"
-        | "md"
-        | "lg"
-        | "xl"
-        | "2xl"
-        | "3xl"
-        | "4xl"
-        | "none"
-        | "full"
-        | "custom";
-      customValue?: string;
-    };
-    margin?: SpacingValue;
-    padding?: SpacingValue;
-    imageAspectRatio?: "square" | "4/3" | "3/2" | "16/9" | "custom";
-    customImageAspectRatio?: string;
-    className?: string;
-  };
+  HeadingBlock: HeadingBlockProps;
+  TextBlock: TextBlockProps;
+  RichTextBlock: RichTextBlockProps;
+  NavigationBlock: NavigationBlockProps;
+  HeroBlock: HeroBlockProps;
+  GridBlock: GridBlockProps;
+  ContainerBlock: ContainerBlockProps;
+  FlexBlock: FlexBlockProps;
+  ButtonBlock: ButtonBlockProps;
+  ImageBlock: ImageBlockProps;
+  SpacerBlock: SpacerBlockProps;
+  DividerBlock: DividerBlockProps;
+  CardBlock: CardBlockProps;
+  CarouselBlock: CarouselBlockProps;
+  ProductCardBlock: ProductCardBlockProps;
 };
 
 export const config: Config<Props> = {
@@ -1862,6 +1418,54 @@ export const config: Config<Props> = {
             },
           },
         },
+        imageSize: {
+          type: "object",
+          objectFields: {
+            width: {
+              type: "number",
+              label: "Image Width (e.g., 176, 200)",
+            },
+            height: {
+              type: "number",
+              label: "Image Height (e.g., 176, 200)",
+            },
+          },
+        },
+        imageWrapper: {
+          type: "object",
+          objectFields: {
+            padding: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <SpacingField
+                  value={value || { all: "0" }}
+                  onChange={onChange}
+                  label="Image Wrapper Padding"
+                />
+              ),
+            },
+            borderRadius: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <BorderRadiusField
+                  value={value || { size: "none" }}
+                  onChange={onChange}
+                  label="Image Wrapper Border Radius"
+                />
+              ),
+            },
+            backgroundColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "transparent" }}
+                  onChange={onChange}
+                  label="Image Wrapper Background Color"
+                />
+              ),
+            },
+          },
+        },
         productName: {
           type: "text",
           label: "Product Name",
@@ -2048,20 +1652,6 @@ export const config: Config<Props> = {
             },
           },
         },
-        imageAspectRatio: {
-          type: "select",
-          options: [
-            { label: "Square (1:1)", value: "square" },
-            { label: "4:3", value: "4/3" },
-            { label: "3:2", value: "3/2" },
-            { label: "16:9", value: "16/9" },
-            { label: "Custom", value: "custom" },
-          ],
-        },
-        customImageAspectRatio: {
-          type: "text",
-          label: "Custom Aspect Ratio (e.g., 1.5)",
-        },
         backgroundColor: {
           type: "custom",
           render: ({ onChange, value }) => (
@@ -2135,7 +1725,15 @@ export const config: Config<Props> = {
           backgroundColor: { colorKey: "transparent" },
           textColor: { colorKey: "foreground" },
         },
-        imageAspectRatio: "square",
+        imageSize: {
+          width: 176,
+          height: 176,
+        },
+        imageWrapper: {
+          padding: { all: "0" },
+          borderRadius: { size: "none" },
+          backgroundColor: { colorKey: "transparent" },
+        },
         borderRadius: { size: "lg" },
         padding: { all: "0" },
       },

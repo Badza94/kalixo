@@ -44,7 +44,7 @@ interface NavigationItem {
   children?: NavigationItem[];
 }
 
-interface NavigationBlockProps {
+export interface NavigationBlockProps {
   type: "header" | "sidebar" | "mega-menu" | "search-first" | "mobile";
   logo: string;
   items: NavigationItem[];
@@ -88,7 +88,7 @@ export function NavigationBlock({
             open={expandedItems.has(item.id)}
             onOpenChange={() => toggleExpanded(item.id)}
           >
-            <CollapsibleTrigger className="flex items-center justify-between w-full p-3 text-left hover:bg-accent rounded-md transition-colors">
+            <CollapsibleTrigger className="flex justify-between items-center p-3 w-full text-left rounded-md transition-colors hover:bg-accent">
               <span className="font-medium">{item.label}</span>
               <ChevronRight
                 className={`h-4 w-4 transition-transform ${
@@ -96,12 +96,12 @@ export function NavigationBlock({
                 }`}
               />
             </CollapsibleTrigger>
-            <CollapsibleContent className="space-y-1 mt-2 ml-4">
+            <CollapsibleContent className="mt-2 ml-4 space-y-1">
               {item.children.map((child) => (
                 <a
                   key={child.id}
                   href={child.href}
-                  className="block p-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="block p-2 text-sm transition-colors text-muted-foreground hover:text-foreground"
                 >
                   {child.label}
                 </a>
@@ -119,14 +119,14 @@ export function NavigationBlock({
               <div className="grid gap-3 p-6 w-[600px] grid-cols-3">
                 {item.children.map((child, index) => (
                   <div key={child.id} className="space-y-3">
-                    <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wide">
+                    <h4 className="text-sm font-medium tracking-wide uppercase text-muted-foreground">
                       {child.label}
                     </h4>
                     <div className="space-y-2">
                       {child.children?.map((grandChild) => (
                         <NavigationMenuLink
                           key={grandChild.id}
-                          className="block p-2 text-sm hover:bg-accent rounded-md transition-colors"
+                          className="block p-2 text-sm rounded-md transition-colors hover:bg-accent"
                         >
                           {grandChild.label}
                         </NavigationMenuLink>
@@ -141,7 +141,7 @@ export function NavigationBlock({
       } else {
         return (
           <DropdownMenu key={item.id}>
-            <DropdownMenuTrigger className="text-sm font-medium hover:text-muted-foreground transition-colors">
+            <DropdownMenuTrigger className="text-sm font-medium transition-colors hover:text-muted-foreground">
               {item.label}
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -160,7 +160,7 @@ export function NavigationBlock({
           <a
             key={item.id}
             href={item.href}
-            className="block p-3 font-medium hover:bg-accent rounded-md transition-colors"
+            className="block p-3 font-medium rounded-md transition-colors hover:bg-accent"
           >
             {item.label}
           </a>
@@ -169,7 +169,7 @@ export function NavigationBlock({
         return (
           <NavigationMenuItem key={item.id}>
             <NavigationMenuLink
-              className="text-sm font-medium px-4 py-2 hover:text-muted-foreground transition-colors"
+              className="px-4 py-2 text-sm font-medium transition-colors hover:text-muted-foreground"
               href={item.href}
             >
               {item.label}
@@ -181,7 +181,7 @@ export function NavigationBlock({
           <a
             key={item.id}
             href={item.href}
-            className="text-sm font-medium hover:text-muted-foreground transition-colors"
+            className="text-sm font-medium transition-colors hover:text-muted-foreground"
           >
             {item.label}
           </a>
@@ -209,7 +209,7 @@ export function NavigationBlock({
               size="icon"
               onClick={() => setSearchOpen(true)}
             >
-              <Search className="h-4 w-4" />
+              <Search className="w-4 h-4" />
             </Button>
           )}
         </>
@@ -217,21 +217,21 @@ export function NavigationBlock({
 
       {showWishlist && (
         <Button variant="ghost" size="icon">
-          <Heart className="h-4 w-4" />
+          <Heart className="w-4 h-4" />
         </Button>
       )}
 
       {showAccount && (
         <Button variant="ghost" size="icon">
-          <User className="h-4 w-4" />
+          <User className="w-4 h-4" />
         </Button>
       )}
 
       {showCart && (
         <Button variant="ghost" size="icon" className="relative">
-          <ShoppingBag className="h-4 w-4" />
+          <ShoppingBag className="w-4 h-4" />
           {cartCount > 0 && (
-            <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
+            <span className="flex absolute -top-1 -right-1 justify-center items-center w-4 h-4 text-xs rounded-full bg-primary text-primary-foreground">
               {cartCount}
             </span>
           )}
@@ -242,27 +242,27 @@ export function NavigationBlock({
 
   if (type === "sidebar") {
     return (
-      <header className="border-b border-border bg-background sticky top-0 z-50">
-        <div className="container mx-auto px-4">
-          <div className="flex h-16 items-center justify-between">
+      <header className="sticky top-0 z-50 border-b border-border bg-background">
+        <div className="container px-4 mx-auto">
+          <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
               <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon">
-                    <Menu className="h-5 w-5" />
+                    <Menu className="w-5 h-5" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="left" className="w-80 p-0">
+                <SheetContent side="left" className="p-0 w-80">
                   <div className="flex flex-col h-full">
                     <div className="p-6 border-b border-border">
-                      <div className="flex items-center justify-between">
+                      <div className="flex justify-between items-center">
                         <h2 className="text-lg font-medium">Menu</h2>
                         <Button
                           variant="ghost"
                           size="icon"
                           onClick={() => setMobileOpen(false)}
                         >
-                          <X className="h-4 w-4" />
+                          <X className="w-4 h-4" />
                         </Button>
                       </div>
                     </div>
@@ -270,7 +270,7 @@ export function NavigationBlock({
                     {showSearch && (
                       <div className="p-6 border-b border-border">
                         <div className="relative">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                          <Search className="absolute left-3 top-1/2 w-4 h-4 transform -translate-y-1/2 text-muted-foreground" />
                           <Input
                             placeholder="Search products..."
                             className="pl-10"
@@ -283,7 +283,7 @@ export function NavigationBlock({
                       {items.map((item) => renderNavigationItem(item, true))}
                     </nav>
 
-                    <div className="p-6 border-t border-border space-y-4">
+                    <div className="p-6 space-y-4 border-t border-border">
                       <div className="flex items-center space-x-4">
                         {showAccount && (
                           <Button
@@ -291,7 +291,7 @@ export function NavigationBlock({
                             size="sm"
                             className="flex-1 bg-transparent"
                           >
-                            <User className="h-4 w-4 mr-2" />
+                            <User className="mr-2 w-4 h-4" />
                             Account
                           </Button>
                         )}
@@ -301,7 +301,7 @@ export function NavigationBlock({
                             size="sm"
                             className="flex-1 bg-transparent"
                           >
-                            <Heart className="h-4 w-4 mr-2" />
+                            <Heart className="mr-2 w-4 h-4" />
                             Wishlist
                           </Button>
                         )}
@@ -323,16 +323,16 @@ export function NavigationBlock({
 
   if (type === "mobile") {
     return (
-      <header className="border-b border-border bg-background sticky top-0 z-50">
-        <div className="container mx-auto px-4">
-          <div className="flex h-16 items-center justify-between">
+      <header className="sticky top-0 z-50 border-b border-border bg-background">
+        <div className="container px-4 mx-auto">
+          <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setMobileOpen(true)}
               >
-                <Menu className="h-5 w-5" />
+                <Menu className="w-5 h-5" />
               </Button>
               <h1 className="text-xl font-medium tracking-tight">{logo}</h1>
             </div>
@@ -345,14 +345,14 @@ export function NavigationBlock({
           <div className="fixed inset-0 z-50 bg-background">
             <div className="flex flex-col h-full">
               <div className="p-6 border-b border-border">
-                <div className="flex items-center justify-between">
+                <div className="flex justify-between items-center">
                   <h2 className="text-lg font-medium">Menu</h2>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => setMobileOpen(false)}
                   >
-                    <X className="h-4 w-4" />
+                    <X className="w-4 h-4" />
                   </Button>
                 </div>
               </div>
@@ -369,9 +369,9 @@ export function NavigationBlock({
 
   if (type === "mega-menu") {
     return (
-      <header className="border-b border-border bg-background sticky top-0 z-50">
-        <div className="container mx-auto px-4">
-          <div className="flex h-16 items-center justify-between">
+      <header className="sticky top-0 z-50 border-b border-border bg-background">
+        <div className="container px-4 mx-auto">
+          <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <h1 className="text-xl font-medium tracking-tight">{logo}</h1>
             </div>
@@ -392,13 +392,13 @@ export function NavigationBlock({
   // Default header navigation
   return (
     <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+      <div className="container px-4 mx-auto">
+        <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <h1 className="text-xl font-medium tracking-tight">{logo}</h1>
           </div>
 
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden items-center space-x-8 md:flex">
             {items.map((item) => renderNavigationItem(item))}
           </nav>
 

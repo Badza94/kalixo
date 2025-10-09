@@ -61,7 +61,7 @@ type AlignType = (typeof TEXT_ALIGN_TYPES)[number];
 type ListType = (typeof LIST_TYPES)[number];
 type CustomElementFormat = CustomElementType | AlignType | ListType;
 
-interface RichTextBlockProps {
+export interface RichTextBlockProps {
   content?: string;
   className?: string;
 }
@@ -124,7 +124,7 @@ export const RichTextEditor = ({
   );
 
   return (
-    <div className="border rounded-md">
+    <div className="rounded-md border">
       <Slate
         editor={editor}
         initialValue={initialValue}
@@ -298,7 +298,7 @@ const Element = ({ attributes, children, element }: RenderElementProps) => {
         <blockquote
           style={style}
           {...attributes}
-          className="border-l-4 border-gray-300 pl-4 my-4"
+          className="pl-4 my-4 border-l-4 border-gray-300"
         >
           {children}
         </blockquote>
@@ -308,20 +308,20 @@ const Element = ({ attributes, children, element }: RenderElementProps) => {
         <ul
           style={style}
           {...attributes}
-          className="list-disc list-inside my-2"
+          className="my-2 list-disc list-inside"
         >
           {children}
         </ul>
       );
     case "heading-one":
       return (
-        <h1 style={style} {...attributes} className="text-3xl font-bold my-4">
+        <h1 style={style} {...attributes} className="my-4 text-3xl font-bold">
           {children}
         </h1>
       );
     case "heading-two":
       return (
-        <h2 style={style} {...attributes} className="text-2xl font-bold my-3">
+        <h2 style={style} {...attributes} className="my-3 text-2xl font-bold">
           {children}
         </h2>
       );
@@ -336,7 +336,7 @@ const Element = ({ attributes, children, element }: RenderElementProps) => {
         <ol
           style={style}
           {...attributes}
-          className="list-decimal list-inside my-2"
+          className="my-2 list-decimal list-inside"
         >
           {children}
         </ol>

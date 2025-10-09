@@ -8,6 +8,7 @@ import { Eye, Palette } from "@workspace/ui/lucide-react";
 import { ThemeEditor } from "./theme-editor";
 import { Toaster } from "@workspace/ui/components/sonner";
 import { IframeThemeInjector } from "./iframe-theme-injector";
+import { ThemeProvider } from "../../../contexts/theme-context";
 
 interface ThemeConfig {
   light: Record<string, string>;
@@ -73,7 +74,7 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
   };
 
   return (
-    <>
+    <ThemeProvider>
       <Puck
         config={config}
         data={data}
@@ -91,6 +92,6 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
         onThemeChange={handleThemeChange}
       />
       <Toaster />
-    </>
+    </ThemeProvider>
   );
 }

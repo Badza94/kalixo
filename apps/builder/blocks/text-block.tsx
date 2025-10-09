@@ -2,7 +2,7 @@
 
 import { cn } from "@workspace/ui/lib/utils";
 
-interface TextBlockProps {
+export interface TextBlockProps {
   text: string;
   className?: string;
   align?: "left" | "center" | "right";

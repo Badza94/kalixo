@@ -19,7 +19,7 @@ interface SpacingValue {
   all?: string;
 }
 
-interface CarouselBlockProps {
+export interface CarouselBlockProps {
   orientation?: "horizontal" | "vertical";
   showNavigation?: boolean;
   loop?: boolean;

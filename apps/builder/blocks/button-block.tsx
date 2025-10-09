@@ -12,7 +12,7 @@ interface SpacingValue {
   all?: string;
 }
 
-interface ButtonBlockProps {
+export interface ButtonBlockProps {
   text: string;
   href?: string;
   variant?:

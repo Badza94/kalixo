@@ -4,7 +4,7 @@ import React from "react";
 import { resolveColor } from "../types/theme";
 import { useThemeConfig } from "../hooks/use-theme-config";
 
-interface ContainerBlockProps {
+export interface ContainerBlockProps {
   width?: "full" | "container" | "narrow" | "wide";
   maxWidth?: string;
   padding?: {
@@ -152,7 +152,7 @@ export function ContainerBlock({
       // Show placeholder when empty
       return (
         <div className="min-h-[100px] p-4 border-2 border-dashed border-gray-300 rounded bg-gray-100 flex items-center justify-center">
-          <span className="text-gray-400 text-sm">Drop components here</span>
+          <span className="text-sm text-gray-400">Drop components here</span>
         </div>
       );
     }
@@ -169,7 +169,7 @@ export function ContainerBlock({
             key={index}
             className="min-h-[100px] p-4 border-2 border-dashed border-gray-300 rounded bg-gray-100 flex items-center justify-center"
           >
-            <span className="text-gray-400 text-sm">Drop components here</span>
+            <span className="text-sm text-gray-400">Drop components here</span>
           </div>
         );
       }

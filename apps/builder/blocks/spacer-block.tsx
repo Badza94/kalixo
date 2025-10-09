@@ -1,6 +1,6 @@
 "use client";
 
-interface SpacerBlockProps {
+export interface SpacerBlockProps {
   height?: string;
   width?: string;
   className?: string;

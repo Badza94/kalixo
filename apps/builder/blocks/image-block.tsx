@@ -11,7 +11,7 @@ interface SpacingValue {
   all?: string;
 }
 
-interface ImageBlockProps {
+export interface ImageBlockProps {
   src: string;
   alt: string;
   width?: number;
