@@ -5,6 +5,9 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "dev:builder": "cd apps/builder && pnpm run dev",
+    "dev:cms": "cd apps/cms && pnpm run dev",
+    "dev:shops": "cd apps/shops && pnpm run dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "postinstall": "bash ./scripts/setup-shared-assets.sh apps/builder copy && bash ./scripts/setup-shared-assets.sh apps/cms copy && bash ./scripts/setup-shared-assets.sh apps/shops copy"

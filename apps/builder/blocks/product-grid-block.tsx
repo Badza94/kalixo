@@ -546,17 +546,15 @@ export function ProductGridBlock({
 
   return (
     <div className={`product-grid-block ${className}`} style={containerStyles}>
-      <div className="overflow-x-auto">
-        <div
-          className="grid gap-2 mx-auto"
-          style={{
-            gridTemplateColumns: `repeat(${gridColumns}, minmax(150px, 1fr))`,
-            minWidth: `${gridColumns * 160}px`, // 150px card + 10px gap
-            width: "max-content",
-          }}
-        >
-          {productSelection.selectedProducts.map(renderProductCard)}
-        </div>
+      <div
+        className="grid gap-2 mx-auto"
+        style={{
+          gridTemplateColumns: `repeat(${gridColumns}, minmax(150px, 1fr))`,
+          minWidth: `${gridColumns * 160}px`, // 150px card + 10px gap
+          width: "max-content",
+        }}
+      >
+        {productSelection.selectedProducts.map(renderProductCard)}
       </div>
     </div>
   );

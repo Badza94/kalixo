@@ -1403,26 +1403,36 @@ export const config: Config<Props> = {
       fields: {
         productId: {
           type: "text",
-          label: "Product ID",
+          label: "Product ID (e.g., 17056)",
         },
-        image: {
-          type: "object",
-          objectFields: {
-            src: {
-              type: "custom",
-              render: ({ onChange, value }) => (
-                <ImagePickerField
-                  value={value || ""}
-                  onChange={onChange}
-                  label="Product Image"
-                />
-              ),
-            },
-            alt: {
-              type: "text",
-              label: "Alt Text",
-            },
-          },
+        showCategory: {
+          type: "radio",
+          options: [
+            { label: "Show Category", value: true },
+            { label: "Hide Category", value: false },
+          ],
+        },
+        showPrice: {
+          type: "radio",
+          options: [
+            { label: "Show Price", value: true },
+            { label: "Hide Price", value: false },
+          ],
+        },
+        showButtons: {
+          type: "radio",
+          options: [
+            { label: "Show Buttons", value: true },
+            { label: "Hide Buttons", value: false },
+          ],
+        },
+        buttonLayout: {
+          type: "select",
+          options: [
+            { label: "Horizontal", value: "horizontal" },
+            { label: "Vertical", value: "vertical" },
+            { label: "Icons Only", value: "icons-only" },
+          ],
         },
         imageSize: {
           type: "object",
@@ -1471,51 +1481,6 @@ export const config: Config<Props> = {
               ),
             },
           },
-        },
-        productName: {
-          type: "text",
-          label: "Product Name",
-        },
-        category: {
-          type: "text",
-          label: "Category",
-        },
-        price: {
-          type: "text",
-          label: "Price",
-        },
-        currency: {
-          type: "text",
-          label: "Currency Symbol",
-        },
-        showCategory: {
-          type: "radio",
-          options: [
-            { label: "Show Category", value: true },
-            { label: "Hide Category", value: false },
-          ],
-        },
-        showPrice: {
-          type: "radio",
-          options: [
-            { label: "Show Price", value: true },
-            { label: "Hide Price", value: false },
-          ],
-        },
-        showButtons: {
-          type: "radio",
-          options: [
-            { label: "Show Buttons", value: true },
-            { label: "Hide Buttons", value: false },
-          ],
-        },
-        buttonLayout: {
-          type: "select",
-          options: [
-            { label: "Horizontal", value: "horizontal" },
-            { label: "Vertical", value: "vertical" },
-            { label: "Icons Only", value: "icons-only" },
-          ],
         },
         buyNowButton: {
           type: "object",
@@ -1700,15 +1665,7 @@ export const config: Config<Props> = {
         },
       },
       defaultProps: {
-        productId: "product-1",
-        image: {
-          src: SharedAssets.placeholder,
-          alt: "Product image",
-        },
-        productName: "Xbox Gift Card £100",
-        category: "Xbox",
-        price: "100.00",
-        currency: "£",
+        productId: "17056",
         showCategory: true,
         showPrice: true,
         showButtons: true,

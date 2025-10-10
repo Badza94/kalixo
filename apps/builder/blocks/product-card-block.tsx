@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { Button } from "@workspace/ui/components/button";
 import { Heart, ShoppingBag } from "@workspace/ui/lucide-react";
 import { resolveColor } from "../types/theme";
 import { useThemeConfig } from "../hooks/use-theme-config";
 import Image from "next/image";
+
+// Import products data (in production, this would be an API call)
+import productsData from "../data/productsData.json";
 
 interface SpacingValue {
   top?: string;
@@ -15,16 +18,20 @@ interface SpacingValue {
   all?: string;
 }
 
+interface Product {
+  id: number;
+  productId: string;
+  name: string;
+  brand: string;
+  type: string;
+  category: string;
+  price: string;
+  currencyCode: string;
+  image: string;
+}
+
 export interface ProductCardBlockProps {
   productId?: string;
-  image?: {
-    src: string;
-    alt: string;
-  };
-  productName?: string;
-  category?: string;
-  price?: string;
-  currency?: string;
   showCategory?: boolean;
   showPrice?: boolean;
   showButtons?: boolean;
@@ -157,15 +164,7 @@ const addCart = (id: string) => {
 };
 
 export function ProductCardBlock({
-  productId = "product-1",
-  image = {
-    src: "/shared/placeholder.svg",
-    alt: "Product image",
-  },
-  productName = "Product Name",
-  category = "Category",
-  price = "99.99",
-  currency = "$",
+  productId = "17056",
   showCategory = true,
   showPrice = true,
   showButtons = true,
@@ -204,6 +203,57 @@ export function ProductCardBlock({
   className = "",
 }: ProductCardBlockProps) {
   const { themeConfig } = useThemeConfig();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch product data when productId changes
+  useEffect(() => {
+    const fetchProduct = async () => {
+      if (!productId) {
+        setProduct(null);
+        return;
+      }
+
+      setLoading(true);
+      setError(null);
+
+      try {
+        // In production, this would be an API call
+        // const response = await fetch(`/api/products/${productId}`);
+        // const productData = await response.json();
+
+        // For now, find product in the imported data
+        const foundProduct = productsData.find(
+          (p) => p.id.toString() === productId || p.productId === productId
+        );
+
+        if (foundProduct) {
+          setProduct({
+            id: foundProduct.id,
+            productId: foundProduct.productId,
+            name: foundProduct.name,
+            brand: foundProduct.brand,
+            type: foundProduct.type,
+            category: foundProduct.category,
+            price: foundProduct.price,
+            currencyCode: foundProduct.currencyCode,
+            image: foundProduct.image,
+          });
+        } else {
+          setError(`Product with ID ${productId} not found`);
+          setProduct(null);
+        }
+      } catch (err) {
+        setError("Failed to fetch product data");
+        setProduct(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [productId]);
 
   // Memoize color resolution to prevent infinite re-renders
   const resolvedBackgroundColor = useMemo(() => {
@@ -523,6 +573,66 @@ export function ProductCardBlock({
     );
   };
 
+  // Show loading state
+  if (loading) {
+    return (
+      <div
+        className={`bg-white border border-gray-200 shadow-sm product-card-block dark:bg-gray-800 dark:border-gray-700 ${className}`}
+        style={containerStyles}
+      >
+        <div className="p-4 text-center">
+          <div className="animate-pulse">
+            <div className="mb-4 h-32 bg-gray-200 rounded"></div>
+            <div className="mb-2 h-4 bg-gray-200 rounded"></div>
+            <div className="mb-2 w-3/4 h-4 bg-gray-200 rounded"></div>
+            <div className="mb-4 w-1/2 h-4 bg-gray-200 rounded"></div>
+          </div>
+          <p className="text-sm text-gray-500">Loading product...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div
+        className={`bg-white border border-red-200 shadow-sm product-card-block dark:bg-gray-800 dark:border-red-700 ${className}`}
+        style={containerStyles}
+      >
+        <div className="p-4 text-center">
+          <div className="flex justify-center items-center mb-4 h-32 bg-red-50 rounded">
+            <p className="text-sm text-red-500">⚠️</p>
+          </div>
+          <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+          <p className="mt-1 text-xs text-gray-500">
+            Check the product ID: {productId}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show no product state
+  if (!product) {
+    return (
+      <div
+        className={`bg-white border border-gray-200 shadow-sm product-card-block dark:bg-gray-800 dark:border-gray-700 ${className}`}
+        style={containerStyles}
+      >
+        <div className="p-4 text-center">
+          <div className="flex justify-center items-center mb-4 h-32 bg-gray-50 rounded">
+            <p className="text-sm text-gray-400">📦</p>
+          </div>
+          <p className="text-sm text-gray-500">No product selected</p>
+          <p className="mt-1 text-xs text-gray-400">
+            Enter a product ID to load product data
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className={`bg-white border border-gray-200 shadow-sm product-card-block dark:bg-gray-800 dark:border-gray-700 ${className}`}
@@ -530,15 +640,17 @@ export function ProductCardBlock({
     >
       {/* Product Image */}
       <div
-        className="overflow-hidden relative mx-auto max-w-full"
+        className="overflow-hidden relative mx-auto"
         style={{
           ...imageWrapperStyles,
+          width: `${imageSize.width}px`,
+          height: `${imageSize.height}px`,
         }}
       >
         <Image
-          src={image.src}
-          alt={image.alt}
-          className="object-cover mx-auto"
+          src={product.image}
+          alt={product.name}
+          className="object-cover mx-auto w-full h-full"
           width={imageSize.width || 176}
           height={imageSize.height || 176}
         />
@@ -548,21 +660,23 @@ export function ProductCardBlock({
       <div className="p-4">
         {/* Product Name */}
         <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-          {productName}
+          {product.name}
         </h3>
 
         {/* Category */}
         {showCategory && (
           <p className="mb-2 text-sm text-blue-500 dark:text-blue-400">
-            {category}
+            {product.category}
           </p>
         )}
 
         {/* Price */}
         {showPrice && (
           <p className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-            {currency}
-            {price}
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: product.currencyCode,
+            }).format(Number(product.price))}
           </p>
         )}
 
