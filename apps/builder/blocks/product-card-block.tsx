@@ -117,7 +117,7 @@ export interface ProductCardBlockProps {
     customValue?: string;
   };
   margin?: SpacingValue;
-  padding?: SpacingValue;
+  // padding?: SpacingValue;
   imageSize?: {
     width?: number;
     height?: number;
@@ -190,7 +190,7 @@ export function ProductCardBlock({
   backgroundColor,
   borderRadius,
   margin,
-  padding,
+  // padding,
   imageSize = {
     width: 176,
     height: 176,
@@ -245,7 +245,9 @@ export function ProductCardBlock({
           setProduct(null);
         }
       } catch (err) {
-        setError("Failed to fetch product data");
+        setError(
+          `Failed to fetch product data: ${err instanceof Error ? err.message : "Unknown error"}`
+        );
         setProduct(null);
       } finally {
         setLoading(false);
@@ -401,7 +403,7 @@ export function ProductCardBlock({
   const containerStyles: React.CSSProperties = useMemo(
     () => ({
       ...buildMargin(margin),
-      ...buildPadding(padding),
+      // ...buildPadding(padding),
       ...(resolvedBackgroundColor && {
         backgroundColor: resolvedBackgroundColor,
       }),
@@ -409,9 +411,9 @@ export function ProductCardBlock({
     }),
     [
       buildMargin,
-      buildPadding,
+      // buildPadding,
       margin,
-      padding,
+      // padding,
       resolvedBackgroundColor,
       resolvedBorderRadius,
     ]
@@ -420,154 +422,112 @@ export function ProductCardBlock({
   const renderButtons = () => {
     if (!showButtons) return null;
 
+    const buttons = [
+      {
+        key: "addToCart",
+        label: "Add to Cart",
+        onClick: () => addCart(productId),
+        variant: addToCartButton?.variant || "ghost",
+        size: addToCartButton?.size || "sm",
+        colors: buttonColors.addToCart,
+        icon: <ShoppingBag className="w-4 h-4" />,
+      },
+      {
+        key: "addToFav",
+        label: "Add to Favourite",
+        onClick: () => addFav(productId),
+        variant: addToFavButton?.variant || "ghost",
+        size: addToFavButton?.size || "sm",
+        colors: buttonColors.addToFav,
+        icon: <Heart className="w-4 h-4" />,
+      },
+      {
+        key: "buyNow",
+        label: "Buy Now",
+        onClick: () => buyNow(productId),
+        variant: buyNowButton?.variant || "default",
+        size: buyNowButton?.size || "default",
+        colors: buttonColors.buyNow,
+      },
+    ];
+
     if (buttonLayout === "icons-only") {
       return (
-        <div className="flex justify-between items-center mt-4">
-          <Button
-            variant={addToFavButton?.variant || "ghost"}
-            size={addToFavButton?.size || "icon"}
-            onClick={() => addFav(productId)}
-            className="w-10 h-10 hover:cursor-pointer"
-            style={{
-              ...(buttonColors.addToFav.bgColor && {
-                backgroundColor: buttonColors.addToFav.bgColor,
-              }),
-              ...(buttonColors.addToFav.textColor && {
-                color: buttonColors.addToFav.textColor,
-              }),
-            }}
-          >
-            <Heart className="w-4 h-4" />
-          </Button>
-          <Button
-            variant={addToCartButton?.variant || "ghost"}
-            size={addToCartButton?.size || "icon"}
-            onClick={() => addCart(productId)}
-            className="w-10 h-10 hover:cursor-pointer"
-            style={{
-              ...(buttonColors.addToCart.bgColor && {
-                backgroundColor: buttonColors.addToCart.bgColor,
-              }),
-              ...(buttonColors.addToCart.textColor && {
-                color: buttonColors.addToCart.textColor,
-              }),
-            }}
-          >
-            <ShoppingBag className="w-4 h-4" />
-          </Button>
+        <div className="flex gap-2 justify-center">
+          {buttons.slice(0, 2).map((button) => (
+            <Button
+              key={button.key}
+              variant={button.variant}
+              size={button.size}
+              onClick={button.onClick}
+              style={{
+                backgroundColor: button.colors.bgColor,
+                color: button.colors.textColor,
+              }}
+              className="flex-shrink-0 hover:cursor-pointer"
+            >
+              {button.icon}
+            </Button>
+          ))}
         </div>
       );
     }
 
     if (buttonLayout === "vertical") {
       return (
-        <div className="flex flex-col gap-2 mt-4">
-          <Button
-            variant={addToFavButton?.variant || "ghost"}
-            size={addToFavButton?.size || "sm"}
-            onClick={() => addFav(productId)}
-            className="w-full hover:cursor-pointer"
-            style={{
-              ...(buttonColors.addToFav.bgColor && {
-                backgroundColor: buttonColors.addToFav.bgColor,
-              }),
-              ...(buttonColors.addToFav.textColor && {
-                color: buttonColors.addToFav.textColor,
-              }),
-            }}
-          >
-            <Heart className="mr-2 w-4 h-4" />
-            Add to Favorites
-          </Button>
-          <Button
-            variant={addToCartButton?.variant || "ghost"}
-            size={addToCartButton?.size || "sm"}
-            onClick={() => addCart(productId)}
-            className="w-full hover:cursor-pointer"
-            style={{
-              ...(buttonColors.addToCart.bgColor && {
-                backgroundColor: buttonColors.addToCart.bgColor,
-              }),
-              ...(buttonColors.addToCart.textColor && {
-                color: buttonColors.addToCart.textColor,
-              }),
-            }}
-          >
-            <ShoppingBag className="mr-2 w-4 h-4" />
-            Add to Cart
-          </Button>
-          <Button
-            variant={buyNowButton?.variant || "default"}
-            size={buyNowButton?.size || "default"}
-            onClick={() => buyNow(productId)}
-            className="w-full hover:cursor-pointer"
-            style={{
-              ...(buttonColors.buyNow.bgColor && {
-                backgroundColor: buttonColors.buyNow.bgColor,
-              }),
-              ...(buttonColors.buyNow.textColor && {
-                color: buttonColors.buyNow.textColor,
-              }),
-            }}
-          >
-            Buy Now
-          </Button>
+        <div className="space-y-2">
+          {buttons.map((button) => (
+            <Button
+              key={button.key}
+              variant={button.variant}
+              size={button.size}
+              onClick={button.onClick}
+              style={{
+                backgroundColor: button.colors.bgColor,
+                color: button.colors.textColor,
+              }}
+              className="w-full hover:cursor-pointer"
+            >
+              {button.icon && <span className="mr-2">{button.icon}</span>}
+              {button.label}
+            </Button>
+          ))}
         </div>
       );
     }
 
-    // Default horizontal layout
+    // Horizontal layout (default)
     return (
-      <div className="flex flex-col gap-2 mt-4">
+      <div className="flex flex-col gap-2">
         <div className="flex gap-2">
-          <Button
-            variant={addToFavButton?.variant || "ghost"}
-            size={addToFavButton?.size || "sm"}
-            onClick={() => addFav(productId)}
-            className="flex-1 min-w-0 hover:cursor-pointer"
-            style={{
-              ...(buttonColors.addToFav.bgColor && {
-                backgroundColor: buttonColors.addToFav.bgColor,
-              }),
-              ...(buttonColors.addToFav.textColor && {
-                color: buttonColors.addToFav.textColor,
-              }),
-            }}
-          >
-            <Heart className="mr-2 w-4 h-4" />
-          </Button>
-          <Button
-            variant={addToCartButton?.variant || "ghost"}
-            size={addToCartButton?.size || "sm"}
-            onClick={() => addCart(productId)}
-            className="flex-1 min-w-0 hover:cursor-pointer"
-            style={{
-              ...(buttonColors.addToCart.bgColor && {
-                backgroundColor: buttonColors.addToCart.bgColor,
-              }),
-              ...(buttonColors.addToCart.textColor && {
-                color: buttonColors.addToCart.textColor,
-              }),
-            }}
-          >
-            <ShoppingBag className="mr-2 w-4 h-4" />
-          </Button>
+          {buttons.slice(0, 2).map((button) => (
+            <Button
+              key={button.key}
+              variant={button.variant}
+              size={button.size}
+              onClick={button.onClick}
+              style={{
+                backgroundColor: button.colors.bgColor,
+                color: button.colors.textColor,
+              }}
+              className="flex-1 min-w-0 hover:cursor-pointer"
+            >
+              {button.icon && <span className="mr-2">{button.icon}</span>}
+            </Button>
+          ))}
         </div>
         <Button
-          variant={buyNowButton?.variant || "default"}
-          size={buyNowButton?.size || "default"}
-          onClick={() => buyNow(productId)}
-          className="w-full hover:cursor-pointer"
+          key={buttons[2].key}
+          variant={buttons[2].variant}
+          size={buttons[2].size}
+          onClick={buttons[2].onClick}
           style={{
-            ...(buttonColors.buyNow.bgColor && {
-              backgroundColor: buttonColors.buyNow.bgColor,
-            }),
-            ...(buttonColors.buyNow.textColor && {
-              color: buttonColors.buyNow.textColor,
-            }),
+            backgroundColor: buttons[2].colors.bgColor,
+            color: buttons[2].colors.textColor,
           }}
+          className="w-full hover:cursor-pointer"
         >
-          Buy Now
+          {buttons[2].label}
         </Button>
       </div>
     );
@@ -580,12 +540,12 @@ export function ProductCardBlock({
         className={`bg-white border border-gray-200 shadow-sm product-card-block dark:bg-gray-800 dark:border-gray-700 ${className}`}
         style={containerStyles}
       >
-        <div className="p-4 text-center">
+        <div className="text-center">
           <div className="animate-pulse">
-            <div className="mb-4 h-32 bg-gray-200 rounded"></div>
+            <div className="mx-auto mb-4 w-32 h-32 bg-gray-200 rounded"></div>
             <div className="mb-2 h-4 bg-gray-200 rounded"></div>
-            <div className="mb-2 w-3/4 h-4 bg-gray-200 rounded"></div>
-            <div className="mb-4 w-1/2 h-4 bg-gray-200 rounded"></div>
+            <div className="mx-auto mb-2 w-3/4 h-4 bg-gray-200 rounded"></div>
+            <div className="mx-auto mb-4 w-1/2 h-4 bg-gray-200 rounded"></div>
           </div>
           <p className="text-sm text-gray-500">Loading product...</p>
         </div>
@@ -597,11 +557,11 @@ export function ProductCardBlock({
   if (error) {
     return (
       <div
-        className={`bg-white border border-red-200 shadow-sm product-card-block dark:bg-gray-800 dark:border-red-700 ${className}`}
+        className={`p-3 space-y-2 bg-white rounded-lg border border-red-200 shadow-sm product-card-block dark:bg-gray-800 dark:border-red-700 ${className}`}
         style={containerStyles}
       >
-        <div className="p-4 text-center">
-          <div className="flex justify-center items-center mb-4 h-32 bg-red-50 rounded">
+        <div className="text-center">
+          <div className="flex justify-center items-center mx-auto mb-4 w-32 h-32 bg-red-50 rounded">
             <p className="text-sm text-red-500">⚠️</p>
           </div>
           <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
@@ -617,11 +577,11 @@ export function ProductCardBlock({
   if (!product) {
     return (
       <div
-        className={`bg-white border border-gray-200 shadow-sm product-card-block dark:bg-gray-800 dark:border-gray-700 ${className}`}
+        className={`p-3 space-y-2 bg-white rounded-lg border border-gray-200 shadow-sm product-card-block dark:bg-gray-800 dark:border-gray-700 ${className}`}
         style={containerStyles}
       >
-        <div className="p-4 text-center">
-          <div className="flex justify-center items-center mb-4 h-32 bg-gray-50 rounded">
+        <div className="text-center">
+          <div className="flex justify-center items-center mx-auto mb-4 w-32 h-32 bg-gray-50 rounded">
             <p className="text-sm text-gray-400">📦</p>
           </div>
           <p className="text-sm text-gray-500">No product selected</p>
@@ -635,16 +595,15 @@ export function ProductCardBlock({
 
   return (
     <div
-      className={`bg-white border border-gray-200 shadow-sm product-card-block dark:bg-gray-800 dark:border-gray-700 ${className}`}
+      className={`p-3 space-y-2 bg-white rounded-lg border border-gray-200 shadow-sm product-card-block dark:bg-gray-800 dark:border-gray-700 ${className}`}
       style={containerStyles}
     >
       {/* Product Image */}
       <div
-        className="overflow-hidden relative mx-auto"
+        className="overflow-hidden relative mx-auto w-full max-w-[176px]"
         style={{
           ...imageWrapperStyles,
-          width: `${imageSize.width}px`,
-          height: `${imageSize.height}px`,
+          aspectRatio: "1/1",
         }}
       >
         <Image
@@ -657,22 +616,18 @@ export function ProductCardBlock({
       </div>
 
       {/* Product Details */}
-      <div className="p-4">
+      <div className="space-y-2 text-left">
         {/* Product Name */}
-        <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-          {product.name}
-        </h3>
+        <h3 className="text-lg font-semibold leading-tight">{product.name}</h3>
 
         {/* Category */}
         {showCategory && (
-          <p className="mb-2 text-sm text-blue-500 dark:text-blue-400">
-            {product.category}
-          </p>
+          <p className="text-sm text-muted-foreground">{product.category}</p>
         )}
 
         {/* Price */}
         {showPrice && (
-          <p className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+          <p className="text-lg font-bold">
             {new Intl.NumberFormat("en-US", {
               style: "currency",
               currency: product.currencyCode,

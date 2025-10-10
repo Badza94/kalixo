@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { X } from "@workspace/ui/lucide-react";
 import { Button } from "@measured/puck";
 import { toast } from "sonner";
@@ -42,14 +42,9 @@ export function ThemeEditor({
   const [activeTab, setActiveTab] = useState<"light" | "dark">("light");
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    if (isOpen) {
-      fetchTheme();
-    }
-  }, [isOpen]);
-
-  const fetchTheme = async () => {
+  const fetchTheme = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch("/api/theme");
@@ -60,9 +55,24 @@ export function ThemeEditor({
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const saveTheme = async () => {
+  useEffect(() => {
+    if (isOpen) {
+      fetchTheme();
+    }
+  }, [isOpen, fetchTheme]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const saveTheme = useCallback(async () => {
     if (!themeConfig) return;
 
     setSaving(true);
@@ -91,32 +101,44 @@ export function ThemeEditor({
     } finally {
       setSaving(false);
     }
-  };
+  }, [themeConfig]);
 
-  const updateColor = (mode: "light" | "dark", key: string, value: string) => {
-    if (!themeConfig) return;
-    const newConfig = {
-      ...themeConfig,
-      [mode]: {
-        ...themeConfig[mode],
-        [key]: value,
-      },
-    };
-    setThemeConfig(newConfig);
-    // Trigger real-time preview
-    if (onThemeChange) {
-      onThemeChange(newConfig);
-    }
-  };
+  const updateColor = useCallback(
+    (mode: "light" | "dark", key: string, value: string) => {
+      if (!themeConfig) return;
 
-  const updateColorFromPicker = (
-    mode: "light" | "dark",
-    key: string,
-    hexValue: string
-  ) => {
-    const oklchValue = hexToOklch(hexValue);
-    updateColor(mode, key, oklchValue);
-  };
+      // Clear any existing timeout
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
+
+      // Update local state immediately for responsive UI
+      const newConfig = {
+        ...themeConfig,
+        [mode]: {
+          ...themeConfig[mode],
+          [key]: value,
+        },
+      };
+      setThemeConfig(newConfig);
+
+      // Debounce the external callback to prevent rapid updates
+      debounceTimeoutRef.current = setTimeout(() => {
+        if (onThemeChange) {
+          onThemeChange(newConfig);
+        }
+      }, 150); // 150ms debounce
+    },
+    [themeConfig, onThemeChange]
+  );
+
+  const updateColorFromPicker = useCallback(
+    (mode: "light" | "dark", key: string, hexValue: string) => {
+      const oklchValue = hexToOklch(hexValue);
+      updateColor(mode, key, oklchValue);
+    },
+    [updateColor]
+  );
 
   if (!isOpen) return null;
 

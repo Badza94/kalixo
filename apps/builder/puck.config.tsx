@@ -1271,6 +1271,20 @@ export const config: Config<Props> = {
             { label: "Hide Navigation", value: false },
           ],
         },
+        showDots: {
+          type: "radio",
+          options: [
+            { label: "Show Dot Indicators", value: true },
+            { label: "Hide Dot Indicators", value: false },
+          ],
+        },
+        showCounter: {
+          type: "radio",
+          options: [
+            { label: "Show Slide Counter", value: true },
+            { label: "Hide Slide Counter", value: false },
+          ],
+        },
         loop: {
           type: "radio",
           options: [
@@ -1383,16 +1397,14 @@ export const config: Config<Props> = {
         itemsPerSlide: 1,
         orientation: "horizontal",
         showNavigation: true,
+        showDots: false,
+        showCounter: true,
         loop: true,
         gap: "md",
         itemGap: "md",
         itemMinHeight: "300px",
         itemPadding: { all: "16px" },
-        items: [
-          { contents: [{ content: null }] },
-          { contents: [{ content: null }] },
-          { contents: [{ content: null }] },
-        ],
+        items: [{ contents: [{ content: null }] }],
       },
       render: ({ items, ...props }) => (
         <CarouselBlock {...props} items={items} />
@@ -1653,16 +1665,16 @@ export const config: Config<Props> = {
             />
           ),
         },
-        padding: {
-          type: "custom",
-          render: ({ onChange, value }) => (
-            <SpacingField
-              value={value || { all: "0" }}
-              onChange={onChange}
-              label="Padding"
-            />
-          ),
-        },
+        // padding: {
+        //   type: "custom",
+        //   render: ({ onChange, value }) => (
+        //     <SpacingField
+        //       value={value || { all: "0" }}
+        //       onChange={onChange}
+        //       label="Padding"
+        //     />
+        //   ),
+        // },
       },
       defaultProps: {
         productId: "17056",
@@ -1698,7 +1710,7 @@ export const config: Config<Props> = {
           backgroundColor: { colorKey: "transparent" },
         },
         borderRadius: { size: "lg" },
-        padding: { all: "0" },
+        // padding: { all: "0" },
       },
       render: (props) => <ProductCardBlock {...props} />,
     },
