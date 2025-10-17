@@ -250,7 +250,7 @@ export function ProductSelectorField({
                   : "Change Filter"}
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl max-h-[80vh]">
+            <DialogContent className="sm:max-w-4xl max-h-[80vh]">
               <DialogHeader>
                 <DialogTitle>
                   {value.selectionMode === "manual"
@@ -358,17 +358,16 @@ export function ProductSelectorField({
                               !isDisabled && handleProductToggle(product)
                             }
                           >
-                            <CardContent className="p-3">
-                              <div className="flex gap-3">
-                                <div className="relative flex-shrink-0 w-12 h-12">
-                                  <Image
-                                    src={product.image}
-                                    alt={product.name}
-                                    fill
-                                    className="object-cover rounded"
-                                  />
-                                </div>
-                                <div className="flex-1 min-w-0">
+                            <CardContent>
+                              <div className="flex gap-3 items-center">
+                                <Image
+                                  src={product.image}
+                                  alt={product.name}
+                                  width={64}
+                                  height={64}
+                                  className="object-cover w-16 h-auto rounded"
+                                />
+                                <div className="flex-1">
                                   <h4 className="text-sm font-medium truncate">
                                     {product.name}
                                   </h4>
@@ -378,10 +377,13 @@ export function ProductSelectorField({
                                   <p className="text-xs text-muted-foreground">
                                     Category: {product.category}
                                   </p>
-                                  <p className="text-sm font-medium">
-                                    {product.currencyCode} {product.price}
-                                  </p>
                                 </div>
+                                <p className="mr-2 text-xl font-medium">
+                                  {new Intl.NumberFormat("en-US", {
+                                    style: "currency",
+                                    currency: product.currencyCode,
+                                  }).format(Number(product.price))}
+                                </p>
                                 <Checkbox
                                   checked={isSelected}
                                   disabled={isDisabled}
