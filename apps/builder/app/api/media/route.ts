@@ -2,24 +2,61 @@ import { NextResponse } from "next/server";
 import { writeFile, readdir } from "fs/promises";
 import { join } from "path";
 
-// GET - List all images from public/shared
-export async function GET() {
+// GET - List all media files from public/shared
+export async function GET(request: Request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const type = searchParams.get("type"); // "image" or "video"
+
     const sharedDir = join(process.cwd(), "public", "shared");
     const files = await readdir(sharedDir);
 
-    // Filter for image files
-    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"];
-    const images = files
-      .filter((file) =>
-        imageExtensions.some((ext) => file.toLowerCase().endsWith(ext))
-      )
-      .map((file) => ({
-        name: file,
-        url: `/shared/${file}`,
-      }));
+    let mediaFiles: { name: string; url: string }[] = [];
 
-    return NextResponse.json({ images });
+    if (type === "video") {
+      // Filter for video files
+      const videoExtensions = [
+        ".mp4",
+        ".webm",
+        ".ogg",
+        ".avi",
+        ".mov",
+        ".wmv",
+        ".flv",
+        ".mkv",
+      ];
+      mediaFiles = files
+        .filter((file) =>
+          videoExtensions.some((ext) => file.toLowerCase().endsWith(ext))
+        )
+        .map((file) => ({
+          name: file,
+          url: `/shared/${file}`,
+        }));
+    } else {
+      // Default to images (for backward compatibility)
+      const imageExtensions = [
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".gif",
+        ".webp",
+        ".svg",
+      ];
+      mediaFiles = files
+        .filter((file) =>
+          imageExtensions.some((ext) => file.toLowerCase().endsWith(ext))
+        )
+        .map((file) => ({
+          name: file,
+          url: `/shared/${file}`,
+        }));
+    }
+
+    return NextResponse.json({
+      images: type !== "video" ? mediaFiles : [],
+      videos: type === "video" ? mediaFiles : [],
+    });
   } catch (error) {
     console.error("Error reading media library:", error);
     return NextResponse.json(
@@ -29,7 +66,7 @@ export async function GET() {
   }
 }
 
-// POST - Upload new image
+// POST - Upload new media file (image or video)
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
@@ -39,8 +76,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
 
-    // Validate file type
-    const validTypes = [
+    // Validate file type for both images and videos
+    const validImageTypes = [
       "image/jpeg",
       "image/jpg",
       "image/png",
@@ -48,9 +85,24 @@ export async function POST(request: Request) {
       "image/webp",
       "image/svg+xml",
     ];
-    if (!validTypes.includes(file.type)) {
+
+    const validVideoTypes = [
+      "video/mp4",
+      "video/webm",
+      "video/ogg",
+      "video/avi",
+      "video/mov",
+      "video/wmv",
+      "video/flv",
+      "video/mkv",
+    ];
+
+    const isValidImage = validImageTypes.includes(file.type);
+    const isValidVideo = validVideoTypes.includes(file.type);
+
+    if (!isValidImage && !isValidVideo) {
       return NextResponse.json(
-        { error: "Invalid file type. Please upload an image." },
+        { error: "Invalid file type. Please upload an image or video." },
         { status: 400 }
       );
     }
@@ -72,6 +124,7 @@ export async function POST(request: Request) {
       success: true,
       url: `/shared/${filename}`,
       filename,
+      type: isValidImage ? "image" : "video",
     });
   } catch (error) {
     console.error("Error uploading file:", error);

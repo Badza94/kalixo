@@ -16,6 +16,7 @@ import { ContainerBlock, ContainerBlockProps } from "./blocks/container-block";
 import { FlexBlock, FlexBlockProps } from "./blocks/flex-block";
 import { ButtonBlock, ButtonBlockProps } from "./blocks/button-block";
 import { ImageBlock, ImageBlockProps } from "./blocks/image-block";
+import { VideoBlock, VideoBlockProps } from "./blocks/video-block";
 import { DividerBlock, DividerBlockProps } from "./blocks/divider-block";
 import { CardBlock, CardBlockProps } from "./blocks/card-block";
 import { SpacerBlock, SpacerBlockProps } from "./blocks/spacer-block";
@@ -33,15 +34,8 @@ import { ColorPickerField } from "./fields/color-picker-field";
 import { SpacingField } from "./fields/spacing-field";
 import { BorderRadiusField } from "./fields/border-radius-field";
 import { ImagePickerField } from "./fields/image-picker-field";
+import { VideoPickerField } from "./fields/video-picker-field";
 import { SharedAssets } from "@workspace/ui/assets";
-
-interface SpacingValue {
-  top?: string;
-  right?: string;
-  bottom?: string;
-  left?: string;
-  all?: string;
-}
 
 type Props = {
   HeadingBlock: HeadingBlockProps;
@@ -54,6 +48,7 @@ type Props = {
   FlexBlock: FlexBlockProps;
   ButtonBlock: ButtonBlockProps;
   ImageBlock: ImageBlockProps;
+  VideoBlock: VideoBlockProps;
   SpacerBlock: SpacerBlockProps;
   DividerBlock: DividerBlockProps;
   CardBlock: CardBlockProps;
@@ -1084,6 +1079,109 @@ export const config: Config<Props> = {
       },
       render: (props) => <ImageBlock {...props} />,
     },
+    VideoBlock: {
+      label: "Video",
+      fields: {
+        src: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <VideoPickerField
+              value={value || ""}
+              onChange={onChange}
+              label="Video (Upload or paste YouTube/Vimeo URL)"
+            />
+          ),
+        },
+        maxWidth: {
+          type: "text",
+          label: "Max Width",
+        },
+        aspectRatio: {
+          type: "select",
+          options: [
+            { label: "Auto", value: "auto" },
+            { label: "16:9 (Widescreen)", value: "16/9" },
+            { label: "9:16 (Portrait)", value: "9/16" },
+            { label: "4:3 (Standard)", value: "4/3" },
+            { label: "1:1 (Square)", value: "1/1" },
+            { label: "21:9 (Ultrawide)", value: "21/9" },
+            { label: "Custom", value: "custom" },
+          ],
+        },
+        customAspectRatio: {
+          type: "text",
+          label: "Custom Aspect Ratio (e.g., 1.5)",
+        },
+        borderRadius: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <BorderRadiusField
+              value={value || { size: "none" }}
+              onChange={onChange}
+              label="Border Radius"
+            />
+          ),
+        },
+        shadow: {
+          type: "select",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Small", value: "sm" },
+            { label: "Medium", value: "md" },
+            { label: "Large", value: "lg" },
+            { label: "Extra Large", value: "xl" },
+            { label: "2XL", value: "2xl" },
+          ],
+        },
+        margin: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
+        },
+        controls: {
+          type: "radio",
+          options: [
+            { label: "Show Controls", value: true },
+            { label: "Hide Controls", value: false },
+          ],
+        },
+        autoplay: {
+          type: "radio",
+          options: [
+            { label: "Autoplay", value: true },
+            { label: "No Autoplay", value: false },
+          ],
+        },
+        loop: {
+          type: "radio",
+          options: [
+            { label: "Loop", value: true },
+            { label: "No Loop", value: false },
+          ],
+        },
+        muted: {
+          type: "radio",
+          options: [
+            { label: "Muted", value: true },
+            { label: "Not Muted", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        src: "",
+        aspectRatio: "16/9",
+        maxWidth: "100%",
+        controls: true,
+        autoplay: false,
+        loop: false,
+        muted: false,
+      },
+      render: (props) => <VideoBlock {...props} />,
+    },
     SpacerBlock: {
       label: "Spacer",
       fields: {
@@ -2070,6 +2168,7 @@ export const config: Config<Props> = {
       components: [
         "ButtonBlock",
         "ImageBlock",
+        "VideoBlock",
         "CardBlock",
         "CarouselBlock",
         "ProductCardBlock",
