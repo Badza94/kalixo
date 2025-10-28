@@ -34,6 +34,7 @@ export interface FormTemplate {
     type: "newsletter" | "contact" | "survey" | "custom";
     endpoint?: string;
     successMessage?: string;
+    errorMessage?: string;
   };
 }
 

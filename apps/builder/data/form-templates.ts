@@ -24,6 +24,7 @@ export const FORM_TEMPLATES: FormTemplate[] = [
     submitAction: {
       type: "newsletter",
       successMessage: "Thanks for subscribing to our newsletter!",
+      errorMessage: "Failed to subscribe. Please try again.",
     },
   },
   {
@@ -74,6 +75,7 @@ export const FORM_TEMPLATES: FormTemplate[] = [
     submitAction: {
       type: "contact",
       successMessage: "Message sent successfully! We'll get back to you soon.",
+      errorMessage: "Failed to send message. Please try again.",
     },
   },
   {
@@ -126,6 +128,7 @@ export const FORM_TEMPLATES: FormTemplate[] = [
       type: "survey",
       successMessage:
         "Thank you for your feedback! Your input helps us improve.",
+      errorMessage: "Failed to submit survey. Please try again.",
     },
   },
   {
@@ -175,6 +178,7 @@ export const FORM_TEMPLATES: FormTemplate[] = [
       type: "contact",
       successMessage:
         "Registration successful! You'll receive a confirmation email shortly.",
+      errorMessage: "Failed to register. Please try again.",
     },
   },
   {
@@ -219,6 +223,7 @@ export const FORM_TEMPLATES: FormTemplate[] = [
     submitAction: {
       type: "survey",
       successMessage: "Thank you for your feedback! We appreciate your input.",
+      errorMessage: "Failed to submit feedback. Please try again.",
     },
   },
 ];

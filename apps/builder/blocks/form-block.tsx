@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import { FormBlockProps, FormField, FormTemplate } from "../types/form";
+import { useForm } from "@workspace/ui/lib/react-hook-form";
+import { zodResolver } from "@workspace/ui/lib/hookform";
+import * as z from "@workspace/ui/lib/zod";
+import { FormBlockProps, FormTemplate } from "../types/form";
 import { FormFieldRenderer } from "../components/form-field-renderer";
 import { Button } from "@workspace/ui/components/button";
+import { Form } from "@workspace/ui/components/form";
 import { cn } from "@workspace/ui/lib/utils";
-import { CheckCircle } from "@workspace/ui/lucide-react";
 import { FORM_TEMPLATES } from "../data/form-templates";
+import { toast } from "sonner";
 
 export function FormBlock({
   template,
@@ -14,90 +17,66 @@ export function FormBlock({
   styling,
   className,
 }: FormBlockProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [formData, setFormData] = useState<Record<string, any>>({});
-
   // Resolve template from ID if needed
   const resolvedTemplate: FormTemplate =
     typeof template === "string"
       ? FORM_TEMPLATES.find((t) => t.id === template) || FORM_TEMPLATES[0]
       : template;
 
-  // Merge template fields with custom fields
+  // Combine template fields with custom fields
   const allFields = [...resolvedTemplate.fields, ...(customFields || [])];
 
-  const validateField = (field: FormField, value: any): string | null => {
-    if (
-      field.required &&
-      (!value || (typeof value === "string" && value.trim() === ""))
-    ) {
-      return `${field.label} is required`;
-    }
-
-    if (field.validation) {
-      const { minLength, maxLength, pattern, min, max } = field.validation;
-
-      if (typeof value === "string") {
-        if (minLength && value.length < minLength) {
-          return `${field.label} must be at least ${minLength} characters`;
-        }
-        if (maxLength && value.length > maxLength) {
-          return `${field.label} must be no more than ${maxLength} characters`;
-        }
-        if (pattern && !new RegExp(pattern).test(value)) {
-          return `${field.label} format is invalid`;
-        }
-      }
-
-      if (typeof value === "number") {
-        if (min !== undefined && value < min) {
-          return `${field.label} must be at least ${min}`;
-        }
-        if (max !== undefined && value > max) {
-          return `${field.label} must be no more than ${max}`;
-        }
-      }
-    }
-
-    return null;
-  };
-
-  const validateForm = (): boolean => {
-    const newErrors: Record<string, string> = {};
-    let isValid = true;
+  // Create Zod schema from form fields
+  const createZodSchema = () => {
+    const schemaFields: Record<string, z.ZodTypeAny> = {};
 
     allFields.forEach((field) => {
-      const value = formData[field.id];
-      const error = validateField(field, value);
-      if (error) {
-        newErrors[field.id] = error;
-        isValid = false;
+      let fieldSchema: z.ZodTypeAny;
+
+      switch (field.type) {
+        case "email":
+          fieldSchema = z.string().email("Invalid email address");
+          break;
+        case "number":
+          fieldSchema = z.coerce.number();
+          break;
+        case "checkbox":
+          fieldSchema = z.boolean();
+          break;
+        case "select":
+        case "radio":
+          fieldSchema = z.string();
+          break;
+        default:
+          fieldSchema = z.string();
       }
+
+      // Make required fields non-optional
+      if (field.required && fieldSchema instanceof z.ZodString) {
+        fieldSchema = fieldSchema.min(1, `${field.label} is required`);
+      } else if (!field.required) {
+        fieldSchema = fieldSchema.optional();
+      }
+
+      schemaFields[field.id] = fieldSchema;
     });
 
-    setErrors(newErrors);
-    return isValid;
+    return z.object(schemaFields);
   };
 
-  const handleFieldChange = (fieldId: string, value: any) => {
-    setFormData((prev) => ({ ...prev, [fieldId]: value }));
-    // Clear error when user starts typing
-    if (errors[fieldId]) {
-      setErrors((prev) => ({ ...prev, [fieldId]: "" }));
-    }
-  };
+  const form = useForm({
+    resolver: zodResolver(createZodSchema()),
+    defaultValues: allFields.reduce(
+      (acc, field) => {
+        acc[field.id] =
+          field.defaultValue || (field.type === "checkbox" ? false : "");
+        return acc;
+      },
+      {} as Record<string, any>
+    ),
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
-
-    setIsSubmitting(true);
-
+  const onSubmit = async (data: Record<string, any>) => {
     try {
       const submitData = {
         template: resolvedTemplate.id,
@@ -105,7 +84,7 @@ export function FormBlock({
           id: field.id,
           label: field.label,
           type: field.type,
-          value: formData[field.id],
+          value: data[field.id],
         })),
         timestamp: new Date().toISOString(),
       };
@@ -131,12 +110,20 @@ export function FormBlock({
           break;
       }
 
-      setIsSubmitted(true);
+      // Show success toast
+      toast.success(
+        resolvedTemplate.submitAction.successMessage ||
+          "Form submitted successfully!"
+      );
+
+      // Reset form
+      form.reset();
     } catch (error) {
       console.error("Form submission error:", error);
-      // You could show a toast notification here
-    } finally {
-      setIsSubmitting(false);
+      // Show error toast
+      toast.error(
+        error instanceof Error ? error.message : "Failed to submit form"
+      );
     }
   };
 
@@ -151,7 +138,10 @@ export function FormBlock({
     });
 
     if (!response.ok) {
-      throw new Error("Failed to submit newsletter form");
+      throw new Error(
+        resolvedTemplate.submitAction.errorMessage ||
+          "Failed to submit newsletter form"
+      );
     }
   };
 
@@ -165,7 +155,10 @@ export function FormBlock({
     });
 
     if (!response.ok) {
-      throw new Error("Failed to submit contact form");
+      throw new Error(
+        resolvedTemplate.submitAction.errorMessage ||
+          "Failed to submit contact form"
+      );
     }
   };
 
@@ -179,7 +172,9 @@ export function FormBlock({
     });
 
     if (!response.ok) {
-      throw new Error("Failed to submit survey");
+      throw new Error(
+        resolvedTemplate.submitAction.errorMessage || "Failed to submit survey"
+      );
     }
   };
 
@@ -193,25 +188,12 @@ export function FormBlock({
     });
 
     if (!response.ok) {
-      throw new Error("Failed to submit to custom endpoint");
+      throw new Error(
+        resolvedTemplate.submitAction.errorMessage ||
+          "Failed to submit to custom endpoint"
+      );
     }
   };
-
-  if (isSubmitted) {
-    return (
-      <div
-        className={cn(
-          "p-6 text-center bg-green-50 rounded-lg border border-green-200",
-          className
-        )}
-      >
-        <CheckCircle className="mx-auto mb-2 w-8 h-8 text-green-600" />
-        <p className="font-medium text-green-800">
-          {resolvedTemplate.submitAction.successMessage}
-        </p>
-      </div>
-    );
-  }
 
   const spacingClasses = {
     tight: "space-y-2",
@@ -219,60 +201,66 @@ export function FormBlock({
     loose: "space-y-6",
   };
 
-  const fieldSpacingClasses = {
-    sm: "gap-2",
-    md: "gap-4",
-    lg: "gap-6",
-  };
-
   const layoutClasses = {
     vertical: "flex flex-col",
     horizontal: "grid grid-cols-1 md:grid-cols-2 gap-4",
-    grid: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
+    grid: "grid grid-cols-1 md:grid-cols-2 gap-4",
+  };
+
+  const buttonVariants = {
+    primary: "default",
+    secondary: "secondary",
+    outline: "outline",
+  } as const;
+
+  const getButtonSize = (size: "sm" | "md" | "lg") => {
+    switch (size) {
+      case "sm":
+        return "sm" as const;
+      case "md":
+        return "default" as const;
+      case "lg":
+        return "lg" as const;
+      default:
+        return "default" as const;
+    }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={cn("space-y-4", spacingClasses[styling.spacing], className)}
+    <div
+      className={cn(
+        "w-full max-w-2xl mx-auto",
+        spacingClasses[styling.spacing],
+        className
+      )}
     >
-      <div
-        className={cn(
-          layoutClasses[styling.layout],
-          fieldSpacingClasses[styling.fieldSpacing]
-        )}
-      >
-        {allFields.map((field) => (
-          <FormFieldRenderer
-            key={field.id}
-            field={field}
-            value={formData[field.id]}
-            onChange={(value) => handleFieldChange(field.id, value)}
-            error={errors[field.id]}
-          />
-        ))}
-      </div>
-
-      <div className="pt-4">
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          variant={
-            styling.buttonStyle === "primary" ? "default" : styling.buttonStyle
-          }
-          size={styling.buttonSize}
-          className="w-full"
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className={cn("space-y-6", layoutClasses[styling.layout])}
         >
-          {isSubmitting ? (
-            <>
-              <div className="mr-2 w-4 h-4 rounded-full border-b-2 border-white animate-spin" />
-              Submitting...
-            </>
-          ) : (
-            styling.buttonText
-          )}
-        </Button>
-      </div>
-    </form>
+          {allFields.map((field) => (
+            <FormFieldRenderer
+              key={field.id}
+              field={field}
+              control={form.control}
+            />
+          ))}
+
+          <div className="flex justify-end">
+            <Button
+              type="submit"
+              variant={buttonVariants[styling.buttonStyle] as any}
+              size={getButtonSize(styling.buttonSize as "sm" | "md" | "lg")}
+              disabled={form.formState.isSubmitting}
+            >
+              {form.formState.isSubmitting
+                ? "Submitting..."
+                : styling.buttonText}
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </div>
   );
 }

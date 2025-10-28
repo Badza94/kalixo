@@ -1,9 +1,9 @@
 "use client";
 
+import { Control } from "@workspace/ui/lib/react-hook-form";
 import { FormField } from "../types/form";
 import { Input } from "@workspace/ui/components/input";
 import { Textarea } from "@workspace/ui/components/textarea";
-import { Label } from "@workspace/ui/components/label";
 import { Checkbox } from "@workspace/ui/components/checkbox";
 import {
   RadioGroup,
@@ -16,137 +16,133 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@workspace/ui/components/select";
+import {
+  FormControl,
+  FormField as ShadcnFormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@workspace/ui/components/form";
 
 interface FormFieldRendererProps {
   field: FormField;
-  value?: any;
-  onChange?: (value: any) => void;
-  error?: string;
+  control: Control<any>;
 }
 
-export function FormFieldRenderer({
-  field,
-  value,
-  onChange,
-  error,
-}: FormFieldRendererProps) {
+export function FormFieldRenderer({ field, control }: FormFieldRendererProps) {
   const fieldId = `field-${field.id}`;
   const isRequired = field.required;
 
-  const renderField = () => {
-    switch (field.type) {
-      case "text":
-      case "email":
-      case "tel":
-      case "url":
-      case "number":
-      case "date":
-        return (
-          <Input
-            id={fieldId}
-            type={field.type}
-            placeholder={field.placeholder}
-            value={value || ""}
-            onChange={(e) => onChange?.(e.target.value)}
-            required={isRequired}
-            className={error ? "border-red-500" : ""}
-          />
-        );
-
-      case "textarea":
-        return (
-          <Textarea
-            id={fieldId}
-            placeholder={field.placeholder}
-            value={value || ""}
-            onChange={(e) => onChange?.(e.target.value)}
-            required={isRequired}
-            className={error ? "border-red-500" : ""}
-            rows={4}
-          />
-        );
-
-      case "select":
-        return (
-          <Select value={value || ""} onValueChange={onChange}>
-            <SelectTrigger className={error ? "border-red-500" : ""}>
-              <SelectValue
-                placeholder={field.placeholder || "Select an option"}
-              />
-            </SelectTrigger>
-            <SelectContent>
-              {field.options?.map((option) => (
-                <SelectItem key={option} value={option}>
-                  {option}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        );
-
-      case "radio":
-        return (
-          <RadioGroup value={value || ""} onValueChange={onChange}>
-            {field.options?.map((option) => (
-              <div key={option} className="flex items-center space-x-2">
-                <RadioGroupItem value={option} id={`${fieldId}-${option}`} />
-                <Label htmlFor={`${fieldId}-${option}`}>{option}</Label>
-              </div>
-            ))}
-          </RadioGroup>
-        );
-
-      case "checkbox":
-        return (
-          <div className="space-y-2">
-            {field.options?.map((option) => (
-              <div key={option} className="flex items-center space-x-2">
-                <Checkbox
-                  id={`${fieldId}-${option}`}
-                  checked={
-                    Array.isArray(value) ? value.includes(option) : false
-                  }
-                  onCheckedChange={(checked) => {
-                    if (Array.isArray(value)) {
-                      if (checked) {
-                        onChange?.([...value, option]);
-                      } else {
-                        onChange?.(value.filter((v) => v !== option));
-                      }
-                    } else {
-                      onChange?.(checked ? [option] : []);
-                    }
-                  }}
-                />
-                <Label htmlFor={`${fieldId}-${option}`}>{option}</Label>
-              </div>
-            ))}
-          </div>
-        );
-
-      default:
-        return (
-          <Input
-            id={fieldId}
-            type="text"
-            placeholder={field.placeholder}
-            value={value || ""}
-            onChange={(e) => onChange?.(e.target.value)}
-            required={isRequired}
-            className={error ? "border-red-500" : ""}
-          />
-        );
-    }
-  };
-
   return (
-    <div className="space-y-2">
-      <Label htmlFor={fieldId} className="text-sm font-medium">
-        {field.label}
-        {isRequired && <span className="ml-1 text-red-500">*</span>}
-      </Label>
-      {renderField()}
-      {error && <p className="text-sm text-red-500">{error}</p>}
-    </div>
+    <ShadcnFormField
+      control={control}
+      name={field.id}
+      render={({ field: formField }) => (
+        <FormItem>
+          <FormLabel className="text-sm font-medium">
+            {field.label}
+            {isRequired && <span className="ml-1 text-red-500">*</span>}
+          </FormLabel>
+          <FormControl>
+            {field.type === "text" ||
+            field.type === "email" ||
+            field.type === "tel" ||
+            field.type === "url" ||
+            field.type === "date" ? (
+              <Input
+                id={fieldId}
+                type={field.type}
+                placeholder={field.placeholder}
+                {...formField}
+              />
+            ) : field.type === "number" ? (
+              <Input
+                id={fieldId}
+                type="number"
+                placeholder={field.placeholder}
+                {...formField}
+                onChange={(e) => formField.onChange(Number(e.target.value))}
+              />
+            ) : field.type === "textarea" ? (
+              <Textarea
+                id={fieldId}
+                placeholder={field.placeholder}
+                {...formField}
+                rows={4}
+              />
+            ) : field.type === "select" ? (
+              <Select
+                value={formField.value || ""}
+                onValueChange={formField.onChange}
+              >
+                <SelectTrigger>
+                  <SelectValue
+                    placeholder={field.placeholder || "Select an option"}
+                  />
+                </SelectTrigger>
+                <SelectContent>
+                  {field.options?.map((option) => (
+                    <SelectItem key={option} value={option}>
+                      {option}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            ) : field.type === "radio" ? (
+              <RadioGroup
+                value={formField.value || ""}
+                onValueChange={formField.onChange}
+              >
+                {field.options?.map((option) => (
+                  <div key={option} className="flex items-center space-x-2">
+                    <RadioGroupItem
+                      value={option}
+                      id={`${fieldId}-${option}`}
+                    />
+                    <label htmlFor={`${fieldId}-${option}`}>{option}</label>
+                  </div>
+                ))}
+              </RadioGroup>
+            ) : field.type === "checkbox" ? (
+              <div className="space-y-2">
+                {field.options?.map((option) => (
+                  <div key={option} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={`${fieldId}-${option}`}
+                      checked={
+                        Array.isArray(formField.value)
+                          ? formField.value.includes(option)
+                          : false
+                      }
+                      onCheckedChange={(checked) => {
+                        const currentValue = Array.isArray(formField.value)
+                          ? formField.value
+                          : [];
+                        if (checked) {
+                          formField.onChange([...currentValue, option]);
+                        } else {
+                          formField.onChange(
+                            currentValue.filter((v: string) => v !== option)
+                          );
+                        }
+                      }}
+                    />
+                    <label htmlFor={`${fieldId}-${option}`}>{option}</label>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <Input
+                id={fieldId}
+                type="text"
+                placeholder={field.placeholder}
+                {...formField}
+              />
+            )}
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
   );
 }
