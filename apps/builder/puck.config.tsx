@@ -34,9 +34,12 @@ import { ColorPickerField } from "./fields/color-picker-field";
 import { SpacingField } from "./fields/spacing-field";
 import { BorderRadiusField } from "./fields/border-radius-field";
 import { ImagePickerField } from "./fields/image-picker-field";
-import { VideoPickerField } from "./fields/video-picker-field";
+import { FormBlock } from "./blocks/form-block";
+import { FormFieldEditor } from "./components/form-field-editor";
+import { FORM_TEMPLATES, DEFAULT_FORM_STYLING } from "./data/form-templates";
 import { SharedAssets } from "@workspace/ui/assets";
-
+import { VideoPickerField } from "./fields/video-picker-field";
+import { FormBlockProps } from "./types/form";
 type Props = {
   HeadingBlock: HeadingBlockProps;
   TextBlock: TextBlockProps;
@@ -55,6 +58,7 @@ type Props = {
   CarouselBlock: CarouselBlockProps;
   ProductCardBlock: ProductCardBlockProps;
   ProductGridBlock: ProductGridBlockProps;
+  FormBlock: FormBlockProps;
 };
 
 export const config: Config<Props> = {
@@ -2156,6 +2160,85 @@ export const config: Config<Props> = {
       },
       render: (props) => <ProductGridBlock {...props} />,
     },
+    FormBlock: {
+      label: "Form",
+      fields: {
+        template: {
+          type: "select",
+          label: "Form Template",
+          options: FORM_TEMPLATES.map((template) => ({
+            label: template.name,
+            value: template.id,
+          })),
+        },
+        customFields: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <FormFieldEditor fields={value || []} onChange={onChange} />
+          ),
+        },
+        styling: {
+          type: "object",
+          objectFields: {
+            layout: {
+              type: "select",
+              label: "Layout",
+              options: [
+                { label: "Vertical", value: "vertical" },
+                { label: "Horizontal", value: "horizontal" },
+                { label: "Grid", value: "grid" },
+              ],
+            },
+            spacing: {
+              type: "select",
+              label: "Spacing",
+              options: [
+                { label: "Tight", value: "tight" },
+                { label: "Normal", value: "normal" },
+                { label: "Loose", value: "loose" },
+              ],
+            },
+            buttonStyle: {
+              type: "select",
+              label: "Button Style",
+              options: [
+                { label: "Primary", value: "primary" },
+                { label: "Secondary", value: "secondary" },
+                { label: "Outline", value: "outline" },
+              ],
+            },
+            buttonText: {
+              type: "text",
+              label: "Button Text",
+            },
+            buttonSize: {
+              type: "select",
+              label: "Button Size",
+              options: [
+                { label: "Small", value: "sm" },
+                { label: "Default", value: "default" },
+                { label: "Large", value: "lg" },
+              ],
+            },
+            fieldSpacing: {
+              type: "select",
+              label: "Field Spacing",
+              options: [
+                { label: "Small", value: "sm" },
+                { label: "Medium", value: "md" },
+                { label: "Large", value: "lg" },
+              ],
+            },
+          },
+        },
+      },
+      defaultProps: {
+        template: FORM_TEMPLATES[0].id,
+        customFields: [],
+        styling: DEFAULT_FORM_STYLING,
+      },
+      render: (props) => <FormBlock {...props} />,
+    },
   },
   categories: {
     typography: {
@@ -2173,6 +2256,7 @@ export const config: Config<Props> = {
         "CarouselBlock",
         "ProductCardBlock",
         "ProductGridBlock",
+        "FormBlock",
         "DividerBlock",
         "SpacerBlock",
       ],

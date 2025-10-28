@@ -104,8 +104,6 @@ export function GridBlock({
     ...(resolvedBorderRadius && { borderRadius: resolvedBorderRadius }),
   };
 
-  console.log("GridBlock - columns:", columns, "baseClasses:", baseClasses);
-
   // Render items from the array
   const renderColumns = () => {
     if (!items || items.length === 0) {
