@@ -437,7 +437,25 @@ export const config: Config<Props> = {
             { label: "Mobile", value: "mobile" },
           ],
         },
-        logo: { type: "text" },
+        logo: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ImagePickerField
+              value={value || ""}
+              onChange={onChange}
+              label="Logo"
+            />
+          ),
+        },
+        position: {
+          type: "select",
+          label: "Position",
+          options: [
+            { label: "Fixed", value: "fixed" },
+            { label: "Sticky", value: "sticky" },
+            { label: "Relative", value: "relative" },
+          ],
+        },
         items: {
           type: "array",
           arrayFields: {
@@ -494,7 +512,8 @@ export const config: Config<Props> = {
       },
       defaultProps: {
         type: "header",
-        logo: "STORE",
+        logo: SharedAssets.placeholder,
+        position: "sticky",
         items: [
           {
             id: "1",

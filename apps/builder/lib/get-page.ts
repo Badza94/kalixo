@@ -20,10 +20,35 @@ export const getPage = (pagePath: string) => {
     if (fs.existsSync(testPath)) {
       console.log("✅ Found database.json at:", testPath);
       try {
-        allData = JSON.parse(fs.readFileSync(testPath, "utf-8"));
+        const fileContent = fs.readFileSync(testPath, "utf-8").trim();
+
+        // Handle empty file
+        if (!fileContent) {
+          console.log("⚠️ database.json is empty, returning empty data");
+          allData = {};
+          break;
+        }
+
+        allData = JSON.parse(fileContent);
+
+        // Ensure allData is an object
+        if (
+          typeof allData !== "object" ||
+          allData === null ||
+          Array.isArray(allData)
+        ) {
+          console.log(
+            "⚠️ database.json contains invalid data, treating as empty"
+          );
+          allData = {};
+        }
+
         break;
       } catch (error) {
         console.error("Error reading database.json:", error);
+        // If JSON is invalid, treat as empty
+        allData = {};
+        break;
       }
     }
   }

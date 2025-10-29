@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   Search,
   ShoppingBag,
@@ -10,6 +11,7 @@ import {
   X,
   ChevronRight,
 } from "@workspace/ui/lucide-react";
+import { SharedAssets } from "@workspace/ui/assets";
 import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
 import {
@@ -53,6 +55,7 @@ export interface NavigationBlockProps {
   showWishlist: boolean;
   showAccount: boolean;
   cartCount: number;
+  position?: "fixed" | "relative" | "sticky";
 }
 
 export function NavigationBlock({
@@ -64,6 +67,7 @@ export function NavigationBlock({
   showWishlist,
   showAccount,
   cartCount,
+  position = "sticky",
 }: NavigationBlockProps) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -77,6 +81,45 @@ export function NavigationBlock({
       newExpanded.add(itemId);
     }
     setExpandedItems(newExpanded);
+  };
+
+  const isImageUrl = (str: string): boolean => {
+    if (!str || typeof str !== "string") return false;
+
+    // Check if it's a data URL
+    if (str.startsWith("data:image")) return true;
+
+    // Check if it's an absolute URL (http/https)
+    if (str.startsWith("http://") || str.startsWith("https://")) {
+      try {
+        new URL(str);
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    // Check if it looks like a path (starts with /)
+    if (str.startsWith("/")) return true;
+
+    return false;
+  };
+
+  const renderLogo = () => {
+    // Always render an image - use placeholder if logo is not a valid image URL
+    const imageSrc = logo && isImageUrl(logo) ? logo : SharedAssets.placeholder;
+
+    return (
+      <div className="relative h-8 w-[120px] flex items-center">
+        <Image
+          src={imageSrc}
+          alt="Logo"
+          fill
+          className="object-contain object-left"
+          sizes="120px"
+        />
+      </div>
+    );
   };
 
   const renderNavigationItem = (item: NavigationItem, isMobile = false) => {
@@ -240,9 +283,18 @@ export function NavigationBlock({
     </div>
   );
 
+  const positionClass =
+    position === "fixed"
+      ? "fixed"
+      : position === "sticky"
+        ? "sticky"
+        : "relative";
+
   if (type === "sidebar") {
     return (
-      <header className="sticky top-0 z-50 border-b border-border bg-background">
+      <header
+        className={`top-0 z-50 w-full border-b ${positionClass} border-border bg-background`}
+      >
         <div className="container px-4 mx-auto">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
@@ -311,7 +363,7 @@ export function NavigationBlock({
                 </SheetContent>
               </Sheet>
 
-              <h1 className="text-xl font-medium tracking-tight">{logo}</h1>
+              {renderLogo()}
             </div>
 
             {renderActions()}
@@ -323,7 +375,9 @@ export function NavigationBlock({
 
   if (type === "mobile") {
     return (
-      <header className="sticky top-0 z-50 border-b border-border bg-background">
+      <header
+        className={`top-0 z-50 w-full border-b ${positionClass} border-border bg-background`}
+      >
         <div className="container px-4 mx-auto">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
@@ -334,7 +388,7 @@ export function NavigationBlock({
               >
                 <Menu className="w-5 h-5" />
               </Button>
-              <h1 className="text-xl font-medium tracking-tight">{logo}</h1>
+              {renderLogo()}
             </div>
 
             {renderActions()}
@@ -369,12 +423,12 @@ export function NavigationBlock({
 
   if (type === "mega-menu") {
     return (
-      <header className="sticky top-0 z-50 border-b border-border bg-background">
+      <header
+        className={`top-0 z-50 w-full border-b ${positionClass} border-border bg-background`}
+      >
         <div className="container px-4 mx-auto">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-medium tracking-tight">{logo}</h1>
-            </div>
+            <div className="flex items-center">{renderLogo()}</div>
 
             <NavigationMenu className="hidden lg:flex">
               <NavigationMenuList>
@@ -391,12 +445,12 @@ export function NavigationBlock({
 
   // Default header navigation
   return (
-    <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+    <header
+      className={`top-0 z-50 w-full border-b backdrop-blur ${positionClass} border-border bg-background/95 supports-[backdrop-filter]:bg-background/60`}
+    >
       <div className="container px-4 mx-auto">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <h1 className="text-xl font-medium tracking-tight">{logo}</h1>
-          </div>
+          <div className="flex items-center">{renderLogo()}</div>
 
           <nav className="hidden items-center space-x-8 md:flex">
             {items.map((item) => renderNavigationItem(item))}
