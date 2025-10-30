@@ -61,6 +61,7 @@ export interface ThemeConfig {
 // Helper to get color options for select fields
 export function getThemeColorOptions() {
   return [
+    { label: "Transparent", value: "transparent" },
     { label: "Background", value: "background" },
     { label: "Foreground", value: "foreground" },
     { label: "Primary", value: "primary" },
@@ -110,6 +111,10 @@ export function resolveColor(
   theme?: ThemeConfig,
   mode: "light" | "dark" = "light"
 ): string {
+  if (colorKey === "transparent") {
+    return "transparent";
+  }
+
   if (colorKey === "custom" && customColor) {
     return customColor;
   }

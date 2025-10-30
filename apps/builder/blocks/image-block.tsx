@@ -20,6 +20,7 @@ export interface ImageBlockProps {
   customAspectRatio?: string;
   fill?: boolean;
   maxWidth?: string;
+  maxHeight?: string;
   objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
   objectPosition?:
     | "center"
@@ -64,6 +65,7 @@ export function ImageBlock({
   customAspectRatio,
   fill = false,
   maxWidth = "100%",
+  maxHeight = "100%",
   objectFit = "cover",
   objectPosition = "center",
   borderRadius,
@@ -135,6 +137,7 @@ export function ImageBlock({
   const containerStyles: React.CSSProperties = {
     ...buildMargin(margin),
     maxWidth,
+    maxHeight,
     width: fill ? "100%" : undefined,
   };
 
@@ -172,6 +175,8 @@ export function ImageBlock({
       style={{
         objectFit,
         objectPosition,
+        maxHeight,
+        width: maxWidth,
         ...imageStyles,
       }}
       priority={priority}

@@ -456,6 +456,17 @@ export const config: Config<Props> = {
             { label: "Relative", value: "relative" },
           ],
         },
+        fontSize: {
+          type: "select",
+          label: "Font Size",
+          options: [
+            { label: "XS", value: "xs" },
+            { label: "SM", value: "sm" },
+            { label: "MD", value: "md" },
+            { label: "LG", value: "lg" },
+            { label: "XL", value: "xl" },
+          ],
+        },
         items: {
           type: "array",
           arrayFields: {
@@ -509,11 +520,38 @@ export const config: Config<Props> = {
           ],
         },
         cartCount: { type: "number" },
+        backgroundColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "background" }}
+              onChange={onChange}
+              label="Background Color"
+            />
+          ),
+        },
+        textColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "foreground" }}
+              onChange={onChange}
+              label="Text Color"
+            />
+          ),
+        },
       },
       defaultProps: {
         type: "header",
         logo: SharedAssets.placeholder,
         position: "sticky",
+        fontSize: "sm",
+        backgroundColor: {
+          colorKey: "background",
+        },
+        textColor: {
+          colorKey: "foreground",
+        },
         items: [
           {
             id: "1",
@@ -994,6 +1032,10 @@ export const config: Config<Props> = {
         maxWidth: {
           type: "text",
           label: "Max Width",
+        },
+        maxHeight: {
+          type: "text",
+          label: "Max Height",
         },
         aspectRatio: {
           type: "select",
