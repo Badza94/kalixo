@@ -1,6 +1,9 @@
 "use client";
 
 import { Button } from "@workspace/ui/components/button";
+import Image from "next/image";
+import * as LucideIcons from "@workspace/ui/lucide-react";
+import { SharedAssets } from "@workspace/ui/assets";
 import { resolveColor } from "../types/theme";
 import { useThemeConfig } from "../hooks/use-theme-config";
 
@@ -15,6 +18,9 @@ interface SpacingValue {
 export interface ButtonBlockProps {
   text: string;
   href?: string;
+  icon?: string; // Icon name from lucide-react
+  image?: string; // Image URL
+  iconPosition?: "left" | "right";
   variant?:
     | "default"
     | "destructive"
@@ -41,6 +47,9 @@ export interface ButtonBlockProps {
 export function ButtonBlock({
   text,
   href,
+  icon,
+  image,
+  iconPosition = "left",
   variant = "default",
   size = "default",
   asChild = false,
@@ -52,6 +61,32 @@ export function ButtonBlock({
   className = "",
 }: ButtonBlockProps) {
   const { themeConfig } = useThemeConfig();
+
+  // Get icon component from lucide-react
+  const IconComponent = icon
+    ? (LucideIcons[icon as keyof typeof LucideIcons] as React.ComponentType<{
+        className?: string;
+      }>)
+    : null;
+
+  // Check if image URL is valid
+  const isValidImageUrl = (url: string): boolean => {
+    if (!url || typeof url !== "string") return false;
+    if (url.startsWith("data:image")) return true;
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      try {
+        new URL(url);
+        return true;
+      } catch {
+        return false;
+      }
+    }
+    if (url.startsWith("/")) return true;
+    return false;
+  };
+
+  const imageSrc =
+    image && isValidImageUrl(image) ? image : SharedAssets.placeholder;
 
   // Build spacing
   const buildSpacing = (spacing?: SpacingValue) => {
@@ -108,6 +143,52 @@ export function ButtonBlock({
     ...(resolvedTextColor && { color: resolvedTextColor }),
   };
 
+  const buttonContent = (
+    <>
+      {icon && IconComponent && iconPosition === "left" && (
+        <IconComponent className="w-4 h-4" />
+      )}
+      {image && iconPosition === "left" && (
+        <div className="relative w-4 h-4">
+          <Image
+            src={imageSrc}
+            alt=""
+            fill
+            className="object-contain"
+            sizes="16px"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              if (target.src !== SharedAssets.placeholder) {
+                target.src = SharedAssets.placeholder;
+              }
+            }}
+          />
+        </div>
+      )}
+      {text ? <span>{text}</span> : null}
+      {icon && IconComponent && iconPosition === "right" && (
+        <IconComponent className="w-4 h-4" />
+      )}
+      {image && iconPosition === "right" && (
+        <div className="relative w-4 h-4">
+          <Image
+            src={imageSrc}
+            alt=""
+            fill
+            className="object-contain"
+            sizes="16px"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              if (target.src !== SharedAssets.placeholder) {
+                target.src = SharedAssets.placeholder;
+              }
+            }}
+          />
+        </div>
+      )}
+    </>
+  );
+
   if (href) {
     return (
       <Button
@@ -118,7 +199,9 @@ export function ButtonBlock({
         className={className}
         style={customStyles}
       >
-        <a href={href}>{text}</a>
+        <a href={href} className="inline-flex gap-2 items-center">
+          {buttonContent}
+        </a>
       </Button>
     );
   }
@@ -129,10 +212,10 @@ export function ButtonBlock({
       size={size}
       asChild={asChild}
       disabled={disabled}
-      className={className}
+      className={`inline-flex gap-2 items-center ${className}`}
       style={customStyles}
     >
-      {text}
+      {buttonContent}
     </Button>
   );
 }

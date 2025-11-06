@@ -15,6 +15,7 @@ import { GridBlock, GridBlockProps } from "./blocks/grid-block";
 import { ContainerBlock, ContainerBlockProps } from "./blocks/container-block";
 import { FlexBlock, FlexBlockProps } from "./blocks/flex-block";
 import { ButtonBlock, ButtonBlockProps } from "./blocks/button-block";
+import { LinkBlock, LinkBlockProps } from "./blocks/link-block";
 import { ImageBlock, ImageBlockProps } from "./blocks/image-block";
 import { VideoBlock, VideoBlockProps } from "./blocks/video-block";
 import { DividerBlock, DividerBlockProps } from "./blocks/divider-block";
@@ -50,6 +51,7 @@ type Props = {
   ContainerBlock: ContainerBlockProps;
   FlexBlock: FlexBlockProps;
   ButtonBlock: ButtonBlockProps;
+  LinkBlock: LinkBlockProps;
   ImageBlock: ImageBlockProps;
   VideoBlock: VideoBlockProps;
   SpacerBlock: SpacerBlockProps;
@@ -369,7 +371,78 @@ export const config: Config<Props> = {
       fields: {
         columns: {
           type: "select",
+          label: "Columns (Mobile - Default)",
           options: [
+            { label: "1 Column", value: 1 },
+            { label: "2 Columns", value: 2 },
+            { label: "3 Columns", value: 3 },
+            { label: "4 Columns", value: 4 },
+            { label: "5 Columns", value: 5 },
+            { label: "6 Columns", value: 6 },
+            { label: "12 Columns", value: 12 },
+          ],
+        },
+        columnsSm: {
+          type: "select",
+          label: "Columns (sm: ≥640px)",
+          options: [
+            { label: "Auto (inherit)", value: undefined },
+            { label: "1 Column", value: 1 },
+            { label: "2 Columns", value: 2 },
+            { label: "3 Columns", value: 3 },
+            { label: "4 Columns", value: 4 },
+            { label: "5 Columns", value: 5 },
+            { label: "6 Columns", value: 6 },
+            { label: "12 Columns", value: 12 },
+          ],
+        },
+        columnsMd: {
+          type: "select",
+          label: "Columns (md: ≥768px)",
+          options: [
+            { label: "Auto (inherit)", value: undefined },
+            { label: "1 Column", value: 1 },
+            { label: "2 Columns", value: 2 },
+            { label: "3 Columns", value: 3 },
+            { label: "4 Columns", value: 4 },
+            { label: "5 Columns", value: 5 },
+            { label: "6 Columns", value: 6 },
+            { label: "12 Columns", value: 12 },
+          ],
+        },
+        columnsLg: {
+          type: "select",
+          label: "Columns (lg: ≥1024px)",
+          options: [
+            { label: "Auto (inherit)", value: undefined },
+            { label: "1 Column", value: 1 },
+            { label: "2 Columns", value: 2 },
+            { label: "3 Columns", value: 3 },
+            { label: "4 Columns", value: 4 },
+            { label: "5 Columns", value: 5 },
+            { label: "6 Columns", value: 6 },
+            { label: "12 Columns", value: 12 },
+          ],
+        },
+        columnsXl: {
+          type: "select",
+          label: "Columns (xl: ≥1280px)",
+          options: [
+            { label: "Auto (inherit)", value: undefined },
+            { label: "1 Column", value: 1 },
+            { label: "2 Columns", value: 2 },
+            { label: "3 Columns", value: 3 },
+            { label: "4 Columns", value: 4 },
+            { label: "5 Columns", value: 5 },
+            { label: "6 Columns", value: 6 },
+            { label: "12 Columns", value: 12 },
+          ],
+        },
+        columns2xl: {
+          type: "select",
+          label: "Columns (2xl: ≥1536px)",
+          options: [
+            { label: "Auto (inherit)", value: undefined },
             { label: "1 Column", value: 1 },
             { label: "2 Columns", value: 2 },
             { label: "3 Columns", value: 3 },
@@ -388,6 +461,19 @@ export const config: Config<Props> = {
             { label: "Large Gap", value: "lg" },
             { label: "Extra Large Gap", value: "xl" },
           ],
+        },
+        maxWidth: {
+          type: "text",
+          label: "Max Width (e.g., '1200px', '100%', '50rem')",
+        },
+        margin: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
         },
         backgroundColor: {
           type: "custom",
@@ -948,6 +1034,28 @@ export const config: Config<Props> = {
           type: "text",
           label: "Link URL (optional)",
         },
+        icon: {
+          type: "text",
+          label: "Icon Name (from lucide-react, e.g., 'ShoppingBag', 'Heart')",
+        },
+        image: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ImagePickerField
+              value={value || ""}
+              onChange={onChange}
+              label="Icon Image (optional, overrides icon)"
+            />
+          ),
+        },
+        iconPosition: {
+          type: "radio",
+          label: "Icon Position",
+          options: [
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+          ],
+        },
         variant: {
           type: "select",
           options: [
@@ -1012,6 +1120,84 @@ export const config: Config<Props> = {
         disabled: false,
       },
       render: (props) => <ButtonBlock {...props} />,
+    },
+    LinkBlock: {
+      label: "Link",
+      fields: {
+        text: {
+          type: "text",
+          label: "Link Text",
+        },
+        href: {
+          type: "text",
+          label: "Link URL",
+        },
+        isExternal: {
+          type: "radio",
+          label: "Link Type",
+          options: [
+            { label: "Internal", value: false },
+            { label: "External", value: true },
+          ],
+        },
+        icon: {
+          type: "text",
+          label: "Icon Name (from lucide-react, e.g., 'ShoppingBag', 'Heart')",
+        },
+        image: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ImagePickerField
+              value={value || ""}
+              onChange={onChange}
+              label="Icon Image (optional, overrides icon)"
+            />
+          ),
+        },
+        iconPosition: {
+          type: "radio",
+          label: "Icon Position",
+          options: [
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+          ],
+        },
+        textColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "foreground" }}
+              onChange={onChange}
+              label="Text Color"
+            />
+          ),
+        },
+        margin: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
+        },
+        padding: {
+          type: "object",
+          objectFields: {
+            top: { type: "text", label: "Top" },
+            right: { type: "text", label: "Right" },
+            bottom: { type: "text", label: "Bottom" },
+            left: { type: "text", label: "Left" },
+          },
+        },
+      },
+      defaultProps: {
+        text: "Link",
+        href: "/",
+        isExternal: false,
+        iconPosition: "left",
+      },
+      render: (props) => <LinkBlock {...props} />,
     },
     ImageBlock: {
       label: "Image",
@@ -2327,6 +2513,7 @@ export const config: Config<Props> = {
     components: {
       components: [
         "ButtonBlock",
+        "LinkBlock",
         "ImageBlock",
         "VideoBlock",
         "CardBlock",

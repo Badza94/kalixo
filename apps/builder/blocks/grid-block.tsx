@@ -7,7 +7,19 @@ import { useThemeConfig } from "../hooks/use-theme-config";
 
 export interface GridBlockProps {
   columns: number;
+  columnsSm?: number;
+  columnsMd?: number;
+  columnsLg?: number;
+  columnsXl?: number;
+  columns2xl?: number;
   gap: "none" | "sm" | "md" | "lg" | "xl";
+  maxWidth?: string;
+  margin?: {
+    top?: string;
+    right?: string;
+    bottom?: string;
+    left?: string;
+  };
   backgroundColor?: {
     colorKey: string;
     customColor?: string;
@@ -33,7 +45,14 @@ export interface GridBlockProps {
 
 export function GridBlock({
   columns,
+  columnsSm,
+  columnsMd,
+  columnsLg,
+  columnsXl,
+  columns2xl,
   gap = "md",
+  maxWidth,
+  margin,
   backgroundColor,
   borderRadius,
   className,
@@ -90,14 +109,61 @@ export function GridBlock({
     12: "grid-cols-12",
   };
 
+  // Generate responsive grid classes
+  const getGridClasses = () => {
+    const base =
+      gridColsClasses[columns as keyof typeof gridColsClasses] || "grid-cols-1";
+
+    const responsiveClasses: string[] = [base];
+
+    if (columnsSm !== undefined) {
+      responsiveClasses.push(
+        `sm:${gridColsClasses[columnsSm as keyof typeof gridColsClasses] || "grid-cols-1"}`
+      );
+    }
+
+    if (columnsMd !== undefined) {
+      responsiveClasses.push(
+        `md:${gridColsClasses[columnsMd as keyof typeof gridColsClasses] || "grid-cols-1"}`
+      );
+    }
+
+    if (columnsLg !== undefined) {
+      responsiveClasses.push(
+        `lg:${gridColsClasses[columnsLg as keyof typeof gridColsClasses] || "grid-cols-1"}`
+      );
+    }
+
+    if (columnsXl !== undefined) {
+      responsiveClasses.push(
+        `xl:${gridColsClasses[columnsXl as keyof typeof gridColsClasses] || "grid-cols-1"}`
+      );
+    }
+
+    if (columns2xl !== undefined) {
+      responsiveClasses.push(
+        `2xl:${gridColsClasses[columns2xl as keyof typeof gridColsClasses] || "grid-cols-1"}`
+      );
+    }
+
+    return responsiveClasses.join(" ");
+  };
+
   const baseClasses = cn(
     "grid min-h-[200px] p-4",
-    gridColsClasses[columns as keyof typeof gridColsClasses] || "grid-cols-3",
+    getGridClasses(),
     gapClasses[gap],
     className
   );
 
   const gridStyles: React.CSSProperties = {
+    ...(maxWidth && { maxWidth }),
+    ...(margin && {
+      marginTop: margin.top || "0",
+      marginRight: margin.right || "0",
+      marginBottom: margin.bottom || "0",
+      marginLeft: margin.left || "0",
+    }),
     ...(resolvedBackgroundColor && {
       backgroundColor: resolvedBackgroundColor,
     }),

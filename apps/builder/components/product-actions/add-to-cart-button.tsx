@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { ShoppingBag } from "@workspace/ui/lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { useCartStore } from "../../lib/store/cart";
@@ -49,6 +50,7 @@ export function AddToCartButton({
   className = "",
   onAddToCart,
 }: AddToCartButtonProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const addToCart = useCartStore((state) => state.addToCart);
 
   // Check if product is in cart (use numeric id if available, otherwise use productId)
@@ -57,6 +59,10 @@ export function AddToCartButton({
   const inCart = useCartStore((state) =>
     state.cart.some((item) => item.id === Number(idToCheck))
   );
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleAddToCart = () => {
     if (onClick) {
@@ -104,9 +110,11 @@ export function AddToCartButton({
         color: textColor,
       }}
       className={`flex-shrink-0 hover:cursor-pointer ${className}`}
-      aria-label={inCart ? "Item in cart" : "Add to cart"}
+      aria-label={isMounted && inCart ? "Item in cart" : "Add to cart"}
     >
-      <ShoppingBag className={`w-4 h-4 ${inCart ? "stroke-primary" : ""}`} />
+      <ShoppingBag
+        className={`w-4 h-4 ${isMounted && inCart ? "stroke-primary" : ""}`}
+      />
     </Button>
   );
 }

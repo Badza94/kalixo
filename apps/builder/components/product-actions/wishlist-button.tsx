@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Heart } from "@workspace/ui/lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { useFavouritesStore } from "../../lib/store/favourite";
@@ -39,6 +40,7 @@ export function WishlistButton({
   className = "",
   onToggleFavorite,
 }: WishlistButtonProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const addFavourite = useFavouritesStore((state) => state.addFavourite);
   const removeFavourite = useFavouritesStore((state) => state.removeFavourite);
   const isFavourite = useFavouritesStore((state) => state.isFavourite);
@@ -46,6 +48,10 @@ export function WishlistButton({
   // Use numeric id if available, otherwise use productId
   const idToUse = product?.id?.toString() || productId;
   const isFavorited = isFavourite(idToUse);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleToggleFavorite = () => {
     if (onClick) {
@@ -74,9 +80,13 @@ export function WishlistButton({
         color: textColor,
       }}
       className={`flex-shrink-0 hover:cursor-pointer ${className}`}
-      aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
+      aria-label={
+        isMounted && isFavorited ? "Remove from favorites" : "Add to favorites"
+      }
     >
-      <Heart className={`w-4 h-4 ${isFavorited ? "fill-current" : ""}`} />
+      <Heart
+        className={`w-4 h-4 ${isMounted && isFavorited ? "fill-current" : ""}`}
+      />
     </Button>
   );
 }
