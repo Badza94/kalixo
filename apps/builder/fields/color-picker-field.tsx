@@ -39,9 +39,12 @@ export function ColorPickerField({
     });
   };
 
-  const resolvedColor = themeConfig
-    ? resolveColor(value.colorKey, value.customColor, themeConfig, "light")
-    : value.customColor || "#000000";
+  const resolvedColor =
+    value.colorKey === "glass"
+      ? "glass"
+      : themeConfig
+        ? resolveColor(value.colorKey, value.customColor, themeConfig, "light")
+        : value.customColor || "#000000";
 
   if (loading) {
     return (
@@ -93,13 +96,24 @@ export function ColorPickerField({
 
       {/* Color preview */}
       <div className="flex gap-2 items-center p-2 bg-gray-50 rounded-md border">
-        <div
-          className="w-8 h-8 rounded border"
-          style={{ backgroundColor: resolvedColor }}
-        />
-        <span className="font-mono text-xs text-gray-600 break-all">
-          {resolvedColor}
-        </span>
+        {resolvedColor === "glass" ? (
+          <>
+            <div className="w-8 h-8 rounded border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 bg-gradient-to-br from-white/20 to-white/5" />
+            <span className="font-mono text-xs text-gray-600">
+              Glass Effect
+            </span>
+          </>
+        ) : (
+          <>
+            <div
+              className="w-8 h-8 rounded border"
+              style={{ backgroundColor: resolvedColor }}
+            />
+            <span className="font-mono text-xs text-gray-600 break-all">
+              {resolvedColor}
+            </span>
+          </>
+        )}
       </div>
     </div>
   );

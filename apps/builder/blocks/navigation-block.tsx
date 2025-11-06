@@ -3,20 +3,25 @@
 import { useState } from "react";
 import Image from "next/image";
 import {
-  Search,
-  ShoppingBag,
-  User,
-  Heart,
   Menu,
   X,
   ChevronRight,
   ChevronDown,
+  Search,
+  User,
+  Heart,
 } from "@workspace/ui/lucide-react";
 import { SharedAssets } from "@workspace/ui/assets";
 import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
 import { resolveColor } from "../types/theme";
 import { useThemeConfig } from "../hooks/use-theme-config";
+import {
+  SearchAction,
+  WishlistAction,
+  AccountAction,
+  CartAction,
+} from "../components/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,6 +46,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@workspace/ui/components/collapsible";
+import { SearchDialog } from "../components/search-dialog";
 
 interface NavigationItem {
   id: string;
@@ -57,7 +63,6 @@ export interface NavigationBlockProps {
   showCart: boolean;
   showWishlist: boolean;
   showAccount: boolean;
-  cartCount: number;
   position?: "fixed" | "relative" | "sticky";
   fontSize?: "xs" | "sm" | "md" | "lg" | "xl";
   backgroundColor?: {
@@ -78,7 +83,6 @@ export function NavigationBlock({
   showCart,
   showWishlist,
   showAccount,
-  cartCount,
   position = "sticky",
   fontSize = "sm",
   backgroundColor,
@@ -86,20 +90,24 @@ export function NavigationBlock({
 }: NavigationBlockProps) {
   console.log("type: ", type);
   const { themeConfig } = useThemeConfig();
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [isSearchDialogOpen, setIsSearchDialogOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [openDropdowns, setOpenDropdowns] = useState<Set<string>>(new Set());
 
+  // Check if glass effect is requested
+  const isGlass = backgroundColor?.colorKey === "glass";
+
   // Resolve colors
-  const resolvedBackgroundColor = backgroundColor
-    ? resolveColor(
-        backgroundColor.colorKey,
-        backgroundColor.customColor,
-        themeConfig || undefined,
-        "light"
-      )
-    : undefined;
+  const resolvedBackgroundColor =
+    backgroundColor && !isGlass
+      ? resolveColor(
+          backgroundColor.colorKey,
+          backgroundColor.customColor,
+          themeConfig || undefined,
+          "light"
+        )
+      : undefined;
 
   const resolvedTextColor = textColor
     ? resolveColor(
@@ -204,11 +212,12 @@ export function NavigationBlock({
               <ChevronDown className="w-4 h-4" />
             </NavigationMenuTrigger>
             <NavigationMenuContent
-              className={`${resolvedBackgroundColor ? "[&]:!bg-transparent group-data-[viewport=false]/navigation-menu:!bg-transparent" : ""}`}
+              className={`${isGlass ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" : resolvedBackgroundColor ? "[&]:!bg-transparent group-data-[viewport=false]/navigation-menu:!bg-transparent" : ""}`}
               style={{
-                ...(resolvedBackgroundColor && {
-                  backgroundColor: resolvedBackgroundColor,
-                }),
+                ...(resolvedBackgroundColor &&
+                  !isGlass && {
+                    backgroundColor: resolvedBackgroundColor,
+                  }),
                 ...(resolvedTextColor && { color: resolvedTextColor }),
               }}
             >
@@ -272,11 +281,17 @@ export function NavigationBlock({
                 <ChevronDown className="w-4 h-4 transition-transform" />
               </DropdownMenuTrigger>
               <DropdownMenuContent
+                className={
+                  isGlass
+                    ? "backdrop-blur bg-background/95 supports-[backdrop-filter]:bg-background/60"
+                    : ""
+                }
                 style={{
-                  ...(resolvedBackgroundColor && {
-                    backgroundColor: resolvedBackgroundColor,
-                    borderColor: resolvedBackgroundColor,
-                  }),
+                  ...(resolvedBackgroundColor &&
+                    !isGlass && {
+                      backgroundColor: resolvedBackgroundColor,
+                      borderColor: resolvedBackgroundColor,
+                    }),
                   ...(resolvedTextColor && { color: resolvedTextColor }),
                 }}
                 onMouseEnter={() => {
@@ -340,79 +355,32 @@ export function NavigationBlock({
   const renderActions = () => (
     <div className="flex items-center space-x-4">
       {showSearch && (
-        <>
-          {searchOpen ? (
-            <div className="flex items-center space-x-2">
-              <Input
-                placeholder="Search products..."
-                className="w-64"
-                autoFocus
-                onBlur={() => setSearchOpen(false)}
-                style={{
-                  color: resolvedTextColor,
-                  backgroundColor: resolvedBackgroundColor,
-                }}
-              />
-            </div>
-          ) : (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setSearchOpen(true)}
-              style={{
-                color: resolvedTextColor,
-                backgroundColor: resolvedBackgroundColor,
-              }}
-            >
-              <Search className="w-4 h-4" />
-            </Button>
-          )}
-        </>
+        <SearchAction
+          onClick={() => setIsSearchDialogOpen(true)}
+          textColor={resolvedTextColor}
+          backgroundColor={resolvedBackgroundColor}
+        />
       )}
 
       {showWishlist && (
-        <Button
-          variant="ghost"
-          size="icon"
-          style={{
-            color: resolvedTextColor,
-            backgroundColor: resolvedBackgroundColor,
-          }}
-        >
-          <Heart className="w-4 h-4" />
-        </Button>
+        <WishlistAction
+          textColor={resolvedTextColor}
+          backgroundColor={resolvedBackgroundColor}
+        />
       )}
 
       {showAccount && (
-        <Button
-          variant="ghost"
-          size="icon"
-          style={{
-            color: resolvedTextColor,
-            backgroundColor: resolvedBackgroundColor,
-          }}
-        >
-          <User className="w-4 h-4" />
-        </Button>
+        <AccountAction
+          textColor={resolvedTextColor}
+          backgroundColor={resolvedBackgroundColor}
+        />
       )}
 
       {showCart && (
-        <Button
-          variant="ghost"
-          size="icon"
-          className="relative"
-          style={{
-            color: resolvedTextColor,
-            backgroundColor: resolvedBackgroundColor,
-          }}
-        >
-          <ShoppingBag className="w-4 h-4" />
-          {cartCount > 0 && (
-            <span className="flex absolute -top-1 -right-1 justify-center items-center w-4 h-4 text-xs rounded-full bg-primary text-primary-foreground">
-              {cartCount}
-            </span>
-          )}
-        </Button>
+        <CartAction
+          textColor={resolvedTextColor}
+          backgroundColor={resolvedBackgroundColor}
+        />
       )}
     </div>
   );
@@ -425,12 +393,19 @@ export function NavigationBlock({
         : "relative";
 
   // Build header style
+  // If glass, don't apply inline backgroundColor (classes handle it)
   const headerStyle: React.CSSProperties = {
-    ...(resolvedBackgroundColor && {
-      backgroundColor: resolvedBackgroundColor,
-    }),
+    ...(resolvedBackgroundColor &&
+      !isGlass && {
+        backgroundColor: resolvedBackgroundColor,
+      }),
     ...(resolvedTextColor && { color: resolvedTextColor }),
   };
+
+  // Glass effect classes
+  const glassClasses = isGlass
+    ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+    : "";
 
   // Build navigation item style
   const navItemStyle: React.CSSProperties = {
@@ -450,190 +425,215 @@ export function NavigationBlock({
 
   if (type === "sidebar") {
     return (
-      <header
-        className={`top-0 z-50 w-full border-b ${positionClass} border-border`}
-        style={headerStyle}
-      >
-        <div className="container px-4 mx-auto">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <Menu className="w-5 h-5" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="p-0 w-80">
-                  <div className="flex flex-col h-full">
-                    <div className="p-6 border-b border-border">
-                      <div className="flex justify-between items-center">
-                        <h2 className="text-lg font-medium">Menu</h2>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          <X className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </div>
-
-                    {showSearch && (
+      <>
+        <header
+          className={`top-0 z-50 w-full border-b ${positionClass} ${glassClasses} border-border`}
+          style={headerStyle}
+        >
+          <div className="container px-4 mx-auto">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center space-x-4">
+                <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+                  <SheetTrigger asChild>
+                    <Button variant="ghost" size="icon">
+                      <Menu className="w-5 h-5" />
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent side="left" className="p-0 w-80">
+                    <div className="flex flex-col h-full">
                       <div className="p-6 border-b border-border">
-                        <div className="relative">
-                          <Search className="absolute left-3 top-1/2 w-4 h-4 transform -translate-y-1/2 text-muted-foreground" />
-                          <Input
-                            placeholder="Search products..."
-                            className="pl-10"
-                          />
+                        <div className="flex justify-between items-center">
+                          <h2 className="text-lg font-medium">Menu</h2>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => setMobileOpen(false)}
+                          >
+                            <X className="w-4 h-4" />
+                          </Button>
                         </div>
                       </div>
-                    )}
 
-                    <nav className="flex-1 p-6 space-y-2">
-                      {items.map((item) => renderNavigationItem(item, true))}
-                    </nav>
+                      {showSearch && (
+                        <div className="p-6 border-b border-border">
+                          <div className="relative">
+                            <Search className="absolute left-3 top-1/2 w-4 h-4 transform -translate-y-1/2 text-muted-foreground" />
+                            <Input
+                              placeholder="Search products..."
+                              className="pl-10"
+                            />
+                          </div>
+                        </div>
+                      )}
 
-                    <div className="p-6 space-y-4 border-t border-border">
-                      <div className="flex items-center space-x-4">
-                        {showAccount && (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="flex-1 bg-transparent"
-                          >
-                            <User className="mr-2 w-4 h-4" />
-                            Account
-                          </Button>
-                        )}
-                        {showWishlist && (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="flex-1 bg-transparent"
-                          >
-                            <Heart className="mr-2 w-4 h-4" />
-                            Wishlist
-                          </Button>
-                        )}
+                      <nav className="flex-1 p-6 space-y-2">
+                        {items.map((item) => renderNavigationItem(item, true))}
+                      </nav>
+
+                      <div className="p-6 space-y-4 border-t border-border">
+                        <div className="flex items-center space-x-4">
+                          {showAccount && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="flex-1 bg-transparent"
+                            >
+                              <User className="mr-2 w-4 h-4" />
+                              Account
+                            </Button>
+                          )}
+                          {showWishlist && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="flex-1 bg-transparent"
+                            >
+                              <Heart className="mr-2 w-4 h-4" />
+                              Wishlist
+                            </Button>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </SheetContent>
-              </Sheet>
+                  </SheetContent>
+                </Sheet>
 
-              {renderLogo()}
+                {renderLogo()}
+              </div>
+
+              {renderActions()}
             </div>
-
-            {renderActions()}
           </div>
-        </div>
-      </header>
+        </header>
+        <SearchDialog
+          isOpen={isSearchDialogOpen}
+          onClose={() => setIsSearchDialogOpen(false)}
+        />
+      </>
     );
   }
 
   if (type === "mobile") {
     return (
-      <header
-        className={`top-0 z-50 w-full border-b ${positionClass} border-border`}
-        style={headerStyle}
-      >
-        <div className="container px-4 mx-auto">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setMobileOpen(true)}
-              >
-                <Menu className="w-5 h-5" />
-              </Button>
-              {renderLogo()}
-            </div>
-
-            {renderActions()}
-          </div>
-        </div>
-
-        {mobileOpen && (
-          <div
-            className="fixed inset-0 z-50"
-            style={{
-              ...(resolvedBackgroundColor && {
-                backgroundColor: resolvedBackgroundColor,
-              }),
-            }}
-          >
-            <div className="flex flex-col h-full">
-              <div className="p-6 border-b border-border">
-                <div className="flex justify-between items-center">
-                  <h2 className="text-lg font-medium">Menu</h2>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <X className="w-4 h-4" />
-                  </Button>
-                </div>
+      <>
+        <header
+          className={`top-0 z-50 w-full border-b ${positionClass} ${glassClasses} border-border`}
+          style={headerStyle}
+        >
+          <div className="container px-4 mx-auto">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center space-x-4">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setMobileOpen(true)}
+                >
+                  <Menu className="w-5 h-5" />
+                </Button>
+                {renderLogo()}
               </div>
 
-              <nav className="flex-1 p-6 space-y-2">
-                {items.map((item) => renderNavigationItem(item, true))}
-              </nav>
+              {renderActions()}
             </div>
           </div>
-        )}
-      </header>
+
+          {mobileOpen && (
+            <div
+              className="fixed inset-0 z-50"
+              style={{
+                ...(resolvedBackgroundColor && {
+                  backgroundColor: resolvedBackgroundColor,
+                }),
+              }}
+            >
+              <div className="flex flex-col h-full">
+                <div className="p-6 border-b border-border">
+                  <div className="flex justify-between items-center">
+                    <h2 className="text-lg font-medium">Menu</h2>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <X className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+
+                <nav className="flex-1 p-6 space-y-2">
+                  {items.map((item) => renderNavigationItem(item, true))}
+                </nav>
+              </div>
+            </div>
+          )}
+        </header>
+        <SearchDialog
+          isOpen={isSearchDialogOpen}
+          onClose={() => setIsSearchDialogOpen(false)}
+        />
+      </>
     );
   }
 
   if (type === "mega-menu") {
     return (
-      <header
-        className={`top-0 z-50 w-full border-b ${positionClass} border-border`}
-        style={headerStyle}
-      >
-        <div className="container px-4 mx-auto">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">{renderLogo()}</div>
+      <>
+        <header
+          className={`top-0 z-50 w-full border-b ${positionClass} ${glassClasses} border-border`}
+          style={headerStyle}
+        >
+          <div className="container px-4 mx-auto">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center">{renderLogo()}</div>
 
-            <NavigationMenu className="hidden lg:flex">
-              <NavigationMenuList>
-                {items.map((item) => renderNavigationItem(item))}
-              </NavigationMenuList>
-            </NavigationMenu>
+              <NavigationMenu className="hidden lg:flex">
+                <NavigationMenuList>
+                  {items.map((item) => renderNavigationItem(item))}
+                </NavigationMenuList>
+              </NavigationMenu>
 
-            {renderActions()}
+              {renderActions()}
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+        <SearchDialog
+          isOpen={isSearchDialogOpen}
+          onClose={() => setIsSearchDialogOpen(false)}
+        />
+      </>
     );
   }
 
   // Default header navigation
   return (
-    <header
-      className={`top-0 z-50 w-full border-b ${resolvedBackgroundColor ? "" : "backdrop-blur supports-[backdrop-filter]:bg-background/60"} ${positionClass} border-border`}
-      style={{
-        ...(resolvedBackgroundColor && {
-          backgroundColor: resolvedBackgroundColor,
-          borderColor: resolvedBackgroundColor,
-        }),
-        ...(resolvedTextColor && { color: resolvedTextColor }),
-      }}
-    >
-      <div className="container px-4 mx-auto">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">{renderLogo()}</div>
+    <>
+      <header
+        className={`top-0 z-50 w-full border-b ${isGlass ? glassClasses : resolvedBackgroundColor ? "" : "backdrop-blur supports-[backdrop-filter]:bg-background/60"} ${positionClass} border-border`}
+        style={{
+          ...(resolvedBackgroundColor &&
+            !isGlass && {
+              backgroundColor: resolvedBackgroundColor,
+              borderColor: resolvedBackgroundColor,
+            }),
+          ...(resolvedTextColor && { color: resolvedTextColor }),
+        }}
+      >
+        <div className="container px-4 mx-auto">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">{renderLogo()}</div>
 
-          <nav className="hidden items-center space-x-8 md:flex">
-            {items.map((item) => renderNavigationItem(item))}
-          </nav>
+            <nav className="hidden items-center space-x-8 md:flex">
+              {items.map((item) => renderNavigationItem(item))}
+            </nav>
 
-          {renderActions()}
+            {renderActions()}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <SearchDialog
+        isOpen={isSearchDialogOpen}
+        onClose={() => setIsSearchDialogOpen(false)}
+      />
+    </>
   );
 }

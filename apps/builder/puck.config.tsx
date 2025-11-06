@@ -519,7 +519,6 @@ export const config: Config<Props> = {
             { label: "Hide", value: false },
           ],
         },
-        cartCount: { type: "number" },
         backgroundColor: {
           type: "custom",
           render: ({ onChange, value }) => (
@@ -572,7 +571,6 @@ export const config: Config<Props> = {
         showCart: true,
         showWishlist: true,
         showAccount: true,
-        cartCount: 2,
       },
       render: (props) => <NavigationBlock {...props} />,
     },
@@ -765,6 +763,20 @@ export const config: Config<Props> = {
             { label: "Extra Large", value: "xl" },
           ],
         },
+        spacing: {
+          type: "object",
+          label: "Item Spacing",
+          objectFields: {
+            x: {
+              type: "text",
+              label: "Horizontal (X) Spacing",
+            },
+            y: {
+              type: "text",
+              label: "Vertical (Y) Spacing",
+            },
+          },
+        },
         items: {
           type: "array",
           arrayFields: {
@@ -781,6 +793,10 @@ export const config: Config<Props> = {
           right: "24px",
           bottom: "24px",
           left: "24px",
+        },
+        spacing: {
+          x: "0",
+          y: "0",
         },
         backgroundColor: {
           colorKey: "background",

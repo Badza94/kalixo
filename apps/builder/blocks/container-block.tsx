@@ -50,6 +50,10 @@ export interface ContainerBlockProps {
   className?: string;
   children?: React.ReactNode;
   items?: Array<{ content: React.ReactNode | (() => React.ReactNode) }>;
+  spacing?: {
+    x?: string;
+    y?: string;
+  };
 }
 
 export function ContainerBlock({
@@ -67,6 +71,7 @@ export function ContainerBlock({
   className = "",
   children,
   items,
+  spacing = { x: "0", y: "0" },
 }: ContainerBlockProps) {
   const { themeConfig } = useThemeConfig();
   // Resolve background color
@@ -113,7 +118,7 @@ export function ContainerBlock({
         : width === "wide"
           ? "1400px"
           : width === "container"
-            ? "1200px"
+            ? "1280px"
             : "100%"),
     margin: "0 auto",
     padding: `${padding.top || "0"} ${padding.right || "0"} ${padding.bottom || "0"} ${padding.left || "0"}`,
@@ -142,6 +147,12 @@ export function ContainerBlock({
             : shadow === "lg"
               ? "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)"
               : "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+    ...(spacing.y && {
+      display: "flex",
+      flexDirection: "column",
+      gap: spacing.y,
+    }),
+    ...(spacing.x && { display: "flex", flexDirection: "row", gap: spacing.x }),
   };
 
   console.log("ContainerBlock - items:", items, "children:", children);

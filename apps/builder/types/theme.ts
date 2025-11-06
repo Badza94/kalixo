@@ -62,6 +62,7 @@ export interface ThemeConfig {
 export function getThemeColorOptions() {
   return [
     { label: "Transparent", value: "transparent" },
+    { label: "Glass", value: "glass" },
     { label: "Background", value: "background" },
     { label: "Foreground", value: "foreground" },
     { label: "Primary", value: "primary" },
@@ -113,6 +114,10 @@ export function resolveColor(
 ): string {
   if (colorKey === "transparent") {
     return "transparent";
+  }
+
+  if (colorKey === "glass") {
+    return "glass"; // Special value to indicate glass effect
   }
 
   if (colorKey === "custom" && customColor) {

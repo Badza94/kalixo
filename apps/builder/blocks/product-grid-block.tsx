@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { Button } from "@workspace/ui/components/button";
-import { Heart, ShoppingBag } from "@workspace/ui/lucide-react";
 import { resolveColor } from "../types/theme";
 import { useThemeConfig } from "../hooks/use-theme-config";
 import Image from "next/image";
+import { BuyNowButton } from "@/components/product-actions/buy-now-button";
+import { AddToCartButton } from "@/components/product-actions/add-to-cart-button";
+import { WishlistButton } from "@/components/product-actions/wishlist-button";
 
 interface SpacingValue {
   top?: string;
@@ -160,22 +161,6 @@ export interface ProductGridBlockProps {
   };
   className?: string;
 }
-
-// Predefined action functions
-const buyNow = (id: string) => {
-  console.log(`Buy now clicked for product: ${id}`);
-  // In a real app, this would trigger the purchase flow
-};
-
-const addFav = (id: string) => {
-  console.log(`Add to favorites clicked for product: ${id}`);
-  // In a real app, this would add the product to favorites
-};
-
-const addCart = (id: string) => {
-  console.log(`Add to cart clicked for product: ${id}`);
-  // In a real app, this would add the product to cart
-};
 
 export function ProductGridBlock({
   productSelection = {
@@ -370,53 +355,25 @@ export function ProductGridBlock({
   const renderButtons = (product: Product) => {
     if (!showButtons) return null;
 
-    const buttons = [
-      {
-        key: "buyNow",
-        label: "Buy Now",
-        onClick: () => buyNow(product.productId),
-        variant: buyNowButton.variant,
-        size: buyNowButton.size,
-        colors: buttonColors.buyNow,
-      },
-      {
-        key: "addToCart",
-        label: "Add to Cart",
-        onClick: () => addCart(product.productId),
-        variant: addToCartButton.variant,
-        size: addToCartButton.size,
-        colors: buttonColors.addToCart,
-        icon: <ShoppingBag className="w-4 h-4" />,
-      },
-      {
-        key: "addToFav",
-        label: "Add to Favourite",
-        onClick: () => addFav(product.productId),
-        variant: addToFavButton.variant,
-        size: addToFavButton.size,
-        colors: buttonColors.addToFav,
-        icon: <Heart className="w-4 h-4" />,
-      },
-    ];
-
     if (buttonLayout === "icons-only") {
       return (
         <div className="flex gap-2 justify-center">
-          {buttons.slice(1).map((button) => (
-            <Button
-              key={button.key}
-              variant={button.variant}
-              size={button.size}
-              onClick={button.onClick}
-              style={{
-                backgroundColor: button.colors.backgroundColor,
-                color: button.colors.textColor,
-              }}
-              className="flex-shrink-0 hover:cursor-pointer"
-            >
-              {button.icon}
-            </Button>
-          ))}
+          <AddToCartButton
+            productId={product.productId}
+            product={product}
+            variant={addToCartButton?.variant}
+            size={addToCartButton?.size}
+            backgroundColor={buttonColors.addToCart.backgroundColor}
+            textColor={buttonColors.addToCart.textColor}
+          />
+          <WishlistButton
+            productId={product.productId}
+            product={product}
+            variant={addToFavButton?.variant}
+            size={addToFavButton?.size}
+            backgroundColor={buttonColors.addToFav.backgroundColor}
+            textColor={buttonColors.addToFav.textColor}
+          />
         </div>
       );
     }
@@ -424,22 +381,32 @@ export function ProductGridBlock({
     if (buttonLayout === "vertical") {
       return (
         <div className="space-y-2">
-          {buttons.map((button) => (
-            <Button
-              key={button.key}
-              variant={button.variant}
-              size={button.size}
-              onClick={button.onClick}
-              style={{
-                backgroundColor: button.colors.backgroundColor,
-                color: button.colors.textColor,
-              }}
-              className="w-full hover:cursor-pointer"
-            >
-              {button.icon && <span className="mr-2">{button.icon}</span>}
-              {button.label}
-            </Button>
-          ))}
+          <BuyNowButton
+            productId={product.productId}
+            variant={buyNowButton?.variant}
+            size={buyNowButton?.size}
+            backgroundColor={buttonColors.buyNow.backgroundColor}
+            textColor={buttonColors.buyNow.textColor}
+            className="w-full"
+          />
+          <AddToCartButton
+            productId={product.productId}
+            product={product}
+            variant={addToCartButton?.variant}
+            size={addToCartButton?.size}
+            backgroundColor={buttonColors.addToCart.backgroundColor}
+            textColor={buttonColors.addToCart.textColor}
+            className="w-full"
+          />
+          <WishlistButton
+            productId={product.productId}
+            product={product}
+            variant={addToFavButton?.variant}
+            size={addToFavButton?.size}
+            backgroundColor={buttonColors.addToFav.backgroundColor}
+            textColor={buttonColors.addToFav.textColor}
+            className="w-full"
+          />
         </div>
       );
     }
@@ -448,35 +415,33 @@ export function ProductGridBlock({
     return (
       <div className="flex flex-col gap-2">
         <div className="flex gap-2">
-          {buttons.slice(1).map((button) => (
-            <Button
-              key={button.key}
-              variant={button.variant}
-              size={button.size}
-              onClick={button.onClick}
-              style={{
-                backgroundColor: button.colors.backgroundColor,
-                color: button.colors.textColor,
-              }}
-              className="flex-1 min-w-0 hover:cursor-pointer"
-            >
-              {button.icon && <span className="mr-2">{button.icon}</span>}
-            </Button>
-          ))}
+          <AddToCartButton
+            productId={product.productId}
+            product={product}
+            variant={addToCartButton?.variant}
+            size={addToCartButton?.size}
+            backgroundColor={buttonColors.addToCart.backgroundColor}
+            textColor={buttonColors.addToCart.textColor}
+            className="flex-1"
+          />
+          <WishlistButton
+            productId={product.productId}
+            product={product}
+            variant={addToFavButton?.variant}
+            size={addToFavButton?.size}
+            backgroundColor={buttonColors.addToFav.backgroundColor}
+            textColor={buttonColors.addToFav.textColor}
+            className="flex-1"
+          />
         </div>
-        <Button
-          key={buttons[0].key}
-          variant={buttons[0].variant}
-          size={buttons[0].size}
-          onClick={buttons[0].onClick}
-          style={{
-            backgroundColor: buttons[0].colors.backgroundColor,
-            color: buttons[0].colors.textColor,
-          }}
-          className="w-full hover:cursor-pointer"
-        >
-          {buttons[0].label}
-        </Button>
+        <BuyNowButton
+          productId={product.productId}
+          variant={buyNowButton?.variant}
+          size={buyNowButton?.size}
+          backgroundColor={buttonColors.buyNow.backgroundColor}
+          textColor={buttonColors.buyNow.textColor}
+          className="w-full"
+        />
       </div>
     );
   };
@@ -544,16 +509,39 @@ export function ProductGridBlock({
     );
   }
 
+  // Generate responsive grid classes based on gridColumns
+  const getGridClasses = () => {
+    // Base: always 1 column on mobile
+    const base = "grid-cols-1";
+
+    // Small screens: 2 columns
+    const sm = "sm:grid-cols-2";
+
+    // Medium screens: 3 columns
+    const md = "md:grid-cols-3";
+
+    // Large screens: use the configured gridColumns value
+    let lg = "";
+    if (gridColumns >= 6) {
+      lg = "lg:grid-cols-6";
+    } else if (gridColumns === 5) {
+      lg = "lg:grid-cols-5";
+    } else if (gridColumns === 4) {
+      lg = "lg:grid-cols-4";
+    } else if (gridColumns === 3) {
+      lg = "lg:grid-cols-3";
+    } else if (gridColumns === 2) {
+      lg = "lg:grid-cols-2";
+    } else {
+      lg = "lg:grid-cols-1";
+    }
+
+    return `${base} ${sm} ${md} ${lg}`;
+  };
+
   return (
     <div className={`product-grid-block ${className}`} style={containerStyles}>
-      <div
-        className="grid gap-2 mx-auto"
-        style={{
-          gridTemplateColumns: `repeat(${gridColumns}, minmax(150px, 1fr))`,
-          minWidth: `${gridColumns * 160}px`, // 150px card + 10px gap
-          width: "max-content",
-        }}
-      >
+      <div className={`grid gap-2 mx-auto max-w-full ${getGridClasses()}`}>
         {productSelection.selectedProducts.map(renderProductCard)}
       </div>
     </div>
