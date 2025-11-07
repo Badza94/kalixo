@@ -1,4 +1,3 @@
-import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
@@ -53,9 +52,9 @@ export async function GET() {
   const databasePath = resolveDatabasePath();
   const existingData = readDatabaseFile(databasePath);
 
-  const paths = Object.keys(existingData);
+  const globals = existingData._global || { header: [], footer: [] };
 
-  return NextResponse.json({ paths });
+  return NextResponse.json({ globals });
 }
 
 export async function POST(request: Request) {
@@ -63,27 +62,13 @@ export async function POST(request: Request) {
   const databasePath = resolveDatabasePath();
   const existingData = readDatabaseFile(databasePath);
 
-  // Ensure root.props.title is set if provided
-  const dataToSave = payload.data;
-  if (payload.title && dataToSave && typeof dataToSave === "object") {
-    if (!dataToSave.root) {
-      dataToSave.root = { props: {} };
-    }
-    if (!dataToSave.root.props) {
-      dataToSave.root.props = {};
-    }
-    dataToSave.root.props.title = payload.title;
-  }
-
   const updatedData = {
     ...existingData,
-    [payload.path]: dataToSave,
+    _global: payload.globals,
   };
 
   writeDatabaseFile(databasePath, updatedData);
 
-  // Purge Next.js cache
-  revalidatePath(payload.path);
-
   return NextResponse.json({ status: "ok" });
 }
+

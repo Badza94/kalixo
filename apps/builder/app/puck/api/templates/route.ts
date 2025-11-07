@@ -1,7 +1,7 @@
-import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { randomUUID } from "crypto";
 
 const DATABASE_SEARCH_PATHS = [
   path.join(process.cwd(), "database.json"),
@@ -53,9 +53,9 @@ export async function GET() {
   const databasePath = resolveDatabasePath();
   const existingData = readDatabaseFile(databasePath);
 
-  const paths = Object.keys(existingData);
+  const templates = existingData._templates || [];
 
-  return NextResponse.json({ paths });
+  return NextResponse.json({ templates });
 }
 
 export async function POST(request: Request) {
@@ -63,27 +63,45 @@ export async function POST(request: Request) {
   const databasePath = resolveDatabasePath();
   const existingData = readDatabaseFile(databasePath);
 
-  // Ensure root.props.title is set if provided
-  const dataToSave = payload.data;
-  if (payload.title && dataToSave && typeof dataToSave === "object") {
-    if (!dataToSave.root) {
-      dataToSave.root = { props: {} };
-    }
-    if (!dataToSave.root.props) {
-      dataToSave.root.props = {};
-    }
-    dataToSave.root.props.title = payload.title;
-  }
+  const existingTemplates = (existingData._templates as Array<unknown>) || [];
+
+  const newTemplate = {
+    id: randomUUID(),
+    name: payload.name,
+    components: payload.components,
+    createdAt: new Date().toISOString(),
+  };
 
   const updatedData = {
     ...existingData,
-    [payload.path]: dataToSave,
+    _templates: [...existingTemplates, newTemplate],
   };
 
   writeDatabaseFile(databasePath, updatedData);
 
-  // Purge Next.js cache
-  revalidatePath(payload.path);
+  return NextResponse.json({ status: "ok", template: newTemplate });
+}
+
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  if (!id) {
+    return NextResponse.json({ error: "ID required" }, { status: 400 });
+  }
+
+  const databasePath = resolveDatabasePath();
+  const existingData = readDatabaseFile(databasePath);
+
+  const existingTemplates = (existingData._templates as Array<{ id: string }>) || [];
+
+  const updatedData = {
+    ...existingData,
+    _templates: existingTemplates.filter((t) => t.id !== id),
+  };
+
+  writeDatabaseFile(databasePath, updatedData);
 
   return NextResponse.json({ status: "ok" });
 }
+

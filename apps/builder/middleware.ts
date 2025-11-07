@@ -17,9 +17,16 @@ export async function middleware(req: NextRequest) {
       return NextResponse.rewrite(new URL(pathWithEditPrefix, req.url));
     }
 
-    // Disable "/puck/[...puckPath]"
+    // Disable "/puck/[...puckPath]" except for API routes
     if (req.nextUrl.pathname.startsWith("/puck")) {
-      return NextResponse.redirect(new URL("/", req.url));
+      const whitelistedSubpaths = ["/puck/api"];
+      const isWhitelisted = whitelistedSubpaths.some((allowed) =>
+        req.nextUrl.pathname.startsWith(allowed)
+      );
+
+      if (!isWhitelisted) {
+        return NextResponse.redirect(new URL("/", req.url));
+      }
     }
   }
 

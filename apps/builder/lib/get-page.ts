@@ -2,8 +2,24 @@ import { Data } from "@measured/puck";
 import fs from "fs";
 import path from "path";
 
+interface GlobalComponent {
+  id: string;
+  type: string;
+  props: Record<string, unknown>;
+  position: "header" | "footer";
+}
+
+interface PageData extends Data {
+  root?: {
+    props?: {
+      title?: string;
+      excludeGlobals?: string[];
+    };
+  };
+}
+
 // Replace with call to your database
-export const getPage = (pagePath: string) => {
+export const getPage = (pagePath: string): PageData | null => {
   // Try multiple possible locations for database.json
   const possiblePaths = [
     path.join(process.cwd(), "database.json"),
@@ -63,8 +79,48 @@ export const getPage = (pagePath: string) => {
   console.log("Available paths in database:", Object.keys(allData));
   console.log("Looking for path:", pagePath);
 
-  const pageData = allData[pagePath];
+  const pageData = allData[pagePath] as PageData | undefined;
   console.log("Found page data:", !!pageData);
 
-  return pageData || null;
+  if (!pageData) {
+    return null;
+  }
+
+  // Get global components
+  const globals = allData._global as
+    | { header?: GlobalComponent[]; footer?: GlobalComponent[] }
+    | undefined;
+
+  if (!globals || (!globals.header?.length && !globals.footer?.length)) {
+    return pageData;
+  }
+
+  // Get excluded global component IDs for this page
+  const excludedIds = new Set(pageData.root?.props?.excludeGlobals || []);
+
+  // Clone the page data to avoid mutations
+  const enhancedPageData: PageData = JSON.parse(JSON.stringify(pageData));
+
+  if (!enhancedPageData.content) {
+    enhancedPageData.content = [];
+  }
+
+  // Filter and prepend header components (that aren't excluded)
+  const headerComponents = (globals.header || []).filter(
+    (comp) => !excludedIds.has(comp.id)
+  );
+
+  // Filter and append footer components (that aren't excluded)
+  const footerComponents = (globals.footer || []).filter(
+    (comp) => !excludedIds.has(comp.id)
+  );
+
+  // Inject globals: headers at the start, footers at the end
+  enhancedPageData.content = [
+    ...headerComponents.map((comp) => ({ type: comp.type, props: comp.props })),
+    ...enhancedPageData.content,
+    ...footerComponents.map((comp) => ({ type: comp.type, props: comp.props })),
+  ];
+
+  return enhancedPageData;
 };
