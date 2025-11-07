@@ -1,17 +1,11 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import type { Data } from "@measured/puck";
 import { Button, Puck } from "@measured/puck";
 import config from "../../../puck.config";
-import {
-  Eye,
-  Palette,
-  PlusCircle,
-  Layers,
-  Settings,
-} from "@workspace/ui/lucide-react";
+import { Eye, Palette, PlusCircle, Layers } from "@workspace/ui/lucide-react";
 import { ThemeEditor } from "./theme-editor";
 import { Toaster } from "@workspace/ui/components/sonner";
 import { IframeThemeInjector } from "./iframe-theme-injector";
@@ -20,7 +14,6 @@ import { EmptyCanvasOverlay } from "../../../components/empty-canvas-overlay";
 import { TemplateSelectorDialog } from "../../../components/template-selector-dialog";
 import { NewPageDialog } from "../../../components/new-page-dialog";
 import { GlobalComponentsManager } from "../../../components/global-components-manager";
-import { PageSettingsDialog } from "../../../components/page-settings-dialog";
 
 interface ThemeConfig {
   light: Record<string, string>;
@@ -37,14 +30,17 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
   const [isTemplateDialogOpen, setIsTemplateDialogOpen] = useState(false);
   const [isNewPageDialogOpen, setIsNewPageDialogOpen] = useState(false);
   const [isGlobalsManagerOpen, setIsGlobalsManagerOpen] = useState(false);
-  const [isPageSettingsOpen, setIsPageSettingsOpen] = useState(false);
   const [themeConfig, setThemeConfig] = useState<ThemeConfig | null>(null);
   const [currentData, setCurrentData] = useState<Partial<Data>>(data);
   const [existingPaths, setExistingPaths] = useState<string[]>([]);
-  const [pageTitle, setPageTitle] = useState<string>("");
-  const [excludedGlobals, setExcludedGlobals] = useState<string[]>([]);
   const [isMounted, setIsMounted] = useState(false);
   const [puckKey, setPuckKey] = useState(0);
+
+  // Use ref to access latest currentData without causing overrides to recreate
+  const currentDataRef = useRef(currentData);
+  useEffect(() => {
+    currentDataRef.current = currentData;
+  }, [currentData]);
 
   const isHomePage = path === "/";
 
@@ -53,40 +49,30 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
     setIsMounted(true);
   }, []);
 
-  // Extract page title and excluded globals from data or derive from path
-  useEffect(() => {
+  // Derive page title from currentData in real-time
+  const pageTitle = useMemo(() => {
     if (isHomePage) {
-      setPageTitle("Home");
-    } else if (
-      data?.root?.props &&
-      typeof data.root.props === "object" &&
-      "title" in data.root.props &&
-      typeof data.root.props.title === "string"
-    ) {
-      setPageTitle(data.root.props.title);
-    } else {
-      // Fallback: derive from path
-      const segments = path.split("/").filter(Boolean);
-      const lastSegment = segments[segments.length - 1] || "";
-      const formatted = lastSegment
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-      setPageTitle(formatted || "Page");
+      return "Home";
     }
 
-    // Load excluded globals
     if (
-      data?.root?.props &&
-      typeof data.root.props === "object" &&
-      "excludeGlobals" in data.root.props &&
-      Array.isArray(data.root.props.excludeGlobals)
+      currentData?.root?.props &&
+      typeof currentData.root.props === "object" &&
+      "title" in currentData.root.props &&
+      typeof currentData.root.props.title === "string"
     ) {
-      setExcludedGlobals(data.root.props.excludeGlobals as string[]);
-    } else {
-      setExcludedGlobals([]);
+      return currentData.root.props.title;
     }
-  }, [data, isHomePage, path]);
+
+    // Fallback: derive from path
+    const segments = path.split("/").filter(Boolean);
+    const lastSegment = segments[segments.length - 1] || "";
+    const formatted = lastSegment
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+    return formatted || "Page";
+  }, [currentData, isHomePage, path]);
 
   // Check if canvas is empty (initial check)
   const initialIsEmpty = useMemo(() => {
@@ -192,103 +178,120 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
     setThemeConfig(newConfig);
   };
 
-  const overrides = {
-    headerActions: ({ children }: { children: React.ReactNode }) => (
-      <>
-        <Button
-          variant="primary"
-          size="medium"
-          onClick={() => setIsNewPageDialogOpen(true)}
-        >
-          <PlusCircle className="w-4 h-4" />
-          New Page
-        </Button>
-        <Button
-          variant="secondary"
-          size="medium"
-          onClick={() => setIsGlobalsManagerOpen(true)}
-        >
-          <Layers className="w-4 h-4" />
-          Templates
-        </Button>
-        <Button
-          variant="secondary"
-          size="medium"
-          onClick={() => setIsPageSettingsOpen(true)}
-        >
-          <Settings className="w-4 h-4" />
-          Settings
-        </Button>
-        <Button
-          variant="secondary"
-          size="medium"
-          onClick={() => setIsThemeEditorOpen(true)}
-        >
-          <Palette className="w-4 h-4" />
-          Theme
-        </Button>
-        <Button
-          variant="secondary"
-          size="medium"
-          onClick={() => {
-            window.open(`/`, "_blank");
-          }}
-        >
-          <Eye className="w-4 h-4" />
-          Preview
-        </Button>
-        {children}
-      </>
-    ),
-    iframe: ({
-      children,
-      document,
-    }: {
-      children: React.ReactNode;
-      document?: Document;
-    }) => (
-      <IframeThemeInjector document={document} themeConfig={themeConfig}>
-        {children}
-      </IframeThemeInjector>
-    ),
-    fieldLabel: ({
-      children,
-      label,
-      icon,
-      el = "label",
-      className,
-    }: {
-      children?: React.ReactNode;
-      icon?: React.ReactNode;
-      label: string;
-      el?: "label" | "div";
-      readOnly?: boolean;
-      className?: string;
-    }) => {
-      // Only override the root "Page" label
-      if (label === "Page") {
+  const overrides = useMemo(
+    () => ({
+      headerActions: ({ children }: { children: React.ReactNode }) => (
+        <>
+          <Button
+            variant="primary"
+            size="medium"
+            onClick={() => setIsNewPageDialogOpen(true)}
+          >
+            <PlusCircle className="w-4 h-4" />
+            New Page
+          </Button>
+          <Button
+            variant="secondary"
+            size="medium"
+            onClick={() => setIsGlobalsManagerOpen(true)}
+          >
+            <Layers className="w-4 h-4" />
+            Templates
+          </Button>
+
+          <Button
+            variant="secondary"
+            size="medium"
+            onClick={() => setIsThemeEditorOpen(true)}
+          >
+            <Palette className="w-4 h-4" />
+            Theme
+          </Button>
+          <Button
+            variant="secondary"
+            size="medium"
+            onClick={() => {
+              window.open(`/`, "_blank");
+            }}
+          >
+            <Eye className="w-4 h-4" />
+            Preview
+          </Button>
+          {children}
+        </>
+      ),
+      iframe: ({
+        children,
+        document,
+      }: {
+        children: React.ReactNode;
+        document?: Document;
+      }) => (
+        <IframeThemeInjector document={document} themeConfig={themeConfig}>
+          {children}
+        </IframeThemeInjector>
+      ),
+      fieldLabel: ({
+        children,
+        label,
+        icon,
+        el = "label",
+        className,
+      }: {
+        children?: React.ReactNode;
+        icon?: React.ReactNode;
+        label: string;
+        el?: "label" | "div";
+        readOnly?: boolean;
+        className?: string;
+      }) => {
+        // Only override the root "Page" label
+        if (label === "Page") {
+          const Component = el;
+          // Read title directly from ref at render time (no re-render when typing)
+          const currentTitle = (() => {
+            if (isHomePage) return "Home";
+            const data = currentDataRef.current;
+            if (
+              data?.root?.props &&
+              typeof data.root.props === "object" &&
+              "title" in data.root.props &&
+              typeof data.root.props.title === "string"
+            ) {
+              return data.root.props.title;
+            }
+            const segments = path.split("/").filter(Boolean);
+            const lastSegment = segments[segments.length - 1] || "";
+            const formatted = lastSegment
+              .split("-")
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ");
+            return formatted || "Page";
+          })();
+
+          return (
+            <Component className={className}>
+              <div className="flex gap-2 items-center">
+                {icon}
+                <span className="font-semibold">{currentTitle}</span>
+              </div>
+            </Component>
+          );
+        }
         const Component = el;
         return (
           <Component className={className}>
             <div className="flex gap-2 items-center">
               {icon}
-              <span className="font-semibold">{pageTitle || "Page"}</span>
+              <span>{label}</span>
             </div>
+            {children}
           </Component>
         );
-      }
-      const Component = el;
-      return (
-        <Component className={className}>
-          <div className="flex gap-2 items-center">
-            {icon}
-            <span>{label}</span>
-          </div>
-          {children}
-        </Component>
-      );
-    },
-  };
+      },
+    }),
+    [themeConfig, isHomePage, path]
+  );
 
   const handleSelectTemplate = () => {
     setIsTemplateDialogOpen(true);
@@ -401,11 +404,6 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
     });
   };
 
-  const handleSavePageSettings = (newExcludedIds: string[]) => {
-    setExcludedGlobals(newExcludedIds);
-    // The excluded IDs will be saved when the page is published
-  };
-
   return (
     <ThemeProvider>
       <div className="relative">
@@ -422,20 +420,10 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
             setCurrentData(newData);
           }}
           onPublish={async (data) => {
-            // Ensure root.props includes excludeGlobals
-            const dataToSave = { ...data };
-            if (!dataToSave.root) {
-              dataToSave.root = { props: {} };
-            }
-            if (!dataToSave.root.props) {
-              dataToSave.root.props = {};
-            }
-            dataToSave.root.props.excludeGlobals = excludedGlobals;
-
             await fetch("/puck/api", {
               method: "post",
               body: JSON.stringify({
-                data: dataToSave,
+                data,
                 path,
                 title: pageTitle,
               }),
@@ -473,12 +461,7 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
         onInsertTemplate={handleInsertTemplate}
         onDeleteTemplate={handleDeleteTemplate}
       />
-      <PageSettingsDialog
-        isOpen={isPageSettingsOpen}
-        onClose={() => setIsPageSettingsOpen(false)}
-        currentExcludedIds={excludedGlobals}
-        onSave={handleSavePageSettings}
-      />
+
       <Toaster />
     </ThemeProvider>
   );
