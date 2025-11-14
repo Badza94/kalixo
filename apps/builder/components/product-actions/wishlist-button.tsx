@@ -43,11 +43,13 @@ export function WishlistButton({
   const [isMounted, setIsMounted] = useState(false);
   const addFavourite = useFavouritesStore((state) => state.addFavourite);
   const removeFavourite = useFavouritesStore((state) => state.removeFavourite);
-  const isFavourite = useFavouritesStore((state) => state.isFavourite);
+  // Subscribe to favourites array to get reactive updates
+  const favourites = useFavouritesStore((state) => state.favourites);
 
   // Use numeric id if available, otherwise use productId
   const idToUse = product?.id?.toString() || productId;
-  const isFavorited = isFavourite(idToUse);
+  // Check if current product is in favourites - this will update reactively
+  const isFavorited = favourites.includes(idToUse);
 
   useEffect(() => {
     setIsMounted(true);

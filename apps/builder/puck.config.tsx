@@ -467,13 +467,14 @@ export const config: Config<Props> = {
           label: "Max Width (e.g., '1200px', '100%', '50rem')",
         },
         margin: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
         },
         backgroundColor: {
           type: "custom",
@@ -764,23 +765,33 @@ export const config: Config<Props> = {
           type: "text",
           label: "Max Width (px)",
         },
+        direction: {
+          type: "select",
+          label: "Direction",
+          options: [
+            { label: "Row", value: "row" },
+            { label: "Column", value: "column" },
+          ],
+        },
         padding: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Padding"
+            />
+          ),
         },
         margin: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
         },
         backgroundColor: {
           type: "custom",
@@ -849,19 +860,15 @@ export const config: Config<Props> = {
             { label: "Extra Large", value: "xl" },
           ],
         },
-        spacing: {
-          type: "object",
-          label: "Item Spacing",
-          objectFields: {
-            x: {
-              type: "text",
-              label: "Horizontal (X) Spacing",
-            },
-            y: {
-              type: "text",
-              label: "Vertical (Y) Spacing",
-            },
-          },
+        gap: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Gap Between Items"
+            />
+          ),
         },
         items: {
           type: "array",
@@ -874,6 +881,7 @@ export const config: Config<Props> = {
       },
       defaultProps: {
         width: "container",
+        direction: "column",
         padding: {
           top: "24px",
           right: "24px",
@@ -956,22 +964,24 @@ export const config: Config<Props> = {
           label: "Min Height",
         },
         padding: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Padding"
+            />
+          ),
         },
         margin: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
         },
         backgroundColor: {
           type: "custom",
@@ -1104,13 +1114,14 @@ export const config: Config<Props> = {
           ),
         },
         margin: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
         },
       },
       defaultProps: {
@@ -1173,22 +1184,24 @@ export const config: Config<Props> = {
           ),
         },
         margin: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
         },
         padding: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Padding"
+            />
+          ),
         },
       },
       defaultProps: {
@@ -1301,13 +1314,14 @@ export const config: Config<Props> = {
           ],
         },
         margin: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
         },
         opacity: {
           type: "text",
@@ -1401,13 +1415,14 @@ export const config: Config<Props> = {
           ],
         },
         margin: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
         },
         controls: {
           type: "radio",
@@ -1492,13 +1507,14 @@ export const config: Config<Props> = {
           label: "Thickness",
         },
         margin: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
         },
       },
       defaultProps: {
@@ -1563,22 +1579,24 @@ export const config: Config<Props> = {
           ],
         },
         margin: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
         },
         padding: {
-          type: "object",
-          objectFields: {
-            top: { type: "text", label: "Top" },
-            right: { type: "text", label: "Right" },
-            bottom: { type: "text", label: "Bottom" },
-            left: { type: "text", label: "Left" },
-          },
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Padding"
+            />
+          ),
         },
         items: {
           type: "array",
@@ -2320,6 +2338,16 @@ export const config: Config<Props> = {
             />
           ),
         },
+        gap: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || { all: "8px" }}
+              onChange={onChange}
+              label="Gap Between Products"
+            />
+          ),
+        },
         imageAspectRatio: {
           type: "select",
           options: [
@@ -2420,6 +2448,7 @@ export const config: Config<Props> = {
         },
         borderRadius: { size: "lg" },
         padding: { all: "0" },
+        gap: { all: "8px" },
       },
       render: (props) => <ProductGridBlock {...props} />,
     },

@@ -10,10 +10,10 @@
  * will invalidate the cache as the page is written in /api/puck/route.ts
  */
 
-import { Client } from "./client";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { getPage } from "../../lib/get-page";
+import { ClientRender } from "../client-render";
 
 export async function generateMetadata({
   params,
@@ -41,5 +41,5 @@ export default async function Page({
     return notFound();
   }
 
-  return <Client data={data} />;
+  return <ClientRender data={data} />;
 }

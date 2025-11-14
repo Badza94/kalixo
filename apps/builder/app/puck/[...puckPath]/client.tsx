@@ -406,7 +406,7 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
 
   return (
     <ThemeProvider>
-      <div className="relative">
+      <div className="relative" suppressHydrationWarning>
         <Puck
           key={isMounted ? `puck-${path}-${puckKey}` : `puck-${path}`}
           config={config}

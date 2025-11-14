@@ -10,9 +10,8 @@ interface GlobalComponent {
 }
 
 interface PageData extends Data {
-  root?: {
-    props?: {
-      title?: string;
+  root: Data["root"] & {
+    props?: (Data["root"] extends { props?: infer P } ? P : object) & {
       excludeGlobals?: string[];
     };
   };
@@ -75,6 +74,18 @@ export const getPage = (pagePath: string): PageData | null => {
     console.log("__dirname:", __dirname);
     return null;
   }
+
+  // remove the _templates from the existing paths
+  const withoutTemplates = Object.keys(allData).filter(
+    (value: string) => !value.includes("_templates")
+  );
+  allData = withoutTemplates.reduce(
+    (acc, key) => {
+      acc[key] = allData![key];
+      return acc;
+    },
+    {} as Record<string, Data>
+  );
 
   console.log("Available paths in database:", Object.keys(allData));
   console.log("Looking for path:", pagePath);

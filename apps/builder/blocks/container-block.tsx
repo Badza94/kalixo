@@ -4,9 +4,18 @@ import React from "react";
 import { resolveColor } from "../types/theme";
 import { useThemeConfig } from "../hooks/use-theme-config";
 
+interface SpacingValue {
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+  all?: string;
+}
+
 export interface ContainerBlockProps {
   width?: "full" | "container" | "narrow" | "wide";
   maxWidth?: string;
+  direction?: "row" | "column";
   padding?: {
     top?: string;
     right?: string;
@@ -19,6 +28,7 @@ export interface ContainerBlockProps {
     bottom?: string;
     left?: string;
   };
+  gap?: SpacingValue;
   backgroundColor?: {
     colorKey: string;
     customColor?: string;
@@ -59,8 +69,10 @@ export interface ContainerBlockProps {
 export function ContainerBlock({
   width = "container",
   maxWidth,
+  direction = "column",
   padding = {},
   margin = {},
+  gap = {},
   backgroundColor,
   backgroundImage,
   backgroundSize = "cover",
@@ -106,6 +118,39 @@ export function ContainerBlock({
         : undefined
     : undefined;
 
+  const buildGap = React.useMemo(() => {
+    const gapObj = gap || {};
+    // For flex gap, we use the 'all' value or fallback to spacing values
+    return (
+      gapObj.all ||
+      gapObj.top ||
+      gapObj.right ||
+      gapObj.bottom ||
+      gapObj.left ||
+      (direction === "row"
+        ? spacing.x || spacing.y || "0"
+        : spacing.y || spacing.x || "0")
+    );
+  }, [gap, direction, spacing]);
+
+  const buildPadding = React.useMemo(() => {
+    return {
+      paddingTop: padding.top || "0",
+      paddingRight: padding.right || "0",
+      paddingBottom: padding.bottom || "0",
+      paddingLeft: padding.left || "0",
+    };
+  }, [padding]);
+
+  const buildMargin = React.useMemo(() => {
+    return {
+      marginTop: margin.top || "0",
+      marginRight: margin.right || "auto",
+      marginBottom: margin.bottom || "0",
+      marginLeft: margin.left || "auto",
+    };
+  }, [margin]);
+
   const containerStyles: React.CSSProperties = {
     // if width is narrow, then maxWidth is 768px
     // if width is wide, then maxWidth is 1400px
@@ -120,12 +165,8 @@ export function ContainerBlock({
           : width === "container"
             ? "1280px"
             : "100%"),
-    margin: "0 auto",
-    padding: `${padding.top || "0"} ${padding.right || "0"} ${padding.bottom || "0"} ${padding.left || "0"}`,
-    marginTop: margin.top || "0",
-    marginRight: margin.right || "0",
-    marginBottom: margin.bottom || "0",
-    marginLeft: margin.left || "0",
+    ...buildPadding,
+    ...buildMargin,
     ...(resolvedBackgroundColor && {
       backgroundColor: resolvedBackgroundColor,
     }),
@@ -147,12 +188,13 @@ export function ContainerBlock({
             : shadow === "lg"
               ? "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)"
               : "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-    ...(spacing.y && {
+    ...(((gap && (gap.all || gap.top || gap.right || gap.bottom || gap.left)) ||
+      spacing.x ||
+      spacing.y) && {
       display: "flex",
-      flexDirection: "column",
-      gap: spacing.y,
+      flexDirection: direction,
+      gap: buildGap,
     }),
-    ...(spacing.x && { display: "flex", flexDirection: "row", gap: spacing.x }),
   };
 
   console.log("ContainerBlock - items:", items, "children:", children);

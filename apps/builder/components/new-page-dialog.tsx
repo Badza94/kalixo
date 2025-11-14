@@ -303,7 +303,7 @@ export function NewPageDialog({
               value={selectedExistingPath}
               onValueChange={setSelectedExistingPath}
             >
-              <SelectTrigger id="existing-page">
+              <SelectTrigger id="existing-page" className="w-full">
                 <SelectValue placeholder="Choose a page..." />
               </SelectTrigger>
               <SelectContent>

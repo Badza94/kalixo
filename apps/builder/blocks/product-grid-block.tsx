@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo } from "react";
+import Link from "next/link";
 import { resolveColor } from "../types/theme";
 import { useThemeConfig } from "../hooks/use-theme-config";
 import Image from "next/image";
@@ -26,6 +27,7 @@ interface Product {
   price: string;
   currencyCode: string;
   image: string;
+  permalink: string;
 }
 
 export interface ProductGridBlockProps {
@@ -132,6 +134,7 @@ export interface ProductGridBlockProps {
   };
   margin?: SpacingValue;
   padding?: SpacingValue;
+  gap?: SpacingValue;
   imageAspectRatio?: "square" | "4/3" | "3/2" | "16/9";
   imageSize?: {
     width?: number;
@@ -196,6 +199,7 @@ export function ProductGridBlock({
   borderRadius = { size: "lg" },
   margin = {},
   padding = { all: "0" },
+  gap = { all: "8px" },
   imageAspectRatio = "square",
   imageSize = { width: 176, height: 176 },
   imageWrapper = {
@@ -304,6 +308,19 @@ export function ProductGridBlock({
       paddingLeft: paddingObj.left || paddingObj.all || "0",
     };
   }, [padding]);
+
+  const buildGap = useMemo(() => {
+    const gapObj = gap || {};
+    // For grid gap, we use the 'all' value or default to 8px
+    return (
+      gapObj.all ||
+      gapObj.top ||
+      gapObj.right ||
+      gapObj.bottom ||
+      gapObj.left ||
+      "8px"
+    );
+  }, [gap]);
 
   const imageAspectRatioValue = useMemo(() => {
     const aspectRatioMap = {
@@ -448,51 +465,67 @@ export function ProductGridBlock({
 
   console.log("resolvedBackgroundColor: ", resolvedBackgroundColor);
 
-  const renderProductCard = (product: Product) => (
-    <div
-      key={product.id}
-      className="p-3 space-y-2 rounded-lg border bg-card"
-      style={{ backgroundColor: resolvedBackgroundColor }}
-    >
-      {/* Product Image */}
-      <div
-        className="overflow-hidden relative mx-auto w-full max-w-[176px]"
-        style={{
-          ...imageWrapperStyles,
-          aspectRatio: imageAspectRatioValue,
+  const renderProductCard = (product: Product) => {
+    console.log("product123: ", product);
+    const productUrl = product.permalink
+      ? `/product/${product.permalink}`
+      : "#";
+
+    return (
+      <Link
+        key={product.id}
+        href={productUrl}
+        className="block p-3 space-y-2 rounded-lg border transition-opacity cursor-pointer bg-card hover:opacity-90"
+        style={{ backgroundColor: resolvedBackgroundColor }}
+        onClick={(e) => {
+          // Prevent navigation if clicking on buttons
+          if ((e.target as HTMLElement).closest("button")) {
+            e.preventDefault();
+          }
         }}
       >
-        <Image
-          src={product.image}
-          alt={product.name}
-          className="object-cover mx-auto w-full h-full"
-          width={imageSize.width || 176}
-          height={imageSize.height || 176}
-        />
-      </div>
+        {/* Product Image */}
+        <div
+          className="overflow-hidden relative mx-auto w-full max-w-[176px]"
+          style={{
+            ...imageWrapperStyles,
+            aspectRatio: imageAspectRatioValue,
+          }}
+        >
+          <Image
+            src={product.image}
+            alt={product.name}
+            className="object-cover mx-auto w-full h-full"
+            width={imageSize.width || 176}
+            height={imageSize.height || 176}
+          />
+        </div>
 
-      {/* Product Info */}
-      <div className="space-y-2 text-left">
-        <h3 className="text-lg font-semibold leading-tight">{product.name}</h3>
+        {/* Product Info */}
+        <div className="space-y-2 text-left">
+          <h3 className="text-lg font-semibold leading-tight">
+            {product.name}
+          </h3>
 
-        {showCategory && (
-          <p className="text-sm text-muted-foreground">{product.category}</p>
-        )}
+          {showCategory && (
+            <p className="text-sm text-muted-foreground">{product.category}</p>
+          )}
 
-        {showPrice && (
-          <p className="text-lg font-bold">
-            {new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: product.currencyCode,
-            }).format(Number(product.price))}
-          </p>
-        )}
-      </div>
+          {showPrice && (
+            <p className="text-lg font-bold">
+              {new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: product.currencyCode,
+              }).format(Number(product.price))}
+            </p>
+          )}
+        </div>
 
-      {/* Action Buttons */}
-      {renderButtons(product)}
-    </div>
-  );
+        {/* Action Buttons */}
+        {renderButtons(product)}
+      </Link>
+    );
+  };
 
   // If no products selected, show placeholder
   if (!productSelection.selectedProducts.length) {
@@ -541,7 +574,10 @@ export function ProductGridBlock({
 
   return (
     <div className={`product-grid-block ${className}`} style={containerStyles}>
-      <div className={`grid gap-2 mx-auto max-w-full ${getGridClasses()}`}>
+      <div
+        className={`grid mx-auto max-w-full ${getGridClasses()}`}
+        style={{ gap: buildGap }}
+      >
         {productSelection.selectedProducts.map(renderProductCard)}
       </div>
     </div>
