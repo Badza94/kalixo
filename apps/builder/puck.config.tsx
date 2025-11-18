@@ -30,7 +30,12 @@ import {
   ProductGridBlock,
   ProductGridBlockProps,
 } from "./blocks/product-grid-block";
+import {
+  ProductPageBlock,
+  ProductPageBlockProps,
+} from "./blocks/product-page-block";
 import { ProductSelectorField } from "./fields/product-selector-field";
+import productsData from "./data/productsData.json";
 import { ColorPickerField } from "./fields/color-picker-field";
 import { SpacingField } from "./fields/spacing-field";
 import { BorderRadiusField } from "./fields/border-radius-field";
@@ -60,6 +65,7 @@ type Props = {
   CarouselBlock: CarouselBlockProps;
   ProductCardBlock: ProductCardBlockProps;
   ProductGridBlock: ProductGridBlockProps;
+  ProductPageBlock: ProductPageBlockProps;
   FormBlock: FormBlockProps;
 };
 
@@ -2102,20 +2108,40 @@ export const config: Config<Props> = {
       fields: {
         productSelection: {
           type: "custom",
-          render: ({ onChange, value }) => (
-            <ProductSelectorField
-              value={
-                value || {
-                  selectionMode: "manual",
-                  selectedProducts: [],
-                  filters: {},
-                  maxProducts: 6,
+          render: ({ onChange, value }) => {
+            // Check if we're on a category page
+            const pathname =
+              typeof window !== "undefined" ? window.location.pathname : "";
+            const isCategoryPage = pathname.includes("/category");
+
+            // Hide product selection on category pages (products come from backend)
+            if (isCategoryPage) {
+              return (
+                <div className="p-4 text-sm rounded-md border text-muted-foreground bg-muted">
+                  <p className="font-medium">Product selection disabled</p>
+                  <p className="mt-1 text-xs">
+                    Products are automatically loaded from the backend on
+                    category pages.
+                  </p>
+                </div>
+              );
+            }
+
+            return (
+              <ProductSelectorField
+                value={
+                  value || {
+                    selectionMode: "manual",
+                    selectedProducts: [],
+                    filters: {},
+                    maxProducts: 6,
+                  }
                 }
-              }
-              onChange={onChange}
-              label="Product Selection"
-            />
-          ),
+                onChange={onChange}
+                label="Product Selection"
+              />
+            );
+          },
         },
         gridColumns: {
           type: "select",
@@ -2452,6 +2478,455 @@ export const config: Config<Props> = {
       },
       render: (props) => <ProductGridBlock {...props} />,
     },
+    ProductPageBlock: {
+      label: "Product Page",
+      fields: {
+        productId: {
+          type: "text",
+          label: "Product ID",
+        },
+        title: {
+          type: "text",
+          label: "Product Title",
+        },
+        brand: {
+          type: "text",
+          label: "Brand",
+        },
+        price: {
+          type: "number",
+          label: "Price",
+        },
+        currencyCode: {
+          type: "select",
+          label: "Currency",
+          options: [
+            { label: "GBP", value: "GBP" },
+            { label: "USD", value: "USD" },
+            { label: "EUR", value: "EUR" },
+            { label: "CAD", value: "CAD" },
+          ],
+        },
+        discount: {
+          type: "text",
+          label: "Discount (%)",
+        },
+        reducedPrice: {
+          type: "text",
+          label: "Reduced Price",
+        },
+        shortDescription: {
+          type: "textarea",
+          label: "Short Description",
+        },
+        longDescription: {
+          type: "textarea",
+          label: "Long Description",
+        },
+        termsAndConditions: {
+          type: "textarea",
+          label: "Terms and Conditions",
+        },
+        redemptionInstructions: {
+          type: "textarea",
+          label: "Redemption Instructions",
+        },
+        images: {
+          type: "array",
+          label: "Product Images",
+          arrayFields: {
+            id: {
+              type: "text",
+              label: "Image ID",
+            },
+            url: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ImagePickerField
+                  value={value || ""}
+                  onChange={onChange}
+                  label="Image URL"
+                />
+              ),
+            },
+            isDefault: {
+              type: "radio",
+              label: "Default Image",
+              options: [
+                { label: "Yes", value: true },
+                { label: "No", value: false },
+              ],
+            },
+          },
+        },
+        showBrand: {
+          type: "radio",
+          label: "Show Brand",
+          options: [
+            { label: "Show", value: true },
+            { label: "Hide", value: false },
+          ],
+        },
+        showShortDescription: {
+          type: "radio",
+          label: "Show Short Description",
+          options: [
+            { label: "Show", value: true },
+            { label: "Hide", value: false },
+          ],
+        },
+        showLongDescription: {
+          type: "radio",
+          label: "Show Long Description",
+          options: [
+            { label: "Show", value: true },
+            { label: "Hide", value: false },
+          ],
+        },
+        showTermsAndConditions: {
+          type: "radio",
+          label: "Show Terms and Conditions",
+          options: [
+            { label: "Show", value: true },
+            { label: "Hide", value: false },
+          ],
+        },
+        showRedemptionInstructions: {
+          type: "radio",
+          label: "Show Redemption Instructions",
+          options: [
+            { label: "Show", value: true },
+            { label: "Hide", value: false },
+          ],
+        },
+        showRelatedProducts: {
+          type: "radio",
+          label: "Show Related Products",
+          options: [
+            { label: "Show", value: true },
+            { label: "Hide", value: false },
+          ],
+        },
+        relatedProducts: {
+          type: "custom",
+          render: ({ onChange, value }) => {
+            // Check if we're on a product page
+            const pathname =
+              typeof window !== "undefined" ? window.location.pathname : "";
+            const isProductPage = pathname.includes("/product");
+
+            // Hide product selection on product pages (products come from backend)
+            if (isProductPage) {
+              return (
+                <div className="p-4 text-sm rounded-md border text-muted-foreground bg-muted">
+                  <p className="font-medium">
+                    Related products selection disabled
+                  </p>
+                  <p className="mt-1 text-xs">
+                    Related products are automatically loaded from the backend
+                    on product pages.
+                  </p>
+                </div>
+              );
+            }
+
+            // Default products from productsData.json (first 4 products)
+            const defaultProducts = productsData.slice(0, 4).map((product) => ({
+              id: product.id,
+              productId: product.productId,
+              name: product.name,
+              brand: product.brand,
+              type: product.type,
+              category: product.category,
+              price: product.price,
+              currencyCode: product.currencyCode,
+              image: product.image,
+              permalink: product.permalink,
+            }));
+
+            return (
+              <ProductSelectorField
+                value={
+                  value || {
+                    selectionMode: "manual",
+                    selectedProducts: defaultProducts,
+                    filters: {},
+                    maxProducts: 4,
+                  }
+                }
+                onChange={onChange}
+                label="Related Products"
+              />
+            );
+          },
+        },
+        buyNowButton: {
+          type: "object",
+          objectFields: {
+            variant: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Destructive", value: "destructive" },
+                { label: "Outline", value: "outline" },
+                { label: "Secondary", value: "secondary" },
+                { label: "Ghost", value: "ghost" },
+                { label: "Link", value: "link" },
+              ],
+            },
+            size: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Small", value: "sm" },
+                { label: "Large", value: "lg" },
+                { label: "Icon", value: "icon" },
+              ],
+            },
+            backgroundColor: {
+              type: "custom",
+              render: ({
+                onChange,
+                value,
+              }: {
+                onChange: (value: any) => void;
+                value: any;
+              }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "primary" }}
+                  onChange={onChange}
+                  label="Background Color"
+                />
+              ),
+            },
+            textColor: {
+              type: "custom",
+              render: ({
+                onChange,
+                value,
+              }: {
+                onChange: (value: any) => void;
+                value: any;
+              }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "primary-foreground" }}
+                  onChange={onChange}
+                  label="Text Color"
+                />
+              ),
+            },
+          },
+        },
+        addToCartButton: {
+          type: "object",
+          objectFields: {
+            variant: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Destructive", value: "destructive" },
+                { label: "Outline", value: "outline" },
+                { label: "Secondary", value: "secondary" },
+                { label: "Ghost", value: "ghost" },
+                { label: "Link", value: "link" },
+              ],
+            },
+            size: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Small", value: "sm" },
+                { label: "Large", value: "lg" },
+                { label: "Icon", value: "icon" },
+              ],
+            },
+            backgroundColor: {
+              type: "custom",
+              render: ({
+                onChange,
+                value,
+              }: {
+                onChange: (value: any) => void;
+                value: any;
+              }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "transparent" }}
+                  onChange={onChange}
+                  label="Background Color"
+                />
+              ),
+            },
+            textColor: {
+              type: "custom",
+              render: ({
+                onChange,
+                value,
+              }: {
+                onChange: (value: any) => void;
+                value: any;
+              }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "foreground" }}
+                  onChange={onChange}
+                  label="Text Color"
+                />
+              ),
+            },
+          },
+        },
+        addToFavButton: {
+          type: "object",
+          objectFields: {
+            variant: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Destructive", value: "destructive" },
+                { label: "Outline", value: "outline" },
+                { label: "Secondary", value: "secondary" },
+                { label: "Ghost", value: "ghost" },
+                { label: "Link", value: "link" },
+              ],
+            },
+            size: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Small", value: "sm" },
+                { label: "Large", value: "lg" },
+                { label: "Icon", value: "icon" },
+              ],
+            },
+            backgroundColor: {
+              type: "custom",
+              render: ({
+                onChange,
+                value,
+              }: {
+                onChange: (value: any) => void;
+                value: any;
+              }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "transparent" }}
+                  onChange={onChange}
+                  label="Background Color"
+                />
+              ),
+            },
+            textColor: {
+              type: "custom",
+              render: ({
+                onChange,
+                value,
+              }: {
+                onChange: (value: any) => void;
+                value: any;
+              }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "foreground" }}
+                  onChange={onChange}
+                  label="Text Color"
+                />
+              ),
+            },
+          },
+        },
+        backgroundColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "background" }}
+              onChange={onChange}
+              label="Background Color"
+            />
+          ),
+        },
+        margin: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
+        },
+        padding: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || { all: "0" }}
+              onChange={onChange}
+              label="Padding"
+            />
+          ),
+        },
+      },
+      defaultProps: {
+        productId: "17056",
+        title: "Kalixo wallet",
+        brand: "Kalixo",
+        price: 10,
+        currencyCode: "GBP",
+        discount: "0",
+        reducedPrice: "0.00",
+        shortDescription: "Kalixo wallet",
+        longDescription: "",
+        termsAndConditions: "",
+        redemptionInstructions: "",
+        images: [
+          {
+            id: "1",
+            url: "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+            isDefault: true,
+          },
+        ],
+        showBrand: true,
+        showShortDescription: true,
+        showLongDescription: true,
+        showTermsAndConditions: true,
+        showRedemptionInstructions: true,
+        showRelatedProducts: true,
+        relatedProducts: {
+          selectionMode: "manual",
+          selectedProducts: productsData.slice(0, 4).map((product) => ({
+            id: product.id,
+            productId: product.productId,
+            name: product.name,
+            brand: product.brand,
+            type: product.type,
+            category: product.category,
+            price: product.price,
+            currencyCode: product.currencyCode,
+            image: product.image,
+            permalink: product.permalink,
+          })),
+          filters: {},
+          maxProducts: 4,
+        },
+        buyNowButton: {
+          variant: "default",
+          size: "default",
+          backgroundColor: { colorKey: "primary" },
+          textColor: { colorKey: "primary-foreground" },
+        },
+        addToCartButton: {
+          variant: "outline",
+          size: "default",
+          backgroundColor: { colorKey: "transparent" },
+          textColor: { colorKey: "foreground" },
+        },
+        addToFavButton: {
+          variant: "ghost",
+          size: "default",
+          backgroundColor: { colorKey: "transparent" },
+          textColor: { colorKey: "foreground" },
+        },
+        backgroundColor: { colorKey: "background" },
+        padding: { all: "0" },
+      },
+      render: (props) => <ProductPageBlock {...props} />,
+    },
     FormBlock: {
       label: "Form",
       fields: {
@@ -2549,6 +3024,7 @@ export const config: Config<Props> = {
         "CarouselBlock",
         "ProductCardBlock",
         "ProductGridBlock",
+        "ProductPageBlock",
         "FormBlock",
         "DividerBlock",
         "SpacerBlock",

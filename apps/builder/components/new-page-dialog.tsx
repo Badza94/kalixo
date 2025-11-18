@@ -28,6 +28,7 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card";
 import { FilePlus, FileEdit } from "@workspace/ui/lucide-react";
+import templatesData from "../data/templates.json";
 
 const slugify = (value: string) =>
   value
@@ -41,7 +42,7 @@ const slugify = (value: string) =>
 interface NewPageDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  onCreate: (payload: { name: string; path: string }) => void | Promise<void>;
+  onCreate: (payload: { name: string; path: string; templateId?: string }) => void | Promise<void>;
   existingPaths?: string[];
 }
 
@@ -60,6 +61,7 @@ export function NewPageDialog({
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedExistingPath, setSelectedExistingPath] = useState<string>("");
+  const [selectedTemplate, setSelectedTemplate] = useState<string>("");
 
   const normalisedExistingPaths = useMemo(
     () => new Set(existingPaths.map((value) => value.toLowerCase())),
@@ -75,6 +77,7 @@ export function NewPageDialog({
       setError(null);
       setIsSubmitting(false);
       setSelectedExistingPath("");
+      setSelectedTemplate("");
       return;
     }
   }, [isOpen]);
@@ -126,6 +129,7 @@ export function NewPageDialog({
       await onCreate({
         name: pageName.trim(),
         path,
+        templateId: selectedTemplate || undefined,
       });
       onClose();
     } finally {
@@ -270,6 +274,29 @@ export function NewPageDialog({
               </p>
             </div>
 
+            <div className="space-y-2">
+              <Label htmlFor="page-template">Template (Optional)</Label>
+              <Select
+                value={selectedTemplate}
+                onValueChange={setSelectedTemplate}
+              >
+                <SelectTrigger id="page-template" className="w-full">
+                  <SelectValue placeholder="Choose a template (optional)..." />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">None - Start from scratch</SelectItem>
+                  {(templatesData.templates as Array<{ id: string; name: string }>).map((template) => (
+                    <SelectItem key={template.id} value={template.id}>
+                      {template.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-muted-foreground">
+                Select a template to pre-populate your page with content.
+              </p>
+            </div>
+
             {error ? <p className="text-sm text-destructive">{error}</p> : null}
 
             <DialogFooter className="gap-2">
@@ -307,16 +334,18 @@ export function NewPageDialog({
                 <SelectValue placeholder="Choose a page..." />
               </SelectTrigger>
               <SelectContent>
-                {existingPaths.length === 0 ? (
+                {existingPaths.filter((path) => path !== "_templates").length === 0 ? (
                   <SelectItem value="__empty__" disabled>
                     No pages found
                   </SelectItem>
                 ) : (
-                  existingPaths.map((pagePath) => (
-                    <SelectItem key={pagePath} value={pagePath}>
-                      {pagePath}
-                    </SelectItem>
-                  ))
+                  existingPaths
+                    .filter((path) => path !== "_templates")
+                    .map((pagePath) => (
+                      <SelectItem key={pagePath} value={pagePath}>
+                        {pagePath}
+                      </SelectItem>
+                    ))
                 )}
               </SelectContent>
             </Select>

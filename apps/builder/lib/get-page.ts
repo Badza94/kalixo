@@ -18,7 +18,9 @@ interface PageData extends Data {
 }
 
 // Replace with call to your database
-export const getPage = (pagePath: string): PageData | null => {
+export const getPage = (
+  pagePath: string
+): (PageData & { dynamicSegment?: string }) | null => {
   // Try multiple possible locations for database.json
   const possiblePaths = [
     path.join(process.cwd(), "database.json"),
@@ -90,7 +92,34 @@ export const getPage = (pagePath: string): PageData | null => {
   console.log("Available paths in database:", Object.keys(allData));
   console.log("Looking for path:", pagePath);
 
-  const pageData = allData[pagePath] as PageData | undefined;
+  // First, try exact match
+  let pageData = allData[pagePath] as PageData | undefined;
+  let dynamicSegment: string | undefined = undefined;
+
+  // If no exact match, try dynamic route matching
+  if (!pageData) {
+    // Check if it's a category route: /category/[slug]
+    if (pagePath.startsWith("/category/")) {
+      const categoryTemplate = allData["/category"] as PageData | undefined;
+      if (categoryTemplate) {
+        console.log("Matched category template for:", pagePath);
+        pageData = categoryTemplate;
+        // Extract the slug (everything after /category/)
+        dynamicSegment = pagePath.replace("/category/", "");
+      }
+    }
+    // Check if it's a product route: /product/[permalink]
+    else if (pagePath.startsWith("/product/")) {
+      const productTemplate = allData["/product"] as PageData | undefined;
+      if (productTemplate) {
+        console.log("Matched product template for:", pagePath);
+        pageData = productTemplate;
+        // Extract the permalink (everything after /product/)
+        dynamicSegment = pagePath.replace("/product/", "");
+      }
+    }
+  }
+
   console.log("Found page data:", !!pageData);
 
   if (!pageData) {
@@ -133,5 +162,14 @@ export const getPage = (pagePath: string): PageData | null => {
     ...footerComponents.map((comp) => ({ type: comp.type, props: comp.props })),
   ];
 
-  return enhancedPageData;
+  // Add dynamic segment to root props if it exists
+  if (dynamicSegment) {
+    if (!enhancedPageData.root.props) {
+      enhancedPageData.root.props = {};
+    }
+    (enhancedPageData.root.props as Record<string, unknown>).dynamicSegment =
+      dynamicSegment;
+  }
+
+  return { ...enhancedPageData, dynamicSegment };
 };

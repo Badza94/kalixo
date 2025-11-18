@@ -39,6 +39,11 @@
       "id": "template-8",
       "name": "Template 8",
       "description": "Classic and timeless design for any industry"
+    },
+    {
+      "id": "simple-product-template",
+      "name": "Simple Product Template",
+      "description": "Complete product page template with image gallery, product info, accordions, action buttons, and related products"
     }
   ]
 }

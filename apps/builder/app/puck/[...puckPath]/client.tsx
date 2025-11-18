@@ -207,16 +207,30 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
             <Palette className="w-4 h-4" />
             Theme
           </Button>
-          <Button
+          {/* <Button
             variant="secondary"
             size="medium"
             onClick={() => {
-              window.open(`/`, "_blank");
+              // if the path is http://localhost:3002/edit then the new path should be http://localhost:3002
+              // or if the path is http://localhost:3002/category/edit then the new path should be http://localhost:3002/category
+
+              const currentPath = window.location.pathname;
+              const newPath = currentPath.replace("/edit", "");
+              console.log("newPath: ", newPath);
+              window.open(`${newPath}`, "_blank");
             }}
+          >
+            
+          </Button> */}
+          <a
+            href={`${path.replace("/edit", "")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border h-[34px] px-[19px] py-[7px] rounded flex items-center gap-2 text-current border-current"
           >
             <Eye className="w-4 h-4" />
             Preview
-          </Button>
+          </a>
           {children}
         </>
       ),
@@ -298,10 +312,79 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
   };
 
   const handleTemplateSelected = (templateId: string) => {
-    // TODO: Load template data based on templateId
-    // For now, just hide the overlay and allow user to build
+    if (templateId === "simple-product-template") {
+      // Load Simple Product Template
+      const templateData = {
+        root: { props: { title: "Product Page" } },
+        content: [
+          {
+            type: "ProductPageBlock",
+            props: {
+              id: `ProductPageBlock-${Date.now()}`,
+              productId: "17056",
+              title: "Kalixo wallet",
+              brand: "Kalixo",
+              price: 10,
+              currencyCode: "GBP",
+              discount: "0",
+              reducedPrice: "0.00",
+              shortDescription: "Kalixo wallet",
+              longDescription:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+              termsAndConditions:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+              redemptionInstructions:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              images: [
+                {
+                  id: "1",
+                  url: "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+                  isDefault: true,
+                },
+              ],
+              showBrand: true,
+              showShortDescription: true,
+              showLongDescription: true,
+              showTermsAndConditions: true,
+              showRedemptionInstructions: true,
+              showRelatedProducts: true,
+              relatedProducts: {
+                selectionMode: "manual",
+                selectedProducts: [],
+                filters: {},
+                maxProducts: 4,
+              },
+              buyNowButton: {
+                variant: "default",
+                size: "default",
+                backgroundColor: { colorKey: "primary" },
+                textColor: { colorKey: "primary-foreground" },
+              },
+              addToCartButton: {
+                variant: "outline",
+                size: "default",
+                backgroundColor: { colorKey: "transparent" },
+                textColor: { colorKey: "foreground" },
+              },
+              addToFavButton: {
+                variant: "ghost",
+                size: "default",
+                backgroundColor: { colorKey: "transparent" },
+                textColor: { colorKey: "foreground" },
+              },
+              backgroundColor: { colorKey: "background" },
+              padding: { all: "0" },
+            },
+          },
+        ],
+        zones: {},
+      };
+
+      setCurrentData(templateData);
+      setPuckKey((prev) => prev + 1);
+    }
+
     setShowOverlay(false);
-    console.log("Template selected:", templateId);
   };
 
   const handleCreateOwn = () => {
@@ -312,9 +395,11 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
   const handleCreatePage = async ({
     name,
     path: targetPath,
+    templateId,
   }: {
     name: string;
     path: string;
+    templateId?: string;
   }) => {
     const trimmed = targetPath.trim();
     const withLeadingSlash = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
@@ -325,11 +410,80 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
         : dedupedSlashes;
 
     // Create initial page data with title
-    const initialData = {
+    let initialData: Partial<Data> = {
       root: { props: { title: name.trim() } },
       content: [],
       zones: {},
     };
+
+    // If template is selected, load template data
+    if (templateId === "simple-product-template") {
+      initialData = {
+        root: { props: { title: name.trim() } },
+        content: [
+          {
+            type: "ProductPageBlock",
+            props: {
+              id: `ProductPageBlock-${Date.now()}`,
+              productId: "17056",
+              title: "Kalixo wallet",
+              brand: "Kalixo",
+              price: 10,
+              currencyCode: "GBP",
+              discount: "0",
+              reducedPrice: "0.00",
+              shortDescription: "Kalixo wallet",
+              longDescription:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+              termsAndConditions:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+              redemptionInstructions:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              images: [
+                {
+                  id: "1",
+                  url: "https://cdn.kalixo.io/static-images/GB-en-KW1.png",
+                  isDefault: true,
+                },
+              ],
+              showBrand: true,
+              showShortDescription: true,
+              showLongDescription: true,
+              showTermsAndConditions: true,
+              showRedemptionInstructions: true,
+              showRelatedProducts: true,
+              relatedProducts: {
+                selectionMode: "manual",
+                selectedProducts: [],
+                filters: {},
+                maxProducts: 4,
+              },
+              buyNowButton: {
+                variant: "default",
+                size: "default",
+                backgroundColor: { colorKey: "primary" },
+                textColor: { colorKey: "primary-foreground" },
+              },
+              addToCartButton: {
+                variant: "outline",
+                size: "default",
+                backgroundColor: { colorKey: "transparent" },
+                textColor: { colorKey: "foreground" },
+              },
+              addToFavButton: {
+                variant: "ghost",
+                size: "default",
+                backgroundColor: { colorKey: "transparent" },
+                textColor: { colorKey: "foreground" },
+              },
+              backgroundColor: { colorKey: "background" },
+              padding: { all: "0" },
+            },
+          },
+        ],
+        zones: {},
+      };
+    }
 
     // Save the initial page with title
     await fetch("/puck/api", {
