@@ -46,6 +46,14 @@ import { FORM_TEMPLATES, DEFAULT_FORM_STYLING } from "./data/form-templates";
 import { SharedAssets } from "@workspace/ui/assets";
 import { VideoPickerField } from "./fields/video-picker-field";
 import { FormBlockProps } from "./types/form";
+import {
+  SocialButtonBlock,
+  SocialButtonBlockProps,
+} from "./blocks/social-button-block";
+import {
+  CustomHtmlBlock,
+  CustomHtmlBlockProps,
+} from "./blocks/custom-html-block";
 type Props = {
   HeadingBlock: HeadingBlockProps;
   TextBlock: TextBlockProps;
@@ -67,6 +75,8 @@ type Props = {
   ProductGridBlock: ProductGridBlockProps;
   ProductPageBlock: ProductPageBlockProps;
   FormBlock: FormBlockProps;
+  SocialButtonBlock: SocialButtonBlockProps;
+  CustomHtmlBlock: CustomHtmlBlockProps;
 };
 
 export const config: Config<Props> = {
@@ -3097,6 +3107,79 @@ export const config: Config<Props> = {
       },
       render: (props) => <FormBlock {...props} />,
     },
+    SocialButtonBlock: {
+      label: "Social Button",
+      fields: {
+        provider: {
+          type: "select",
+          label: "Provider",
+          options: [
+            { label: "Google", value: "google" },
+            { label: "Facebook", value: "facebook" },
+            { label: "X (Twitter)", value: "x" },
+          ],
+        },
+        text: {
+          type: "text",
+          label: "Button Text (Optional)",
+        },
+        borderRadius: {
+          type: "text",
+          label: "Border Radius (e.g., 6px)",
+        },
+        className: {
+          type: "text",
+          label: "Additional CSS Classes",
+        },
+      },
+      defaultProps: {
+        provider: "google",
+        borderRadius: "6px",
+        text: "",
+        className: "",
+      },
+      render: (props) => <SocialButtonBlock {...props} />,
+    },
+    CustomHtmlBlock: {
+      label: "Custom HTML",
+      fields: {
+        html: {
+          type: "textarea",
+          label: "HTML Code",
+        },
+        margin: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
+        },
+        padding: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Padding"
+            />
+          ),
+        },
+        className: {
+          type: "text",
+          label: "CSS Classes",
+        },
+      },
+      defaultProps: {
+        html: "",
+        margin: {},
+        padding: {},
+        className: "",
+      },
+      render: (props) => <CustomHtmlBlock {...props} />,
+    },
   },
   categories: {
     typography: {
@@ -3117,6 +3200,8 @@ export const config: Config<Props> = {
         "ProductGridBlock",
         "ProductPageBlock",
         "FormBlock",
+        "SocialButtonBlock",
+        "CustomHtmlBlock",
         "DividerBlock",
         "SpacerBlock",
       ],

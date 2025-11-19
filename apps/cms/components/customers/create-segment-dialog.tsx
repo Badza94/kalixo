@@ -327,7 +327,7 @@ export function CreateSegmentDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>
-          <Plus className="mr-2 h-4 w-4" />
+          <Plus className="mr-2 w-4 h-4" />
           {td("createSegment")}
         </Button>
       </DialogTrigger>
@@ -374,7 +374,7 @@ export function CreateSegmentDialog() {
               />
             </div>
 
-            <div className="space-y-4 mt-4">
+            <div className="mt-4 space-y-4">
               <div className="relative flex-1">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -387,11 +387,11 @@ export function CreateSegmentDialog() {
               <Separator className="my-4" />
 
               <ScrollArea className="h-[515px]">
-                <div className="space-y-6 mt-4 mx-2">
+                <div className="mx-2 mt-4 space-y-6">
                   {Object.entries(groupedTemplates).map(
                     ([groupName, templates]) => (
                       <div key={groupName} className="space-y-3">
-                        <h4 className="text-sm font-medium text-muted-foreground border-b pb-2">
+                        <h4 className="pb-2 text-sm font-medium border-b text-muted-foreground">
                           {groupName}
                         </h4>
                         <div className="grid grid-cols-3 gap-3">
@@ -412,12 +412,12 @@ export function CreateSegmentDialog() {
                                 }
                               >
                                 <CardContent className="p-4 space-y-3">
-                                  <div className="flex items-start gap-3">
+                                  <div className="flex gap-3 items-start">
                                     <div className="p-2 rounded-lg bg-primary/10">
-                                      <IconComponent className="h-5 w-5 text-primary" />
+                                      <IconComponent className="w-5 h-5 text-primary" />
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                      <h5 className="font-medium text-sm leading-tight">
+                                      <h5 className="text-sm font-medium leading-tight">
                                         {template.title}
                                       </h5>
                                       <Badge
@@ -430,7 +430,7 @@ export function CreateSegmentDialog() {
                                       </Badge>
                                     </div>
                                   </div>
-                                  <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
+                                  <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
                                     {template.description}
                                   </p>
                                   <div className="space-y-2">
@@ -464,7 +464,7 @@ export function CreateSegmentDialog() {
                   )}
                 </div>
                 {selectedTemplate && (
-                  <div className="space-y-4 mt-6 p-4 bg-muted/30 rounded-lg">
+                  <div className="p-4 mt-6 space-y-4 rounded-lg bg-muted/30">
                     <h4 className="text-sm font-medium">
                       {td("templateConditions")}
                     </h4>
@@ -474,13 +474,13 @@ export function CreateSegmentDialog() {
                         ?.conditions.map((condition, index) => (
                           <div
                             key={index}
-                            className="bg-muted/50 px-3 py-2 rounded font-mono text-sm border"
+                            className="px-3 py-2 font-mono text-sm rounded border bg-muted/50"
                           >
                             {condition}
                           </div>
                         ))}
                     </div>
-                    <div className="flex items-center justify-between pt-2 border-t">
+                    <div className="flex justify-between items-center pt-2 border-t">
                       <span className="text-sm text-muted-foreground">
                         {td("estimatedCustomers")}
                       </span>
