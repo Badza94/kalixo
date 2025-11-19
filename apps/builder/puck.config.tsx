@@ -961,6 +961,10 @@ export const config: Config<Props> = {
           type: "text",
           label: "Width",
         },
+        maxWidth: {
+          type: "text",
+          label: "Max Width (e.g., '1200px', '100%', '50rem')",
+        },
         height: {
           type: "text",
           label: "Height",
@@ -2985,7 +2989,16 @@ export const config: Config<Props> = {
                 { label: "Small", value: "sm" },
                 { label: "Default", value: "default" },
                 { label: "Large", value: "lg" },
+                { label: "Icon", value: "icon" },
               ],
+            },
+            buttonFullWidth: {
+              type: "radio",
+              options: [
+                { label: "No", value: false },
+                { label: "Yes", value: true },
+              ],
+              label: "Button Full Width",
             },
             fieldSpacing: {
               type: "select",
@@ -2995,6 +3008,84 @@ export const config: Config<Props> = {
                 { label: "Medium", value: "md" },
                 { label: "Large", value: "lg" },
               ],
+            },
+            inputStyles: {
+              type: "object",
+              label: "Input Styles",
+              objectFields: {
+                backgroundColor: {
+                  type: "custom",
+                  label: "Background Color",
+                  render: ({ onChange, value }) => (
+                    <ColorPickerField
+                      value={value || { colorKey: "background" }}
+                      onChange={onChange}
+                      label="Background Color"
+                    />
+                  ),
+                },
+                textColor: {
+                  type: "custom",
+                  label: "Text Color",
+                  render: ({ onChange, value }) => (
+                    <ColorPickerField
+                      value={value || { colorKey: "foreground" }}
+                      onChange={onChange}
+                      label="Text Color"
+                    />
+                  ),
+                },
+                borderColor: {
+                  type: "custom",
+                  label: "Border Color",
+                  render: ({ onChange, value }) => (
+                    <ColorPickerField
+                      value={value || { colorKey: "border" }}
+                      onChange={onChange}
+                      label="Border Color"
+                    />
+                  ),
+                },
+                borderWidth: {
+                  type: "text",
+                  label: "Border Width (e.g., 1px)",
+                },
+                borderRadius: {
+                  type: "text",
+                  label: "Border Radius (e.g., 4px)",
+                },
+              },
+            },
+            labelStyles: {
+              type: "object",
+              label: "Label Styles",
+              objectFields: {
+                textColor: {
+                  type: "custom",
+                  label: "Text Color",
+                  render: ({ onChange, value }) => (
+                    <ColorPickerField
+                      value={value || { colorKey: "foreground" }}
+                      onChange={onChange}
+                      label="Text Color"
+                    />
+                  ),
+                },
+                fontSize: {
+                  type: "text",
+                  label: "Font Size (e.g., 14px)",
+                },
+                fontWeight: {
+                  type: "select",
+                  label: "Font Weight",
+                  options: [
+                    { label: "Normal", value: "normal" },
+                    { label: "Medium", value: "500" },
+                    { label: "Semibold", value: "600" },
+                    { label: "Bold", value: "700" },
+                  ],
+                },
+              },
             },
           },
         },

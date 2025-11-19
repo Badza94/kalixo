@@ -3,6 +3,7 @@ export interface FormField {
   type:
     | "text"
     | "email"
+    | "password"
     | "textarea"
     | "select"
     | "checkbox"
@@ -23,6 +24,10 @@ export interface FormField {
     max?: number;
   };
   defaultValue?: string | number | boolean;
+  inlineLink?: {
+    text: string;
+    href: string;
+  };
 }
 
 export interface FormTemplate {
@@ -45,6 +50,19 @@ export interface FormStyling {
   buttonText: string;
   buttonSize: "sm" | "default" | "lg";
   fieldSpacing: "sm" | "md" | "lg";
+  buttonFullWidth?: boolean;
+  inputStyles?: {
+    backgroundColor?: { colorKey: string; customColor?: string };
+    textColor?: { colorKey: string; customColor?: string };
+    borderColor?: { colorKey: string; customColor?: string };
+    borderWidth?: string;
+    borderRadius?: string;
+  };
+  labelStyles?: {
+    textColor?: { colorKey: string; customColor?: string };
+    fontSize?: string;
+    fontWeight?: string;
+  };
 }
 
 export interface FormBlockProps {

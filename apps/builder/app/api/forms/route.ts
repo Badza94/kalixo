@@ -1,3 +1,4 @@
+import { FormField } from "@/types/form";
 import { NextResponse } from "next/server";
 
 // POST - Handle form submissions
@@ -24,6 +25,9 @@ export async function POST(request: Request) {
         break;
       case "survey":
         await handleSurveySubmission(fields);
+        break;
+      case "login":
+        await handleLoginSubmission(fields);
         break;
       default:
         // For custom forms, you might want to store in a database
@@ -60,6 +64,12 @@ async function handleSurveySubmission(fields: any[]) {
   console.log("Survey submission:", fields);
   // Here you would store survey responses in a database
   // Example: await database.surveys.create(fields);
+}
+
+async function handleLoginSubmission(fields: FormField[]) {
+  console.log("Login submission:", fields);
+  // Here you would store login attempts in a database
+  // Example: await database.loginAttempts.create(fields);
 }
 
 async function handleGenericSubmission(

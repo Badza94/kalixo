@@ -2,6 +2,7 @@ import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+// import { getDefaultPages, isReadOnlyPage } from "../../../lib/default-pages"; // COMMENTED OUT
 
 const DATABASE_SEARCH_PATHS = [
   path.join(process.cwd(), "database.json"),
@@ -51,9 +52,47 @@ const writeDatabaseFile = (filePath: string, data: Record<string, unknown>) => {
 
 export async function GET() {
   const databasePath = resolveDatabasePath();
-  const existingData = readDatabaseFile(databasePath);
+  let existingData = readDatabaseFile(databasePath);
 
-  const paths = Object.keys(existingData);
+  // COMMENTED OUT: Initialize default pages
+  // const defaultPages = getDefaultPages();
+  // let hasNewPages = false;
+  
+  // for (const [pagePath, pageData] of Object.entries(defaultPages)) {
+  //   const existingPage = existingData[pagePath];
+  //   // Add if doesn't exist, or update if it's a read-only page with minimal content (just heading)
+  //   if (!existingPage) {
+  //     existingData[pagePath] = pageData;
+  //     hasNewPages = true;
+  //   } else if (
+  //     pagePath === "/login" ||
+  //     pagePath === "/register" ||
+  //     pagePath === "/checkout"
+  //   ) {
+  //     // Check if it's the old minimal structure (just a heading)
+  //     const content = (existingPage as { content?: unknown[] })?.content || [];
+  //     const hasOnlyHeading =
+  //       Array.isArray(content) &&
+  //       content.length === 1 &&
+  //       (content[0] as { type?: string; props?: { items?: unknown[] } })?.type === "ContainerBlock" &&
+  //       ((content[0] as { props?: { items?: unknown[] } })?.props?.items?.length === 1) &&
+  //       ((content[0] as { props?: { items?: Array<{ content?: Array<{ type?: string }> }> } })?.props?.items?.[0]?.content?.[0]?.type === "HeadingBlock");
+      
+  //     if (hasOnlyHeading) {
+  //       existingData[pagePath] = pageData;
+  //       hasNewPages = true;
+  //     }
+  //   }
+  // }
+
+  // // Save default pages if any were added
+  // if (hasNewPages) {
+  //   writeDatabaseFile(databasePath, existingData);
+  // }
+
+  const paths = Object.keys(existingData).filter(
+    (key) => !key.includes("_templates") && !key.includes("_global")
+  );
 
   return NextResponse.json({ paths });
 }
@@ -62,6 +101,14 @@ export async function POST(request: Request) {
   const payload = await request.json();
   const databasePath = resolveDatabasePath();
   const existingData = readDatabaseFile(databasePath);
+
+  // COMMENTED OUT: Prevent editing of read-only pages
+  // if (isReadOnlyPage(payload.path)) {
+  //   return NextResponse.json(
+  //     { error: "This page cannot be edited" },
+  //     { status: 403 }
+  //   );
+  // }
 
   // Ensure root.props.title is set if provided
   const dataToSave = payload.data;

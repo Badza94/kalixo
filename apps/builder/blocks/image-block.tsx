@@ -138,7 +138,8 @@ export function ImageBlock({
     ...buildMargin(margin),
     maxWidth,
     maxHeight,
-    width: fill ? "100%" : undefined,
+    width: fill ? "100%" : width ? `${width}px` : undefined,
+    height: fill ? undefined : height ? `${height}px` : undefined,
   };
 
   const imageWrapperStyles: React.CSSProperties = {
@@ -175,8 +176,8 @@ export function ImageBlock({
       style={{
         objectFit,
         objectPosition,
-        maxHeight,
-        width: maxWidth,
+        width: fill ? "100%" : "auto",
+        height: fill ? "100%" : "auto",
         ...imageStyles,
       }}
       priority={priority}

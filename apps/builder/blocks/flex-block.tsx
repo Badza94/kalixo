@@ -17,6 +17,7 @@ export interface FlexBlockProps {
   align?: "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
   gap?: string;
   width?: string;
+  maxWidth?: string;
   height?: string;
   minHeight?: string;
   padding?: {
@@ -62,6 +63,7 @@ export function FlexBlock({
   align = "stretch",
   gap = "0",
   width = "100%",
+  maxWidth = "100%",
   height,
   minHeight,
   padding = {},
@@ -113,6 +115,7 @@ export function FlexBlock({
     alignItems: align,
     gap,
     width,
+    maxWidth,
     height,
     minHeight,
     padding: `${padding.top || "0"} ${padding.right || "0"} ${padding.bottom || "0"} ${padding.left || "0"}`,

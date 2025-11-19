@@ -1,6 +1,7 @@
 import { Data } from "@measured/puck";
 import fs from "fs";
 import path from "path";
+// import { getDefaultPages } from "./default-pages"; // COMMENTED OUT
 
 interface GlobalComponent {
   id: string;
@@ -76,6 +77,47 @@ export const getPage = (
     console.log("__dirname:", __dirname);
     return null;
   }
+
+  // COMMENTED OUT: Initialize default pages
+  // const defaultPages = getDefaultPages();
+  // let hasNewPages = false;
+
+  // for (const [pagePath, pageData] of Object.entries(defaultPages)) {
+  //   const existingPage = allData[pagePath];
+  //   // Add if doesn't exist, or update if it's a read-only page with minimal content (just heading)
+  //   if (!existingPage) {
+  //     allData[pagePath] = pageData;
+  //     hasNewPages = true;
+  //   } else if (
+  //     pagePath === "/login" ||
+  //     pagePath === "/register" ||
+  //     pagePath === "/checkout"
+  //   ) {
+  //     // Check if it's the old minimal structure (just a heading)
+  //     const content = (existingPage as Data)?.content || [];
+  //     const hasOnlyHeading =
+  //       content.length === 1 &&
+  //       content[0]?.type === "ContainerBlock" &&
+  //       content[0]?.props?.items?.length === 1 &&
+  //       content[0]?.props?.items[0]?.content?.[0]?.type === "HeadingBlock";
+
+  //     if (hasOnlyHeading) {
+  //       allData[pagePath] = pageData;
+  //       hasNewPages = true;
+  //     }
+  //   }
+  // }
+
+  // // Save default pages if any were added (only in server context)
+  // if (hasNewPages && typeof window === "undefined") {
+  //   try {
+  //     const databasePath =
+  //       possiblePaths.find((p) => fs.existsSync(p)) || possiblePaths[0];
+  //     fs.writeFileSync(databasePath, JSON.stringify(allData, null, 2));
+  //   } catch (error) {
+  //     console.error("Failed to save default pages:", error);
+  //   }
+  // }
 
   // remove the _templates from the existing paths
   const withoutTemplates = Object.keys(allData).filter(

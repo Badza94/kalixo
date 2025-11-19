@@ -3,7 +3,8 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import type { Data } from "@measured/puck";
-import { Button, Puck } from "@measured/puck";
+import { Puck } from "@measured/puck";
+import { Button } from "@workspace/ui/components/button";
 import config from "../../../puck.config";
 import { Eye, Palette, PlusCircle, Layers } from "@workspace/ui/lucide-react";
 import { ThemeEditor } from "./theme-editor";
@@ -14,6 +15,8 @@ import { EmptyCanvasOverlay } from "../../../components/empty-canvas-overlay";
 import { TemplateSelectorDialog } from "../../../components/template-selector-dialog";
 import { NewPageDialog } from "../../../components/new-page-dialog";
 import { GlobalComponentsManager } from "../../../components/global-components-manager";
+// import { isReadOnlyPage } from "../../../lib/default-pages"; // COMMENTED OUT
+import { Render } from "@measured/puck";
 
 interface ThemeConfig {
   light: Record<string, string>;
@@ -35,6 +38,11 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
   const [existingPaths, setExistingPaths] = useState<string[]>([]);
   const [isMounted, setIsMounted] = useState(false);
   const [puckKey, setPuckKey] = useState(0);
+
+  // COMMENTED OUT: Check if current page is read-only
+  // const cleanPath = path.replace("/edit", "");
+  // const isReadOnly = isReadOnlyPage(cleanPath);
+  const isReadOnly = false; // Disabled for now
 
   // Use ref to access latest currentData without causing overrides to recreate
   const currentDataRef = useRef(currentData);
@@ -183,8 +191,8 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
       headerActions: ({ children }: { children: React.ReactNode }) => (
         <>
           <Button
-            variant="primary"
-            size="medium"
+            variant="default"
+            size="default"
             onClick={() => setIsNewPageDialogOpen(true)}
           >
             <PlusCircle className="w-4 h-4" />
@@ -192,7 +200,7 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
           </Button>
           <Button
             variant="secondary"
-            size="medium"
+            size="default"
             onClick={() => setIsGlobalsManagerOpen(true)}
           >
             <Layers className="w-4 h-4" />
@@ -201,7 +209,7 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
 
           <Button
             variant="secondary"
-            size="medium"
+            size="default"
             onClick={() => setIsThemeEditorOpen(true)}
           >
             <Palette className="w-4 h-4" />
@@ -561,34 +569,45 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
   return (
     <ThemeProvider>
       <div className="relative" suppressHydrationWarning>
-        <Puck
-          key={isMounted ? `puck-${path}-${puckKey}` : `puck-${path}`}
-          config={config}
-          data={currentData}
-          overrides={overrides}
-          onChange={(newData) => {
-            console.log(
-              "Puck onChange, content length:",
-              newData.content?.length
-            );
-            setCurrentData(newData);
-          }}
-          onPublish={async (data) => {
-            await fetch("/puck/api", {
-              method: "post",
-              body: JSON.stringify({
-                data,
-                path,
-                title: pageTitle,
-              }),
-            });
-          }}
-        />
-        {shouldShowOverlay && (
-          <EmptyCanvasOverlay
-            onSelectTemplate={handleSelectTemplate}
-            onCreateOwn={handleCreateOwn}
-          />
+        {isReadOnly ? (
+          <Render config={config} data={currentData} />
+        ) : (
+          <>
+            <Puck
+              key={isMounted ? `puck-${path}-${puckKey}` : `puck-${path}`}
+              config={config}
+              data={currentData}
+              overrides={overrides}
+              onChange={(newData) => {
+                console.log(
+                  "Puck onChange, content length:",
+                  newData.content?.length
+                );
+                setCurrentData(newData);
+              }}
+              onPublish={async (data) => {
+                const response = await fetch("/puck/api", {
+                  method: "post",
+                  body: JSON.stringify({
+                    data,
+                    path,
+                    title: pageTitle,
+                  }),
+                });
+
+                if (!response.ok) {
+                  const error = await response.json();
+                  alert(error.error || "Failed to save page");
+                }
+              }}
+            />
+            {shouldShowOverlay && (
+              <EmptyCanvasOverlay
+                onSelectTemplate={handleSelectTemplate}
+                onCreateOwn={handleCreateOwn}
+              />
+            )}
+          </>
         )}
       </div>
       <ThemeEditor

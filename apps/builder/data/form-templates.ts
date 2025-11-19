@@ -226,6 +226,44 @@ export const FORM_TEMPLATES: FormTemplate[] = [
       errorMessage: "Failed to submit feedback. Please try again.",
     },
   },
+  {
+    id: "login",
+    name: "Login Form",
+    description: "User login form with email, password, and remember me",
+    fields: [
+      {
+        id: "email",
+        type: "email",
+        label: "Email Address",
+        placeholder: "Enter your email",
+        required: true,
+      },
+      {
+        id: "password",
+        type: "password",
+        label: "Password",
+        placeholder: "Enter your password",
+        required: true,
+      },
+      {
+        id: "rememberMe",
+        type: "checkbox",
+        label: "Remember me",
+        required: false,
+        defaultValue: false,
+        inlineLink: {
+          text: "Forgot password?",
+          href: "/forgot-password",
+        },
+      },
+    ],
+    submitAction: {
+      type: "contact",
+      successMessage: "Login successful! Redirecting...",
+      errorMessage:
+        "Login failed. Please check your credentials and try again.",
+    },
+  },
 ];
 
 export const DEFAULT_FORM_STYLING = {

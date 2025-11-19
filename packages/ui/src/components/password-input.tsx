@@ -20,7 +20,7 @@ function PasswordInput({ className, ...props }: React.ComponentProps<"input">) {
         )}
         {...props}
       />
-      <div className="absolute inset-y-0 right-0 flex items-center pr-3 text-neutral-600 cursor-pointer">
+      <div className="flex absolute inset-y-0 right-0 items-center pr-3 cursor-pointer text-neutral-600">
         {showPassword ? (
           <Eye className="w-4 h-4" onClick={togglePasswordVisibility} />
         ) : (

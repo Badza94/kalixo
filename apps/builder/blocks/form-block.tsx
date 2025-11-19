@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useForm } from "@workspace/ui/lib/react-hook-form";
 import { zodResolver } from "@workspace/ui/lib/hookform";
 import * as z from "@workspace/ui/lib/zod";
@@ -17,6 +18,11 @@ export function FormBlock({
   styling,
   className,
 }: FormBlockProps) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   // Resolve template from ID if needed
   const resolvedTemplate: FormTemplate =
     typeof template === "string"
@@ -226,6 +232,36 @@ export function FormBlock({
     }
   };
 
+  if (!isMounted) {
+    return (
+      <div
+        className={cn(
+          "w-full max-w-2xl mx-auto",
+          spacingClasses[styling.spacing],
+          className
+        )}
+      >
+        <div className="space-y-6">
+          {allFields.map((field) => (
+            <div key={field.id} className="grid gap-2">
+              {field.type !== "checkbox" && (
+                <div className="text-sm font-medium">{field.label}</div>
+              )}
+              <div className="h-9 rounded-md border bg-transparent" />
+            </div>
+          ))}
+          <div
+            className={styling.buttonFullWidth ? "w-full" : "flex justify-end"}
+          >
+            <div className="h-9 px-4 py-2 rounded-md bg-primary text-primary-foreground">
+              {styling.buttonText}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className={cn(
@@ -244,15 +280,19 @@ export function FormBlock({
               key={field.id}
               field={field}
               control={form.control}
+              styling={styling}
             />
           ))}
 
-          <div className="flex justify-end">
+          <div
+            className={styling.buttonFullWidth ? "w-full" : "flex justify-end"}
+          >
             <Button
               type="submit"
               variant={buttonVariants[styling.buttonStyle] as any}
               size={getButtonSize(styling.buttonSize as "sm" | "md" | "lg")}
               disabled={form.formState.isSubmitting}
+              className={styling.buttonFullWidth ? "w-full" : ""}
             >
               {form.formState.isSubmitting
                 ? "Submitting..."
