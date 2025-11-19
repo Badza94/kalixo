@@ -106,6 +106,8 @@ export function getSpacingOptions(theme?: ThemeConfig) {
 }
 
 // Helper to resolve color from theme
+// Returns CSS variables for theme colors so they automatically switch with theme mode
+// Only resolves to actual values for custom colors or when theme is not available
 export function resolveColor(
   colorKey: string,
   customColor?: string,
@@ -124,6 +126,42 @@ export function resolveColor(
     return customColor;
   }
 
+  // If theme is available, use CSS variable so it switches automatically with theme mode
+  // The CSS variable will be defined in both light and dark modes via apply-theme.ts
+  if (theme) {
+    // Check if this is a valid theme color key
+    const validThemeKeys = [
+      "background",
+      "foreground",
+      "card",
+      "card-foreground",
+      "popover",
+      "popover-foreground",
+      "primary",
+      "primary-foreground",
+      "secondary",
+      "secondary-foreground",
+      "muted",
+      "muted-foreground",
+      "accent",
+      "accent-foreground",
+      "destructive",
+      "destructive-foreground",
+      "border",
+      "input",
+      "ring",
+      "success",
+      "warning",
+      "info",
+    ];
+    
+    if (validThemeKeys.includes(colorKey)) {
+      // Return CSS variable - it will automatically switch based on [data-theme]
+      return `var(--${colorKey})`;
+    }
+  }
+
+  // Fallback: return the color key or resolve from theme if no CSS variable available
   if (!theme) {
     return colorKey;
   }

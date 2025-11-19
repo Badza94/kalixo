@@ -21,6 +21,10 @@ export function ClientRender({ data }: ClientRenderProps) {
       .then((res) => res.json())
       .then((themeConfig) => {
         applyThemeToDocument(document, themeConfig);
+        // Apply theme mode from localStorage
+        const stored = localStorage.getItem("theme-mode") as "light" | "dark" | null;
+        const themeMode = stored || "light";
+        document.documentElement.setAttribute("data-theme", themeMode);
       })
       .catch((err) => console.error("Failed to load theme:", err));
   }, []);

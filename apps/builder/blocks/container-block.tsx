@@ -86,13 +86,13 @@ export function ContainerBlock({
   spacing = { x: "0", y: "0" },
 }: ContainerBlockProps) {
   const { themeConfig } = useThemeConfig();
-  // Resolve background color
+  // Resolve background color - now uses CSS variables that auto-switch with theme mode
   const resolvedBackgroundColor = backgroundColor
     ? resolveColor(
         backgroundColor.colorKey,
         backgroundColor.customColor,
         themeConfig || undefined,
-        "light"
+        "light" // Mode parameter is now less critical since we use CSS variables
       )
     : undefined;
 

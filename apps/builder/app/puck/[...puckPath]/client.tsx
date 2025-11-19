@@ -11,6 +11,7 @@ import { ThemeEditor } from "./theme-editor";
 import { Toaster } from "@workspace/ui/components/sonner";
 import { IframeThemeInjector } from "./iframe-theme-injector";
 import { ThemeProvider } from "../../../contexts/theme-context";
+import { ThemeToggle } from "../../../components/theme-toggle";
 import { EmptyCanvasOverlay } from "../../../components/empty-canvas-overlay";
 import { TemplateSelectorDialog } from "../../../components/template-selector-dialog";
 import { NewPageDialog } from "../../../components/new-page-dialog";
@@ -215,6 +216,7 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
             <Palette className="w-4 h-4" />
             Theme
           </Button>
+          <ThemeToggle />
           {/* <Button
             variant="secondary"
             size="medium"

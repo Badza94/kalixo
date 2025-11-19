@@ -18,52 +18,63 @@ export function applyThemeToDocument(
 ) {
   if (!themeConfig || !doc.documentElement) return;
 
-  const root = doc.documentElement;
+  // Don't set variables as inline styles - let the CSS style tag handle it
+  // This allows automatic switching when [data-theme] changes
 
-  // Apply light mode colors as CSS variables
-  Object.entries(themeConfig.light).forEach(([key, value]) => {
-    root.style.setProperty(`--${key}`, value);
-  });
-
-  // Apply dark mode colors as CSS variables (with data-theme="dark" selector)
+  // Inject or update theme styles for dynamic switching
   const darkVars = Object.entries(themeConfig.dark)
     .map(([key, value]) => `--${key}: ${value};`)
     .join("\n    ");
 
-  // Apply fonts
-  Object.entries(themeConfig.fonts).forEach(([key, value]) => {
-    root.style.setProperty(`--${key}`, value);
-  });
+  const lightVars = Object.entries(themeConfig.light)
+    .map(([key, value]) => `--${key}: ${value};`)
+    .join("\n    ");
 
-  // Apply radius
-  root.style.setProperty("--radius", themeConfig.radius);
+  const fontVars = Object.entries(themeConfig.fonts)
+    .map(([key, value]) => `--${key}: ${value};`)
+    .join("\n    ");
 
-  // Apply shadows
-  Object.entries(themeConfig.shadows).forEach(([key, value]) => {
-    root.style.setProperty(`--${key}`, value);
-  });
+  const shadowVars = Object.entries(themeConfig.shadows)
+    .map(([key, value]) => `--${key}: ${value};`)
+    .join("\n    ");
 
-  // Apply spacing
-  Object.entries(themeConfig.spacing).forEach(([key, value]) => {
-    root.style.setProperty(`--${key}`, value);
-  });
+  const spacingVars = Object.entries(themeConfig.spacing)
+    .map(([key, value]) => `--${key}: ${value};`)
+    .join("\n    ");
 
-  // Inject dark mode styles if they don't exist
-  const existingStyle = doc.getElementById("theme-dark-mode");
-  if (!existingStyle && darkVars) {
-    const style = doc.createElement("style");
-    style.id = "theme-dark-mode";
-    style.textContent = `
-      [data-theme="dark"] {
+  const existingStyle = doc.getElementById("theme-mode-switcher");
+  const styleContent = `
+    :root {
+      ${lightVars}
+      ${fontVars}
+      --radius: ${themeConfig.radius};
+      ${shadowVars}
+      ${spacingVars}
+    }
+    
+    [data-theme="dark"] {
+      ${darkVars}
+    }
+    
+    [data-theme="light"] {
+      ${lightVars}
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
         ${darkVars}
       }
-      
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) {
-          ${darkVars}
-        }
-      }
-    `;
+    }
+  `;
+
+  if (existingStyle) {
+    // Update existing style
+    existingStyle.textContent = styleContent;
+  } else {
+    // Create new style
+    const style = doc.createElement("style");
+    style.id = "theme-mode-switcher";
+    style.textContent = styleContent;
     doc.head.appendChild(style);
   }
 }
