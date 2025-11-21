@@ -414,7 +414,7 @@ export function getDefaultPages(): Record<string, Data> {
       zones: {},
     },
     "/register": {
-      root: { props: { title: "Register" } },
+      root: { props: { title: "Register 123123" } },
       content: [
         {
           type: "ContainerBlock",

@@ -26,11 +26,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         data-test-id={dataTestId}
         className={cn(
-          "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-          "h-8 w-8 p-0",
+          "inline-flex justify-center items-center text-sm font-medium rounded-md transition-colors ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+          "p-0 w-8 h-8",
           active
             ? "bg-primary text-primary-foreground hover:bg-primary/90"
-            : "bg-background hover:bg-accent hover:text-accent-foreground"
+            : "bg-white hover:bg-accent hover:text-accent-foreground"
         )}
         onPointerDown={onPointerDown}
         onClick={onClick}
@@ -76,7 +76,7 @@ interface ToolbarProps {
 
 export const Toolbar = ({ children }: ToolbarProps) => {
   return (
-    <div className="flex flex-wrap gap-1 p-2 border-b border-border bg-muted/50">
+    <div className="flex flex-wrap gap-1 p-2 border-b border-border dark:border-black bg-muted/50">
       {children}
     </div>
   );

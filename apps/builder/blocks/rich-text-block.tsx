@@ -124,7 +124,7 @@ export const RichTextEditor = ({
   );
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md border dark:border-black">
       <Slate
         editor={editor}
         initialValue={initialValue}
@@ -202,10 +202,8 @@ export const RichTextEditor = ({
 // Main component for rendering
 export function RichTextBlock({ content = "", className }: RichTextBlockProps) {
   return (
-    <div className="container">
-      <div className={`prose prose-sm max-w-none ${className || ""}`}>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-      </div>
+    <div className={`prose prose-sm max-w-none ${className || ""}`}>
+      <div dangerouslySetInnerHTML={{ __html: content }} />
     </div>
   );
 }

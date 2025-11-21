@@ -50,9 +50,34 @@ const writeDatabaseFile = (filePath: string, data: Record<string, unknown>) => {
   fs.writeFileSync(filePath, JSON.stringify(data));
 };
 
+const readMandatoryPages = () => {
+  const possiblePagesPaths = [
+    path.join(process.cwd(), "apps", "builder", "data", "pages.json"),
+    path.join(process.cwd(), "data", "pages.json"),
+  ];
+
+  for (const testPath of possiblePagesPaths) {
+    if (fs.existsSync(testPath)) {
+      try {
+        const fileContent = fs.readFileSync(testPath, "utf-8").trim();
+        if (fileContent) {
+          return JSON.parse(fileContent) as Record<string, unknown>;
+        }
+      } catch (error) {
+        console.error("Error reading pages.json:", error);
+      }
+    }
+  }
+  return {};
+};
+
 export async function GET() {
   const databasePath = resolveDatabasePath();
   let existingData = readDatabaseFile(databasePath);
+  const mandatoryPages = readMandatoryPages();
+  
+  // Merge mandatory pages into existing data for the paths list
+  const allPages = { ...existingData, ...mandatoryPages };
 
   // COMMENTED OUT: Initialize default pages
   // const defaultPages = getDefaultPages();
@@ -90,7 +115,7 @@ export async function GET() {
   //   writeDatabaseFile(databasePath, existingData);
   // }
 
-  const paths = Object.keys(existingData).filter(
+  const paths = Object.keys(allPages).filter(
     (key) => !key.includes("_templates") && !key.includes("_global")
   );
 

@@ -151,7 +151,7 @@ export function ThemeEditor({
       <div className="fixed top-0 right-0 h-full w-[600px] bg-white shadow-2xl z-50 flex flex-col">
         {/* Header */}
         <div className="flex justify-between items-center p-4 border-b">
-          <h2 className="text-lg font-semibold">Theme Editor</h2>
+          <h2 className="text-lg font-semibold text-black">Theme Editor</h2>
           <button
             onClick={onClose}
             className="p-2 rounded-md transition-colors hover:bg-gray-100"
@@ -223,7 +223,7 @@ export function ThemeEditor({
                             onChange={(e) =>
                               updateColor(activeTab, key, e.target.value)
                             }
-                            className="flex-1 px-3 py-2 font-mono text-sm rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="flex-1 px-3 py-2 font-mono text-sm text-black rounded-md border border-black focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="oklch(0.5 0.1 180)"
                           />
                         </div>
@@ -258,7 +258,7 @@ export function ThemeEditor({
                             onThemeChange(newConfig);
                           }
                         }}
-                        className="px-3 py-2 w-full font-mono text-sm rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="px-3 py-2 w-full font-mono text-sm text-black rounded-md border border-black focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
                   ))}
@@ -283,7 +283,7 @@ export function ThemeEditor({
                       onThemeChange(newConfig);
                     }
                   }}
-                  className="px-3 py-2 w-full font-mono text-sm rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="px-3 py-2 w-full font-mono text-sm text-black rounded-md border border-black focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -312,7 +312,7 @@ export function ThemeEditor({
                             onThemeChange(newConfig);
                           }
                         }}
-                        className="px-3 py-2 w-full font-mono text-sm rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="px-3 py-2 w-full font-mono text-sm text-black rounded-md border border-black focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
                   ))}

@@ -1,0 +1,518 @@
+{
+  "/login": {
+    "root": { "props": { "title": "Login", "excludeGlobals": [] } },
+    "content": [
+      {
+        "type": "ContainerBlock",
+        "props": {
+          "id": "login-main-container",
+          "width": "full",
+          "direction": "column",
+          "padding": { "all": "48px" },
+          "margin": { "all": "0" },
+          "backgroundColor": {
+            "colorKey": "background",
+            "customColor": "#2C2D31"
+          },
+          "gap": { "all": "0" },
+          "minHeight": "100vh",
+          "items": [
+            {
+              "content": [
+                {
+                  "type": "ContainerBlock",
+                  "props": {
+                    "id": "login-inner-container",
+                    "width": "container",
+                    "direction": "column",
+                    "padding": { "all": "0" },
+                    "margin": {
+                      "top": "0",
+                      "right": "auto",
+                      "bottom": "0",
+                      "left": "auto"
+                    },
+                    "backgroundColor": { "colorKey": "background" },
+                    "gap": { "all": "32px" },
+                    "maxWidth": "420px",
+                    "items": [
+                      {
+                        "content": [
+                          {
+                            "type": "ImageBlock",
+                            "props": {
+                              "id": "ImageBlock-2064b1d4-e1fb-4b22-8ce2-016af919fa42",
+                              "src": "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+                              "alt": "Image description",
+                              "width": 150,
+                              "height": 50,
+                              "aspectRatio": "16/9",
+                              "fill": false,
+                              "objectFit": "contain",
+                              "objectPosition": "center",
+                              "priority": false,
+                              "quality": 75,
+                              "maxHeight": "50",
+                              "margin": { "right": "auto", "left": "auto" }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "content": [
+                          {
+                            "type": "CardBlock",
+                            "props": {
+                              "id": "login-card",
+                              "showHeader": false,
+                              "showFooter": false,
+                              "backgroundColor": {
+                                "colorKey": "card",
+                                "customColor": "#36373B"
+                              },
+                              "borderColor": {
+                                "colorKey": "border",
+                                "customColor": "#36373B"
+                              },
+                              "padding": { "all": "32px" },
+                              "margin": { "all": "0" },
+                              "borderRadius": { "size": "lg" },
+                              "items": [
+                                {
+                                  "content": [
+                                    {
+                                      "type": "HeadingBlock",
+                                      "props": {
+                                        "id": "login-title",
+                                        "level": "h1",
+                                        "text": "Welcome back",
+                                        "align": "center",
+                                        "size": "2xl",
+                                        "weight": "bold",
+                                        "color": {
+                                          "colorKey": "foreground",
+                                          "customColor": "#FFFFFF"
+                                        },
+                                        "margin": { "all": "0" },
+                                        "padding": { "all": "0" }
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": [
+                                    {
+                                      "type": "TextBlock",
+                                      "props": {
+                                        "id": "login-subtitle",
+                                        "text": "",
+                                        "align": "center",
+                                        "size": "sm",
+                                        "color": {
+                                          "colorKey": "muted-foreground",
+                                          "customColor": "#9CA3AF"
+                                        },
+                                        "margin": {
+                                          "top": "8px",
+                                          "bottom": "24px"
+                                        },
+                                        "padding": { "all": "0" }
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": [
+                                    {
+                                      "type": "CustomHtmlBlock",
+                                      "props": {
+                                        "id": "apple-button",
+                                        "html": "<button style=\"width: 100%; padding: 10px 16px; background: #2C2D31; border: 1px solid #4B5563; border-radius: 6px; color: white; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer; transition: all 0.2s;\" onmouseover=\"this.style.background='#1F2023'\" onmouseout=\"this.style.background='#2C2D31'\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"white\"><path d=\"M11.5 1.5c-.8 0-1.6.4-2.1 1-.4.5-.7 1.2-.6 1.9 0 .1.1.1.2.1.9 0 1.7-.5 2.2-1.1.4-.5.6-1.2.5-1.8 0-.1-.1-.1-.2-.1zm3.2 5.8c-.1-1.1-.8-2.1-1.8-2.7-.5-.3-1.2-.5-1.8-.5-.7 0-1.3.2-1.9.5-.3.2-.7.2-1 0-.6-.3-1.2-.5-1.9-.5-1.1 0-2.2.6-2.8 1.6-.9 1.4-1 3.1-.2 4.6.4.8 1 1.5 1.7 2 .4.3.9.4 1.4.4.5 0 1-.2 1.4-.4.3-.2.7-.2 1 0 .4.2.9.4 1.4.4.5 0 1-.1 1.4-.4 1-.7 1.7-1.8 2.1-3 .1-.2 0-.3-.1-.4-.5-.4-.9-1-1-1.6z\"/></svg>Login with Apple</button>",
+                                        "margin": { "bottom": "12px" },
+                                        "padding": { "all": "0" }
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": [
+                                    {
+                                      "type": "SocialButtonBlock",
+                                      "props": {
+                                        "id": "google-login-btn",
+                                        "provider": "google",
+                                        "text": "Login with Google",
+                                        "borderRadius": "6px",
+                                        "className": "w-full"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": [
+                                    {
+                                      "type": "TextBlock",
+                                      "props": {
+                                        "id": "divider-text",
+                                        "text": "Or continue with",
+                                        "align": "center",
+                                        "size": "sm",
+                                        "color": {
+                                          "colorKey": "muted-foreground",
+                                          "customColor": "#6B7280"
+                                        },
+                                        "margin": {
+                                          "top": "16px",
+                                          "bottom": "16px"
+                                        },
+                                        "padding": { "all": "0" }
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": [
+                                    {
+                                      "type": "FormBlock",
+                                      "props": {
+                                        "id": "login-form",
+                                        "template": "login",
+                                        "customFields": [],
+                                        "styling": {
+                                          "layout": "vertical",
+                                          "spacing": "normal",
+                                          "buttonStyle": "primary",
+                                          "buttonText": "Login",
+                                          "buttonSize": "default",
+                                          "fieldSpacing": "md",
+                                          "buttonFullWidth": true,
+                                          "inputStyles": {
+                                            "backgroundColor": {
+                                              "colorKey": "input",
+                                              "customColor": "#2C2D31"
+                                            },
+                                            "textColor": {
+                                              "colorKey": "foreground",
+                                              "customColor": "#E5E7EB"
+                                            },
+                                            "borderColor": {
+                                              "colorKey": "border",
+                                              "customColor": "#4B5563"
+                                            },
+                                            "borderWidth": "1px",
+                                            "borderRadius": "6px"
+                                          },
+                                          "labelStyles": {
+                                            "textColor": {
+                                              "colorKey": "foreground",
+                                              "customColor": "#F3F4F6"
+                                            },
+                                            "fontSize": "14px",
+                                            "fontWeight": "500"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": [
+                                    {
+                                      "type": "CustomHtmlBlock",
+                                      "props": {
+                                        "id": "signup-link",
+                                        "html": "<div style=\"text-align: center; font-size: 14px; color: #9CA3AF; margin-top: 16px;\">Don't have an account? <a href=\"/register\" style=\"color: white; text-decoration: underline;\">Sign up</a></div>",
+                                        "margin": { "all": "0" },
+                                        "padding": { "all": "0" }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "content": [
+                          {
+                            "type": "CustomHtmlBlock",
+                            "props": {
+                              "id": "terms-text",
+                              "html": "<div style=\"text-align: center; font-size: 12px; color: #6B7280; line-height: 1.5;\">By clicking continue, you agree to our <a href=\"/terms-and-conditions\" style=\"text-decoration: underline; color: #6B7280;\">Terms of Service</a> and <a href=\"/privacy-policy\" style=\"text-decoration: underline; color: #6B7280;\">Privacy Policy</a>.</div>",
+                              "margin": { "all": "0" },
+                              "padding": { "all": "0" }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "zones": {}
+  },
+  "/register": {
+    "root": { "props": { "title": "Register", "excludeGlobals": [] } },
+    "content": [
+      {
+        "type": "ContainerBlock",
+        "props": {
+          "id": "register-main-container",
+          "width": "full",
+          "direction": "column",
+          "padding": { "all": "48px" },
+          "margin": { "all": "0" },
+          "backgroundColor": {
+            "colorKey": "background",
+            "customColor": "#2C2D31"
+          },
+          "gap": { "all": "0" },
+          "minHeight": "100vh",
+          "items": [
+            {
+              "content": [
+                {
+                  "type": "ContainerBlock",
+                  "props": {
+                    "id": "register-inner-container",
+                    "width": "container",
+                    "direction": "column",
+                    "padding": { "all": "0" },
+                    "margin": {
+                      "top": "0",
+                      "right": "auto",
+                      "bottom": "0",
+                      "left": "auto"
+                    },
+                    "backgroundColor": { "colorKey": "background" },
+                    "gap": { "all": "32px" },
+                    "maxWidth": "420px",
+                    "items": [
+                      {
+                        "content": [
+                          {
+                            "type": "ImageBlock",
+                            "props": {
+                              "id": "ImageBlock-register-logo",
+                              "src": "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+                              "alt": "Image description",
+                              "width": 150,
+                              "height": 50,
+                              "aspectRatio": "16/9",
+                              "fill": false,
+                              "objectFit": "contain",
+                              "objectPosition": "center",
+                              "priority": false,
+                              "quality": 75,
+                              "maxHeight": "50",
+                              "margin": { "right": "auto", "left": "auto" }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "content": [
+                          {
+                            "type": "CardBlock",
+                            "props": {
+                              "id": "register-card",
+                              "showHeader": false,
+                              "showFooter": false,
+                              "backgroundColor": {
+                                "colorKey": "card",
+                                "customColor": "#36373B"
+                              },
+                              "borderColor": {
+                                "colorKey": "border",
+                                "customColor": "#36373B"
+                              },
+                              "padding": { "all": "32px" },
+                              "margin": { "all": "0" },
+                              "borderRadius": { "size": "lg" },
+                              "items": [
+                                {
+                                  "content": [
+                                    {
+                                      "type": "HeadingBlock",
+                                      "props": {
+                                        "id": "register-title",
+                                        "level": "h1",
+                                        "text": "Create an account",
+                                        "align": "center",
+                                        "size": "2xl",
+                                        "weight": "bold",
+                                        "color": {
+                                          "colorKey": "foreground",
+                                          "customColor": "#FFFFFF"
+                                        },
+                                        "margin": { "all": "0" },
+                                        "padding": { "all": "0" }
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": [
+                                    {
+                                      "type": "TextBlock",
+                                      "props": {
+                                        "id": "register-subtitle",
+                                        "text": "Register with your Google account",
+                                        "align": "center",
+                                        "size": "sm",
+                                        "color": {
+                                          "colorKey": "muted-foreground",
+                                          "customColor": "#9CA3AF"
+                                        },
+                                        "margin": {
+                                          "top": "8px",
+                                          "bottom": "24px"
+                                        },
+                                        "padding": { "all": "0" }
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": [
+                                    {
+                                      "type": "CustomHtmlBlock",
+                                      "props": {
+                                        "id": "apple-button-register",
+                                        "html": "<button style=\"width: 100%; padding: 10px 16px; background: #2C2D31; border: 1px solid #4B5563; border-radius: 6px; color: white; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer; transition: all 0.2s;\" onmouseover=\"this.style.background='#1F2023'\" onmouseout=\"this.style.background='#2C2D31'\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"white\"><path d=\"M11.5 1.5c-.8 0-1.6.4-2.1 1-.4.5-.7 1.2-.6 1.9 0 .1.1.1.2.1.9 0 1.7-.5 2.2-1.1.4-.5.6-1.2.5-1.8 0-.1-.1-.1-.2-.1zm3.2 5.8c-.1-1.1-.8-2.1-1.8-2.7-.5-.3-1.2-.5-1.8-.5-.7 0-1.3.2-1.9.5-.3.2-.7.2-1 0-.6-.3-1.2-.5-1.9-.5-1.1 0-2.2.6-2.8 1.6-.9 1.4-1 3.1-.2 4.6.4.8 1 1.5 1.7 2 .4.3.9.4 1.4.4.5 0 1-.2 1.4-.4.3-.2.7-.2 1 0 .4.2.9.4 1.4.4.5 0 1-.1 1.4-.4 1-.7 1.7-1.8 2.1-3 .1-.2 0-.3-.1-.4-.5-.4-.9-1-1-1.6z\"/></svg>Register with Apple</button>",
+                                        "margin": { "bottom": "12px" },
+                                        "padding": { "all": "0" }
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": [
+                                    {
+                                      "type": "SocialButtonBlock",
+                                      "props": {
+                                        "id": "google-register-btn",
+                                        "provider": "google",
+                                        "text": "Register with Google",
+                                        "borderRadius": "6px",
+                                        "className": "w-full"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": [
+                                    {
+                                      "type": "TextBlock",
+                                      "props": {
+                                        "id": "divider-text-register",
+                                        "text": "Or continue with",
+                                        "align": "center",
+                                        "size": "sm",
+                                        "color": {
+                                          "colorKey": "muted-foreground",
+                                          "customColor": "#6B7280"
+                                        },
+                                        "margin": {
+                                          "top": "16px",
+                                          "bottom": "16px"
+                                        },
+                                        "padding": { "all": "0" }
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": [
+                                    {
+                                      "type": "FormBlock",
+                                      "props": {
+                                        "id": "register-form",
+                                        "template": "register",
+                                        "customFields": [],
+                                        "styling": {
+                                          "layout": "vertical",
+                                          "spacing": "normal",
+                                          "buttonStyle": "primary",
+                                          "buttonText": "Sign up",
+                                          "buttonSize": "default",
+                                          "fieldSpacing": "md",
+                                          "buttonFullWidth": true,
+                                          "inputStyles": {
+                                            "backgroundColor": {
+                                              "colorKey": "input",
+                                              "customColor": "#2C2D31"
+                                            },
+                                            "textColor": {
+                                              "colorKey": "foreground",
+                                              "customColor": "#E5E7EB"
+                                            },
+                                            "borderColor": {
+                                              "colorKey": "border",
+                                              "customColor": "#4B5563"
+                                            },
+                                            "borderWidth": "1px",
+                                            "borderRadius": "6px"
+                                          },
+                                          "labelStyles": {
+                                            "textColor": {
+                                              "colorKey": "foreground",
+                                              "customColor": "#F3F4F6"
+                                            },
+                                            "fontSize": "14px",
+                                            "fontWeight": "500"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": [
+                                    {
+                                      "type": "CustomHtmlBlock",
+                                      "props": {
+                                        "id": "login-link",
+                                        "html": "<div style=\"text-align: center; font-size: 14px; color: #9CA3AF; margin-top: 16px;\">Already have an account? <a href=\"/login\" style=\"color: white; text-decoration: underline;\">Sign in</a></div>",
+                                        "margin": { "all": "0" },
+                                        "padding": { "all": "0" }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "content": [
+                          {
+                            "type": "CustomHtmlBlock",
+                            "props": {
+                              "id": "terms-text-register",
+                              "html": "<div style=\"text-align: center; font-size: 12px; color: #6B7280; line-height: 1.5;\">By clicking continue, you agree to our <a href=\"/terms-and-conditions\" style=\"text-decoration: underline; color: #6B7280;\">Terms of Service</a> and <a href=\"/privacy-policy\" style=\"text-decoration: underline; color: #6B7280;\">Privacy Policy</a>.</div>",
+                              "margin": { "all": "0" },
+                              "padding": { "all": "0" }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "zones": {}
+  }
+}

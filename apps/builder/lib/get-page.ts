@@ -30,7 +30,36 @@ export const getPage = (
     path.join(__dirname, "..", "..", "database.json"),
   ];
 
+  // Try multiple possible locations for pages.json
+  const possiblePagesPaths = [
+    path.join(process.cwd(), "apps", "builder", "data", "pages.json"),
+    path.join(process.cwd(), "data", "pages.json"),
+    path.join(__dirname, "..", "data", "pages.json"),
+    path.join(__dirname, "..", "..", "data", "pages.json"),
+  ];
+
   let allData: Record<string, Data> | null = null;
+  let mandatoryPages: Record<string, Data> = {};
+
+  // Load mandatory pages from pages.json
+  for (const testPath of possiblePagesPaths) {
+    console.log("Checking for pages.json at:", testPath);
+    if (fs.existsSync(testPath)) {
+      try {
+        const fileContent = fs.readFileSync(testPath, "utf-8").trim();
+        if (fileContent) {
+          mandatoryPages = JSON.parse(fileContent);
+          console.log("✅ Loaded mandatory pages from:", testPath);
+          console.log("📄 Mandatory page keys:", Object.keys(mandatoryPages));
+        }
+        break;
+      } catch (error) {
+        console.error("Error reading pages.json:", error);
+      }
+    } else {
+      console.log("❌ pages.json not found at:", testPath);
+    }
+  }
 
   // Find the first existing database.json
   for (const testPath of possiblePaths) {
@@ -68,6 +97,21 @@ export const getPage = (
         allData = {};
         break;
       }
+    }
+  }
+
+  // Merge mandatory pages into allData (database.json takes precedence, pages.json is fallback)
+  if (Object.keys(mandatoryPages).length > 0) {
+    console.log("📄 Mandatory pages found:", Object.keys(mandatoryPages));
+    if (allData) {
+      // Merge: database.json pages override mandatory pages, but add mandatory pages that don't exist in database
+      allData = { ...mandatoryPages, ...allData };
+      console.log(
+        "✅ Merged mandatory pages with database (database takes precedence)"
+      );
+    } else {
+      allData = mandatoryPages;
+      console.log("✅ Using only mandatory pages (no database.json found)");
     }
   }
 
@@ -133,6 +177,8 @@ export const getPage = (
 
   console.log("Available paths in database:", Object.keys(allData));
   console.log("Looking for path:", pagePath);
+  console.log("Has /login?", "/login" in allData);
+  console.log("Has /register?", "/register" in allData);
 
   // First, try exact match
   let pageData = allData[pagePath] as PageData | undefined;

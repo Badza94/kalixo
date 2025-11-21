@@ -34,12 +34,15 @@ export default async function Page({
   params: Promise<{ puckPath: string[] }>;
 }) {
   const { puckPath = [] } = await params;
-  const path = `/${puckPath.join("/")}`;
+  const path = puckPath.length === 0 ? "/" : `/${puckPath.join("/")}`;
+  console.log("🔍 Page route - puckPath:", puckPath, "resolved path:", path);
   const data = getPage(path);
 
   if (!data) {
+    console.log("❌ Page not found for path:", path);
     return notFound();
   }
 
+  console.log("✅ Page found for path:", path);
   return <ClientRender data={data} />;
 }

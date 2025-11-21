@@ -264,6 +264,54 @@ export const FORM_TEMPLATES: FormTemplate[] = [
         "Login failed. Please check your credentials and try again.",
     },
   },
+  {
+    id: "register",
+    name: "Register Form",
+    description:
+      "User registration form with first name, last name, email, password, and confirm password",
+    fields: [
+      {
+        id: "firstName",
+        type: "text",
+        label: "First Name",
+        placeholder: "Enter your first name",
+        required: true,
+      },
+      {
+        id: "lastName",
+        type: "text",
+        label: "Last Name",
+        placeholder: "Enter your last name",
+        required: true,
+      },
+      {
+        id: "email",
+        type: "email",
+        label: "Email Address",
+        placeholder: "Enter your email",
+        required: true,
+      },
+      {
+        id: "password",
+        type: "password",
+        label: "Password",
+        placeholder: "Enter your password",
+        required: true,
+      },
+      {
+        id: "confirmPassword",
+        type: "password",
+        label: "Confirm Password",
+        placeholder: "Confirm your password",
+        required: true,
+      },
+    ],
+    submitAction: {
+      type: "contact",
+      successMessage: "Registration successful! Please check your email.",
+      errorMessage: "Registration failed. Please try again.",
+    },
+  },
 ];
 
 export const DEFAULT_FORM_STYLING = {
