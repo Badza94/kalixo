@@ -54,6 +54,12 @@ import {
   CustomHtmlBlock,
   CustomHtmlBlockProps,
 } from "./blocks/custom-html-block";
+import {
+  MyAccountLayoutBlock,
+  MyAccountLayoutBlockProps,
+} from "./blocks/my-account-layout-block";
+import { LoginBlock, LoginBlockProps } from "./blocks/login-block";
+import { RegisterBlock, RegisterBlockProps } from "./blocks/register-block";
 type Props = {
   HeadingBlock: HeadingBlockProps;
   TextBlock: TextBlockProps;
@@ -77,6 +83,9 @@ type Props = {
   FormBlock: FormBlockProps;
   SocialButtonBlock: SocialButtonBlockProps;
   CustomHtmlBlock: CustomHtmlBlockProps;
+  MyAccountLayoutBlock: MyAccountLayoutBlockProps;
+  LoginBlock: LoginBlockProps;
+  RegisterBlock: RegisterBlockProps;
 };
 
 export const config: Config<Props> = {
@@ -3180,6 +3189,99 @@ export const config: Config<Props> = {
       },
       render: (props) => <CustomHtmlBlock {...props} />,
     },
+    MyAccountLayoutBlock: {
+      label: "My Account Layout",
+      fields: {
+        defaultSection: {
+          type: "select",
+          label: "Default Section",
+          options: [
+            { label: "Information", value: "info" },
+            { label: "Preferences", value: "preferences" },
+            { label: "Order History", value: "orders" },
+            { label: "Wallet", value: "wallet" },
+          ],
+        },
+      },
+      defaultProps: {
+        defaultSection: "info",
+      },
+      render: (props) => <MyAccountLayoutBlock {...props} />,
+    },
+    LoginBlock: {
+      label: "Login Page",
+      fields: {
+        logoSrc: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ImagePickerField
+              value={value || ""}
+              onChange={onChange}
+              label="Logo"
+            />
+          ),
+        },
+        showSocialLogin: {
+          type: "radio",
+          label: "Show Social Login",
+          options: [
+            { label: "Show", value: true },
+            { label: "Hide", value: false },
+          ],
+        },
+        showRememberMe: {
+          type: "radio",
+          label: "Show Remember Me",
+          options: [
+            { label: "Show", value: true },
+            { label: "Hide", value: false },
+          ],
+        },
+        showForgotPassword: {
+          type: "radio",
+          label: "Show Forgot Password",
+          options: [
+            { label: "Show", value: true },
+            { label: "Hide", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+        showSocialLogin: true,
+        showRememberMe: true,
+        showForgotPassword: true,
+      },
+      render: (props) => <LoginBlock {...props} />,
+    },
+    RegisterBlock: {
+      label: "Register Page",
+      fields: {
+        logoSrc: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ImagePickerField
+              value={value || ""}
+              onChange={onChange}
+              label="Logo"
+            />
+          ),
+        },
+        showSocialLogin: {
+          type: "radio",
+          label: "Show Social Login",
+          options: [
+            { label: "Show", value: true },
+            { label: "Hide", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+        showSocialLogin: true,
+      },
+      render: (props) => <RegisterBlock {...props} />,
+    },
   },
   categories: {
     typography: {
@@ -3187,6 +3289,9 @@ export const config: Config<Props> = {
     },
     layout: {
       components: ["GridBlock", "ContainerBlock", "FlexBlock"],
+    },
+    pages: {
+      components: ["MyAccountLayoutBlock", "LoginBlock", "RegisterBlock"],
     },
     components: {
       components: [

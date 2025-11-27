@@ -17,437 +17,25 @@ export function getDefaultPages(): Record<string, Data> {
       root: { props: { title: "Login" } },
       content: [
         {
-          type: "ContainerBlock",
+          type: "LoginBlock",
           props: {
-            id: "login-container",
-            width: "container",
-            padding: {
-              top: "48px",
-              right: "24px",
-              bottom: "48px",
-              left: "24px",
-            },
-            backgroundColor: { colorKey: "background" },
-            direction: "column",
-            gap: { all: "32px" },
-            items: [
-              {
-                content: [
-                  {
-                    type: "ImageBlock",
-                    props: {
-                      id: "login-logo",
-                      src: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
-                      alt: "Logo",
-                      width: 200,
-                      height: 60,
-                      aspectRatio: "auto",
-                      fill: false,
-                      objectFit: "contain",
-                      objectPosition: "center",
-                      priority: true,
-                      quality: 100,
-                      maxWidth: "200px",
-                      margin: { all: "0 auto" },
-                      padding: { all: "0" },
-                    },
-                  },
-                ],
-              },
-              {
-                content: [
-                  {
-                    type: "CardBlock",
-                    props: {
-                      id: "login-card",
-                      showHeader: true,
-                      title: "Login",
-                      description:
-                        "Enter your credentials to access your account",
-                      showFooter: false,
-                      backgroundColor: { colorKey: "card" },
-                      borderColor: { colorKey: "border" },
-                      shadow: "md",
-                      margin: { all: "0 auto" },
-                      padding: { all: "24px" },
-                      className: "max-w-md w-full",
-                      items: [
-                        {
-                          content: [
-                            {
-                              type: "FormBlock",
-                              props: {
-                                id: "login-form",
-                                template: "login",
-                                customFields: [],
-                                styling: {
-                                  layout: "vertical",
-                                  spacing: "normal",
-                                  buttonStyle: "primary",
-                                  buttonText: "Login",
-                                  buttonSize: "default",
-                                  fieldSpacing: "md",
-                                  buttonFullWidth: false,
-                                },
-                                className: "",
-                              },
-                            },
-                          ],
-                        },
-                        {
-                          content: [
-                            {
-                              type: "FlexBlock",
-                              props: {
-                                id: "remember-forgot-row",
-                                direction: "row",
-                                justify: "space-between",
-                                gap: "8px",
-                                padding: { all: "0" },
-                                margin: {
-                                  top: "8px",
-                                  right: "0",
-                                  bottom: "0",
-                                  left: "0",
-                                },
-                                className: "w-full",
-                                items: [
-                                  {
-                                    content: [
-                                      {
-                                        type: "FormBlock",
-                                        props: {
-                                          id: "remember-me-form",
-                                          template: "login-remember-me",
-                                          customFields: [],
-                                          styling: {
-                                            layout: "vertical",
-                                            spacing: "tight",
-                                            buttonStyle: "primary",
-                                            buttonText: "",
-                                            buttonSize: "default",
-                                            fieldSpacing: "sm",
-                                            buttonFullWidth: false,
-                                          },
-                                          className: "",
-                                        },
-                                      },
-                                    ],
-                                  },
-                                  {
-                                    content: [
-                                      {
-                                        type: "LinkBlock",
-                                        props: {
-                                          id: "forgot-password-link",
-                                          text: "Forgot password?",
-                                          href: "/forgot-password",
-                                          isExternal: false,
-                                          textColor: { colorKey: "primary" },
-                                          padding: { all: "0" },
-                                          margin: { all: "0" },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                        {
-                          content: [
-                            {
-                              type: "ButtonBlock",
-                              props: {
-                                id: "login-button",
-                                text: "Login",
-                                variant: "default",
-                                size: "default",
-                                backgroundColor: { colorKey: "primary" },
-                                textColor: { colorKey: "primary-foreground" },
-                                href: "#",
-                                isExternal: false,
-                                margin: {
-                                  top: "16px",
-                                  right: "0",
-                                  bottom: "0",
-                                  left: "0",
-                                },
-                                padding: { all: "0" },
-                                className: "w-full",
-                              },
-                            },
-                          ],
-                        },
-                        {
-                          content: [
-                            {
-                              type: "FlexBlock",
-                              props: {
-                                id: "register-row",
-                                direction: "row",
-                                gap: "4px",
-                                padding: { all: "0" },
-                                margin: {
-                                  top: "16px",
-                                  right: "0",
-                                  bottom: "0",
-                                  left: "0",
-                                },
-                                className: "justify-between w-full",
-                                items: [
-                                  {
-                                    content: [
-                                      {
-                                        type: "TextBlock",
-                                        props: {
-                                          id: "register-text",
-                                          text: "Don't have an account?",
-                                          align: "left",
-                                          size: "sm",
-                                          color: {
-                                            colorKey: "muted-foreground",
-                                          },
-                                          margin: { all: "0" },
-                                          padding: { all: "0" },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                  {
-                                    content: [
-                                      {
-                                        type: "LinkBlock",
-                                        props: {
-                                          id: "register-link",
-                                          text: "Register here",
-                                          href: "/register",
-                                          isExternal: false,
-                                          textColor: {
-                                            colorKey: "primary",
-                                          },
-                                          padding: { all: "0" },
-                                          margin: { all: "0" },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                        {
-                          content: [
-                            {
-                              type: "FlexBlock",
-                              props: {
-                                id: "social-login-container",
-                                direction: "column",
-                                gap: "12px",
-                                padding: {
-                                  top: "24px",
-                                  right: "0",
-                                  bottom: "0",
-                                  left: "0",
-                                },
-                                margin: {
-                                  top: "24px",
-                                  right: "0",
-                                  bottom: "0",
-                                  left: "0",
-                                },
-                                items: [
-                                  {
-                                    content: [
-                                      {
-                                        type: "TextBlock",
-                                        props: {
-                                          id: "social-login-divider",
-                                          text: "Or continue with",
-                                          align: "center",
-                                          size: "sm",
-                                          color: {
-                                            colorKey: "muted-foreground",
-                                          },
-                                          margin: { all: "0" },
-                                          padding: { all: "0" },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                  {
-                                    content: [
-                                      {
-                                        type: "FlexBlock",
-                                        props: {
-                                          id: "social-login-buttons",
-                                          direction: "column",
-                                          gap: "8px",
-                                          padding: { all: "0" },
-                                          margin: { all: "0" },
-                                          items: [
-                                            {
-                                              content: [
-                                                {
-                                                  type: "ButtonBlock",
-                                                  props: {
-                                                    id: "google-login-btn",
-                                                    text: "Google",
-                                                    variant: "outline",
-                                                    size: "default",
-                                                    icon: "Chrome",
-                                                    iconPosition: "left",
-                                                    backgroundColor: {
-                                                      colorKey: "background",
-                                                    },
-                                                    textColor: {
-                                                      colorKey: "foreground",
-                                                    },
-                                                    href: "/api/auth/google",
-                                                    isExternal: false,
-                                                    margin: { all: "0" },
-                                                    padding: { all: "0" },
-                                                    className: "w-full",
-                                                  },
-                                                },
-                                              ],
-                                            },
-                                            {
-                                              content: [
-                                                {
-                                                  type: "ButtonBlock",
-                                                  props: {
-                                                    id: "facebook-login-btn",
-                                                    text: "Facebook",
-                                                    variant: "outline",
-                                                    size: "default",
-                                                    icon: "Facebook",
-                                                    iconPosition: "left",
-                                                    backgroundColor: {
-                                                      colorKey: "background",
-                                                    },
-                                                    textColor: {
-                                                      colorKey: "foreground",
-                                                    },
-                                                    href: "/api/auth/facebook",
-                                                    isExternal: false,
-                                                    margin: { all: "0" },
-                                                    padding: { all: "0" },
-                                                    className: "w-full",
-                                                  },
-                                                },
-                                              ],
-                                            },
-                                            {
-                                              content: [
-                                                {
-                                                  type: "ButtonBlock",
-                                                  props: {
-                                                    id: "x-login-btn",
-                                                    text: "X",
-                                                    variant: "outline",
-                                                    size: "default",
-                                                    icon: "Twitter",
-                                                    iconPosition: "left",
-                                                    backgroundColor: {
-                                                      colorKey: "background",
-                                                    },
-                                                    textColor: {
-                                                      colorKey: "foreground",
-                                                    },
-                                                    href: "/api/auth/x",
-                                                    isExternal: false,
-                                                    margin: { all: "0" },
-                                                    padding: { all: "0" },
-                                                    className: "w-full",
-                                                  },
-                                                },
-                                              ],
-                                            },
-                                            {
-                                              content: [
-                                                {
-                                                  type: "ButtonBlock",
-                                                  props: {
-                                                    id: "epic-games-login-btn",
-                                                    text: "Epic",
-                                                    variant: "outline",
-                                                    size: "default",
-                                                    icon: "Gamepad2",
-                                                    iconPosition: "left",
-                                                    backgroundColor: {
-                                                      colorKey: "background",
-                                                    },
-                                                    textColor: {
-                                                      colorKey: "foreground",
-                                                    },
-                                                    href: "/api/auth/epic",
-                                                    isExternal: false,
-                                                    margin: { all: "0" },
-                                                    padding: { all: "0" },
-                                                    className: "w-full",
-                                                  },
-                                                },
-                                              ],
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  },
-                ],
-              },
-            ],
+            logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+            showSocialLogin: true,
+            showRememberMe: true,
+            showForgotPassword: true,
           },
         },
       ],
       zones: {},
     },
     "/register": {
-      root: { props: { title: "Register 123123" } },
+      root: { props: { title: "Register" } },
       content: [
         {
-          type: "ContainerBlock",
+          type: "RegisterBlock",
           props: {
-            id: "register-container",
-            width: "container",
-            padding: {
-              top: "48px",
-              right: "24px",
-              bottom: "48px",
-              left: "24px",
-            },
-            backgroundColor: { colorKey: "background" },
-            items: [
-              {
-                content: [
-                  {
-                    type: "HeadingBlock",
-                    props: {
-                      id: "register-heading",
-                      level: "h1",
-                      text: "Register",
-                      align: "center",
-                      size: "3xl",
-                      weight: "bold",
-                      color: { colorKey: "foreground" },
-                      margin: { all: "0" },
-                      padding: { all: "0" },
-                    },
-                  },
-                ],
-              },
-            ],
+            logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+            showSocialLogin: true,
           },
         },
       ],
@@ -600,6 +188,611 @@ export function getDefaultPages(): Record<string, Data> {
                 ],
               },
             ],
+          },
+        },
+      ],
+      zones: {},
+    },
+    "/my-account": {
+      root: { props: { title: "My Account" } },
+      content: [
+        {
+          type: "NavigationBlock",
+          props: {
+            type: "header",
+            logo: "/shared/1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.png",
+            position: "fixed",
+            items: [
+              { id: "2", label: "Collections", href: "#" },
+              { id: "3", label: "About", href: "#" },
+              { id: "4", label: "Contact", href: "#" },
+            ],
+            showSearch: true,
+            showCart: true,
+            showWishlist: true,
+            showAccount: true,
+            cartCount: 2,
+            id: "NavigationBlock-account-header",
+            textColor: { colorKey: "foreground" },
+            backgroundColor: { colorKey: "glass", customColor: "#000000" },
+            fontSize: "md",
+          },
+        },
+        {
+          type: "MyAccountLayoutBlock",
+          props: {
+            defaultSection: "info",
+          },
+        },
+        {
+          type: "ContainerBlock",
+          props: {
+            width: "full",
+            padding: {
+              top: "48px",
+              right: "24px",
+              bottom: "48px",
+              left: "24px",
+            },
+            backgroundColor: {
+              colorKey: "foreground",
+              customColor: "#000000",
+            },
+            shadow: "none",
+            items: [
+              {
+                content: [
+                  {
+                    type: "GridBlock",
+                    props: {
+                      id: "GridBlock-footer-main",
+                      columns: 1,
+                      gap: "lg",
+                      items: [
+                        {
+                          content: [
+                            {
+                              type: "ImageBlock",
+                              props: {
+                                id: "ImageBlock-footer-logo",
+                                src: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+                                alt: "Logo",
+                                width: 120,
+                                height: 40,
+                                fill: false,
+                                maxWidth: "120",
+                                quality: 100,
+                              },
+                            },
+                          ],
+                        },
+                        {
+                          content: [
+                            {
+                              type: "FlexBlock",
+                              props: {
+                                id: "FlexBlock-categories",
+                                direction: "column",
+                                gap: "16px",
+                                padding: { all: "0" },
+                                margin: { all: "0" },
+                                items: [
+                                  {
+                                    content: [
+                                      {
+                                        type: "HeadingBlock",
+                                        props: {
+                                          id: "HeadingBlock-categories-title",
+                                          level: "h3",
+                                          text: "CATEGORIES",
+                                          align: "left",
+                                          size: "sm",
+                                          weight: "bold",
+                                          color: {
+                                            colorKey: "secondary",
+                                            customColor: "#ffffff",
+                                          },
+                                          margin: { all: "0" },
+                                          padding: { all: "0" },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                  {
+                                    content: [
+                                      {
+                                        type: "FlexBlock",
+                                        props: {
+                                          id: "FlexBlock-categories-links",
+                                          direction: "column",
+                                          gap: "12px",
+                                          padding: { all: "0" },
+                                          margin: { all: "0" },
+                                          items: [
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-xbox",
+                                                    text: "Xbox",
+                                                    href: "#",
+                                                    isExternal: false,
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-pc",
+                                                    text: "PC",
+                                                    href: "#",
+                                                    isExternal: false,
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-nintendo",
+                                                    text: "Nintendo",
+                                                    href: "#",
+                                                    isExternal: false,
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-appstore",
+                                                    text: "App Store and iTunes",
+                                                    href: "#",
+                                                    isExternal: false,
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-playstation",
+                                                    text: "PlayStation",
+                                                    href: "#",
+                                                    isExternal: false,
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-entertainment",
+                                                    text: "Entertainment",
+                                                    href: "#",
+                                                    isExternal: false,
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                        {
+                          content: [
+                            {
+                              type: "FlexBlock",
+                              props: {
+                                id: "FlexBlock-legal",
+                                direction: "column",
+                                gap: "16px",
+                                padding: { all: "0" },
+                                margin: { all: "0" },
+                                items: [
+                                  {
+                                    content: [
+                                      {
+                                        type: "HeadingBlock",
+                                        props: {
+                                          id: "HeadingBlock-legal-title",
+                                          level: "h3",
+                                          text: "LEGAL",
+                                          align: "left",
+                                          size: "sm",
+                                          weight: "bold",
+                                          color: {
+                                            colorKey: "secondary",
+                                            customColor: "#ffffff",
+                                          },
+                                          margin: { all: "0" },
+                                          padding: { all: "0" },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                  {
+                                    content: [
+                                      {
+                                        type: "FlexBlock",
+                                        props: {
+                                          id: "FlexBlock-legal-links",
+                                          direction: "column",
+                                          gap: "12px",
+                                          padding: { all: "0" },
+                                          margin: { all: "0" },
+                                          items: [
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-terms",
+                                                    text: "Terms",
+                                                    href: "#",
+                                                    isExternal: false,
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-privacy",
+                                                    text: "Privacy Policy",
+                                                    href: "#",
+                                                    isExternal: false,
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-cookies",
+                                                    text: "Cookies",
+                                                    href: "#",
+                                                    isExternal: false,
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                        {
+                          content: [
+                            {
+                              type: "FlexBlock",
+                              props: {
+                                id: "FlexBlock-support",
+                                direction: "column",
+                                gap: "16px",
+                                padding: { all: "0" },
+                                margin: { all: "0" },
+                                items: [
+                                  {
+                                    content: [
+                                      {
+                                        type: "HeadingBlock",
+                                        props: {
+                                          id: "HeadingBlock-support-title",
+                                          level: "h3",
+                                          text: "SUPPORT",
+                                          align: "left",
+                                          size: "sm",
+                                          weight: "bold",
+                                          color: {
+                                            colorKey: "secondary",
+                                            customColor: "#ffffff",
+                                          },
+                                          margin: { all: "0" },
+                                          padding: { all: "0" },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                  {
+                                    content: [
+                                      {
+                                        type: "FlexBlock",
+                                        props: {
+                                          id: "FlexBlock-support-links",
+                                          direction: "column",
+                                          gap: "12px",
+                                          padding: { all: "0" },
+                                          margin: { all: "0" },
+                                          items: [
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-faqs",
+                                                    text: "FAQs",
+                                                    href: "#",
+                                                    isExternal: false,
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-help",
+                                                    text: "Help Centre",
+                                                    href: "#",
+                                                    isExternal: false,
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-contact",
+                                                    text: "Contact",
+                                                    href: "#",
+                                                    isExternal: false,
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                        {
+                          content: [
+                            {
+                              type: "FlexBlock",
+                              props: {
+                                id: "FlexBlock-social",
+                                direction: "column",
+                                gap: "16px",
+                                padding: { all: "0" },
+                                margin: { all: "0" },
+                                items: [
+                                  {
+                                    content: [
+                                      {
+                                        type: "FlexBlock",
+                                        props: {
+                                          id: "FlexBlock-social-icons",
+                                          direction: "row",
+                                          gap: "12px",
+                                          padding: { all: "0" },
+                                          margin: { all: "0" },
+                                          items: [
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-facebook",
+                                                    text: "",
+                                                    href: "https://facebook.com",
+                                                    isExternal: true,
+                                                    icon: "Facebook",
+                                                    iconPosition: "left",
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-twitter",
+                                                    text: "",
+                                                    href: "https://twitter.com",
+                                                    isExternal: true,
+                                                    icon: "Twitter",
+                                                    iconPosition: "left",
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-instagram",
+                                                    text: "",
+                                                    href: "https://instagram.com",
+                                                    isExternal: true,
+                                                    icon: "Instagram",
+                                                    iconPosition: "left",
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                            {
+                                              content: [
+                                                {
+                                                  type: "LinkBlock",
+                                                  props: {
+                                                    id: "LinkBlock-linkedin",
+                                                    text: "",
+                                                    href: "https://linkedin.com",
+                                                    isExternal: true,
+                                                    icon: "Linkedin",
+                                                    iconPosition: "left",
+                                                    textColor: {
+                                                      colorKey: "secondary",
+                                                      customColor: "#ffffff",
+                                                    },
+                                                    padding: { all: "0" },
+                                                    margin: { all: "0" },
+                                                  },
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      ],
+                      maxWidth: "1280px",
+                      margin: {
+                        top: "0",
+                        right: "auto",
+                        bottom: "0",
+                        left: "auto",
+                      },
+                      columnsMd: 5,
+                      columnsSm: 2,
+                    },
+                  },
+                ],
+              },
+            ],
+            id: "ContainerBlock-footer-main",
+            maxWidth: "",
+            margin: {
+              top: "0",
+              right: "auto",
+              bottom: "0",
+              left: "auto",
+            },
+            spacing: { y: "0", x: "" },
           },
         },
       ],
