@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import { Button } from "@workspace/ui/components/button";
 import {
   Card,
@@ -24,15 +25,22 @@ import { Switch } from "@workspace/ui/components/switch";
 import { Globe, Bell, Moon } from "@workspace/ui/lucide-react";
 
 export function PreferencesSection() {
+  const { theme, setTheme } = useTheme();
+
   return (
     <div className="space-y-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">Preferences</h2>
-        <p className="mt-2 text-muted-foreground">
-          Manage your language, currency, and notification settings.
-        </p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight">Preferences</h2>
+          <p className="mt-2 text-muted-foreground">
+            Manage your language, currency, and notification settings.
+          </p>
+        </div>
+        <div className="flex gap-4 justify-end">
+          <Button variant="outline">Cancel</Button>
+          <Button>Save</Button>
+        </div>
       </div>
-
       <Card>
         <CardHeader>
           <CardTitle className="flex gap-2 items-center">
@@ -48,7 +56,7 @@ export function PreferencesSection() {
             <div className="space-y-2">
               <Label htmlFor="language">Language</Label>
               <Select defaultValue="en">
-                <SelectTrigger id="language">
+                <SelectTrigger id="language" className="w-full">
                   <SelectValue placeholder="Select language" />
                 </SelectTrigger>
                 <SelectContent>
@@ -63,7 +71,7 @@ export function PreferencesSection() {
             <div className="space-y-2">
               <Label htmlFor="currency">Currency</Label>
               <Select defaultValue="usd">
-                <SelectTrigger id="currency">
+                <SelectTrigger id="currency" className="w-full">
                   <SelectValue placeholder="Select currency" />
                 </SelectTrigger>
                 <SelectContent>
@@ -122,7 +130,11 @@ export function PreferencesSection() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <RadioGroup defaultValue="system" className="grid grid-cols-3 gap-4">
+          <RadioGroup
+            value={theme}
+            onValueChange={setTheme}
+            className="grid grid-cols-3 gap-4"
+          >
             <div>
               <RadioGroupItem
                 value="light"
@@ -164,10 +176,6 @@ export function PreferencesSection() {
           </RadioGroup>
         </CardContent>
       </Card>
-
-      <div className="flex justify-end">
-        <Button>Save Preferences</Button>
-      </div>
     </div>
   );
 }

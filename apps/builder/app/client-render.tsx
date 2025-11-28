@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import config from "../puck.config";
 import type { Data } from "@measured/puck";
 import { applyThemeToDocument } from "../lib/apply-theme";
-import { ThemeProvider } from "../contexts/theme-context";
 
 interface ClientRenderProps {
   data: Data & { dynamicSegment?: string };
@@ -14,17 +13,13 @@ interface ClientRenderProps {
 
 export function ClientRender({ data }: ClientRenderProps) {
   const pathname = usePathname();
-  
-  // Fetch and apply theme on mount
+
+  // Fetch and apply theme config on mount (colors/fonts/etc - not mode)
   useEffect(() => {
     fetch("/api/theme")
       .then((res) => res.json())
       .then((themeConfig) => {
         applyThemeToDocument(document, themeConfig);
-        // Apply theme mode from localStorage
-        const stored = localStorage.getItem("theme-mode") as "light" | "dark" | null;
-        const themeMode = stored || "light";
-        document.documentElement.setAttribute("data-theme", themeMode);
       })
       .catch((err) => console.error("Failed to load theme:", err));
   }, []);
@@ -46,9 +41,5 @@ export function ClientRender({ data }: ClientRenderProps) {
       dynamicSegment;
   }
 
-  return (
-    <ThemeProvider>
-      <Render config={config} data={enhancedData} />
-    </ThemeProvider>
-  );
+  return <Render config={config} data={enhancedData} />;
 }

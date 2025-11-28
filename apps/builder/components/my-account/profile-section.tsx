@@ -50,15 +50,20 @@ export function ProfileSection() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">
-          Personal Information
-        </h2>
-        <p className="mt-2 text-muted-foreground">
-          Update your photo and personal details here.
-        </p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight">
+            Personal Information
+          </h2>
+          <p className="mt-2 text-muted-foreground">
+            Update your photo and personal details here.
+          </p>
+        </div>
+        <div className="flex gap-4 justify-end">
+          <Button variant="outline">Cancel</Button>
+          <Button>Save</Button>
+        </div>
       </div>
-
       <Card>
         <CardHeader>
           <CardTitle>Profile Picture</CardTitle>
@@ -241,11 +246,6 @@ export function ProfileSection() {
           </div>
         </CardContent>
       </Card>
-
-      <div className="flex gap-4 justify-end">
-        <Button variant="outline">Cancel</Button>
-        <Button>Save Changes</Button>
-      </div>
     </div>
   );
 }
