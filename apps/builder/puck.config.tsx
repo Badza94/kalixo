@@ -2548,6 +2548,28 @@ export const config: Config<Props> = {
           type: "text",
           label: "Reduced Price",
         },
+        newPrice: {
+          type: "text",
+          label: "New Price (Sale Price)",
+        },
+        leftBadge: {
+          type: "select",
+          label: "Left Badge",
+          options: [
+            { label: "None", value: "" },
+            { label: "Sale", value: "sale" },
+            { label: "Discount", value: "discount" },
+          ],
+        },
+        rightBadge: {
+          type: "select",
+          label: "Right Badge",
+          options: [
+            { label: "None", value: "" },
+            { label: "New", value: "new" },
+            { label: "Pre Order", value: "pre order" },
+          ],
+        },
         shortDescription: {
           type: "textarea",
           label: "Short Description",
@@ -2675,6 +2697,9 @@ export const config: Config<Props> = {
               currencyCode: product.currencyCode,
               image: product.image,
               permalink: product.permalink,
+              leftBadge: (product as any).leftBadge,
+              rightBadge: (product as any).rightBadge,
+              newPrice: (product as any).newPrice,
             }));
 
             return (
@@ -2933,6 +2958,9 @@ export const config: Config<Props> = {
             currencyCode: product.currencyCode,
             image: product.image,
             permalink: product.permalink,
+            leftBadge: (product as any).leftBadge,
+            rightBadge: (product as any).rightBadge,
+            newPrice: (product as any).newPrice,
           })),
           filters: {},
           maxProducts: 4,
@@ -3257,7 +3285,8 @@ export const config: Config<Props> = {
         },
       },
       defaultProps: {
-        logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+        logoSrc:
+          "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
         showSocialLogin: true,
         showRememberMe: true,
         showForgotPassword: true,
@@ -3287,7 +3316,8 @@ export const config: Config<Props> = {
         },
       },
       defaultProps: {
-        logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+        logoSrc:
+          "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
         showSocialLogin: true,
       },
       render: (props) => <RegisterBlock {...props} />,
@@ -3307,7 +3337,8 @@ export const config: Config<Props> = {
         },
       },
       defaultProps: {
-        logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+        logoSrc:
+          "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
       },
       render: (props) => <ForgotPasswordBlock {...props} />,
     },
@@ -3326,7 +3357,8 @@ export const config: Config<Props> = {
         },
       },
       defaultProps: {
-        logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+        logoSrc:
+          "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
       },
       render: (props) => <ResetPasswordBlock {...props} />,
     },
@@ -3339,7 +3371,13 @@ export const config: Config<Props> = {
       components: ["GridBlock", "ContainerBlock", "FlexBlock"],
     },
     pages: {
-      components: ["MyAccountLayoutBlock", "LoginBlock", "RegisterBlock", "ForgotPasswordBlock", "ResetPasswordBlock"],
+      components: [
+        "MyAccountLayoutBlock",
+        "LoginBlock",
+        "RegisterBlock",
+        "ForgotPasswordBlock",
+        "ResetPasswordBlock",
+      ],
     },
     components: {
       components: [

@@ -28,6 +28,9 @@ interface Product {
   currencyCode: string;
   image: string;
   permalink: string;
+  leftBadge?: string;
+  rightBadge?: string;
+  newPrice?: string;
 }
 
 export interface ProductGridBlockProps {
@@ -466,7 +469,6 @@ export function ProductGridBlock({
   console.log("resolvedBackgroundColor: ", resolvedBackgroundColor);
 
   const renderProductCard = (product: Product) => {
-    console.log("product123: ", product);
     const productUrl = product.permalink
       ? `/product/${product.permalink}`
       : "#";
@@ -492,6 +494,18 @@ export function ProductGridBlock({
             aspectRatio: imageAspectRatioValue,
           }}
         >
+          {/* Left Badge */}
+          {product.leftBadge && (
+            <span className="absolute top-2 left-2 z-10 px-2 py-1 text-xs font-semibold text-white uppercase bg-red-500 rounded">
+              {product.leftBadge}
+            </span>
+          )}
+          {/* Right Badge */}
+          {product.rightBadge && (
+            <span className="absolute top-2 right-2 z-10 px-2 py-1 text-xs font-semibold text-white uppercase bg-blue-500 rounded">
+              {product.rightBadge}
+            </span>
+          )}
           <Image
             src={product.image}
             alt={product.name}
@@ -512,12 +526,31 @@ export function ProductGridBlock({
           )}
 
           {showPrice && (
-            <p className="text-lg font-bold">
-              {new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: product.currencyCode,
-              }).format(Number(product.price))}
-            </p>
+            <div className="flex flex-wrap gap-2 items-center">
+              {product.newPrice ? (
+                <>
+                  <span className="text-lg font-bold text-red-600">
+                    {new Intl.NumberFormat("en-US", {
+                      style: "currency",
+                      currency: product.currencyCode,
+                    }).format(Number(product.newPrice))}
+                  </span>
+                  <span className="text-sm line-through text-muted-foreground">
+                    {new Intl.NumberFormat("en-US", {
+                      style: "currency",
+                      currency: product.currencyCode,
+                    }).format(Number(product.price))}
+                  </span>
+                </>
+              ) : (
+                <span className="text-lg font-bold">
+                  {new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: product.currencyCode,
+                  }).format(Number(product.price))}
+                </span>
+              )}
+            </div>
           )}
         </div>
 

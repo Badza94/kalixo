@@ -28,6 +28,9 @@ interface Product {
   price: string;
   currencyCode: string;
   image: string;
+  leftBadge?: string;
+  rightBadge?: string;
+  newPrice?: string;
 }
 
 export interface ProductCardBlockProps {
@@ -239,6 +242,9 @@ export function ProductCardBlock({
             price: foundProduct.price,
             currencyCode: foundProduct.currencyCode,
             image: foundProduct.image,
+            leftBadge: (foundProduct as any).leftBadge,
+            rightBadge: (foundProduct as any).rightBadge,
+            newPrice: (foundProduct as any).newPrice,
           });
         } else {
           setError(`Product with ID ${productId} not found`);
@@ -606,6 +612,18 @@ export function ProductCardBlock({
           aspectRatio: "1/1",
         }}
       >
+        {/* Left Badge */}
+        {product.leftBadge && (
+          <span className="absolute top-2 left-2 z-10 px-2 py-1 text-xs font-semibold text-white uppercase bg-red-500 rounded">
+            {product.leftBadge}
+          </span>
+        )}
+        {/* Right Badge */}
+        {product.rightBadge && (
+          <span className="absolute top-2 right-2 z-10 px-2 py-1 text-xs font-semibold text-white uppercase bg-blue-500 rounded">
+            {product.rightBadge}
+          </span>
+        )}
         <Image
           src={product.image}
           alt={product.name}
@@ -627,12 +645,31 @@ export function ProductCardBlock({
 
         {/* Price */}
         {showPrice && (
-          <p className="text-lg font-bold">
-            {new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: product.currencyCode,
-            }).format(Number(product.price))}
-          </p>
+          <div className="flex flex-wrap gap-2 items-center">
+            {product.newPrice ? (
+              <>
+                <span className="text-lg font-bold text-red-600">
+                  {new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: product.currencyCode,
+                  }).format(Number(product.newPrice))}
+                </span>
+                <span className="text-sm line-through text-muted-foreground">
+                  {new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: product.currencyCode,
+                  }).format(Number(product.price))}
+                </span>
+              </>
+            ) : (
+              <span className="text-lg font-bold">
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: product.currencyCode,
+                }).format(Number(product.price))}
+              </span>
+            )}
+          </div>
         )}
 
         {/* Buttons */}

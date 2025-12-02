@@ -31,6 +31,9 @@ export interface ProductPageBlockProps {
   currencyCode?: string;
   discount?: string;
   reducedPrice?: string;
+  newPrice?: string;
+  leftBadge?: string;
+  rightBadge?: string;
   shortDescription?: string;
   longDescription?: string;
   termsAndConditions?: string;
@@ -103,6 +106,9 @@ export interface ProductPageBlockProps {
       currencyCode: string;
       image: string;
       permalink: string;
+      leftBadge?: string;
+      rightBadge?: string;
+      newPrice?: string;
     }>;
     filters: {
       category?: string;
@@ -139,6 +145,9 @@ export function ProductPageBlock({
   currencyCode = "GBP",
   discount = "0",
   reducedPrice = "0.00",
+  newPrice,
+  leftBadge,
+  rightBadge,
   shortDescription = "Kalixo wallet",
   longDescription = "",
   termsAndConditions = "",
@@ -181,6 +190,21 @@ export function ProductPageBlock({
   className = "",
 }: ProductPageBlockProps) {
   const { themeConfig } = useThemeConfig();
+
+  // Find product data from productsData.json based on productId
+  const productData = useMemo(() => {
+    return productsData.find(
+      (p) =>
+        p.id.toString() === productId ||
+        p.productId === productId ||
+        p.permalink === productId
+    );
+  }, [productId]);
+
+  // Use product data values if available, otherwise fall back to props
+  const resolvedLeftBadge = leftBadge || (productData as any)?.leftBadge;
+  const resolvedRightBadge = rightBadge || (productData as any)?.rightBadge;
+  const resolvedNewPrice = newPrice || (productData as any)?.newPrice;
 
   // Find default image or use first image
   const defaultImageIndex = useMemo(() => {
@@ -313,6 +337,18 @@ export function ProductPageBlock({
           <div className="space-y-4">
             {/* Main Image */}
             <div className="overflow-hidden relative w-full rounded-lg border aspect-square bg-card">
+              {/* Left Badge */}
+              {resolvedLeftBadge && (
+                <span className="absolute top-4 left-4 z-10 px-3 py-1.5 text-sm font-semibold text-white uppercase bg-red-500 rounded-md">
+                  {resolvedLeftBadge}
+                </span>
+              )}
+              {/* Right Badge */}
+              {resolvedRightBadge && (
+                <span className="absolute top-4 right-4 z-10 px-3 py-1.5 text-sm font-semibold text-white uppercase bg-blue-500 rounded-md">
+                  {resolvedRightBadge}
+                </span>
+              )}
               {currentImage && (
                 <Image
                   src={currentImage.url}
@@ -361,14 +397,33 @@ export function ProductPageBlock({
 
             {/* Price */}
             <div className="flex gap-3 items-baseline">
-              <span className="text-3xl font-bold">{formattedPrice}</span>
-              {discount && discount !== "0" && (
-                <span className="text-lg line-through text-muted-foreground">
-                  {new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: currencyCode,
-                  }).format(price)}
-                </span>
+              {resolvedNewPrice ? (
+                <>
+                  <span className="text-3xl font-bold text-red-600">
+                    {new Intl.NumberFormat("en-US", {
+                      style: "currency",
+                      currency: currencyCode,
+                    }).format(Number(resolvedNewPrice))}
+                  </span>
+                  <span className="text-lg line-through text-muted-foreground">
+                    {new Intl.NumberFormat("en-US", {
+                      style: "currency",
+                      currency: currencyCode,
+                    }).format(price)}
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="text-3xl font-bold">{formattedPrice}</span>
+                  {discount && discount !== "0" && (
+                    <span className="text-lg line-through text-muted-foreground">
+                      {new Intl.NumberFormat("en-US", {
+                        style: "currency",
+                        currency: currencyCode,
+                      }).format(price)}
+                    </span>
+                  )}
+                </>
               )}
             </div>
 
@@ -457,6 +512,9 @@ export function ProductPageBlock({
               currencyCode: product.currencyCode,
               image: product.image,
               permalink: product.permalink,
+              leftBadge: (product as any).leftBadge,
+              rightBadge: (product as any).rightBadge,
+              newPrice: (product as any).newPrice,
             }));
 
             // Use relatedProducts if it has products, otherwise use defaults
