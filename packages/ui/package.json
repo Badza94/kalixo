@@ -78,6 +78,7 @@
     "./react-circle-flags": "./src/lib/react-circle-flags.ts",
     "./hookform": "./src/lib/hookform.ts",
     "./react-hook-form": "./src/lib/react-hook-form.ts",
+    "./zod": "./src/lib/zod.ts",
     "./next-intl": "./src/lib/next-intl.ts",
     "./next-auth": "./src/lib/next-auth.ts",
     "./next": "./src/lib/next.ts",

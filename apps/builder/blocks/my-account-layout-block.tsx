@@ -15,6 +15,7 @@ import {
   Settings,
   History,
   Wallet,
+  Shield,
   LogOut,
   Menu,
 } from "@workspace/ui/lucide-react";
@@ -22,10 +23,11 @@ import { ProfileSection } from "@/components/my-account/profile-section";
 import { PreferencesSection } from "@/components/my-account/preferences-section";
 import { OrdersSection } from "@/components/my-account/orders-section";
 import { WalletSection } from "@/components/my-account/wallet-section";
+import { SecuritySection } from "@/components/my-account/security-section";
 import { ScrollArea } from "@workspace/ui/components/scroll-area";
 
 export interface MyAccountLayoutBlockProps {
-  defaultSection?: "info" | "preferences" | "orders" | "wallet";
+  defaultSection?: "info" | "preferences" | "orders" | "wallet" | "security";
 }
 
 export function MyAccountLayoutBlock({
@@ -45,6 +47,7 @@ export function MyAccountLayoutBlock({
     { id: "preferences", label: "Preferences", icon: Settings },
     { id: "orders", label: "Order History", icon: History },
     { id: "wallet", label: "Wallet", icon: Wallet },
+    { id: "security", label: "Security", icon: Shield },
   ];
 
   const NavContent = () => (
@@ -127,6 +130,7 @@ export function MyAccountLayoutBlock({
                 {activeSection === "preferences" && <PreferencesSection />}
                 {activeSection === "orders" && <OrdersSection />}
                 {activeSection === "wallet" && <WalletSection />}
+                {activeSection === "security" && <SecuritySection />}
               </div>
             </div>
           </ScrollArea>

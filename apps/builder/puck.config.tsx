@@ -60,6 +60,14 @@ import {
 } from "./blocks/my-account-layout-block";
 import { LoginBlock, LoginBlockProps } from "./blocks/login-block";
 import { RegisterBlock, RegisterBlockProps } from "./blocks/register-block";
+import {
+  ForgotPasswordBlock,
+  ForgotPasswordBlockProps,
+} from "./blocks/forgot-password-block";
+import {
+  ResetPasswordBlock,
+  ResetPasswordBlockProps,
+} from "./blocks/reset-password-block";
 type Props = {
   HeadingBlock: HeadingBlockProps;
   TextBlock: TextBlockProps;
@@ -86,6 +94,8 @@ type Props = {
   MyAccountLayoutBlock: MyAccountLayoutBlockProps;
   LoginBlock: LoginBlockProps;
   RegisterBlock: RegisterBlockProps;
+  ForgotPasswordBlock: ForgotPasswordBlockProps;
+  ResetPasswordBlock: ResetPasswordBlockProps;
 };
 
 export const config: Config<Props> = {
@@ -3282,6 +3292,44 @@ export const config: Config<Props> = {
       },
       render: (props) => <RegisterBlock {...props} />,
     },
+    ForgotPasswordBlock: {
+      label: "Forgot Password Page",
+      fields: {
+        logoSrc: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ImagePickerField
+              value={value || ""}
+              onChange={onChange}
+              label="Logo"
+            />
+          ),
+        },
+      },
+      defaultProps: {
+        logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+      },
+      render: (props) => <ForgotPasswordBlock {...props} />,
+    },
+    ResetPasswordBlock: {
+      label: "Reset Password Page",
+      fields: {
+        logoSrc: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ImagePickerField
+              value={value || ""}
+              onChange={onChange}
+              label="Logo"
+            />
+          ),
+        },
+      },
+      defaultProps: {
+        logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+      },
+      render: (props) => <ResetPasswordBlock {...props} />,
+    },
   },
   categories: {
     typography: {
@@ -3291,7 +3339,7 @@ export const config: Config<Props> = {
       components: ["GridBlock", "ContainerBlock", "FlexBlock"],
     },
     pages: {
-      components: ["MyAccountLayoutBlock", "LoginBlock", "RegisterBlock"],
+      components: ["MyAccountLayoutBlock", "LoginBlock", "RegisterBlock", "ForgotPasswordBlock", "ResetPasswordBlock"],
     },
     components: {
       components: [

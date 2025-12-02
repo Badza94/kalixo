@@ -1,7 +1,7 @@
 import { Data } from "@measured/puck";
 
 // List of pages that cannot be edited
-export const READ_ONLY_PAGES = ["/login", "/register", "/checkout"];
+export const READ_ONLY_PAGES = ["/login", "/register", "/checkout", "/forgot-password", "/reset-password"];
 
 // Check if a page is read-only
 export function isReadOnlyPage(path: string): boolean {
@@ -19,6 +19,7 @@ export function getDefaultPages(): Record<string, Data> {
         {
           type: "LoginBlock",
           props: {
+            id: "LoginBlock-main",
             logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
             showSocialLogin: true,
             showRememberMe: true,
@@ -34,8 +35,35 @@ export function getDefaultPages(): Record<string, Data> {
         {
           type: "RegisterBlock",
           props: {
+            id: "RegisterBlock-main",
             logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
             showSocialLogin: true,
+          },
+        },
+      ],
+      zones: {},
+    },
+    "/forgot-password": {
+      root: { props: { title: "Forgot Password" } },
+      content: [
+        {
+          type: "ForgotPasswordBlock",
+          props: {
+            id: "ForgotPasswordBlock-main",
+            logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
+          },
+        },
+      ],
+      zones: {},
+    },
+    "/reset-password": {
+      root: { props: { title: "Reset Password" } },
+      content: [
+        {
+          type: "ResetPasswordBlock",
+          props: {
+            id: "ResetPasswordBlock-main",
+            logoSrc: "/shared/1762433192335_1761737088204_b742e01c0593e08227738af44b50550208c3b3e3.webp",
           },
         },
       ],
