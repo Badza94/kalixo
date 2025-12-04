@@ -663,10 +663,10 @@ export function ProductCardBlock({
               </>
             ) : (
               <span className="text-lg font-bold">
-                {new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: product.currencyCode,
-                }).format(Number(product.price))}
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: product.currencyCode,
+            }).format(Number(product.price))}
               </span>
             )}
           </div>

@@ -68,6 +68,10 @@ import {
   ResetPasswordBlock,
   ResetPasswordBlockProps,
 } from "./blocks/reset-password-block";
+import {
+  CategoryFiltersBlock,
+  CategoryFiltersBlockProps,
+} from "./blocks/category-filters-block";
 type Props = {
   HeadingBlock: HeadingBlockProps;
   TextBlock: TextBlockProps;
@@ -96,6 +100,7 @@ type Props = {
   RegisterBlock: RegisterBlockProps;
   ForgotPasswordBlock: ForgotPasswordBlockProps;
   ResetPasswordBlock: ResetPasswordBlockProps;
+  CategoryFiltersBlock: CategoryFiltersBlockProps;
 };
 
 export const config: Config<Props> = {
@@ -3362,6 +3367,37 @@ export const config: Config<Props> = {
       },
       render: (props) => <ResetPasswordBlock {...props} />,
     },
+    CategoryFiltersBlock: {
+      label: "Category Filters & Sort",
+      fields: {
+        showFilterButton: {
+          type: "radio",
+          label: "Show Filter Button",
+          options: [
+            { label: "Show", value: true },
+            { label: "Hide", value: false },
+          ],
+        },
+        showSortSelect: {
+          type: "radio",
+          label: "Show Sort Dropdown",
+          options: [
+            { label: "Show", value: true },
+            { label: "Hide", value: false },
+          ],
+        },
+        filterButtonText: {
+          type: "text",
+          label: "Filter Button Text",
+        },
+      },
+      defaultProps: {
+        showFilterButton: true,
+        showSortSelect: true,
+        filterButtonText: "Filters",
+      },
+      render: (props) => <CategoryFiltersBlock {...props} />,
+    },
   },
   categories: {
     typography: {
@@ -3390,6 +3426,7 @@ export const config: Config<Props> = {
         "ProductCardBlock",
         "ProductGridBlock",
         "ProductPageBlock",
+        "CategoryFiltersBlock",
         "FormBlock",
         "SocialButtonBlock",
         "CustomHtmlBlock",
