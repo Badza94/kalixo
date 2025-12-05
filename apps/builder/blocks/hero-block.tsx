@@ -1,5 +1,4 @@
-"use client";
-
+// Server Component - No client-side interactivity needed
 import { Hero1 } from "@workspace/ui/components/heroes/hero1";
 import { Hero2 } from "@workspace/ui/components/heroes/hero2";
 

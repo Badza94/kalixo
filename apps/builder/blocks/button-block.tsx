@@ -1,11 +1,9 @@
-"use client";
-
+// Server Component - Uses CSS variables for theming
 import { Button } from "@workspace/ui/components/button";
 import Image from "next/image";
 import * as LucideIcons from "@workspace/ui/lucide-react";
 import { SharedAssets } from "@workspace/ui/assets";
-import { resolveColor } from "../types/theme";
-import { useThemeConfig } from "../hooks/use-theme-config";
+import { resolveColorServer } from "../types/theme-server";
 
 interface SpacingValue {
   top?: string;
@@ -60,8 +58,6 @@ export function ButtonBlock({
   padding,
   className = "",
 }: ButtonBlockProps) {
-  const { themeConfig } = useThemeConfig();
-
   // Get icon component from lucide-react
   const IconComponent = icon
     ? (LucideIcons[icon as keyof typeof LucideIcons] as React.ComponentType<{
@@ -115,23 +111,13 @@ export function ButtonBlock({
     };
   };
 
-  // Resolve colors
+  // Resolve colors using server-safe function (returns CSS variables)
   const resolvedBackgroundColor = backgroundColor
-    ? resolveColor(
-        backgroundColor.colorKey,
-        backgroundColor.customColor,
-        themeConfig || undefined,
-        "light"
-      )
+    ? resolveColorServer(backgroundColor.colorKey, backgroundColor.customColor)
     : undefined;
 
   const resolvedTextColor = textColor
-    ? resolveColor(
-        textColor.colorKey,
-        textColor.customColor,
-        themeConfig || undefined,
-        "light"
-      )
+    ? resolveColorServer(textColor.colorKey, textColor.customColor)
     : undefined;
 
   const customStyles = {

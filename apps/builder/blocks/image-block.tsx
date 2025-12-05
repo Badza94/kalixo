@@ -1,5 +1,4 @@
-"use client";
-
+// Server Component - No client-side interactivity needed
 import Image from "next/image";
 import { AspectRatio } from "@workspace/ui/components/aspect-ratio";
 

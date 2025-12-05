@@ -7,7 +7,6 @@ import {
 
 import { cn } from "@workspace/ui/lib/utils";
 import { Button, buttonVariants } from "@workspace/ui/components/button";
-import { useTranslations } from "next-intl";
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -15,7 +14,7 @@ function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
       role="navigation"
       aria-label="pagination"
       data-slot="pagination"
-      className={cn("mx-auto flex w-full justify-center", className)}
+      className={cn("flex justify-center mx-auto w-full", className)}
       {...props}
     />
   );
@@ -28,7 +27,7 @@ function PaginationContent({
   return (
     <ul
       data-slot="pagination-content"
-      className={cn("flex flex-row items-center gap-1", className)}
+      className={cn("flex flex-row gap-1 items-center", className)}
       {...props}
     />
   );
@@ -70,8 +69,6 @@ function PaginationPrevious({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
-  const t = useTranslations("Common");
-
   return (
     <PaginationLink
       aria-label="Go to previous page"
@@ -80,7 +77,7 @@ function PaginationPrevious({
       {...props}
     >
       <ChevronLeftIcon />
-      <span className="hidden sm:block">{t("previous")}</span>
+      <span className="hidden sm:block">Previous</span>
     </PaginationLink>
   );
 }
@@ -89,7 +86,6 @@ function PaginationNext({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
-  const t = useTranslations("Common");
   return (
     <PaginationLink
       aria-label="Go to next page"
@@ -97,7 +93,7 @@ function PaginationNext({
       className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
       {...props}
     >
-      <span className="hidden sm:block">{t("next")}</span>
+      <span className="hidden sm:block">Next</span>
       <ChevronRightIcon />
     </PaginationLink>
   );
@@ -107,17 +103,15 @@ function PaginationEllipsis({
   className,
   ...props
 }: React.ComponentProps<"span">) {
-  const t = useTranslations("Common");
-
   return (
     <span
       aria-hidden
       data-slot="pagination-ellipsis"
-      className={cn("flex size-9 items-center justify-center", className)}
+      className={cn("flex justify-center items-center size-9", className)}
       {...props}
     >
       <MoreHorizontalIcon className="size-4" />
-      <span className="sr-only">{t("morePages")}</span>
+      <span className="sr-only">More pages</span>
     </span>
   );
 }

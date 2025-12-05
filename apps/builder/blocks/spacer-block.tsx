@@ -1,5 +1,4 @@
-"use client";
-
+// Server Component - No client-side interactivity needed
 export interface SpacerBlockProps {
   height?: string;
   width?: string;

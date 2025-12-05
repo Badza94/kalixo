@@ -1,8 +1,6 @@
-"use client";
-
+// Server Component - Uses CSS variables for theming
 import { CustomLink } from "../components/link";
-import { resolveColor } from "../types/theme";
-import { useThemeConfig } from "../hooks/use-theme-config";
+import { resolveColorServer } from "../types/theme-server";
 
 interface SpacingValue {
   top?: string;
@@ -40,8 +38,6 @@ export function LinkBlock({
   padding,
   className = "",
 }: LinkBlockProps) {
-  const { themeConfig } = useThemeConfig();
-
   // Build spacing
   const buildSpacing = (spacing?: SpacingValue) => {
     if (!spacing) return {};
@@ -69,14 +65,9 @@ export function LinkBlock({
     };
   };
 
-  // Resolve colors
+  // Resolve colors using server-safe function (returns CSS variables)
   const resolvedTextColor = textColor
-    ? resolveColor(
-        textColor.colorKey,
-        textColor.customColor,
-        themeConfig || undefined,
-        "light"
-      )
+    ? resolveColorServer(textColor.colorKey, textColor.customColor)
     : undefined;
 
   const customStyles = {

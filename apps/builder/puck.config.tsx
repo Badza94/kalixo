@@ -31,6 +31,10 @@ import {
   ProductGridBlockProps,
 } from "./blocks/product-grid-block";
 import {
+  PaginatedProductGridBlock,
+  PaginatedProductGridBlockProps,
+} from "./blocks/paginated-product-grid-block";
+import {
   ProductPageBlock,
   ProductPageBlockProps,
 } from "./blocks/product-page-block";
@@ -91,6 +95,7 @@ type Props = {
   CarouselBlock: CarouselBlockProps;
   ProductCardBlock: ProductCardBlockProps;
   ProductGridBlock: ProductGridBlockProps;
+  PaginatedProductGridBlock: PaginatedProductGridBlockProps;
   ProductPageBlock: ProductPageBlockProps;
   FormBlock: FormBlockProps;
   SocialButtonBlock: SocialButtonBlockProps;
@@ -2516,6 +2521,359 @@ export const config: Config<Props> = {
       },
       render: (props) => <ProductGridBlock {...props} />,
     },
+    PaginatedProductGridBlock: {
+      label: "Paginated Product Grid",
+      fields: {
+        itemsPerPage: {
+          type: "number",
+          label: "Items per page",
+        },
+        showPagination: {
+          type: "radio",
+          options: [
+            { label: "Show Pagination", value: true },
+            { label: "Hide Pagination", value: false },
+          ],
+        },
+        syncWithFilters: {
+          type: "radio",
+          options: [
+            { label: "Sync with CategoryFiltersBlock", value: true },
+            { label: "Show all products", value: false },
+          ],
+        },
+        gridColumns: {
+          type: "select",
+          options: [
+            { label: "1 Column", value: 1 },
+            { label: "2 Columns", value: 2 },
+            { label: "3 Columns", value: 3 },
+            { label: "4 Columns", value: 4 },
+            { label: "5 Columns", value: 5 },
+            { label: "6 Columns", value: 6 },
+          ],
+        },
+        showCategory: {
+          type: "radio",
+          options: [
+            { label: "Show Category", value: true },
+            { label: "Hide Category", value: false },
+          ],
+        },
+        showPrice: {
+          type: "radio",
+          options: [
+            { label: "Show Price", value: true },
+            { label: "Hide Price", value: false },
+          ],
+        },
+        showButtons: {
+          type: "radio",
+          options: [
+            { label: "Show Buttons", value: true },
+            { label: "Hide Buttons", value: false },
+          ],
+        },
+        buttonLayout: {
+          type: "select",
+          options: [
+            { label: "Horizontal", value: "horizontal" },
+            { label: "Vertical", value: "vertical" },
+            { label: "Icons Only", value: "icons-only" },
+          ],
+        },
+        buyNowButton: {
+          type: "object",
+          objectFields: {
+            variant: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Destructive", value: "destructive" },
+                { label: "Outline", value: "outline" },
+                { label: "Secondary", value: "secondary" },
+                { label: "Ghost", value: "ghost" },
+                { label: "Link", value: "link" },
+                { label: "Input", value: "input" },
+                { label: "Text", value: "text" },
+              ],
+            },
+            size: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Small", value: "sm" },
+                { label: "Large", value: "lg" },
+                { label: "Icon", value: "icon" },
+              ],
+            },
+            backgroundColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "primary" }}
+                  onChange={onChange}
+                  label="Background Color"
+                />
+              ),
+            },
+            textColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "primary-foreground" }}
+                  onChange={onChange}
+                  label="Text Color"
+                />
+              ),
+            },
+          },
+        },
+        addToCartButton: {
+          type: "object",
+          objectFields: {
+            variant: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Destructive", value: "destructive" },
+                { label: "Outline", value: "outline" },
+                { label: "Secondary", value: "secondary" },
+                { label: "Ghost", value: "ghost" },
+                { label: "Link", value: "link" },
+                { label: "Input", value: "input" },
+                { label: "Text", value: "text" },
+              ],
+            },
+            size: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Small", value: "sm" },
+                { label: "Large", value: "lg" },
+                { label: "Icon", value: "icon" },
+              ],
+            },
+            backgroundColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "transparent" }}
+                  onChange={onChange}
+                  label="Background Color"
+                />
+              ),
+            },
+            textColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "foreground" }}
+                  onChange={onChange}
+                  label="Text Color"
+                />
+              ),
+            },
+          },
+        },
+        addToFavButton: {
+          type: "object",
+          objectFields: {
+            variant: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Destructive", value: "destructive" },
+                { label: "Outline", value: "outline" },
+                { label: "Secondary", value: "secondary" },
+                { label: "Ghost", value: "ghost" },
+                { label: "Link", value: "link" },
+                { label: "Input", value: "input" },
+                { label: "Text", value: "text" },
+              ],
+            },
+            size: {
+              type: "select",
+              options: [
+                { label: "Default", value: "default" },
+                { label: "Small", value: "sm" },
+                { label: "Large", value: "lg" },
+                { label: "Icon", value: "icon" },
+              ],
+            },
+            backgroundColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "transparent" }}
+                  onChange={onChange}
+                  label="Background Color"
+                />
+              ),
+            },
+            textColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "foreground" }}
+                  onChange={onChange}
+                  label="Text Color"
+                />
+              ),
+            },
+          },
+        },
+        backgroundColor: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <ColorPickerField
+              value={value || { colorKey: "card" }}
+              onChange={onChange}
+              label="Background Color"
+            />
+          ),
+        },
+        borderRadius: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <BorderRadiusField
+              value={value || { size: "lg" }}
+              onChange={onChange}
+              label="Border Radius"
+            />
+          ),
+        },
+        margin: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || {}}
+              onChange={onChange}
+              label="Margin"
+            />
+          ),
+        },
+        padding: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || { all: "0" }}
+              onChange={onChange}
+              label="Padding"
+            />
+          ),
+        },
+        gap: {
+          type: "custom",
+          render: ({ onChange, value }) => (
+            <SpacingField
+              value={value || { all: "8px" }}
+              onChange={onChange}
+              label="Gap Between Products"
+            />
+          ),
+        },
+        imageAspectRatio: {
+          type: "select",
+          options: [
+            { label: "Square (1:1)", value: "square" },
+            { label: "4:3", value: "4/3" },
+            { label: "3:2", value: "3/2" },
+            { label: "16:9", value: "16/9" },
+          ],
+        },
+        imageSize: {
+          type: "object",
+          objectFields: {
+            width: {
+              type: "number",
+              label: "Image Width (e.g., 176, 200)",
+            },
+            height: {
+              type: "number",
+              label: "Image Height (e.g., 176, 200)",
+            },
+          },
+        },
+        imageWrapper: {
+          type: "object",
+          objectFields: {
+            padding: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <SpacingField
+                  value={value || { all: "0" }}
+                  onChange={onChange}
+                  label="Image Wrapper Padding"
+                />
+              ),
+            },
+            borderRadius: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <BorderRadiusField
+                  value={value || { size: "none" }}
+                  onChange={onChange}
+                  label="Image Wrapper Border Radius"
+                />
+              ),
+            },
+            backgroundColor: {
+              type: "custom",
+              render: ({ onChange, value }) => (
+                <ColorPickerField
+                  value={value || { colorKey: "transparent" }}
+                  onChange={onChange}
+                  label="Image Wrapper Background Color"
+                />
+              ),
+            },
+          },
+        },
+      },
+      defaultProps: {
+        itemsPerPage: 12,
+        showPagination: true,
+        syncWithFilters: true,
+        gridColumns: 3,
+        showCategory: true,
+        showPrice: true,
+        showButtons: true,
+        buttonLayout: "horizontal",
+        buyNowButton: {
+          variant: "default",
+          size: "default",
+          backgroundColor: { colorKey: "primary" },
+          textColor: { colorKey: "primary-foreground" },
+        },
+        addToCartButton: {
+          variant: "ghost",
+          size: "sm",
+          backgroundColor: { colorKey: "transparent" },
+          textColor: { colorKey: "foreground" },
+        },
+        addToFavButton: {
+          variant: "ghost",
+          size: "sm",
+          backgroundColor: { colorKey: "transparent" },
+          textColor: { colorKey: "foreground" },
+        },
+        imageAspectRatio: "square",
+        imageSize: {
+          width: 176,
+          height: 176,
+        },
+        imageWrapper: {
+          padding: { all: "0" },
+          borderRadius: { size: "none" },
+          backgroundColor: { colorKey: "transparent" },
+        },
+        borderRadius: { size: "lg" },
+        padding: { all: "0" },
+        gap: { all: "8px" },
+      },
+      render: (props) => <PaginatedProductGridBlock {...props} />,
+    },
     ProductPageBlock: {
       label: "Product Page",
       fields: {
@@ -3425,6 +3783,7 @@ export const config: Config<Props> = {
         "CarouselBlock",
         "ProductCardBlock",
         "ProductGridBlock",
+        "PaginatedProductGridBlock",
         "ProductPageBlock",
         "CategoryFiltersBlock",
         "FormBlock",

@@ -1,8 +1,6 @@
-"use client";
-
+// Server Component - Uses CSS variables for theming
 import React from "react";
-import { resolveColor } from "../types/theme";
-import { useThemeConfig } from "../hooks/use-theme-config";
+import { resolveColorServer } from "../types/theme-server";
 
 export interface FlexBlockProps {
   direction?: "row" | "column" | "row-reverse" | "column-reverse";
@@ -74,15 +72,9 @@ export function FlexBlock({
   children,
   items,
 }: FlexBlockProps) {
-  const { themeConfig } = useThemeConfig();
-  // Resolve background color
+  // Resolve background color using server-safe function (returns CSS variables)
   const resolvedBackgroundColor = backgroundColor
-    ? resolveColor(
-        backgroundColor.colorKey,
-        backgroundColor.customColor,
-        themeConfig || undefined,
-        "light"
-      )
+    ? resolveColorServer(backgroundColor.colorKey, backgroundColor.customColor)
     : undefined;
 
   // Resolve border radius

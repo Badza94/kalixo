@@ -1,5 +1,4 @@
-"use client";
-
+// Server Component - No client-side interactivity needed
 import { cn } from "@workspace/ui/lib/utils";
 
 export interface TextBlockProps {

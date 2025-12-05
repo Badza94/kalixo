@@ -1,9 +1,7 @@
-"use client";
-
+// Server Component - Uses CSS variables for theming
 import React from "react";
 import { cn } from "@workspace/ui/lib/utils";
-import { resolveColor } from "../types/theme";
-import { useThemeConfig } from "../hooks/use-theme-config";
+import { resolveColorServer } from "../types/theme-server";
 
 export interface GridBlockProps {
   columns: number;
@@ -58,15 +56,9 @@ export function GridBlock({
   className,
   items,
 }: GridBlockProps) {
-  const { themeConfig } = useThemeConfig();
-  // Resolve background color
+  // Resolve background color using server-safe function (returns CSS variables)
   const resolvedBackgroundColor = backgroundColor
-    ? resolveColor(
-        backgroundColor.colorKey,
-        backgroundColor.customColor,
-        themeConfig || undefined,
-        "light"
-      )
+    ? resolveColorServer(backgroundColor.colorKey, backgroundColor.customColor)
     : undefined;
 
   // Resolve border radius

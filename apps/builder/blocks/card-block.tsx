@@ -1,5 +1,4 @@
-"use client";
-
+// Server Component - Uses CSS variables for theming
 import React from "react";
 import {
   Card,
@@ -9,8 +8,7 @@ import {
   CardContent,
   CardFooter,
 } from "@workspace/ui/components/card";
-import { resolveColor } from "../types/theme";
-import { useThemeConfig } from "../hooks/use-theme-config";
+import { resolveColorServer } from "../types/theme-server";
 
 interface SpacingValue {
   top?: string;
@@ -55,25 +53,13 @@ export function CardBlock({
   items,
   footerItems,
 }: CardBlockProps) {
-  const { themeConfig } = useThemeConfig();
-
-  // Resolve colors
+  // Resolve colors using server-safe function (returns CSS variables)
   const resolvedBackgroundColor = backgroundColor
-    ? resolveColor(
-        backgroundColor.colorKey,
-        backgroundColor.customColor,
-        themeConfig || undefined,
-        "light"
-      )
+    ? resolveColorServer(backgroundColor.colorKey, backgroundColor.customColor)
     : undefined;
 
   const resolvedBorderColor = borderColor
-    ? resolveColor(
-        borderColor.colorKey,
-        borderColor.customColor,
-        themeConfig || undefined,
-        "light"
-      )
+    ? resolveColorServer(borderColor.colorKey, borderColor.customColor)
     : undefined;
 
   // Build spacing

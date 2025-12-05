@@ -1,8 +1,6 @@
-"use client";
-
+// Server Component - Uses CSS variables for theming
 import { Separator } from "@workspace/ui/components/separator";
-import { resolveColor } from "../types/theme";
-import { useThemeConfig } from "../hooks/use-theme-config";
+import { resolveColorServer } from "../types/theme-server";
 
 interface SpacingValue {
   top?: string;
@@ -32,16 +30,9 @@ export function DividerBlock({
   margin,
   className = "",
 }: DividerBlockProps) {
-  const { themeConfig } = useThemeConfig();
-
-  // Resolve color
+  // Resolve color using server-safe function (returns CSS variables)
   const resolvedColor = color
-    ? resolveColor(
-        color.colorKey,
-        color.customColor,
-        themeConfig || undefined,
-        "light"
-      )
+    ? resolveColorServer(color.colorKey, color.customColor)
     : undefined;
 
   // Build margin

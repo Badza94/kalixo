@@ -1,8 +1,6 @@
-"use client";
-
+// Server Component - Uses CSS variables for theming
 import { cn } from "@workspace/ui/lib/utils";
-import { resolveColor } from "../types/theme";
-import { useThemeConfig } from "../hooks/use-theme-config";
+import { resolveColorServer, resolveFontFamilyServer } from "../types/theme-server";
 
 interface SpacingValue {
   top?: string;
@@ -63,8 +61,6 @@ export function HeadingBlock({
   opacity,
   customOpacity,
 }: HeadingBlockProps) {
-  const { themeConfig } = useThemeConfig();
-
   const sizeClasses = {
     sm: "text-sm",
     md: "text-base",
@@ -136,36 +132,17 @@ export function HeadingBlock({
     };
   };
 
-  // Resolve colors from theme or use custom
+  // Resolve colors using server-safe function (returns CSS variables)
   const resolvedColor = color
-    ? resolveColor(
-        color.colorKey,
-        color.customColor,
-        themeConfig || undefined,
-        "light"
-      )
+    ? resolveColorServer(color.colorKey, color.customColor)
     : undefined;
 
   const resolvedBackgroundColor = backgroundColor
-    ? resolveColor(
-        backgroundColor.colorKey,
-        backgroundColor.customColor,
-        themeConfig || undefined,
-        "light"
-      )
+    ? resolveColorServer(backgroundColor.colorKey, backgroundColor.customColor)
     : undefined;
 
-  // Resolve font family
-  const resolvedFontFamily =
-    fontFamily === "custom" && customFontFamily
-      ? customFontFamily
-      : fontFamily === "font-sans"
-        ? themeConfig?.fonts["font-sans"] || "sans-serif"
-        : fontFamily === "font-serif"
-          ? themeConfig?.fonts["font-serif"] || "serif"
-          : fontFamily === "font-mono"
-            ? themeConfig?.fonts["font-mono"] || "monospace"
-            : undefined;
+  // Resolve font family using server-safe function (returns CSS variables)
+  const resolvedFontFamily = resolveFontFamilyServer(fontFamily, customFontFamily);
 
   const customStyles = {
     ...buildMargin(margin),
