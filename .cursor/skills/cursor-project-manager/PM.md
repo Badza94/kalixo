@@ -1,0 +1,1 @@
+@skills/project-manager-agent/AGENTS.md @skills/project-manager-agent/README.md @skills/project-manager-agent/SKILL.md

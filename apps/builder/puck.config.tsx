@@ -1,4 +1,4 @@
-import type { Config } from "@measured/puck";
+import type { Config } from "@puckeditor/core";
 import {
   NavigationBlock,
   NavigationBlockProps,
@@ -76,6 +76,7 @@ import {
   CategoryFiltersBlock,
   CategoryFiltersBlockProps,
 } from "./blocks/category-filters-block";
+import { createTabbedFields } from "./lib/create-tabbed-fields";
 type Props = {
   HeadingBlock: HeadingBlockProps;
   TextBlock: TextBlockProps;
@@ -112,7 +113,7 @@ export const config: Config<Props> = {
   components: {
     HeadingBlock: {
       label: "Heading",
-      fields: {
+      resolveFields: createTabbedFields({
         level: {
           label: "Level",
           type: "select",
@@ -126,10 +127,12 @@ export const config: Config<Props> = {
           ],
         },
         text: {
+          label: "Text",
           type: "textarea",
           contentEditable: true,
         },
         align: {
+          label: "Alignment",
           type: "radio",
           options: [
             { label: "Left", value: "left" },
@@ -138,6 +141,7 @@ export const config: Config<Props> = {
           ],
         },
         size: {
+          label: "Size",
           type: "select",
           options: [
             { label: "Small", value: "sm" },
@@ -152,6 +156,7 @@ export const config: Config<Props> = {
           ],
         },
         weight: {
+          label: "Font Weight",
           type: "select",
           options: [
             { label: "Light", value: "light" },
@@ -203,6 +208,7 @@ export const config: Config<Props> = {
           ),
         },
         fontFamily: {
+          label: "Font Family",
           type: "select",
           options: [
             { label: "Sans Serif", value: "font-sans" },
@@ -211,6 +217,7 @@ export const config: Config<Props> = {
           ],
         },
         lineHeight: {
+          label: "Line Height",
           type: "select",
           options: [
             { label: "Tight (1.25)", value: "1.25" },
@@ -221,6 +228,7 @@ export const config: Config<Props> = {
           ],
         },
         letterSpacing: {
+          label: "Letter Spacing",
           type: "select",
           options: [
             { label: "Tighter (-0.05em)", value: "-0.05em" },
@@ -232,6 +240,7 @@ export const config: Config<Props> = {
           ],
         },
         textTransform: {
+          label: "Text Transform",
           type: "select",
           options: [
             { label: "None", value: "none" },
@@ -241,6 +250,7 @@ export const config: Config<Props> = {
           ],
         },
         textDecoration: {
+          label: "Text Decoration",
           type: "select",
           options: [
             { label: "None", value: "none" },
@@ -250,6 +260,7 @@ export const config: Config<Props> = {
           ],
         },
         opacity: {
+          label: "Opacity",
           type: "select",
           options: [
             { label: "100%", value: "1" },
@@ -264,7 +275,7 @@ export const config: Config<Props> = {
             { label: "10%", value: "0.1" },
           ],
         },
-      },
+      }),
       defaultProps: {
         level: "h1",
         text: "Your Amazing Heading",
@@ -287,10 +298,12 @@ export const config: Config<Props> = {
       label: "Text",
       fields: {
         text: {
+          label: "Text",
           type: "textarea",
           contentEditable: true,
         },
         align: {
+          label: "Alignment",
           type: "radio",
           options: [
             { label: "Left", value: "left" },
@@ -299,6 +312,7 @@ export const config: Config<Props> = {
           ],
         },
         size: {
+          label: "Size",
           type: "select",
           options: [
             { label: "Extra Small", value: "xs" },
@@ -309,6 +323,7 @@ export const config: Config<Props> = {
           ],
         },
         weight: {
+          label: "Font Weight",
           type: "select",
           options: [
             { label: "Light", value: "light" },
@@ -319,6 +334,7 @@ export const config: Config<Props> = {
           ],
         },
         color: {
+          label: "Color",
           type: "select",
           options: [
             { label: "Default", value: "default" },
@@ -330,6 +346,7 @@ export const config: Config<Props> = {
           ],
         },
         leading: {
+          label: "Line Height",
           type: "select",
           options: [
             { label: "Tight", value: "tight" },
@@ -340,6 +357,7 @@ export const config: Config<Props> = {
           ],
         },
         as: {
+          label: "HTML Tag",
           type: "select",
           options: [
             { label: "Paragraph", value: "p" },
@@ -348,6 +366,7 @@ export const config: Config<Props> = {
           ],
         },
         listStyle: {
+          label: "List Style",
           type: "select",
           options: [
             { label: "None", value: "none" },
@@ -360,6 +379,7 @@ export const config: Config<Props> = {
           ],
         },
         textDecoration: {
+          label: "Text Decoration",
           type: "radio",
           options: [
             { label: "None", value: "none" },
@@ -369,6 +389,7 @@ export const config: Config<Props> = {
           ],
         },
         fontStyle: {
+          label: "Font Style",
           type: "radio",
           options: [
             { label: "Normal", value: "normal" },
@@ -498,6 +519,7 @@ export const config: Config<Props> = {
           ],
         },
         gap: {
+          label: "Gap",
           type: "select",
           options: [
             { label: "No Gap", value: "none" },
@@ -508,8 +530,8 @@ export const config: Config<Props> = {
           ],
         },
         maxWidth: {
+          label: "Max Width",
           type: "text",
-          label: "Max Width (e.g., '1200px', '100%', '50rem')",
         },
         margin: {
           type: "custom",
@@ -542,6 +564,7 @@ export const config: Config<Props> = {
           ),
         },
         items: {
+          label: "Grid Items",
           type: "array",
           arrayFields: {
             content: {
@@ -560,6 +583,7 @@ export const config: Config<Props> = {
       label: "Navigation",
       fields: {
         type: {
+          label: "Navigation Type",
           type: "select",
           options: [
             { label: "Header", value: "header" },
@@ -600,23 +624,26 @@ export const config: Config<Props> = {
           ],
         },
         items: {
+          label: "Menu Items",
           type: "array",
           arrayFields: {
-            id: { type: "text" },
-            label: { type: "text" },
-            href: { type: "text" },
+            id: { type: "text", label: "ID" },
+            label: { type: "text", label: "Label" },
+            href: { type: "text", label: "URL" },
             children: {
+              label: "Submenu Items",
               type: "array",
               arrayFields: {
-                id: { type: "text" },
-                label: { type: "text" },
-                href: { type: "text" },
+                id: { type: "text", label: "ID" },
+                label: { type: "text", label: "Label" },
+                href: { type: "text", label: "URL" },
                 children: {
+                  label: "Submenu Items (Level 3)",
                   type: "array",
                   arrayFields: {
-                    id: { type: "text" },
-                    label: { type: "text" },
-                    href: { type: "text" },
+                    id: { type: "text", label: "ID" },
+                    label: { type: "text", label: "Label" },
+                    href: { type: "text", label: "URL" },
                   },
                 },
               },
@@ -624,6 +651,7 @@ export const config: Config<Props> = {
           },
         },
         showSearch: {
+          label: "Show Search",
           type: "radio",
           options: [
             { label: "Show", value: true },
@@ -631,6 +659,7 @@ export const config: Config<Props> = {
           ],
         },
         showCart: {
+          label: "Show Cart",
           type: "radio",
           options: [
             { label: "Show", value: true },
@@ -638,6 +667,7 @@ export const config: Config<Props> = {
           ],
         },
         showWishlist: {
+          label: "Show Wishlist",
           type: "radio",
           options: [
             { label: "Show", value: true },
@@ -645,6 +675,7 @@ export const config: Config<Props> = {
           ],
         },
         showAccount: {
+          label: "Show Account",
           type: "radio",
           options: [
             { label: "Show", value: true },
@@ -710,6 +741,7 @@ export const config: Config<Props> = {
       label: "Hero",
       fields: {
         type: {
+          label: "Hero Type",
           type: "select",
           options: [
             { label: "Hero Type 1 (Side by Side)", value: "hero1" },
@@ -717,41 +749,57 @@ export const config: Config<Props> = {
           ],
         },
         badge: {
+          label: "Badge",
           type: "textarea",
           contentEditable: true,
         },
         heading: {
+          label: "Heading",
           type: "textarea",
           contentEditable: true,
         },
         subheading: {
+          label: "Subheading",
           type: "textarea",
           contentEditable: true,
         },
         description: {
+          label: "Description",
           type: "textarea",
           contentEditable: true,
         },
         buttons: {
+          label: "Buttons",
           type: "object",
           objectFields: {
             primary: {
+              label: "Primary Button",
               type: "object",
               objectFields: {
-                text: { type: "textarea", contentEditable: true },
+                text: {
+                  type: "textarea",
+                  contentEditable: true,
+                  label: "Text",
+                },
                 url: { type: "text", label: "Button URL" },
               },
             },
             secondary: {
+              label: "Secondary Button",
               type: "object",
               objectFields: {
-                text: { type: "textarea", contentEditable: true },
+                text: {
+                  type: "textarea",
+                  contentEditable: true,
+                  label: "Text",
+                },
                 url: { type: "text", label: "Button URL" },
               },
             },
           },
         },
         image: {
+          label: "Image",
           type: "object",
           objectFields: {
             src: { type: "text", label: "Image URL" },
@@ -759,6 +807,7 @@ export const config: Config<Props> = {
           },
         },
         image2: {
+          label: "Image 2",
           type: "object",
           objectFields: {
             src: { type: "text", label: "Image URL" },
@@ -798,6 +847,7 @@ export const config: Config<Props> = {
       label: "Container",
       fields: {
         width: {
+          label: "Width",
           type: "select",
           options: [
             { label: "Full Width", value: "full" },
@@ -853,6 +903,7 @@ export const config: Config<Props> = {
           label: "Background Image URL",
         },
         backgroundSize: {
+          label: "Background Size",
           type: "select",
           options: [
             { label: "Cover", value: "cover" },
@@ -861,6 +912,7 @@ export const config: Config<Props> = {
           ],
         },
         backgroundPosition: {
+          label: "Background Position",
           type: "select",
           options: [
             { label: "Center", value: "center" },
@@ -881,10 +933,12 @@ export const config: Config<Props> = {
           ),
         },
         border: {
+          label: "Border",
           type: "object",
           objectFields: {
             width: { type: "text", label: "Width" },
             style: {
+              label: "Style",
               type: "select",
               options: [
                 { label: "Solid", value: "solid" },
@@ -896,6 +950,7 @@ export const config: Config<Props> = {
           },
         },
         shadow: {
+          label: "Shadow",
           type: "select",
           options: [
             { label: "None", value: "none" },
@@ -916,6 +971,7 @@ export const config: Config<Props> = {
           ),
         },
         items: {
+          label: "Container Items",
           type: "array",
           arrayFields: {
             content: {
@@ -955,6 +1011,7 @@ export const config: Config<Props> = {
       label: "Flex",
       fields: {
         direction: {
+          label: "Direction",
           type: "select",
           options: [
             { label: "Row", value: "row" },
@@ -964,6 +1021,7 @@ export const config: Config<Props> = {
           ],
         },
         wrap: {
+          label: "Wrap",
           type: "select",
           options: [
             { label: "No Wrap", value: "nowrap" },
@@ -972,6 +1030,7 @@ export const config: Config<Props> = {
           ],
         },
         justify: {
+          label: "Justify Content",
           type: "select",
           options: [
             { label: "Start", value: "flex-start" },
@@ -983,6 +1042,7 @@ export const config: Config<Props> = {
           ],
         },
         align: {
+          label: "Align Items",
           type: "select",
           options: [
             { label: "Start", value: "flex-start" },
@@ -1053,6 +1113,7 @@ export const config: Config<Props> = {
           ),
         },
         items: {
+          label: "Flex Items",
           type: "array",
           arrayFields: {
             content: {
@@ -1116,6 +1177,7 @@ export const config: Config<Props> = {
           ],
         },
         variant: {
+          label: "Variant",
           type: "select",
           options: [
             { label: "Default", value: "default" },
@@ -1127,6 +1189,7 @@ export const config: Config<Props> = {
           ],
         },
         size: {
+          label: "Size",
           type: "select",
           options: [
             { label: "Default", value: "default" },
@@ -1136,6 +1199,7 @@ export const config: Config<Props> = {
           ],
         },
         disabled: {
+          label: "Disabled",
           type: "radio",
           options: [
             { label: "Enabled", value: false },
@@ -1279,6 +1343,7 @@ export const config: Config<Props> = {
           label: "Alt Text",
         },
         fill: {
+          label: "Fill Mode",
           type: "radio",
           options: [
             { label: "Fixed Size", value: false },
@@ -1302,6 +1367,7 @@ export const config: Config<Props> = {
           label: "Max Height",
         },
         aspectRatio: {
+          label: "Aspect Ratio",
           type: "select",
           options: [
             { label: "Auto (use width/height)", value: "auto" },
@@ -1318,6 +1384,7 @@ export const config: Config<Props> = {
           label: "Custom Aspect Ratio (e.g., 1.5)",
         },
         objectFit: {
+          label: "Object Fit",
           type: "select",
           options: [
             { label: "Contain", value: "contain" },
@@ -1328,6 +1395,7 @@ export const config: Config<Props> = {
           ],
         },
         objectPosition: {
+          label: "Object Position",
           type: "select",
           options: [
             { label: "Center", value: "center" },
@@ -1352,6 +1420,7 @@ export const config: Config<Props> = {
           ),
         },
         shadow: {
+          label: "Shadow",
           type: "select",
           options: [
             { label: "None", value: "none" },
@@ -1377,6 +1446,7 @@ export const config: Config<Props> = {
           label: "Opacity (0-1)",
         },
         grayscale: {
+          label: "Grayscale",
           type: "radio",
           options: [
             { label: "Color", value: false },
@@ -1384,6 +1454,7 @@ export const config: Config<Props> = {
           ],
         },
         priority: {
+          label: "Loading Priority",
           type: "radio",
           options: [
             { label: "Lazy Load", value: false },
@@ -1427,6 +1498,7 @@ export const config: Config<Props> = {
           label: "Max Width",
         },
         aspectRatio: {
+          label: "Aspect Ratio",
           type: "select",
           options: [
             { label: "Auto", value: "auto" },
@@ -1453,6 +1525,7 @@ export const config: Config<Props> = {
           ),
         },
         shadow: {
+          label: "Shadow",
           type: "select",
           options: [
             { label: "None", value: "none" },
@@ -1474,6 +1547,7 @@ export const config: Config<Props> = {
           ),
         },
         controls: {
+          label: "Controls",
           type: "radio",
           options: [
             { label: "Show Controls", value: true },
@@ -1481,6 +1555,7 @@ export const config: Config<Props> = {
           ],
         },
         autoplay: {
+          label: "Autoplay",
           type: "radio",
           options: [
             { label: "Autoplay", value: true },
@@ -1488,6 +1563,7 @@ export const config: Config<Props> = {
           ],
         },
         loop: {
+          label: "Loop",
           type: "radio",
           options: [
             { label: "Loop", value: true },
@@ -1495,6 +1571,7 @@ export const config: Config<Props> = {
           ],
         },
         muted: {
+          label: "Muted",
           type: "radio",
           options: [
             { label: "Muted", value: true },
@@ -1535,6 +1612,7 @@ export const config: Config<Props> = {
       label: "Divider",
       fields: {
         orientation: {
+          label: "Orientation",
           type: "radio",
           options: [
             { label: "Horizontal", value: "horizontal" },
@@ -1576,6 +1654,7 @@ export const config: Config<Props> = {
       label: "Card",
       fields: {
         showHeader: {
+          label: "Show Header",
           type: "radio",
           options: [
             { label: "Show Header", value: true },
@@ -1591,6 +1670,7 @@ export const config: Config<Props> = {
           label: "Card Description",
         },
         showFooter: {
+          label: "Show Footer",
           type: "radio",
           options: [
             { label: "Show Footer", value: true },
@@ -1648,6 +1728,7 @@ export const config: Config<Props> = {
           ),
         },
         items: {
+          label: "Card Content",
           type: "array",
           arrayFields: {
             content: {
@@ -1656,6 +1737,7 @@ export const config: Config<Props> = {
           },
         },
         footerItems: {
+          label: "Footer Content",
           type: "array",
           arrayFields: {
             content: {
@@ -1679,6 +1761,7 @@ export const config: Config<Props> = {
       label: "Carousel",
       fields: {
         itemsPerSlide: {
+          label: "Items Per Slide",
           type: "select",
           options: [
             { label: "1 Item Per Slide", value: 1 },
@@ -1690,6 +1773,7 @@ export const config: Config<Props> = {
           ],
         },
         orientation: {
+          label: "Orientation",
           type: "radio",
           options: [
             { label: "Horizontal", value: "horizontal" },
@@ -1697,6 +1781,7 @@ export const config: Config<Props> = {
           ],
         },
         showNavigation: {
+          label: "Show Navigation",
           type: "radio",
           options: [
             { label: "Show Navigation", value: true },
@@ -1704,6 +1789,7 @@ export const config: Config<Props> = {
           ],
         },
         showDots: {
+          label: "Show Dots",
           type: "radio",
           options: [
             { label: "Show Dot Indicators", value: true },
@@ -1711,6 +1797,7 @@ export const config: Config<Props> = {
           ],
         },
         showCounter: {
+          label: "Show Counter",
           type: "radio",
           options: [
             { label: "Show Slide Counter", value: true },
@@ -1718,6 +1805,7 @@ export const config: Config<Props> = {
           ],
         },
         loop: {
+          label: "Loop",
           type: "radio",
           options: [
             { label: "Loop", value: true },
@@ -1725,6 +1813,7 @@ export const config: Config<Props> = {
           ],
         },
         gap: {
+          label: "Gap",
           type: "select",
           options: [
             { label: "No Gap", value: "none" },
@@ -1735,6 +1824,7 @@ export const config: Config<Props> = {
           ],
         },
         itemGap: {
+          label: "Item Gap",
           type: "select",
           options: [
             { label: "No Gap", value: "none" },
@@ -1809,11 +1899,13 @@ export const config: Config<Props> = {
           ),
         },
         items: {
+          label: "Carousel Slides",
           type: "array",
           getItemSummary: (item, index) =>
             `Slide ${(index ?? 0) + 1}${item?.contents?.length ? ` (${item.contents.length} component${item.contents.length !== 1 ? "s" : ""})` : ""}`,
           arrayFields: {
             contents: {
+              label: "Slide Components",
               type: "array",
               getItemSummary: (item, index) => `Component ${(index ?? 0) + 1}`,
               arrayFields: {
@@ -1850,6 +1942,7 @@ export const config: Config<Props> = {
           label: "Product ID (e.g., 17056)",
         },
         showCategory: {
+          label: "Show Category",
           type: "radio",
           options: [
             { label: "Show Category", value: true },
@@ -1857,6 +1950,7 @@ export const config: Config<Props> = {
           ],
         },
         showPrice: {
+          label: "Show Price",
           type: "radio",
           options: [
             { label: "Show Price", value: true },
@@ -1864,6 +1958,7 @@ export const config: Config<Props> = {
           ],
         },
         showButtons: {
+          label: "Show Buttons",
           type: "radio",
           options: [
             { label: "Show Buttons", value: true },
@@ -1871,6 +1966,7 @@ export const config: Config<Props> = {
           ],
         },
         buttonLayout: {
+          label: "Button Layout",
           type: "select",
           options: [
             { label: "Horizontal", value: "horizontal" },
@@ -2187,6 +2283,7 @@ export const config: Config<Props> = {
           },
         },
         gridColumns: {
+          label: "Grid Columns",
           type: "select",
           options: [
             { label: "1 Column", value: 1 },
@@ -2198,6 +2295,7 @@ export const config: Config<Props> = {
           ],
         },
         showCategory: {
+          label: "Show Category",
           type: "radio",
           options: [
             { label: "Show Category", value: true },
@@ -2205,6 +2303,7 @@ export const config: Config<Props> = {
           ],
         },
         showPrice: {
+          label: "Show Price",
           type: "radio",
           options: [
             { label: "Show Price", value: true },
@@ -2212,6 +2311,7 @@ export const config: Config<Props> = {
           ],
         },
         showButtons: {
+          label: "Show Buttons",
           type: "radio",
           options: [
             { label: "Show Buttons", value: true },
@@ -2219,6 +2319,7 @@ export const config: Config<Props> = {
           ],
         },
         buttonLayout: {
+          label: "Button Layout",
           type: "select",
           options: [
             { label: "Horizontal", value: "horizontal" },
@@ -2529,6 +2630,7 @@ export const config: Config<Props> = {
           label: "Items per page",
         },
         showPagination: {
+          label: "Show Pagination",
           type: "radio",
           options: [
             { label: "Show Pagination", value: true },
@@ -2536,6 +2638,7 @@ export const config: Config<Props> = {
           ],
         },
         syncWithFilters: {
+          label: "Sync With Filters",
           type: "radio",
           options: [
             { label: "Sync with CategoryFiltersBlock", value: true },
@@ -2543,6 +2646,7 @@ export const config: Config<Props> = {
           ],
         },
         gridColumns: {
+          label: "Grid Columns",
           type: "select",
           options: [
             { label: "1 Column", value: 1 },
@@ -2554,6 +2658,7 @@ export const config: Config<Props> = {
           ],
         },
         showCategory: {
+          label: "Show Category",
           type: "radio",
           options: [
             { label: "Show Category", value: true },
@@ -2561,6 +2666,7 @@ export const config: Config<Props> = {
           ],
         },
         showPrice: {
+          label: "Show Price",
           type: "radio",
           options: [
             { label: "Show Price", value: true },
@@ -2568,6 +2674,7 @@ export const config: Config<Props> = {
           ],
         },
         showButtons: {
+          label: "Show Buttons",
           type: "radio",
           options: [
             { label: "Show Buttons", value: true },
@@ -2575,6 +2682,7 @@ export const config: Config<Props> = {
           ],
         },
         buttonLayout: {
+          label: "Button Layout",
           type: "select",
           options: [
             { label: "Horizontal", value: "horizontal" },
@@ -3082,9 +3190,11 @@ export const config: Config<Props> = {
           },
         },
         buyNowButton: {
+          label: "Buy Now Button",
           type: "object",
           objectFields: {
             variant: {
+              label: "Variant",
               type: "select",
               options: [
                 { label: "Default", value: "default" },
@@ -3096,6 +3206,7 @@ export const config: Config<Props> = {
               ],
             },
             size: {
+              label: "Size",
               type: "select",
               options: [
                 { label: "Default", value: "default" },
@@ -3139,9 +3250,11 @@ export const config: Config<Props> = {
           },
         },
         addToCartButton: {
+          label: "Add to Cart Button",
           type: "object",
           objectFields: {
             variant: {
+              label: "Variant",
               type: "select",
               options: [
                 { label: "Default", value: "default" },
@@ -3153,6 +3266,7 @@ export const config: Config<Props> = {
               ],
             },
             size: {
+              label: "Size",
               type: "select",
               options: [
                 { label: "Default", value: "default" },
@@ -3196,9 +3310,11 @@ export const config: Config<Props> = {
           },
         },
         addToFavButton: {
+          label: "Add to Favorites Button",
           type: "object",
           objectFields: {
             variant: {
+              label: "Variant",
               type: "select",
               options: [
                 { label: "Default", value: "default" },
@@ -3210,6 +3326,7 @@ export const config: Config<Props> = {
               ],
             },
             size: {
+              label: "Size",
               type: "select",
               options: [
                 { label: "Default", value: "default" },
@@ -3363,17 +3480,19 @@ export const config: Config<Props> = {
           })),
         },
         customFields: {
+          label: "Custom Fields",
           type: "custom",
           render: ({ onChange, value }) => (
             <FormFieldEditor fields={value || []} onChange={onChange} />
           ),
         },
         styling: {
+          label: "Styling",
           type: "object",
           objectFields: {
             layout: {
-              type: "select",
               label: "Layout",
+              type: "select",
               options: [
                 { label: "Vertical", value: "vertical" },
                 { label: "Horizontal", value: "horizontal" },

@@ -10,7 +10,7 @@ import {
   puckSelectClassNameSmall,
   puckInputClassName,
 } from "../lib/puck-styles";
-import { Button } from "@measured/puck";
+import { Button } from "@puckeditor/core";
 
 interface SpacingValue {
   top?: string;

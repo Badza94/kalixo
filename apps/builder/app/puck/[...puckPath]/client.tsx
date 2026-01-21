@@ -1,12 +1,28 @@
 "use client";
 
 import { useState, useEffect, useMemo, useRef } from "react";
+import React from "react";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs";
 import { useRouter } from "next/navigation";
-import type { Data } from "@measured/puck";
-import { Puck } from "@measured/puck";
+import type { Data } from "@puckeditor/core";
+import { Puck } from "@puckeditor/core";
 import { Button } from "@workspace/ui/components/button";
 import config from "../../../puck.config";
-import { Eye, Palette, PlusCircle, Layers } from "@workspace/ui/lucide-react";
+import {
+  Eye,
+  Palette,
+  PlusCircle,
+  Layers,
+  Smartphone,
+  Tablet,
+  Monitor,
+  Maximize2,
+} from "@workspace/ui/lucide-react";
 import { ThemeEditor } from "./theme-editor";
 import { Toaster } from "@workspace/ui/components/sonner";
 import { IframeThemeInjector } from "./iframe-theme-injector";
@@ -17,7 +33,7 @@ import { TemplateSelectorDialog } from "../../../components/template-selector-di
 import { NewPageDialog } from "../../../components/new-page-dialog";
 import { GlobalComponentsManager } from "../../../components/global-components-manager";
 // import { isReadOnlyPage } from "../../../lib/default-pages"; // COMMENTED OUT
-import { Render } from "@measured/puck";
+import { Render } from "@puckeditor/core";
 
 interface ThemeConfig {
   light: Record<string, string>;
@@ -190,59 +206,49 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
   const overrides = useMemo(
     () => ({
       headerActions: ({ children }: { children: React.ReactNode }) => (
-        <>
-          <Button
-            variant="default"
-            size="default"
-            onClick={() => setIsNewPageDialogOpen(true)}
-          >
-            <PlusCircle className="w-4 h-4" />
-            New Page
-          </Button>
-          <Button
-            variant="secondary"
-            size="default"
-            onClick={() => setIsGlobalsManagerOpen(true)}
-          >
-            <Layers className="w-4 h-4" />
-            Templates
-          </Button>
-
-          <Button
-            variant="secondary"
-            size="default"
-            onClick={() => setIsThemeEditorOpen(true)}
-          >
-            <Palette className="w-4 h-4" />
-            Theme
-          </Button>
-          <ThemeToggle />
-          {/* <Button
-            variant="secondary"
-            size="medium"
-            onClick={() => {
-              // if the path is http://localhost:3002/edit then the new path should be http://localhost:3002
-              // or if the path is http://localhost:3002/category/edit then the new path should be http://localhost:3002/category
-
-              const currentPath = window.location.pathname;
-              const newPath = currentPath.replace("/edit", "");
-              console.log("newPath: ", newPath);
-              window.open(`${newPath}`, "_blank");
-            }}
-          >
-            
-          </Button> */}
-          <a
-            href={`${path.replace("/edit", "")}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border h-[34px] px-[19px] py-[7px] rounded flex items-center gap-2 text-current border-current"
-          >
-            <Eye className="w-4 h-4" />
-            Preview
-          </a>
-          {children}
-        </>
+        <div className="flex gap-3 justify-end items-center w-full">
+          {/* Right side - Actions (Elementor-style toolbar) */}
+          <div className="flex gap-2 items-center">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setIsNewPageDialogOpen(true)}
+              className="h-8"
+            >
+              <PlusCircle className="w-4 h-4 mr-1.5" />
+              New Page
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setIsGlobalsManagerOpen(true)}
+              className="h-8"
+            >
+              <Layers className="w-4 h-4 mr-1.5" />
+              Templates
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setIsThemeEditorOpen(true)}
+              className="h-8"
+            >
+              <Palette className="w-4 h-4 mr-1.5" />
+              Theme
+            </Button>
+            <ThemeToggle />
+            <a
+              href={`${path.replace("/edit", "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex gap-2 items-center px-3 h-8 text-sm rounded-md border transition-colors hover:bg-accent"
+            >
+              <Eye className="w-4 h-4" />
+              Preview
+            </a>
+            {children}
+          </div>
+        </div>
       ),
       iframe: ({
         children,
@@ -312,6 +318,117 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
             {children}
           </Component>
         );
+      },
+      // Override object field type to render as tabs when field name is _content, _style, or _advanced
+      fieldTypes: {
+        object: ({
+          name,
+        }: {
+          name: string;
+          field: unknown;
+          value: unknown;
+          onChange: (value: unknown) => void;
+          children?: React.ReactNode;
+        }) => {
+          // Check if this is a tab group field (created by resolveFields)
+          if (
+            name === "_content" ||
+            name === "_style" ||
+            name === "_advanced"
+          ) {
+            // Return null to hide the object field wrapper - we'll handle it in fields override
+            return null;
+          }
+
+          // For regular object fields, return undefined to use default rendering
+          return undefined;
+        },
+      },
+      // Override fields wrapper to add tabs for tabbed components
+      fields: ({ children }: { children: React.ReactNode }) => {
+        // Convert children to array to inspect field structure
+        const childrenArray = React.Children.toArray(children);
+
+        // Check if we have _content, _style, or _advanced fields (from resolveFields)
+        const hasTabStructure = childrenArray.some((child: any) => {
+          const fieldName = child?.props?.name || child?.props?.propName;
+          return (
+            fieldName === "_content" ||
+            fieldName === "_style" ||
+            fieldName === "_advanced"
+          );
+        });
+
+        if (hasTabStructure) {
+          // Group children by tab
+          const contentFields: React.ReactNode[] = [];
+          const styleFields: React.ReactNode[] = [];
+          const advancedFields: React.ReactNode[] = [];
+
+          childrenArray.forEach((child: React.ReactNode) => {
+            const childElement = child as React.ReactElement<{
+              name?: string;
+              propName?: string;
+            }>;
+            const fieldName =
+              childElement?.props?.name || childElement?.props?.propName;
+            if (fieldName === "_content") {
+              contentFields.push(child);
+            } else if (fieldName === "_style") {
+              styleFields.push(child);
+            } else if (fieldName === "_advanced") {
+              advancedFields.push(child);
+            }
+          });
+
+          const hasContent = contentFields.length > 0;
+          const hasStyle = styleFields.length > 0;
+          const hasAdvanced = advancedFields.length > 0;
+
+          if (hasContent || hasStyle || hasAdvanced) {
+            return (
+              <div className="w-full">
+                <Tabs defaultValue="content" className="w-full">
+                  <TabsList className="grid grid-cols-3 mb-4 w-full h-9">
+                    {hasContent && (
+                      <TabsTrigger value="content" className="text-xs">
+                        Content
+                      </TabsTrigger>
+                    )}
+                    {hasStyle && (
+                      <TabsTrigger value="style" className="text-xs">
+                        Style
+                      </TabsTrigger>
+                    )}
+                    {hasAdvanced && (
+                      <TabsTrigger value="advanced" className="text-xs">
+                        Advanced
+                      </TabsTrigger>
+                    )}
+                  </TabsList>
+                  {hasContent && (
+                    <TabsContent value="content" className="mt-0 space-y-4">
+                      {contentFields}
+                    </TabsContent>
+                  )}
+                  {hasStyle && (
+                    <TabsContent value="style" className="mt-0 space-y-4">
+                      {styleFields}
+                    </TabsContent>
+                  )}
+                  {hasAdvanced && (
+                    <TabsContent value="advanced" className="mt-0 space-y-4">
+                      {advancedFields}
+                    </TabsContent>
+                  )}
+                </Tabs>
+              </div>
+            );
+          }
+        }
+
+        // Otherwise, render normally
+        return <div className="space-y-4">{children}</div>;
       },
     }),
     [themeConfig, isHomePage, path]
@@ -580,6 +697,28 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
               config={config}
               data={currentData}
               overrides={overrides}
+              viewports={[
+                {
+                  width: 360,
+                  label: "Mobile",
+                  icon: <Smartphone className="w-4 h-4" />,
+                },
+                {
+                  width: 768,
+                  label: "Tablet",
+                  icon: <Tablet className="w-4 h-4" />,
+                },
+                {
+                  width: 1280,
+                  label: "Desktop",
+                  icon: <Monitor className="w-4 h-4" />,
+                },
+                {
+                  width: "100%",
+                  label: "Full Width",
+                  icon: <Maximize2 className="w-4 h-4" />,
+                },
+              ]}
               onChange={(newData) => {
                 console.log(
                   "Puck onChange, content length:",

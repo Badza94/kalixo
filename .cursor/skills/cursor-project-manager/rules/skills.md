@@ -1,0 +1,1 @@
+@skills/project-manager-agent/rules/task-creation.md @skills/project-manager-agent/rules/task-organization.md @skills/project-manager-agent/rules/task-status-management.md @skills/project-manager-agent/rules/fast-operations.md @skills/project-manager-agent/rules/kanban-integration.md

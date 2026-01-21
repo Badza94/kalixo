@@ -1,4 +1,4 @@
-import { Data } from "@measured/puck";
+import { Data } from "@puckeditor/core";
 
 // List of pages that cannot be edited
 export const READ_ONLY_PAGES = ["/login", "/register", "/checkout", "/forgot-password", "/reset-password"];

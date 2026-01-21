@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import { registerOverlayPortal } from "@measured/puck";
+import { registerOverlayPortal } from "@puckeditor/core";
 
 interface ResizableSlotFieldProps {
   value: Array<{

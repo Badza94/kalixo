@@ -1,10 +1,10 @@
 "use client";
 
-import { Render } from "@measured/puck";
+import { Render } from "@puckeditor/core";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import config from "../puck.config";
-import type { Data } from "@measured/puck";
+import type { Data } from "@puckeditor/core";
 import { applyThemeToDocument } from "../lib/apply-theme";
 
 interface ClientRenderProps {

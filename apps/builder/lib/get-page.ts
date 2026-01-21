@@ -1,4 +1,4 @@
-import { Data } from "@measured/puck";
+import { Data } from "@puckeditor/core";
 import fs from "fs";
 import path from "path";
 import { getDefaultPages } from "./default-pages";

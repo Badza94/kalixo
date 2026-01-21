@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { X } from "@workspace/ui/lucide-react";
-import { Button } from "@measured/puck";
+import { Button } from "@puckeditor/core";
 import { toast } from "sonner";
 import { hexToOklch, oklchToHex } from "../../../lib/color-utils";
 
