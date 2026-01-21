@@ -2,12 +2,6 @@
 
 import { useState, useEffect, useMemo, useRef } from "react";
 import React from "react";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@workspace/ui/components/tabs";
 import { useRouter } from "next/navigation";
 import type { Data } from "@puckeditor/core";
 import { Puck } from "@puckeditor/core";
@@ -32,6 +26,7 @@ import { EmptyCanvasOverlay } from "../../../components/empty-canvas-overlay";
 import { TemplateSelectorDialog } from "../../../components/template-selector-dialog";
 import { NewPageDialog } from "../../../components/new-page-dialog";
 import { GlobalComponentsManager } from "../../../components/global-components-manager";
+import { TabbedFieldsWrapper } from "../../../components/tabbed-fields-wrapper";
 // import { isReadOnlyPage } from "../../../lib/default-pages"; // COMMENTED OUT
 import { Render } from "@puckeditor/core";
 
@@ -250,6 +245,18 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
           </div>
         </div>
       ),
+      // Fields override - wraps Puck's fields in tabbed interface (Content, Style, Advanced)
+      fields: ({
+        children,
+        isLoading,
+      }: {
+        children: React.ReactNode;
+        isLoading: boolean;
+      }) => (
+        <TabbedFieldsWrapper isLoading={isLoading}>
+          {children}
+        </TabbedFieldsWrapper>
+      ),
       iframe: ({
         children,
         document,
@@ -318,117 +325,6 @@ export function Client({ path, data }: { path: string; data: Partial<Data> }) {
             {children}
           </Component>
         );
-      },
-      // Override object field type to render as tabs when field name is _content, _style, or _advanced
-      fieldTypes: {
-        object: ({
-          name,
-        }: {
-          name: string;
-          field: unknown;
-          value: unknown;
-          onChange: (value: unknown) => void;
-          children?: React.ReactNode;
-        }) => {
-          // Check if this is a tab group field (created by resolveFields)
-          if (
-            name === "_content" ||
-            name === "_style" ||
-            name === "_advanced"
-          ) {
-            // Return null to hide the object field wrapper - we'll handle it in fields override
-            return null;
-          }
-
-          // For regular object fields, return undefined to use default rendering
-          return undefined;
-        },
-      },
-      // Override fields wrapper to add tabs for tabbed components
-      fields: ({ children }: { children: React.ReactNode }) => {
-        // Convert children to array to inspect field structure
-        const childrenArray = React.Children.toArray(children);
-
-        // Check if we have _content, _style, or _advanced fields (from resolveFields)
-        const hasTabStructure = childrenArray.some((child: any) => {
-          const fieldName = child?.props?.name || child?.props?.propName;
-          return (
-            fieldName === "_content" ||
-            fieldName === "_style" ||
-            fieldName === "_advanced"
-          );
-        });
-
-        if (hasTabStructure) {
-          // Group children by tab
-          const contentFields: React.ReactNode[] = [];
-          const styleFields: React.ReactNode[] = [];
-          const advancedFields: React.ReactNode[] = [];
-
-          childrenArray.forEach((child: React.ReactNode) => {
-            const childElement = child as React.ReactElement<{
-              name?: string;
-              propName?: string;
-            }>;
-            const fieldName =
-              childElement?.props?.name || childElement?.props?.propName;
-            if (fieldName === "_content") {
-              contentFields.push(child);
-            } else if (fieldName === "_style") {
-              styleFields.push(child);
-            } else if (fieldName === "_advanced") {
-              advancedFields.push(child);
-            }
-          });
-
-          const hasContent = contentFields.length > 0;
-          const hasStyle = styleFields.length > 0;
-          const hasAdvanced = advancedFields.length > 0;
-
-          if (hasContent || hasStyle || hasAdvanced) {
-            return (
-              <div className="w-full">
-                <Tabs defaultValue="content" className="w-full">
-                  <TabsList className="grid grid-cols-3 mb-4 w-full h-9">
-                    {hasContent && (
-                      <TabsTrigger value="content" className="text-xs">
-                        Content
-                      </TabsTrigger>
-                    )}
-                    {hasStyle && (
-                      <TabsTrigger value="style" className="text-xs">
-                        Style
-                      </TabsTrigger>
-                    )}
-                    {hasAdvanced && (
-                      <TabsTrigger value="advanced" className="text-xs">
-                        Advanced
-                      </TabsTrigger>
-                    )}
-                  </TabsList>
-                  {hasContent && (
-                    <TabsContent value="content" className="mt-0 space-y-4">
-                      {contentFields}
-                    </TabsContent>
-                  )}
-                  {hasStyle && (
-                    <TabsContent value="style" className="mt-0 space-y-4">
-                      {styleFields}
-                    </TabsContent>
-                  )}
-                  {hasAdvanced && (
-                    <TabsContent value="advanced" className="mt-0 space-y-4">
-                      {advancedFields}
-                    </TabsContent>
-                  )}
-                </Tabs>
-              </div>
-            );
-          }
-        }
-
-        // Otherwise, render normally
-        return <div className="space-y-4">{children}</div>;
       },
     }),
     [themeConfig, isHomePage, path]

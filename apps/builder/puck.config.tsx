@@ -42,6 +42,7 @@ import { ProductSelectorField } from "./fields/product-selector-field";
 import productsData from "./data/productsData.json";
 import { ColorPickerField } from "./fields/color-picker-field";
 import { SpacingField } from "./fields/spacing-field";
+import { ElementorSpacingFieldCompact } from "./fields/elementor-spacing-field";
 import { BorderRadiusField } from "./fields/border-radius-field";
 import { ImagePickerField } from "./fields/image-picker-field";
 import { FormBlock } from "./blocks/form-block";
@@ -76,7 +77,6 @@ import {
   CategoryFiltersBlock,
   CategoryFiltersBlockProps,
 } from "./blocks/category-filters-block";
-import { createTabbedFields } from "./lib/create-tabbed-fields";
 type Props = {
   HeadingBlock: HeadingBlockProps;
   TextBlock: TextBlockProps;
@@ -113,7 +113,7 @@ export const config: Config<Props> = {
   components: {
     HeadingBlock: {
       label: "Heading",
-      resolveFields: createTabbedFields({
+      fields: {
         level: {
           label: "Level",
           type: "select",
@@ -180,7 +180,7 @@ export const config: Config<Props> = {
         margin: {
           type: "custom",
           render: ({ onChange, value }) => (
-            <SpacingField
+            <ElementorSpacingFieldCompact
               value={value || {}}
               onChange={onChange}
               label="Margin"
@@ -190,7 +190,7 @@ export const config: Config<Props> = {
         padding: {
           type: "custom",
           render: ({ onChange, value }) => (
-            <SpacingField
+            <ElementorSpacingFieldCompact
               value={value || {}}
               onChange={onChange}
               label="Padding"
@@ -275,7 +275,7 @@ export const config: Config<Props> = {
             { label: "10%", value: "0.1" },
           ],
         },
-      }),
+      },
       defaultProps: {
         level: "h1",
         text: "Your Amazing Heading",
@@ -536,7 +536,7 @@ export const config: Config<Props> = {
         margin: {
           type: "custom",
           render: ({ onChange, value }) => (
-            <SpacingField
+            <ElementorSpacingFieldCompact
               value={value || {}}
               onChange={onChange}
               label="Margin"
@@ -871,7 +871,7 @@ export const config: Config<Props> = {
         padding: {
           type: "custom",
           render: ({ onChange, value }) => (
-            <SpacingField
+            <ElementorSpacingFieldCompact
               value={value || {}}
               onChange={onChange}
               label="Padding"
@@ -881,7 +881,7 @@ export const config: Config<Props> = {
         margin: {
           type: "custom",
           render: ({ onChange, value }) => (
-            <SpacingField
+            <ElementorSpacingFieldCompact
               value={value || {}}
               onChange={onChange}
               label="Margin"
@@ -1075,7 +1075,7 @@ export const config: Config<Props> = {
         padding: {
           type: "custom",
           render: ({ onChange, value }) => (
-            <SpacingField
+            <ElementorSpacingFieldCompact
               value={value || {}}
               onChange={onChange}
               label="Padding"
@@ -1085,7 +1085,7 @@ export const config: Config<Props> = {
         margin: {
           type: "custom",
           render: ({ onChange, value }) => (
-            <SpacingField
+            <ElementorSpacingFieldCompact
               value={value || {}}
               onChange={onChange}
               label="Margin"
