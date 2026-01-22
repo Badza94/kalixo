@@ -12,7 +12,7 @@ import type { Field } from "@puckeditor/core";
 export const LAYOUT_COMPONENTS = ["GridBlock", "FlexBlock", "ContainerBlock"];
 
 // Content fields: actual content, data, visibility toggles, text settings
-const CONTENT_FIELD_NAMES = [
+export const CONTENT_FIELD_NAMES = [
   // Text content
   "text",
   "content",
@@ -92,7 +92,7 @@ const CONTENT_FIELD_NAMES = [
 ];
 
 // Style fields: visual appearance (colors, typography, backgrounds, borders, shadows)
-const STYLE_FIELD_NAMES = [
+export const STYLE_FIELD_NAMES = [
   // Colors
   "color",
   "textColor",
@@ -135,7 +135,7 @@ const STYLE_FIELD_NAMES = [
 ];
 
 // Advanced fields: Layout, positioning, spacing, and custom code
-const ADVANCED_FIELD_NAMES = [
+export const ADVANCED_FIELD_NAMES = [
   // Spacing (Elementor puts these in Advanced)
   "margin",
   "padding",

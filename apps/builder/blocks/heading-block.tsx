@@ -1,6 +1,9 @@
 // Server Component - Uses CSS variables for theming
 import { cn } from "@workspace/ui/lib/utils";
-import { resolveColorServer, resolveFontFamilyServer } from "../types/theme-server";
+import {
+  resolveColorServer,
+  resolveFontFamilyServer,
+} from "../types/theme-server";
 
 interface SpacingValue {
   top?: string;
@@ -142,7 +145,10 @@ export function HeadingBlock({
     : undefined;
 
   // Resolve font family using server-safe function (returns CSS variables)
-  const resolvedFontFamily = resolveFontFamilyServer(fontFamily, customFontFamily);
+  const resolvedFontFamily = resolveFontFamilyServer(
+    fontFamily,
+    customFontFamily
+  );
 
   const customStyles = {
     ...buildMargin(margin),
